@@ -1,4 +1,4 @@
-<div metal:use-macro="load: layout.pt">
+<div metal:use-macro="load: _layout.pt">
     <div metal:fill-slot="content">
 
         <div class="content">
@@ -10,5 +10,9 @@
             </div>
         </div>
 
+    </div>
+
+    <div metal:fill-slot="additional-css" tal:omit-tag>
+        <!-- additional css from the page -->
     </div>
 </div>

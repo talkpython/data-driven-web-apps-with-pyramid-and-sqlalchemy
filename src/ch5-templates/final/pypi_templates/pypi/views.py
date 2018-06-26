@@ -10,7 +10,12 @@ def get_test_packages():
 
 
 @view_config(route_name='home', renderer='templates/home_index.pt')
-def home_index(request):
+def home_index(_):
     return {
         'packages': get_test_packages()
     }
+
+
+@view_config(route_name='about', renderer='templates/home_about.pt')
+def about(_):
+    return {}
