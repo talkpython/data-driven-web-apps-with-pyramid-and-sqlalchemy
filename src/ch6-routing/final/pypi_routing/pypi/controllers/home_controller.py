@@ -9,13 +9,13 @@ def get_test_packages():
     ]
 
 
-@view_config(route_name='home', renderer='templates/home_index.pt')
+@view_config(route_name='home', renderer='pypi:templates/home/index.pt')
 def home_index(_):
     return {
         'packages': get_test_packages()
     }
 
 
-@view_config(route_name='about', renderer='templates/home_about.pt')
-def about(_):
+@view_config(route_name='about', renderer='pypi:templates/home/about.pt')
+def home_about(_):
     return {}
