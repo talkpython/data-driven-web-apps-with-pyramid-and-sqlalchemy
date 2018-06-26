@@ -2,6 +2,8 @@
   <dictionary name="screencaster">
     <words>
       <w>pypi</w>
+      <w>subpath</w>
+      <w>suburl</w>
     </words>
   </dictionary>
 </component>
