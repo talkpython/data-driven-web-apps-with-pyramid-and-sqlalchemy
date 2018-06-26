@@ -99,8 +99,18 @@ ENV/
 
 # mypy
 .mypy_cache/
+.idea/misc.xml
+.idea/modules.xml
+.idea/pypi_templates.iml
+.idea/webResources.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/pypi_routing.iml
+
 src/ch5-templates/final/pypi_templates/.idea/misc.xml
 src/ch5-templates/final/pypi_templates/.idea/modules.xml
 src/ch5-templates/final/pypi_templates/.idea/pypi_templates.iml
 src/ch5-templates/final/pypi_templates/.idea/webResources.xml
 src/ch5-templates/final/pypi_templates/.idea/inspectionProfiles/Project_Default.xml
+src/ch6-routing/final/pypi_routing/.idea/misc.xml
+src/ch6-routing/final/pypi_routing/.idea/modules.xml
+src/ch6-routing/final/pypi_routing/.idea/pypi_routing.iml
