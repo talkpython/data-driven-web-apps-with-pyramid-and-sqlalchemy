@@ -1,6 +1,11 @@
 body {
     font-family: Source Sans Pro, Helvetica, Arial, sans-serif;
     font-size: 17px;
+    background-color: #006dad;
+}
+
+#page-content {
+    background-color: #fff;
 }
 
 .hero {
@@ -84,4 +89,32 @@ body {
     font-style: italic;
     font-weight: normal;
     font-size: 16px;
+}
+
+
+.navbar-brand img {
+    width: 65px;
+    margin-left: 60px;
+}
+
+.navbar-inverse .navbar-toggle {
+    margin-top: 20px;
+}
+
+.navbar-nav li {
+    margin-top: 20px;
+}
+
+#last_nav_link {
+    margin-right: 45px;
+}
+
+
+footer {
+    margin-top: 50px;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    background-color: #006dad;
 }
