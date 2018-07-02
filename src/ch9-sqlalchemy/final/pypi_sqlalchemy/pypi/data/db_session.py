@@ -1,6 +1,8 @@
 import sqlalchemy
-
 import sqlalchemy.orm
+from pypi.data.modelbase import SqlAlchemyBase
+# noinspection PyUnresolvedReferences
+import pypi.data.__all_models
 
 
 class DbSession:
@@ -21,3 +23,5 @@ class DbSession:
         engine = sqlalchemy.create_engine(conn_str, echo=False)
         DbSession.engine = engine
         DbSession.factory = sqlalchemy.orm.sessionmaker(bind=engine)
+
+        SqlAlchemyBase.metadata.create_all(engine)

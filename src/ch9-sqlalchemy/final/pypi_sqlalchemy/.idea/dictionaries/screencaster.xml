@@ -2,6 +2,7 @@
   <dictionary name="screencaster">
     <words>
       <w>pastedeploy</w>
+      <w>pypi</w>
     </words>
   </dictionary>
 </component>
