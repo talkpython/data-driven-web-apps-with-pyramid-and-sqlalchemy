@@ -19,9 +19,9 @@
             </div>
 
             <div class="pypi-stats">
-                <div class="stat">0 projects</div>
-                <div class="stat">0 releases</div>
-                <div class="stat">0 users</div>
+                <div class="stat">${'{:,}'.format(package_count)} projects</div>
+                <div class="stat">${'{:,}'.format(release_count)} releases</div>
+                <div class="stat">${'{:,}'.format(user_count)} users</div>
             </div>
 
             <div class="container project-list">
@@ -34,8 +34,8 @@
 
 
                         <div class="project" tal:repeat="p packages">
-                            <div class="title"><a href="">${p.name}</a> ${p.version}</div>
-                            <div class="desc">THE DESCRIPTION TBD</div>
+                            <div class="title"><a href="">${p.name}</a> </div>
+                            <div class="desc">SOME DESCRIPTION</div>
                         </div>
                     </div>
                     <div class="col-md-3"></div>
