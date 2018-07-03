@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from pypi import DbSession
 from pypi.data.packages import Package
@@ -18,9 +18,9 @@ def release_count() -> int:
 def latest_releases(limit=10) -> List[Package]:
     session = DbSession.factory()
 
-    releases = session.query(Release)\
+    releases = session.query(Release) \
         .order_by(Release.created_date.desc()) \
-        .limit(limit*2)
+        .limit(limit * 2)
 
     packages_in_order = [r.package_id for r in releases]
     package_ids = set(packages_in_order)
