@@ -34,28 +34,7 @@ def main():
         do_import_languages(file_data)
         do_import_licenses(file_data)
 
-    test_relationships()
     do_summary()
-
-
-def test_relationships():
-    session = DbSession.factory()
-
-    r = session.query(Package) \
-        .options(subqueryload(Package.releases)) \
-        .filter(Package.id == 'requests').first()
-
-    if not r:
-        return
-
-    print("Found requests: " + r.id)
-    print("Releases: ")
-    for rl in r.releases:
-        print(
-            "Release: {} from package: {}".format(
-                rl.version_text, rl.package.id))
-
-    session.close()
 
 
 def do_import_languages(file_data: List[dict]):
