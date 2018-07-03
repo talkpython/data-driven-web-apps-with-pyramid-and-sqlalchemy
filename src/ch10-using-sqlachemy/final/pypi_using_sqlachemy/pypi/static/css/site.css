@@ -132,6 +132,16 @@ footer {
     text-align: left;
 }
 
+.starter-template .content .sub-hero {
+    font-family: Consolas, "andale mono", "lucida console", monospace;
+    padding: 10px;
+    background-color: #255c8f;
+    border: 1px dotted gray;
+    font-size: 20px;
+    font-weight: 300;
+    display: inline-block;
+}
+
 
 .active-release {
     margin-top: 20px;
@@ -173,4 +183,53 @@ h3 {
 
 .nav-sidebar-section {
     padding-top: 15px;
+}
+
+
+
+.nav-sidebar-section a {
+    display: block;
+    padding: 10px;
+    font-size: 15px;
+    color: #2b6ca8;
+}
+
+.nav-sidebar-section a.link-inline {
+    display: inline-block;
+    padding: 0px;
+}
+
+.nav-sidebar-section .meta-topic {
+    padding: 5px;
+}
+
+.nav-sidebar-section .meta-topic span {
+    font-weight: bold;
+}
+
+.maintainer img {
+    width: 50px;
+}
+
+.maintainer a {
+    display: inline-block;
+}
+
+.release-entry {
+    border: 1px dotted gray;
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.release-entry a {
+    font-size: 20px;
+}
+
+.release-entry img {
+    padding-right: 10px;
+}
+
+.release-entry .when {
+    margin-left: 50px;
 }
