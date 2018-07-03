@@ -13,7 +13,7 @@ def get_test_packages():
 @view_config(route_name='home', renderer='pypi:templates/home/index.pt')
 def home_index(_):
     return {
-        'packages': get_test_packages(),
+        'packages': package_service.latest_releases(),
         'package_count': package_service.package_count(),
         'release_count': package_service.release_count(),
         'user_count': user_service.user_count(),

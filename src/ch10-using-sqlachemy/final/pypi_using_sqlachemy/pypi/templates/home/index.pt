@@ -34,8 +34,8 @@
 
 
                         <div class="project" tal:repeat="p packages">
-                            <div class="title"><a href="">${p.name}</a> </div>
-                            <div class="desc">SOME DESCRIPTION</div>
+                            <div class="title"><a href="/project/${p.id}">${p.id}</a> </div>
+                            <div class="desc">${p.summary}</div>
                         </div>
                     </div>
                     <div class="col-md-3"></div>
