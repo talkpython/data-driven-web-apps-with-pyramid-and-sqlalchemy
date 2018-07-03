@@ -9,6 +9,8 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
 requires = [
+    'python-dateutil',
+    'progressbar2',
     'plaster_pastedeploy',
     'pyramid',
     'pyramid_chameleon',
