@@ -4,6 +4,8 @@
 # are all loaded.
 
 # noinspection PyUnresolvedReferences
+import pypi.data.auditing
+# noinspection PyUnresolvedReferences
 import pypi.data.downloads
 # noinspection PyUnresolvedReferences
 import pypi.data.languages
