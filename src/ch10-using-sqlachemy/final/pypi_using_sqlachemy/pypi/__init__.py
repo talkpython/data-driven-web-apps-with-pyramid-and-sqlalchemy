@@ -39,6 +39,7 @@ def init_routing(config):
     config.add_route('releases/', '/project/{package_name}/releases/')
 
     config.add_route('release_version', '/project/{package_name}/releases/{release_version}')
+    #               http://localhost:6543/project/awscli/releases/1.15.30
 
     # account controller
     config.add_route('account_home', '/account')

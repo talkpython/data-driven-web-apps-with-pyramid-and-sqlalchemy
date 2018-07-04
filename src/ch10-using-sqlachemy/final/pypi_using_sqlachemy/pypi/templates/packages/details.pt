@@ -53,7 +53,7 @@
                             <i class="fa fa-align-left" aria-hidden="true"></i>
                             Project description
                         </a>
-                        <a href="/project/${package.id}/releases/${release_version}">
+                        <a href="#">
                             <i class="fa fa-history" aria-hidden="true"></i>
                             Release history
                         </a>
