@@ -132,3 +132,7 @@ src/ch10-using-sqlachemy/final/pypi_using_sqlachemy/.idea/dataSources/6bb63e05-d
 dataSources.xml
 src/ch10-using-sqlachemy/final/pypi_using_sqlachemy/.idea/dataSources/7bfbb76e-2db6-4176-8f63-6729957c1c41.xml
 src/ch10-using-sqlachemy/final/pypi_using_sqlachemy/.idea/dataSources/7bfbb76e-2db6-4176-8f63-6729957c1c41/storage_v2/_src_/schema/main.uQUzAA.meta
+src/ch11-migrations/final/pypi_migrations/.idea/misc.xml
+src/ch11-migrations/final/pypi_migrations/.idea/modules.xml
+src/ch11-migrations/final/pypi_migrations/.idea/pypi_migrations.iml
+src/ch11-migrations/final/pypi_migrations/.idea/inspectionProfiles/profiles_settings.xml
