@@ -2,12 +2,23 @@
     <div metal:fill-slot="content">
 
         <div class="content">
-            <h1>Login</h1>
             <div>
-                Details tbd...
+                <form action="" method="POST" class="account-form">
+                    <h1>Login</h1>
+                    <input name="email" type="text" placeholder=" Your email address " class="form-control" value="${email}">
+                    <input name="password" type="password" placeholder=" Password" class="form-control" value="${password}">
+                    <button type="submit" class="btn btn-success">Register</button>
+                    <div class="error-msg" tal:condition="error">
+                        ${error}
+                    </div>
+                </form>
             </div>
         </div>
 
+    </div>
+
+    <div metal:fill-slot="additional-css">
+        <link href="${request.static_url('pypi:static/css/account.css')}" rel="stylesheet">
     </div>
 
 </div>

@@ -233,3 +233,7 @@ h3 {
 .release-entry .when {
     margin-left: 50px;
 }
+
+.error-msg {
+    color: #9b0000;
+}
