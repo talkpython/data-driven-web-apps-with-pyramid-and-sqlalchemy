@@ -4,13 +4,21 @@ from pyramid.view import view_config
 
 
 # ################### INDEX #################################
+from pypi.infrastructure import cookie_auth
 from pypi.services import user_service
 
 
 @view_config(route_name='account_home',
              renderer='pypi:templates/account/index.pt')
-def index(_):
-    return {}
+def index(request):
+    user_id = cookie_auth.get_user_id_via_auth_cookie(request)
+    user = user_service.find_user_by_id(user_id)
+    if not user:
+        return x.HTTPFound('/account/login')
+
+    return {
+        'user': user
+    }
 
 
 # ################### REGISTER #################################
@@ -45,7 +53,7 @@ def register_post(request: Request):
 
     # create user
     user = user_service.create_user(email, name, password)
-    # TODO: Login user
+    cookie_auth.set_auth(request, user.id)
 
     return x.HTTPFound('/account')
 
@@ -79,6 +87,5 @@ def login_post(request: Request):
             'error': 'The user could not found or the password is incorrect.'
         }
 
-    # TODO: login user (session)
-
+    cookie_auth.set_auth(request, user.id)
     return x.HTTPFound('/account')
