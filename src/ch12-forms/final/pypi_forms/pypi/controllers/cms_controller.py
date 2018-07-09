@@ -2,6 +2,8 @@ from pyramid.httpexceptions import HTTPNotFound
 from pyramid.request import Request
 from pyramid.view import view_config
 
+from pypi.infrastructure import cookie_auth
+
 fake_db = {
     'company/history': {
         'page_title': 'Company history',
@@ -23,4 +25,5 @@ def cms_page(request: Request):
     if not page:
         raise HTTPNotFound()
 
+    page['user_id'] = str(cookie_auth.get_user_id_via_auth_cookie(request))
     return page

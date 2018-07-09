@@ -17,7 +17,8 @@ def index(request):
         return x.HTTPFound('/account/login')
 
     return {
-        'user': user
+        'user': user,
+        'user_id': user.id
     }
 
 
@@ -26,12 +27,13 @@ def index(request):
 @view_config(route_name='register',
              renderer='pypi:templates/account/register.pt',
              request_method='GET')
-def register_get(_):
+def register_get(request):
     return {
         'email': None,
         'name': None,
         'password': None,
-        'error': None
+        'error': None,
+        'user_id': cookie_auth.get_user_id_via_auth_cookie(request)
     }
 
 
@@ -48,7 +50,8 @@ def register_post(request: Request):
             'email': email,
             'name': name,
             'password': password,
-            'error': 'Some required fields are missing.'
+            'error': 'Some required fields are missing.',
+            'user_id': cookie_auth.get_user_id_via_auth_cookie(request)
         }
 
     # create user
@@ -63,11 +66,12 @@ def register_post(request: Request):
 @view_config(route_name='login',
              renderer='pypi:templates/account/login.pt',
              request_method='GET')
-def login_get(_):
+def login_get(request):
     return {
         'email': None,
         'password': None,
-        'error': None
+        'error': None,
+        'user_id': cookie_auth.get_user_id_via_auth_cookie(request)
     }
 
 
@@ -84,7 +88,8 @@ def login_post(request: Request):
         return {
             'email': email,
             'password': password,
-            'error': 'The user could not found or the password is incorrect.'
+            'error': 'The user could not found or the password is incorrect.',
+            'user_id': cookie_auth.get_user_id_via_auth_cookie(request)
         }
 
     cookie_auth.set_auth(request, user.id)

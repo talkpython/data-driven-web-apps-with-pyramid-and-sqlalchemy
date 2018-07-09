@@ -2,6 +2,7 @@ from pyramid.view import view_config
 from pyramid.request import Request
 import pyramid.httpexceptions as x
 
+from pypi.infrastructure import cookie_auth
 from pypi.services import package_service
 
 
@@ -32,7 +33,8 @@ def details(request: Request):
         'latest_release': latest_release,
         'release_version': latest_version,
         'maintainers': [],
-        'is_latest': True
+        'is_latest': True,
+        'user_id': cookie_auth.get_user_id_via_auth_cookie(request)
     }
 
 
@@ -45,5 +47,6 @@ def popular(request: Request):
         raise x.HTTPNotFound()
 
     return {
-        'package_name': "The {}th popular package".format(num)
+        'package_name': "The {}th popular package".format(num),
+        'user_id': cookie_auth.get_user_id_via_auth_cookie(request)
     }
