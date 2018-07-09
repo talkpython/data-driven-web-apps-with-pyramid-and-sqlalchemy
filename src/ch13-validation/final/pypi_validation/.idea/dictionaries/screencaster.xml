@@ -4,6 +4,8 @@
       <w>passlib</w>
       <w>pastedeploy</w>
       <w>pypi</w>
+      <w>subpath</w>
+      <w>suburl</w>
     </words>
   </dictionary>
 </component>

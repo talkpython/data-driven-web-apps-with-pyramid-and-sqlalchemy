@@ -49,7 +49,7 @@
 
 
                         <h3>Navigation</h3>
-                        <a href="/project/${package.id}/${release_version}">
+                        <a href="/project/${package.id}">
                             <i class="fa fa-align-left" aria-hidden="true"></i>
                             Project description
                         </a>
