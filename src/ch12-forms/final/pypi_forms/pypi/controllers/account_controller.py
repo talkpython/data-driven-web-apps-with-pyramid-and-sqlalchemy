@@ -2,7 +2,6 @@ import pyramid.httpexceptions as x
 from pyramid.request import Request
 from pyramid.view import view_config
 
-
 # ################### INDEX #################################
 from pypi.infrastructure import cookie_auth
 from pypi.services import user_service
@@ -94,3 +93,11 @@ def login_post(request: Request):
 
     cookie_auth.set_auth(request, user.id)
     return x.HTTPFound('/account')
+
+
+# ################### LOGOUT #################################
+
+@view_config(route_name='logout')
+def logout(request):
+    cookie_auth.logout(request)
+    return x.HTTPFound('/')
