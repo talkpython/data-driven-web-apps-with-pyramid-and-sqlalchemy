@@ -7,7 +7,7 @@
                     <h1>Login</h1>
                     <input name="email" type="text" placeholder=" Your email address " class="form-control" value="${email}">
                     <input name="password" type="password" placeholder=" Password" class="form-control" value="${password}">
-                    <button type="submit" class="btn btn-success">Register</button>
+                    <button type="submit" class="btn btn-success">Login</button>
                     <div class="error-msg" tal:condition="error">
                         ${error}
                     </div>
