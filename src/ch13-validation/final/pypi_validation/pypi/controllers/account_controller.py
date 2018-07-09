@@ -1,24 +1,23 @@
 import pyramid.httpexceptions as x
 from pyramid.request import Request
 from pyramid.view import view_config
-
-# ################### INDEX #################################
 from pypi.infrastructure import cookie_auth, request_dict
 from pypi.services import user_service
+
+
+# ################### INDEX #################################
+from pypi.viewmodels.account.account_home_viewmodel import AccountHomeViewModel
+from pypi.viewmodels.account.register_viewmodel import RegisterViewModel
 
 
 @view_config(route_name='account_home',
              renderer='pypi:templates/account/index.pt')
 def index(request):
-    user_id = cookie_auth.get_user_id_via_auth_cookie(request)
-    user = user_service.find_user_by_id(user_id)
-    if not user:
+    vm = AccountHomeViewModel(request)
+    if not vm.user:
         return x.HTTPFound('/account/login')
 
-    return {
-        'user': user,
-        'user_id': user.id
-    }
+    return vm.to_dict()
 
 
 # ################### REGISTER #################################
@@ -27,34 +26,22 @@ def index(request):
              renderer='pypi:templates/account/register.pt',
              request_method='GET')
 def register_get(request):
-    return {
-        'email': None,
-        'name': None,
-        'password': None,
-        'error': None,
-        'user_id': cookie_auth.get_user_id_via_auth_cookie(request)
-    }
+    vm = RegisterViewModel(request)
+    return vm.to_dict()
 
 
 @view_config(route_name='register',
              renderer='pypi:templates/account/register.pt',
              request_method='POST')
 def register_post(request: Request):
-    email = request.POST.get('email')
-    name = request.POST.get('name')
-    password = request.POST.get('password')
+    vm = RegisterViewModel(request)
+    vm.validate()
 
-    if not email or not name or not password:
-        return {
-            'email': email,
-            'name': name,
-            'password': password,
-            'error': 'Some required fields are missing.',
-            'user_id': cookie_auth.get_user_id_via_auth_cookie(request)
-        }
+    if vm.error:
+        return vm.to_dict()
 
     # create user
-    user = user_service.create_user(email, name, password)
+    user = user_service.create_user(vm.email, vm.name, vm.password)
     cookie_auth.set_auth(request, user.id)
 
     return x.HTTPFound('/account')
