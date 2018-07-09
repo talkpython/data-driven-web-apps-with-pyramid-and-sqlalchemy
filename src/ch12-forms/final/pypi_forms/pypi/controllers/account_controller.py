@@ -3,7 +3,7 @@ from pyramid.request import Request
 from pyramid.view import view_config
 
 # ################### INDEX #################################
-from pypi.infrastructure import cookie_auth
+from pypi.infrastructure import cookie_auth, request_dict
 from pypi.services import user_service
 
 
@@ -78,8 +78,9 @@ def login_get(request):
              renderer='pypi:templates/account/login.pt',
              request_method='POST')
 def login_post(request: Request):
-    email = request.POST.get('email')
-    password = request.POST.get('password')
+    data = request_dict.create(request)
+    email = data.email
+    password = data.password
 
     user = user_service.login_user(email, password)
 
