@@ -1,0 +1,16 @@
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content">
+
+        <div class="content">
+            <h1>About</h1>
+            <div>
+                This is the stuff about our site.
+            </div>
+        </div>
+
+    </div>
+
+    <div metal:fill-slot="additional-css" tal:omit-tag>
+        <!-- additional css from the page -->
+    </div>
+</div>
