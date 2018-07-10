@@ -22,6 +22,5 @@ class RegisterViewModel(ViewModelBase):
             self.error = 'You must specify your name.'
         elif not self.password:
             self.error = 'You must specify a password.'
-
-        if user_service.find_user_by_email(self.email):
+        elif user_service.find_user_by_email(self.email):
             self.error = "This user already exists!"
