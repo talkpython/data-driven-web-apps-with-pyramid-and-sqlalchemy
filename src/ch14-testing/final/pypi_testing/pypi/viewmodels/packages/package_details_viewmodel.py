@@ -14,7 +14,7 @@ class PackageDetailsViewModel(ViewModelBase):
         self.latest_version = '0.0.0'
         self.latest_release = None
 
-        if self.package.releases:
+        if self.package and self.package.releases:
             self.latest_release = self.package.releases[0]
             self.latest_version = '{}.{}.{}'.format(
                 self.latest_release.major_ver,
