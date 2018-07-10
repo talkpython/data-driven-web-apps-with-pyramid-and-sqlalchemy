@@ -47,7 +47,7 @@ class AccountControllerTests(unittest.TestCase):
 
         # Assert:
         self.assertIsNotNone(vm.error)
-        self.assertIsNotNone('existing' in vm.error)
+        self.assertTrue('exist' in vm.error)
 
     def test_register_validation_no_email(self):
         # Arrange
