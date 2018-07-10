@@ -1,0 +1,239 @@
+body {
+    font-family: Source Sans Pro, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    background-color: #006dad;
+}
+
+#page-content {
+    background-color: #fff;
+}
+
+.hero {
+    background-color: #006dad;
+    color: #fff;
+    padding: 50px 0;
+    text-align: center;
+    line-height: 1.0em;
+    font-size: 18px;
+}
+
+.starter-template .content .hero h1 {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.3em;
+    text-align: center;
+    max-width: 810px;
+    padding: 0 20px 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-control {
+    width: 550px;
+    display: inline-block;
+    border-radius: 2px;
+    font-size: 20px;
+    padding: 20px;
+}
+
+.hero a {
+    color: white;
+    text-decoration: underline;
+}
+
+.pypi-stats {
+    padding: 10px 0;
+    background-color: #ececec;
+    border-bottom: 1px solid #d3d3d3;
+    border-top: 1px solid #d3d3d3;
+    text-align: center;
+}
+
+.pypi-stats .stat {
+    display: inline-block;
+    min-width: 170px;
+    padding: 10px;
+    font-size: 16px;
+    color: #003d61;
+}
+
+.project-list h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #222;
+}
+
+.project-list .subtitle {
+    font-style: italic;
+}
+
+.project-list .project {
+    border: 1px solid #d3d3d3;
+    padding: 10px;
+    background-color: #ececec;
+    min-height: 45px;
+    margin-top: 15px;
+    color: black;
+    margin-bottom: 15px;
+}
+
+.project-list .project .title {
+    font-size: 20px;
+}
+
+.project-list .project .title a {
+    color: #006dad;
+}
+
+.project-list .project .desc {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+
+.navbar-brand img {
+    width: 65px;
+    margin-left: 60px;
+}
+
+.navbar-inverse .navbar-toggle {
+    margin-top: 20px;
+}
+
+.navbar-nav li {
+    margin-top: 20px;
+}
+
+#last_nav_link {
+    margin-right: 45px;
+}
+
+
+footer {
+    margin-top: 50px;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    background-color: #006dad;
+}
+
+
+
+.details .pypi-stats {
+    text-align: left;
+    color: #555;
+}
+
+.starter-template .details.content .hero,
+.starter-template .details.content .sub-hero,
+.starter-template .details.content .hero h1 {
+    text-align: left;
+}
+
+.starter-template .content .sub-hero {
+    font-family: Consolas, "andale mono", "lucida console", monospace;
+    padding: 10px;
+    background-color: #255c8f;
+    border: 1px dotted gray;
+    font-size: 20px;
+    font-weight: 300;
+    display: inline-block;
+}
+
+
+.active-release {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.go-latest-button, .go-older-button {
+    padding: 10px;
+    border: 1px dotted gray;
+    font-size: 16px;
+    font-weight: 300;
+    display: inline-block;
+}
+.go-latest-button {
+    background-color: #3a7d32;
+}
+.go-older-button {
+    background-color: #c63e45;
+}
+
+.latest-release-date {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.starter-template .content.details .hero h1 {
+    max-width: none;
+    margin-left: 0px;
+    padding-left: 0px;
+    text-align: left;
+}
+
+h3 {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.nav-sidebar-section {
+    padding-top: 15px;
+}
+
+
+
+.nav-sidebar-section a {
+    display: block;
+    padding: 10px;
+    font-size: 15px;
+    color: #2b6ca8;
+}
+
+.nav-sidebar-section a.link-inline {
+    display: inline-block;
+    padding: 0px;
+}
+
+.nav-sidebar-section .meta-topic {
+    padding: 5px;
+}
+
+.nav-sidebar-section .meta-topic span {
+    font-weight: bold;
+}
+
+.maintainer img {
+    width: 50px;
+}
+
+.maintainer a {
+    display: inline-block;
+}
+
+.release-entry {
+    border: 1px dotted gray;
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.release-entry a {
+    font-size: 20px;
+}
+
+.release-entry img {
+    padding-right: 10px;
+}
+
+.release-entry .when {
+    margin-left: 50px;
+}
+
+.error-msg {
+    color: #9b0000;
+}

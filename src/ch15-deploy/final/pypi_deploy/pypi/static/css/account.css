@@ -1,0 +1,31 @@
+
+form.account-form {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    background-color: #ddd;
+    color: #222;
+    border: 1px solid gray;
+    border-radius: 5px;
+    text-align: center;
+}
+
+form.account-form h1 {
+    text-align: center;
+}
+
+form.account-form > * {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+form.account-form input.form-control {
+    max-width: 95%;
+    display: inline-block;
+}
+
+form.account-form button {
+    margin-left: 350px;
+
+}
