@@ -7,10 +7,12 @@ class HomeControllerTests(unittest.TestCase):
     def setUp(self):
         from pypi import main
         app = main({})
+        # noinspection PyPackageRequirements
         from webtest import TestApp
         self.app = TestApp(app)
 
     def test_home_page(self):
+        # noinspection PyPackageRequirements
         import webtest.response
         response: webtest.response.TestResponse = self.app.get('/', status=200)
 
