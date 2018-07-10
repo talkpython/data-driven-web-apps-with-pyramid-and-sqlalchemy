@@ -47,3 +47,8 @@ def find_package_by_name(package_name: str) -> Optional[Package]:
     return session.query(Package) \
         .filter(Package.id == package_name) \
         .first()
+
+
+def all_packages(limit: int) -> List[Package]:
+    session = DbSession.factory()
+    return list(session.query(Package).limit(limit))
