@@ -1,0 +1,13 @@
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content">
+
+        <div class="content">
+            <h1>Account</h1>
+            <div>
+                Welcome to your account ${user.name}!
+            </div>
+        </div>
+
+    </div>
+
+</div>
