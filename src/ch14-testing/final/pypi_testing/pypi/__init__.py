@@ -46,6 +46,10 @@ def init_routing(config):
     config.add_route('register', '/account/register')
     config.add_route('logout', '/account/logout')
 
+    # utils controller
+    config.add_route('sitemap.xml', '/sitemap.xml')
+    config.add_route('robots.txt', '/robots.txt')
+
     # cms controller -- VERY END
     config.add_route('cms_page', '*subpath')
 
