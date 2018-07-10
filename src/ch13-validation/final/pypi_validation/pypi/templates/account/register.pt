@@ -5,9 +5,9 @@
             <div>
                 <form action="" method="POST" class="account-form">
                     <h1>Register</h1>
-                    <input name="name" type="text" placeholder=" Your name" class="form-control" value="${name}">
-                    <input name="email" type="text" placeholder=" Your email address " class="form-control" value="${email}">
-                    <input name="password" type="password" placeholder=" Password" class="form-control" value="${password}">
+                    <input name="name" type="text" placeholder=" Your name" class="form-control" value="${name}" required>
+                    <input name="email" type="email" placeholder=" Your email address " class="form-control" value="${email}" required>
+                    <input name="password" type="password" placeholder=" Password" class="form-control" value="${password}" required>
                     <button type="submit" class="btn btn-success">Register</button>
                     <div class="error-msg" tal:condition="error">
                         ${error}
