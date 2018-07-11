@@ -43,6 +43,7 @@ python3 -m venv venv
 source /apps/venv/bin/activate
 pip install --upgrade pip setuptools
 pip install --upgrade httpie glances
+pip install --upgrade uwsgi
 
 
 # clone the repo:
@@ -50,7 +51,6 @@ cd /apps
 git clone https://github.com/talkpython/data-driven-web-apps-with-pyramid-and-sqlalchemy app_repo
 
 # Setup the web app:
-# TODO: Replace this with correct path from repo
 cd /apps/app_repo/src/ch15-deploy/final/pypi_deploy
 # pip install -r requirements.txt
 python setup.py develop
