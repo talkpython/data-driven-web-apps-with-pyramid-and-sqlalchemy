@@ -152,3 +152,6 @@ src/ch14-testing/final/pypi_testing/.idea/modules.xml
 src/ch14-testing/final/pypi_testing/.idea/pypi_testing.iml
 src/ch14-testing/final/pypi_testing/.idea/vcs.xml
 src/ch14-testing/final/pypi_testing/.idea/workspace.xml
+src/ch15-deploy/final/pypi_deploy/.idea/misc.xml
+src/ch15-deploy/final/pypi_deploy/.idea/modules.xml
+src/ch15-deploy/final/pypi_deploy/.idea/pypi_deploy.iml
