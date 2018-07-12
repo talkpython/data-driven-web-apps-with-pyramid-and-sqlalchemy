@@ -1,0 +1,15 @@
+[Unit]
+Description=uWSGI PyPI server instance
+After=syslog.target
+
+[Service]
+ExecStart=/apps/venv/bin/uwsgi -H /apps/venv --ini-paste /apps/app_repo/src/ch15-deploy/final/pypi_deploy/production.ini
+RuntimeDirectory=/apps/app_repo/src/ch15-deploy/final/pypi_deploy/
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
