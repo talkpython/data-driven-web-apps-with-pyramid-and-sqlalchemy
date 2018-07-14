@@ -1,13 +1,12 @@
 from typing import Optional
 
 from pypi import DbSession
-from pypi.data.users import User
+from pypi.nosql.users import User
 from passlib.handlers.sha2_crypt import sha512_crypt
 
 
 def user_count() -> int:
-    session = DbSession.factory()
-    return session.query(User).count()
+    return User.objects().count()
 
 
 def create_user(email: str, name: str, password: str) -> User:
@@ -16,9 +15,7 @@ def create_user(email: str, name: str, password: str) -> User:
     user.email = email.lower().strip()
     user.hashed_password = hash_text(password)
 
-    session = DbSession.factory()
-    session.add(user)
-    session.commit()
+    user.save()
 
     return user
 
@@ -36,10 +33,7 @@ def login_user(email: str, password: str) -> Optional[User]:
     if not email:
         return None
 
-    email = email.lower().strip()
-
-    session = DbSession.factory()
-    user = session.query(User).filter(User.email == email).first()
+    user = find_user_by_email(email)
     if not user:
         return None
 
@@ -50,10 +44,13 @@ def login_user(email: str, password: str) -> Optional[User]:
 
 
 def find_user_by_id(user_id: int) -> Optional[User]:
-    session = DbSession.factory()
-    return session.query(User).filter(User.id == user_id).first()
+    return User.objects(id=user_id).first()
 
 
 def find_user_by_email(email: str) -> Optional[User]:
-    session = DbSession.factory()
-    return session.query(User).filter(User.email == email).first()
+    if not email:
+        return None
+
+    email = email.lower().strip()
+
+    return User.objects(email=email).first()

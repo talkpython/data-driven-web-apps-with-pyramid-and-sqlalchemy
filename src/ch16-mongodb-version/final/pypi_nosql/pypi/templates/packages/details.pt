@@ -87,8 +87,8 @@
                         <div tal:condition="package.license" class="meta-topic">
                             <span>License</span>: ${package.license}
                         </div>
-                        <div tal:condition="package.author_name" class="meta-topic">
-                            <span>Author</span>: ${package.author_name}
+                        <div tal:condition="package.author" class="meta-topic">
+                            <span>Author</span>: ${package.author}
                         </div>
                         <hr>
 

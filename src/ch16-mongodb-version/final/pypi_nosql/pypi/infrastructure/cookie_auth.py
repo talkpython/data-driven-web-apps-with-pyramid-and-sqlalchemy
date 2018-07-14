@@ -1,3 +1,4 @@
+import bson
 import hashlib
 from datetime import timedelta
 from typing import Optional
@@ -10,7 +11,7 @@ from pypi.bin.load_data import try_int
 auth_cookie_name = 'pypi_demo_user'
 
 
-def set_auth(request: Request, user_id: int):
+def set_auth(request: Request, user_id: bson.ObjectId):
     hash_val = __hash_text(str(user_id))
     val = "{}:{}".format(user_id, hash_val)
 
@@ -28,7 +29,7 @@ def __add_cookie_callback(_, response: Response, name: str, value: str):
     response.set_cookie(name, value, max_age=timedelta(days=30))
 
 
-def get_user_id_via_auth_cookie(request: Request) -> Optional[int]:
+def get_user_id_via_auth_cookie(request: Request) -> Optional[bson.ObjectId]:
     if auth_cookie_name not in request.cookies:
         return None
 
@@ -44,7 +45,10 @@ def get_user_id_via_auth_cookie(request: Request) -> Optional[int]:
         print("Warning: Hash mismatch, invalid cookie value")
         return None
 
-    return try_int(user_id)
+    try:
+        return bson.ObjectId(user_id)
+    except:
+        return None
 
 
 def logout(request: Request):

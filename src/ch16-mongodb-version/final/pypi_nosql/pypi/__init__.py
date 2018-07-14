@@ -3,6 +3,8 @@ import os
 from pyramid.config import Configurator
 
 from pypi.data.db_session import DbSession
+from pypi.nosql import mongo_setup
+from pypi.nosql.users import User
 
 
 def main(global_config, **settings):
@@ -57,10 +59,4 @@ def init_routing(config):
 
 
 def init_db(_):
-    db_file = os.path.abspath(
-        os.path.join(
-            os.path.dirname(__file__),
-            'db',
-            'pypi.sqlite'
-        ))
-    DbSession.global_init(db_file)
+    mongo_setup.global_init()
