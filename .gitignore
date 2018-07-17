@@ -155,3 +155,6 @@ src/ch14-testing/final/pypi_testing/.idea/workspace.xml
 src/ch15-deploy/final/pypi_deploy/.idea/misc.xml
 src/ch15-deploy/final/pypi_deploy/.idea/modules.xml
 src/ch15-deploy/final/pypi_deploy/.idea/pypi_deploy.iml
+src/ch16-mongodb-version/final/pypi_nosql/.idea/misc.xml
+src/ch16-mongodb-version/final/pypi_nosql/.idea/modules.xml
+src/ch16-mongodb-version/final/pypi_nosql/.idea/pypi_nosql.iml
