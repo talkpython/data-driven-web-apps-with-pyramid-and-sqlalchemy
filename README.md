@@ -1,6 +1,6 @@
 # Data-Driven Web Apps with Pyramid and SQLAlchemy course
 
-Demos and handouts for Talk Python's Data-Driven Web Apps with Pyramid and SQLAlchemy course
+Demos and handouts for Talk Python's Data-Driven Web Apps with Pyramid and SQLAlchemy course.
 
 [![Course image](https://raw.githubusercontent.com/talkpython/data-driven-web-apps-with-pyramid-and-sqlalchemy/master/readme_resources/python-data-web-apps.png)](https://training.talkpython.fm/courses/explore_pyramid/building-data-driven-web-applications-in-python-with-pyramid-sqlalchemy-and-bootstrap)
 
