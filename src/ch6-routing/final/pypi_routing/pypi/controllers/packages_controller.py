@@ -53,7 +53,7 @@ def release_version(request: Request):
 # /{num}
 @view_config(route_name='popular',
              renderer='pypi:templates/packages/details.pt')
-def release_version(request: Request):
+def popular(request: Request):
     num = int(request.matchdict.get('num', -1))
     if not (1 <= num or num <= 10):
         raise x.HTTPNotFound()
