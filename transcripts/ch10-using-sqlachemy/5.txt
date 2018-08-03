@@ -1,0 +1,139 @@
+00:00 Now it's time to write another query.
+00:02 Actually we're going to write a couple queries
+00:04 to do something interesting and this actually might be
+00:07 the most complicated thing we do in the entire website.
+00:10 But, yeah you'll get to see a lot of stuff in action.
+00:12 So let's look over here real quick, here's our homepage.
+00:15 We're now driving that little slice out of the database.
+00:19 But remember this, this is just our fake data.
+00:21 So we want to actually go get the latest releases
+00:25 and then correlate those back
+00:26 to the latest packages and then show them here.
+00:30 Okay, how do we do that?
+00:31 Well, we're going to write a function.
+00:35 We want to say how many releases we want.
+00:37 So, we'll have a limit by default that limit is going to be 10.
+00:41 And it's going to return a list of package.
+00:45 List comes out of the typing model
+00:47 and the package that we already have.
+00:49 As always, everything starts like this
+00:51 and then we're going to return
+00:53 something down here at the end.
+00:55 So what happens at the middle?
+00:57 Well, the data model that I have chosen
+01:00 which was the most sort of naive and straightforward one
+01:02 maybe isn't the best for this site.
+01:05 Maybe it would have been better
+01:06 to have a little information on the package itself
+01:08 about when it was last modified but, it doesn't matter.
+01:12 What we're going to do is we're going to go
+01:13 get the latest releases
+01:14 find out the package IDs those correlate to
+01:17 and then we're going to go
+01:19 and get those packages out of the database.
+01:22 Great, so how do we do that?
+01:23 First we say releases is going to be
+01:26 and we're going to do a query.
+01:27 And the way that queries work is you to to your session
+01:29 and you say I'd like to create a query
+01:32 based on a particular thing.
+01:34 Here we're querying Release.
+01:36 Now we can do where clauses like this, filter.
+01:41 We can do orderby.
+01:43 So we actually don't want to do a filter.
+01:44 We just want to say show us the newest ones.
+01:47 And whenever you put some sort of qualifier here
+01:50 like a filter or a something that you're sorting by
+01:53 you use the type name.
+01:56 Release. and then what are you going to order by?
+01:58 Created date descending.
+02:01 Now PyCharm gives a warning
+02:02 that says descending doesn't exist.
+02:04 Nevermind it definitely does.
+02:06 That is going to give us back the releases.
+02:11 And we probably want to limit those by something.
+02:14 We don't want to get every release
+02:15 that's going to be a lot.
+02:16 So we'll say limit, we don't know for sure
+02:19 if maybe there's some kind
+02:21 of release done really quickly on the same package.
+02:25 So if we want to be sure that we give them
+02:27 say 10 or however many they're asking for
+02:29 we should probably double this or something.
+02:32 So I'll say the limit times two.
+02:35 And that's because we could have a really quick release
+02:37 of requests and then another one of requests.
+02:39 And then, you know we'd have two more
+02:42 than just the 10 releases.
+02:43 Actually get the 10 distinct packages.
+02:46 So we've got that.
+02:47 Now, what I want to do is come up with
+02:48 just the package IDs as a list of strings.
+02:54 I'm going to do that with a simple list comprehension.
+02:56 So say r.package_id for r in releases.
+03:00 In fact, if we wanted to do it I could even do it
+03:02 as a set comprehension. and that would give us
+03:06 distinct packages so we don't have to check
+03:08 for them existing twice. Beautiful.
+03:10 So, we've got the latest releases
+03:12 and now we've converted those to the distinct
+03:14 set of the latest package IDs.
+03:16 Now all you got to do is actually get the packages.
+03:21 I just realized my little trick here is going to be great but
+03:25 we're going to need packages in order as well.
+03:30 So let's do this.
+03:35 So now we need to do a query
+03:37 so we go back to the session.
+03:38 Go to query and this time on package.
+03:40 And how do we say I would like all the packages
+03:42 that are in this set of package IDs.
+03:45 Turns out that's super easy.
+03:46 Say filter
+03:49 package.id.in_
+03:53 Because in_ is a keyword they say in underscore you give it
+03:58 package IDs. That's it.
+04:00 That's going to give us all the matching packages.
+04:04 Now, we need to preserve the order.
+04:06 So, if all we wanted was the packages
+04:08 we could just kick those back.
+04:10 But remember, we asked for more than one
+04:12 so we don't get duplication, things like that.
+04:15 So, let's go and actually turn this into a quick dictionary.
+04:18 p. based on the ID.
+04:23 Do a little dictionary comprehension on that result
+04:27 and then finally we'll get these back.
+04:37 so we're just going to put stuff into this
+04:39 little results array right here and we're going to do it in order.
+04:42 There's probably a cool join way if I was better
+04:45 at data bases I could do that here
+04:47 but we're doing it this sort of convoluted way
+04:49 and it's going to work fine.
+04:51 Maybe not the most efficient, but not too bad.
+04:57 Alright, so we've got our results
+04:58 going through the releases in order
+04:59 and adding the packages in order
+05:01 and then we're adding them back.
+05:03 So this should work, but we're not calling it yet.
+05:06 Lets go over here, remember our get_test_packages?
+05:09 So we'll say, package service, not latest releases.
+05:12 Now, this is also not going to work
+05:14 because if we go over to our template
+05:16 it was using that fake data which had names.
+05:19 We don't have names, we have IDs.
+05:21 We actually do now have a description
+05:23 so let's put that in there. p.summary in here.
+05:27 Alright, let's give it a shot, see how we're doing.
+05:30 Here's where the stuff goes, we run it, Boom!
+05:34 Sweet, look at that. We've got 1, 2, 3, 4, 5
+05:38 6, 7, 8, 9, 10. Exactly like we asked for.
+05:42 Awesome! So now we've got our packages right here.
+05:46 It looks like awscli was the most recent release
+05:50 out of the ones that we have.
+05:52 And now if we click on it, well it doesn't take us anywhere.
+05:54 Let's do one more thing.
+05:56 We have this ID here, and lets fix r href.
+06:00 This is project/{id}, refresh
+06:06 Boom.
+06:07 That page needs some help.
+06:08 But this page, this page is done.
+06:10 This is awesome.

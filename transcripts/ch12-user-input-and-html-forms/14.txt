@@ -1,0 +1,36 @@
+00:00 Let's just round out this demo part of this chapter
+00:04 by closing out what we're doing with the users.
+00:06 We've done all of these things
+00:07 and that let us explore working with forms.
+00:09 Let's go ahead and add logout.
+00:10 Technically this has nothing to do with forms
+00:13 but we have been doing this user stuff
+00:15 so let's just finish that up real quick.
+00:17 So I already have this /account/logout route
+00:22 and we're going to come over to here and we're just going to add
+00:28 another little action method here. We'll say logout.
+00:33 You'll see we don't need a renderer
+00:35 and we don't need to set the get.
+00:41 And we're going to return.
+00:42 When somebody logs out
+00:43 we got to figure out where do they go.
+00:44 Let's return them to http found at just /, okay?
+00:49 How do we log them out?
+00:51 Well remember the way they're logged in
+00:52 is they have a cookie that they're passing back and forth.
+00:55 All we're going to do is delete that cookie
+00:57 their session is gone.
+00:59 So we have cookie_auth and it has a logout function.
+01:03 And we give it the request, that's it.
+01:07 Let's look really quick at that.
+01:08 It just said to call back to say delete this
+01:10 which goes to the response, deletes the cookie.
+01:14 All right, well that should be pretty easy.
+01:15 Let's try logging out.
+01:20 Can see right now we're logged in.
+01:22 We can go to our account page to click this.
+01:24 Boom, login register.
+01:26 I try to go back to account, can't go there.
+01:30 We're logged out.
+01:31 We got to go log in first.
+01:33 Perfect, huh? All right, well that rounds out the user stuff.

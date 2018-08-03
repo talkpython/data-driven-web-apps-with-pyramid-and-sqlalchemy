@@ -1,0 +1,69 @@
+00:00 Now, this is not going to work.
+00:03 If I come over and refresh it, it's going to say
+00:06 well now you say there's a package name
+00:08 and there's not.
+00:09 Let's fix that last thing.
+00:11 So the question is now
+00:12 how do I get that package name?
+00:15 Remember, it's passed into request
+00:17 which we now need to use this, so put its name back.
+00:21 And then we want to get the name out.
+00:23 So here's a quick simple one.
+00:26 Package, name, it's going to be request.matchdict
+00:30 notice no autocomplete, watch this.
+00:33 Go over here and say request.
+00:37 So, if we import this, if we say from pyramid
+00:43 request, import, request
+00:46 and now come down here and say dot
+00:48 we get all sorts of stuff, including
+00:51 matchdict, which is a dictionary.
+00:54 And in this, this where it's been passed
+00:56 in the URL, has that variable.
+00:58 So we do a get on it.
+01:01 Then we'll just come down here and say
+01:03 package name, whoops, this needs to be in quotes.
+01:08 Let's re-run it, and see how we're doing.
+01:12 There's requests, what if we
+01:14 go for sqlalchemy?
+01:17 There, sqlalchemy, and so on.
+01:19 Notice how the routing is passing it along.
+01:23 Here are the details for pyramid
+01:25 of course we don't actually have that data
+01:27 but we can get the structure in here
+01:29 and then we'll just create hyperlinks
+01:30 out of the database, or out of our fake data
+01:32 either one, that point back to something like this.
+01:35 Okay, so this route is working really well.
+01:38 We've a few more we want to add
+01:40 let me do a little clean up here.
+01:42 Also, you'll notice that this
+01:46 we're not testing this here so it could be
+01:50 this comes back as None because for some reason
+01:53 it didn't get passed or, more realistically we
+01:55 went to the database and they did a query for
+01:57 a thing that didn't exist in our database.
+02:00 So we can say, if not package name
+02:02 then we can do, raise
+02:06 say import pyramid
+02:10 httpexceptions as x.
+02:15 I'm going to go x.HTTPNotFound.
+02:20 That'll I'll just tell whoever's listening
+02:23 it wasn't found.
+02:26 Let's suppose, just test this really quick.
+02:30 If we go ask for gone, let's see what we get.
+02:34 So here we can ask for pyramid, everything's great
+02:36 but if I go and say gone, boom, not found.
+02:40 So that little bit isn't working.
+02:43 Of course this doesn't make sense.
+02:45 But if we don't get past package name or we try
+02:47 to do a query and it doesn't exist
+02:49 then we're going to tell them it's not here
+02:50 otherwise, it will return the details of it like this.
+02:53 We're going to get much more advanced when we get
+02:54 to the database section, but this interaction
+02:57 with the routing is pretty typical.
+02:59 So, a request comes in, it has matchdict the
+03:03 values passed in the route like so
+03:05 appear in here and we interact with it however we want.
+03:10 We get the value back, maybe we talk to the database
+03:12 call a web service, whatever.

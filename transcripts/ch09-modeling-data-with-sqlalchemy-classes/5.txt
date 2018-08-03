@@ -1,0 +1,147 @@
+00:00 It's time to bring SQLAlchemy
+00:02 into our application and start modeling things
+00:04 in the database, and actually using a database.
+00:07 How cool would that be?
+00:09 The place to start, I think, is modeling
+00:12 the tables with classes in SQLAlchemy.
+00:15 That's not actually the order, the first thing that happens
+00:18 in order when you execute the program.
+00:20 We have to do things like create the connection
+00:22 connect to the database, make sure the tables
+00:24 are configured and match the stuff that we're modeling
+00:28 things like that.
+00:29 But conceptually, the primary thing we're doing is modeling
+00:32 the database with these classes, so let's start there.
+00:35 Now, I personally like to have a separate dedicated section
+00:39 for the various classes.
+00:41 So we're going to create a sub-package.
+00:44 So here we have our data and let's start by modeling
+00:48 package, we'll call it packages, something like that.
+00:51 So here's how it works in SQLAlchemy.
+00:53 We have a class, we give it a name.
+00:55 Typically its name should be singular
+00:56 but, you know, however you want.
+00:59 It represents a single entity in the database anyway.
+01:02 It's going to derive from something here
+01:07 which we have to define, do that in a moment.
+01:11 And then into it, we're going to put
+01:14 a bunch of columns so it's going to be like an int.
+01:18 And then we'll have, say this be a name
+01:21 this is going to be a string, and so on.
+01:24 The things that we put on the right here
+01:27 are special SQLAlchemy values and they serve two purposes.
+01:30 At design time, they tell SQLAlchemy how to actually
+01:33 create the tables.
+01:35 At run time, they're effectively this
+01:37 integers, strings, and so on.
+01:39 So lets start by importing SQLAlchemy.
+01:44 Sometimes you'll see this as sa to keep things short
+01:47 so maybe we'll do that.
+01:50 Now notice it says this is not defined
+01:53 so let's install this.
+01:54 Cause, it's actually not defined.
+01:56 While we're doing that, we can go over here
+01:58 and also put it in the setup.
+02:02 Alright, now let's try it again.
+02:03 Oh perfect, so that's great.
+02:05 So we want a column, and in this column
+02:08 we would like.
+02:09 Actually, we were going to hijack the name thing
+02:13 and just make that the primary key.
+02:15 Remember the name of the package
+02:16 has to be unique on PyPI anyways.
+02:18 So let's just make this an sa.string
+02:22 and let's say primary key is true.
+02:26 Okay, starts to feel database-y right?
+02:28 The next thing, this is just something I like in databases
+02:32 is always knowing when a record was created.
+02:34 It lets you look at things that were recently created
+02:37 or see them in order, things like that.
+02:38 So let's add a created date.
+02:43 A datetime.
+02:45 And we're going to expand on these columns
+02:46 and make them a little bit nicer.
+02:47 But let's just get the basic structure in place first.
+02:50 A summary, now let me try to tie these back.
+02:54 So if we go over to SQLAlchemy
+02:56 here's going to be the name or the ID.
+03:00 This is the summary, right there
+03:02 that little tiny short thing.
+03:03 So we'll come over here this is the sa.column.
+03:09 And then, this part down here
+03:11 that is a big fat long description.
+03:13 So we'll have a description as well.
+03:19 We're also going to come over here
+03:21 and we'll have this little home page.
+03:22 We're going to be able to click on that
+03:23 so we need to model the home page.
+03:32 Also a string, and a docs URL some of them
+03:35 have the ability to say here are the documentation.
+03:41 and a package URL.
+03:45 Also you'll see that these have authors and maintainers
+03:51 and then, here they have an author.
+03:53 So the author's Mike Bayer
+03:54 and Mike Bayers's one of the maintainers as well
+03:57 but so is this person, okay?
+03:59 So we need to model it having a dedicated author
+04:03 but then also maintainers.
+04:07 Now we could do this to a relationship
+04:08 or we could put it directly on there.
+04:11 Maybe we want to keep it even in case
+04:12 they delete their account.
+04:13 So I'm going to put the author information here
+04:15 and we'll use a join to get to the maintainers.
+04:21 Then finally, these all have a license.
+04:25 Now we're going to use, oh let's see if we find the license here.
+04:29 Here we go.
+04:30 It's MIT.
+04:32 We're going to use a similar trick as we did here
+04:35 we would like to show just this simple information
+04:38 just the name of the license and maybe a link to it as well.
+04:41 Which is just the same as the title basically.
+04:44 So what we'd like to do is we could
+04:46 set this up in a way where we have to do a join
+04:48 on a license table because
+04:50 we're going to have a set of licenses.
+04:53 But, if we make the ID also be the name and be unique
+04:57 why would you have two licenses with exactly the same name?
+05:01 We won't.
+05:02 So, because the name would be unique we could use this
+05:04 and then this could actually both be just the string
+05:08 but also the relationship.
+05:10 So that'll avoid one join and make our table
+05:13 a little bit faster. That'll be sweet.
+05:15 So one more thing down here
+05:16 we're going to have releases and we're going to have maintainers.
+05:22 But the releases and the maintainers requires relationships.
+05:26 So we're going to come back to that in just a little bit
+05:28 but right now, things are looking pretty good for our table.
+05:33 If I go and start working with SQLAlchemy
+05:35 and saying here's my package table
+05:37 well one it needs a base class for this to work.
+05:39 But on the other, it's going to create a table called
+05:42 Package as a singular.
+05:45 I personally don't like that
+05:47 I'd prefer to have plural names and maybe lowercase.
+05:50 So we can control how this maps, so the database by putting
+05:52 a __tablename__ here.
+05:58 And we'll say lowercase packages
+06:00 so on the table it's going to show up as lowercase packages.
+06:03 But when we have one of them
+06:05 it's going to show up as a Package
+06:08 like a class would normally in Python.
+06:10 The other thing is sometimes nice when we're debugging this
+06:13 you would like to see in PyCharm
+06:16 without actually expanding all the bits
+06:18 what package you got back, and so on.
+06:21 So we're going to add a __repr__.
+06:25 And we'll just return something really simple here
+06:27 we'll just return.
+06:33 Just the ID, so it'll be package request
+06:36 package SQLAlchemy
+06:37 and so on if we're looking at a debugger output
+06:40 or printing a list of these things.
+06:42 Something like that.
+06:43 So that'll be a little bit helpful along the way.
+06:46 Alright so here's the basic concept
+06:48 of what we want to build.

@@ -1,0 +1,64 @@
+00:00 I'm sure you're ready to get in and start learning
+00:02 about Pyramid and building the web apps right away
+00:05 but before we do, let's just take a quick moment
+00:08 and make sure you have everything you need
+00:09 to follow along and write and run these programs.
+00:13 Obviously, you're going to need Python, right?
+00:15 This is a Python course
+00:17 and in fact we're going to use Python 3.
+00:21 Python 2 will go unsupported
+00:22 in less than two years from now
+00:24 so of course we're using Python 3.
+00:26 However, Python 3 doesn't come on all the systems.
+00:29 Let's see if you have Python.
+00:30 How do you know whether you have Python?
+00:32 Well, you can go to your terminal
+00:34 on a Mac or on Linux and type python3 -V
+00:39 and it'll tell you either no there is no Python 3
+00:41 or it'll tell you what version.
+00:43 When I ran this command it was 3.6
+00:45 but actually 3.7 just came out so Python 3.7 is the latest.
+00:49 As long as you have 3.5 or later, you'll be fine.
+00:52 If you're on Windows this doesn't work.
+00:54 It's a little frustrating but python3 is not a command
+00:57 that comes installed with Python by default.
+01:00 How do you know what you have on Windows?
+01:01 Well, you could type python -V
+01:04 and that'll tell you what one of your installations is
+01:07 if it's in the path.
+01:08 It might be better to ask where python
+01:10 and it will show you all the different locations
+01:12 and then you can type python -V and see which one.
+01:15 For example, on this Windows 10 machine
+01:16 we have the Anaconda 3 Python
+01:19 which is Python 3 from the Anaconda distribution.
+01:22 We have Python 3.6 from Python.org, and 3.5 from Python.org
+01:29 all in these random, different locations here.
+01:31 So you can adjust your path to target the one that you want
+01:34 but make sure when you type python -V
+01:37 you get something Python 3.5 or higher.
+01:41 Depending on your OS if you type this
+01:42 and everything works
+01:43 you're ready to take this class.
+01:44 You have Python set up.
+01:47 But what if you don't?
+01:48 Maybe you need Python, maybe that didn't work.
+01:50 There actually a whole bunch of tradeoffs
+01:53 and different ways to install Python.
+01:55 One way, if you're on Mac or Windows, is just go Python.org
+01:59 download the latest installer, and get it.
+02:01 But I want to give you a little more guidance.
+02:03 Drop over at realpython.com/installing-python
+02:07 and have a look there.
+02:09 They have for each of the operating systems
+02:10 a couple of different ways.
+02:11 For example, for Mac OS, you might use Homebrew
+02:14 to install and update the latest version of Python.
+02:17 Things like that.
+02:18 So go over here, see what they say for your OS.
+02:21 They're going to keep maintaining this
+02:22 and updating it over time.
+02:23 So this is probably the best resource
+02:25 for installing Python if you need to do so.
+02:28 Once you get Python set up
+02:29 you'll be ready to move on.

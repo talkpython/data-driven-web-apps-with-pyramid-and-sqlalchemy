@@ -1,0 +1,136 @@
+00:00 In case you haven't already
+00:01 scanned the table of contents
+00:02 to figure out what we're going to cover
+00:03 let's really quickly go through
+00:05 some of the topics that we're
+00:06 going to cover in this course.
+00:08 After this introduction section
+00:09 we'll briefly cover what you need to set up your machine
+00:12 and the tools and editors you need to follow along.
+00:15 We're going to introduce the Pyramid web framework
+00:17 some of its design principles
+00:19 and compare and contrast it with other popular frameworks.
+00:22 We'll create our first site.
+00:23 Here's where we start writing code in this Chapter 4.
+00:26 We're going to create our first site
+00:28 and get it up and running in Pyramid.
+00:30 We'll look at the various options for HTML templates
+00:33 and then, we'll dig deeper into
+00:35 the Chameleon template language.
+00:36 If you want to use another one, that will be totally fine
+00:39 but I make a case for why I think
+00:40 this is the best HTML template language out there.
+00:44 We'll see that mapping URLs to methods
+00:46 in our web app is a central part
+00:48 of the MVC framework, the Model-View-Controller framework
+00:51 that is in Pyramid and popular among many
+00:53 of the Python web frameworks.
+00:55 So, we'll focus on taking a URL
+00:57 and getting it to run a function
+00:58 and getting some kind of response.
+01:00 Once we have some basic pages up and running
+01:03 we'll look at how we make our pages beautiful.
+01:06 We'll bring in Bootstrap.
+01:08 Also talk a little bit about some
+01:09 other front-end frameworks if you
+01:11 want to use something other than Bootstrap
+01:13 but we'll look at Bootstrap and how
+01:14 to bring that into our web app.
+01:16 At this point, we'll have basic
+01:18 web app functionality happening
+01:20 but it'll all be based on fake, in-memory data.
+01:22 Of course, we don't fake, in-memory data.
+01:24 We want live, full-stack web apps.
+01:26 So, we're going to move down a little bit in that stack
+01:28 towards the data access layer.
+01:30 We'll talk about SQLAlchemy, how the ORM works
+01:33 we'll define classes that map our data
+01:35 into our database, and, of course
+01:37 run queries to get that data back.
+01:39 See, the SQLAlchemy ORM is great
+01:41 for creating the initial database structure
+01:43 but if it changes, things are going to go crazy.
+01:46 Right, our database is going to be out of sync
+01:49 with our ORM classes and you'll see that's a full-on crash.
+01:52 It's really, really bad.
+01:53 It's kind of hard to maintain the stuff.
+01:54 Well, Alembic, a database migration framework
+01:58 that's peered with SQLAlchemy will come to the rescue.
+02:01 We can point Alembic at our SQLAlchemy classes
+02:03 and our database, and go, alright.
+02:05 We changed these.
+02:06 Make the database scripts that are needed
+02:08 to do that change, to apply those changes automatically.
+02:11 Just make that for us and then we can apply that to like
+02:14 say, staging or production as we roll out new versions.
+02:16 It's going to be great.
+02:18 Once we have our database working
+02:19 we'll want to accept user input.
+02:21 Probably save it to the database, as well.
+02:22 So, we'll talk about HTML forms
+02:24 letting users create accounts
+02:25 register, enter data, that sort of thing.
+02:29 If you're accepting data, you had
+02:30 better be validating it, right?
+02:32 The internet is a harsh place
+02:33 and lots of people try to send invalid data
+02:36 either by mistake or maliciously.
+02:38 We're going to talk about some really awesome
+02:40 design patterns called view models
+02:42 for server-side validation and data exchange
+02:44 and then, we'll also talk about
+02:45 leveraging some HTML5 features
+02:48 so we don't have to write any
+02:49 JavaScript for client-side validation.
+02:51 Testing web apps can be tricky
+02:53 because web applications depend upon things like
+02:56 databases, and other services
+02:57 and the web framework, itself, right?
+03:00 Like the request-response model, all that.
+03:02 So, we'll see that Pyramid provides
+03:04 special infrastructure to make it testable
+03:07 so that we can test our web application
+03:09 more easily without actually creating the servers
+03:12 and doing heavy weight stuff like that.
+03:14 Once our app's built, tested, everything's
+03:16 working, it's time to ship it, right?
+03:19 Put it online, so we're going to
+03:21 take our web app and deploy it
+03:22 on a brand new Linux server out on the internet
+03:25 and we'll have our web app running and live.
+03:28 You'll see everything you need to do
+03:29 to take a bare Ubuntu image, and get it up
+03:32 and running to be our web and database server.
+03:35 Finally, we're going to take a look back at
+03:38 how we built our application
+03:40 how we've structured it so that we have
+03:43 a lot of flexibility using various
+03:45 design patterns for accessing data
+03:47 and validating data, and so on.
+03:49 And as an exercise, we're going to convert
+03:51 from a relational database to a MongoDB database.
+03:55 That's interesting, if you want to
+03:56 know about MongoDB, you'll see how to do that
+03:58 but it's also interesting just to show
+04:00 how flexible these design patterns are
+04:02 because we're going to make this conversion
+04:04 by just changing a few handful of files
+04:07 even though there'll be many, many aspects of our site.
+04:10 We'll have that really isolated and focused
+04:12 so it's super easy to do whatever
+04:14 we want with our data access.
+04:16 If you wanted to, say, convert it to calling web services
+04:19 and some kind of micro service architecture
+04:21 you'd see the techniques we're using here for MongoDB
+04:24 would equally apply to that exact same transformation.
+04:28 This is what we're going to cover.
+04:29 I hope you find it super interesting.
+04:31 It's a real world version of what
+04:33 you need to build and ship web applications.
+04:35 This is almost everything you need to know to go from
+04:38 I know a little bit of Python and HTML
+04:39 to running these full-stack web apps
+04:42 that are things like the training site
+04:44 or YouTube, or stuff like that.
+04:47 I hope you're excited to learn it.
+04:48 I'm definitely excited to share it with you.

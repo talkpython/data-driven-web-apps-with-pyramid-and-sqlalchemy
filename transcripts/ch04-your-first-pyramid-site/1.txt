@@ -1,0 +1,78 @@
+00:00 I don't know how you feel,
+00:01 but I think there has been enough talking.
+00:03 It's time to write some code
+00:04 and start creating some software.
+00:07 So, that's what this chapter kicks off.
+00:09 We're going to create our first project.
+00:11 And we'll see that there's actually
+00:12 a couple ways to do this
+00:13 either with a command-line interface
+00:14 which applies everywhere
+00:16 or a simplified, shorter way with PyCharm.
+00:19 I'll show them both of you.
+00:21 But let's talk about how we get started
+00:23 in Pyramid in general.
+00:25 So, every web framework has its own style of scaffolding
+00:29 or the putting the structures in place
+00:31 so you can get started.
+00:33 So, here, what we're going to use
+00:34 is a thing called Cookiecutter.
+00:36 So, Cookiecutter is an arbitrary Python utility
+00:40 that takes starter projects for all sorts of things
+00:43 for Pyramid web apps
+00:44 but also for Flask and Django,
+00:47 and even old Atari-type things written in C
+00:50 and you can create projects from them
+00:53 and sort of get a headstart on that structure.
+00:56 So, we're going to use the Cookiecutter packages
+00:59 for Pyramid to do this.
+01:00 This is the official way recommended by the Pyramid folks.
+01:04 Once we've installed Cookiecutter
+01:06 just pip install cookiecutter,
+01:07 we're going to use it to create a site.
+01:10 Now there's several different types
+01:13 of templates we could use.
+01:15 Within those projects
+01:16 we have choices like what templating engine
+01:19 do you want to use, or things like that.
+01:21 So, there's a lot of flexibility here
+01:22 but we'll just start with what they call the starter site.
+01:26 We're going to create a virtual environment.
+01:27 This typically, the virtual environment you want that
+01:29 to reflect what you're running on the server
+01:32 what your target environment is
+01:33 and the way to control that really carefully
+01:35 is have a dedicated separate Python environment
+01:37 for your web app.
+01:39 So, we'll do that here.
+01:40 Not required, but very much recommended.
+01:43 And then we're going to register the site as a package.
+01:46 Pyramid's decided that their web applications
+01:48 are best deployed as packages
+01:51 and manages packages.
+01:52 So, we'll see that there's an extra command
+01:55 that you have to run here and say
+01:56 "Here's the package that I'm working on,
+01:58 "install it into this Python environment."
+02:00 Not much to do
+02:01 but it's easy to forget
+02:02 so I'll show you how to do that.
+02:04 And finally, we're ready to run our application.
+02:06 We're going to serve it up, interact with it.
+02:08 We'll add some features,
+02:10 and then we're going to go back
+02:12 serve it up again, test it
+02:13 and we'll just keep adding and adding and iterating.
+02:15 So, these first four steps,
+02:17 we're going to do to get started
+02:18 and of course, you just build software over time
+02:21 by adding feature after feature after feature.
+02:25 And so as I said in the opening,
+02:27 we can use PyCharm or we can use the command-line.
+02:29 First, let's talk about a way of doing this
+02:32 that works for everybody no matter what OS you're on
+02:35 no matter what tooling you're using.
+02:37 This command-line interface path will work for you.
+02:40 It takes a couple steps
+02:41 but once you get used to it
+02:42 it's no big deal at all.

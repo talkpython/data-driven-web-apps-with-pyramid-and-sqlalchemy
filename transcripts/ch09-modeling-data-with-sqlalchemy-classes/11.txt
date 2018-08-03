@@ -1,0 +1,137 @@
+00:00 One of the core relationships in this model
+00:03 is that we have a package and packages have releases.
+00:06 A release has a package and a package has many releases.
+00:10 Okay. So let's model that right here.
+00:13 Now, SQLAlchemy has a way to build in these relationships
+00:16 which ultimately create foreign key constraints
+00:20 and relationships in the database itself.
+00:22 So we come over here and we can just say releases
+00:25 is equal to and we need to go import up here...
+00:30 some more stuff. We need to import the orm to explicit use that.
+00:33 I'll just say as orm...
+00:35 and down here we'll say orm.relationship.
+00:39 The first, again it's *arg, **kwarg which
+00:42 I don't know, it's a pet peeve of mine.
+00:45 There's just a bunch of keyword arguments.
+00:47 Let's just explicitly set them with default values
+00:49 but anyway, here we have, sum value the first thing
+00:52 we have to pass, the first positional argument is
+00:55 the name of the class that we're relating to.
+00:59 There. I'm going to put release.
+01:01 What we probably want is to have a certain order here.
+01:06 The way it's going to work is we're going to get a package back
+01:08 and it's going to have a property or a field
+01:11 which is a list that we can just iterate over
+01:13 so for, r in p.releases, things like that.
+01:18 Having some form of order on that
+01:21 is going to be really important.
+01:22 Either descending or ascending, of course we could sort it
+01:25 every time we get it back but it's much better
+01:27 to let the database do the default sorting.
+01:29 If we need to change that, we can.
+01:31 The thing that we're going to put here
+01:33 is we're going to say order by, equals.
+01:36 Now we could put two things here.
+01:38 One thing is I could say release
+01:41 and we got to import that, and we could say
+01:44 major version like that and that would be ascending
+01:46 or I could even say descending like this.
+01:49 That's going to show three, two, one
+01:52 but then there's other parts as well right?
+01:54 There's the minor version, if the major version matches
+01:57 we want to sort by that.
+01:59 This is pretty common to write like this
+02:01 but in this case what we actually want to do
+02:04 is we want to put this into a list.
+02:06 So we're going to do major and then minor, and then build.
+02:12 We'll leave the comma.
+02:13 So that's going to do the ordering.
+02:17 If we go over here and look, these all have indexes
+02:20 so the ordering should be nice and fast.
+02:21 There's not that many anyway but still, good.
+02:25 Over on the other side, we would, if we do a query
+02:30 for a package, we're going to get its releases
+02:33 but then on each individual release
+02:35 we'd like to be able to navigate this relationship in code
+02:39 in reverse, without actually going back to the database.
+02:42 We can say backpopulates equals package.
+02:47 That means over on the release, somewhere down here
+02:52 we're going to have a package property
+02:56 which we'll do more details on that in a second.
+02:58 But when we get one of these packages
+03:01 and we interact with its releases
+03:03 each one of the ones that comes back is going to have
+03:05 that set to the package that we got from the database.
+03:08 Makes sense? Okay.
+03:10 This lets us navigate bidirectionally
+03:12 which is really really important.
+03:15 This side of things, I think is done.
+03:19 The releases is a little more interesting.
+03:21 Let's go, how do we know that a release
+03:24 is related to a package in the database.
+03:26 Well, it's going to have a package ID
+03:30 is equal to some SQLAlchemy thing.
+03:32 Right, some SQLAlchemy column here.
+03:35 Now, this is going to be set by the relationship
+03:37 but this is a field or column in the database
+03:40 that has to be set, and it's going to be SQLAlchemy not string.
+03:44 That's the way that IDs are packaged
+03:47 right, if we go up here and look.
+03:49 This is a string, so that has to be
+03:51 a string there, right, those match.
+03:54 But in addition to being just a regular string
+03:56 it's going to also be, a foreign key relationship.
+03:59 We'll say SQLAlchemy.ForeignKey.
+04:03 When we did our relationship back here
+04:06 we spoke in terms of classes, the release class.
+04:10 When we talk about the foreign key
+04:12 we talk in terms of databases
+04:13 so we'll say packages, not capital p package, dot ID.
+04:18 That is going to store the relationship in the database
+04:21 but we also would like to be able to navigate it
+04:23 in memory and code, so here we're going to do orm
+04:27 again we got to import that.
+04:32 Come down here, and this will be a relationship...
+04:35 To the class package and it's
+04:38 going to back populate releases.
+04:43 Let's look at that over here, and it's going
+04:46 to back populate this so if we get a singular release
+04:50 it's going to go and we interact with its package
+04:53 then it's going to automatically do this right
+04:55 so this bidirectional nature
+04:57 and then we're talking about this class here.
+05:00 It can be confusing when you're working
+05:02 with these relationships when you speak in database terms
+05:04 when you speak in Python type terms
+05:07 but here's how we're going to do it.
+05:09 Now in order for this to have any effect
+05:11 of course we need to go over here and drop these two tables.
+05:16 If we rerun it we'll see if we got it right.
+05:20 Encouraging, let's look again.
+05:22 Now over here, actually if we look at releases...
+05:25 if we look at releases, you can see we've got
+05:26 package ID...
+05:28 is a relationship over to over to package.ID.
+05:32 Alright, we have that relationship modeled there
+05:33 which is pretty awesome.
+05:36 We have our foreign key constraint right there.
+05:38 From package, back, did it put it on the other one as well?
+05:42 No, just on the releases table
+05:45 but that's all we need.
+05:46 Now that's pretty interesting to see it show up
+05:48 in the database but what we'll see is
+05:50 if we can come over here and we
+05:52 obviously this is not going to work, alright.
+05:54 This is not really a thing but let me just type it out.
+05:56 So if we have p as a package that we somehow
+06:00 got from the database then we can say p.releases
+06:04 say for r in releases print r dot
+06:08 and then off it goes right, major version or whatever.
+06:13 This relationship will mean that we can do
+06:15 a single query to get the package
+06:17 and then we can just navigate this relationship.
+06:19 Similarly if we have this we can go .package, .ID
+06:23 if we wanted to print out the name right?
+06:25 And that would navigate these two tables in the database
+06:29 using our classes here and that's what we've built
+06:31 with our ORM relationship on both sides of the story.

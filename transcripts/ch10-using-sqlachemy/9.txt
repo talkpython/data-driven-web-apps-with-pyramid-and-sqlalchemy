@@ -1,0 +1,91 @@
+00:00 We've written a few interesting queries
+00:02 and before we're done with this application
+00:04 we'll write a couple more.
+00:06 But let's talk about some of the core concepts
+00:08 around querying data.
+00:10 So here's a simple function that says
+00:13 find an account by login.
+00:14 We haven't written this one yet
+00:16 but you know, we're going to when we get to the user side of things.
+00:19 It starts like all interaction with SQLAlchemy.
+00:22 We create a unit of work by creating a session.
+00:24 Here in the slides we have a slightly different
+00:26 factory method that we've written, but same idea
+00:29 we get a session back, we're call calling it s.
+00:31 We go to our session or we say s.query
+00:34 of the type we're trying to query from, account
+00:36 and then we can have one or more filter statements.
+00:39 Here we're doing two filter statements.
+00:41 Find where the account has this e-mail
+00:44 and the hashed password is the one that we've created
+00:48 for them by rehashing it.
+00:50 And now we're calling one, which gives us one
+00:52 and exactly one or none items back
+00:55 and we're going to return that account.
+00:56 So, if you actually look at what goes over to the database
+00:59 it's something like this.
+01:00 Select * from account where account.email is some parameter
+01:05 and account.passwordhashed is some other parameter
+01:07 and the parameters are Mysie Kennedy and ABC.
+01:11 You'll see that you can layer on these filter statements
+01:13 even conditionally, like you can create the query
+01:16 and then say if some other value is there
+01:18 then also append or apply another filter operation
+01:21 so you can kind of build these up.
+01:22 They don't actually execute until you do like
+01:25 a one operation or you loop over them or you do a first
+01:28 or anything like that.
+01:29 So here's returning a single record.
+01:33 Also, it's worth noting that the select * here
+01:35 is a simplification, everything is explicitly called out
+01:39 in SQLAlchemy.
+01:40 The concept is just give me all the records
+01:42 or give me all the columns.
+01:44 If we want to get a set of items back, like show me
+01:47 all of the packages that a particular person
+01:51 with their email has authored.
+01:53 We would go and again get our session.
+01:56 We would go and create a query based on package.
+01:59 We'd say filter, package.authoremail equals this email
+02:02 ==, remember double equal
+02:05 and then we can just say All and that'll give us
+02:08 all of the packages that match that query.
+02:10 This one's not going against a primary key
+02:11 so there'll be potentially more than one.
+02:14 Of course this maps down to select * from packages
+02:16 where package.authoremail equals
+02:19 when you know the email that you passed.
+02:20 Super simple and exactly like you would expect.
+02:23 So the double equal filter, pretty straightforward.
+02:26 There's actually some that are not so straightforward
+02:28 so equals obviously ==, user.name == Ed, simple.
+02:34 If you want not equals, just use the not equals operator.
+02:38 That's pretty simple.
+02:39 You could also use like, so one of the things it takes
+02:42 some getting used to is these SQLAlchemy descriptor
+02:46 column field value type multi-purpose things
+02:50 here is they actually have operations that you can do
+02:54 on them when you're treating the static type
+02:57 interacting with a static definition rather than
+02:59 a record from the database.
+03:01 So here we say the usertype.name.like_ or in_
+03:05 or things like that.
+03:06 So, we saw the descending sort operation on there as well.
+03:11 So, if we want to do the Like query, this is like
+03:13 find the substring ed in the name, then you can do
+03:17 .like_ and then pass the % operators as you would
+03:20 in a normal SQL query.
+03:22 IF you want to say I want to find the user whose name
+03:24 is contained in the set, Ed, Wendy or Jack
+03:27 then you can do this .in_, remember the underscore
+03:30 is because in is a key word in Python, so in_.
+03:35 If you want to do not, not in, this is kind of not obvious
+03:38 but you do the ~ operator at the beginning to negate it.
+03:42 If you want to check for null, == None, the and you just apply
+03:45 multiple queries, the or doesn't work that way.
+03:48 If you want to do an or, you've got to apply a special
+03:50 or operator to a tuple of things.
+03:54 So, here are most of the SQL operators
+03:57 in terms of SQLAlchemy.
+03:59 You can do a lot of stuff with this.
+04:00 It's not all of them, but many of them.

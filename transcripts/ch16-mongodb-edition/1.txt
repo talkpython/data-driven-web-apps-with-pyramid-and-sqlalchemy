@@ -1,0 +1,44 @@
+00:00 We've built our app.
+00:01 We've deployed it. It's basically done.
+00:03 But let's take one more look.
+00:05 Let's try one more version of our application.
+00:08 So we're going to rebuild our PyPI demo app
+00:11 this time with a NoSQL-based document database
+00:16 called MongoDB.
+00:17 It's the most popular of the document databases
+00:19 but the ideas will be pretty similar across the board.
+00:23 So the first question is, why are we doing this?
+00:25 Why do we have this MongoDB version?
+00:26 Well, there's two basic reasons.
+00:28 The first reason is many people prefer document databases
+00:32 over relational databases.
+00:34 The whole thing about migrations?
+00:35 A whole lot less of that
+00:36 when you're doing document databases and things like that.
+00:39 The running of it is easier a lot of times
+00:42 and also the performance can be better.
+00:44 So that's one reason.
+00:45 People might just want a MongoDB version.
+00:47 The other reason though is we've talked a lot about
+00:50 some amazing design patterns.
+00:52 We've organized our code in nice ways.
+00:54 We have these data access services
+00:56 that group say the user queries
+00:59 and data processing, the package processing
+01:02 and we have our view models.
+01:04 So what I'd like to show you
+01:05 the main takeaway here is the power of these design patterns
+01:09 that we've employed.
+01:11 What you'll see is we'll be able to change
+01:12 a very few set of files and actually completely switch
+01:17 not just the database
+01:18 but entirely the style of underlying data altogether.
+01:22 So it's going to be really quite easy and quite awesome.
+01:26 If you're not interested in MongoDB
+01:27 feel free to skip to the end.
+01:29 Skip over this chapter.
+01:30 But if you are or you want to see the power
+01:32 of these design patterns to allow us to evolve our application as we build it
+01:36 so we don't have to design it all perfectly up front
+01:38 'cause you never do
+01:39 you'll get to see that in action during this chapter.

@@ -1,0 +1,34 @@
+00:00 I did say that we're not going to make this
+00:01 a full MongoDB course, but I want to give you just enough
+00:04 of a foundation of how these things work
+00:06 so you can sort of appreciate what we're doing.
+00:09 So the way we model data in document databases
+00:11 is very different than relational databases.
+00:13 Relational databases, we have, say, packages
+00:16 and we have users and we have a maintainer's table
+00:19 which is a normalization table between them
+00:21 things like that.
+00:22 In document databases, it's much closer
+00:24 to actually being the same shape and style
+00:27 as you have in memory, hierarchical
+00:29 as you do in the database.
+00:30 So, for example, here is a chapter
+00:32 from one of my courses in MongoDB.
+00:36 The green stuff here is the same as you would have
+00:39 in SQLte, Postgres, whatever, right?
+00:42 It's just straight columns.
+00:44 But notice those lectures.
+00:45 These are, that's an array in JavaScript
+00:47 and then that's an embedded series of objects.
+00:50 So these are embedded in here, and you can think of this
+00:52 as like a pre-computed join
+00:54 one of the reasons these databases can be so fast.
+00:57 So the big question is
+00:58 can you actually query deeply down into here?
+01:00 Can you still answer the question?
+01:02 What chapter has lecture 10106
+01:06 and could I get it back?
+01:07 Luckily, you can, and you can do that with an index
+01:09 and can be incredibly fast.
+01:11 So we're going to ask and answer questions like that
+01:13 throughout this chapter.

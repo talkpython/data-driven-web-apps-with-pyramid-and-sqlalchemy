@@ -1,0 +1,13 @@
+00:00 Well you've made it through the entire course
+00:03 do you see it, do you see it there in the distance
+00:05 there it is the finish line.
+00:07 You've made it, you've crossed over
+00:09 you've done everything, you've gone through all the demos
+00:12 hopefully played with lots of the source code
+00:15 and done your own little projects along the way.
+00:18 So you now possess many of Pyramid's super powers
+00:21 and you can build world class web applications
+00:25 with pyramid and Python and SQLAlchemy.
+00:28 So throughout this chapter were going to do a quick review
+00:31 of what you've learned to help the key ideas
+00:34 sink in and stick with you just a little bit more

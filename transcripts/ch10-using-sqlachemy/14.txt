@@ -1,0 +1,13 @@
+00:00 I did mention this at the very beginning of the course
+00:01 but if you want to dig deeper into SQLAlchemy
+00:04 hear the backstories of the design patterns
+00:07 that whole concept of the unit of work
+00:09 and why Mike thought that was great and brought it in
+00:12 you can check out talkpython.fm/5
+00:15 that will take you over one of the very first
+00:19 Talk Python episodes I did with Mike Bayer.
+00:21 And you can listen to the whole story about how
+00:24 he created it, how it's evolved over time
+00:25 things like that.
+00:26 So if you want to dig deeper, here's a quick and easy way
+00:29 to do it while you're driving or doing chores.

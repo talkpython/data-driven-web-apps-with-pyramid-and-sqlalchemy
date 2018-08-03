@@ -1,0 +1,41 @@
+00:00 Now for SQLAlchemy to work right
+00:02 we need to put a base class here.
+00:05 It needs to be a special one.
+00:06 Every class that maps to the same database
+00:10 needs to use the same base class.
+00:13 You can have different ones, like if you have
+00:15 an analytics database, and you have a core data database
+00:19 those might be different classes
+00:20 but all the ones that go into one database
+00:22 they should be the same.
+00:24 Okay, so how do we do that?
+00:25 Well, we're going to define a class
+00:27 and it's really quite simple.
+00:28 You sort of create one and only one of them
+00:31 from SQLAlchemy.
+00:33 So I'm going to put that into its own separate file, now.
+00:36 I think this one totally justifies its own file.
+00:39 What I'm going to do here is pushing the limit
+00:41 of maybe this is a little too fine grained
+00:43 but there's only one and it's supposed to be shared.
+00:45 So I think what I'm going to do is, do this.
+00:51 Create a model base class and then we have to
+00:55 import SQLAlchemy.extensions.declarative
+01:01 I'll just say, shorts we don't have to say
+01:02 too much there just, as dict then I'm going to
+01:04 create a class called SQLAlchemyBase.
+01:09 This class is the class that's going to be the base class
+01:12 but instead of defining it this way
+01:13 we use a factory method out of this place here
+01:17 so we say, declarative_base like that.
+01:23 And that's it.
+01:24 This is now our base type.
+01:26 It gets created at runtime by SQLAlchemy
+01:28 and then, by virtue of deriving from it, it basically means
+01:33 we're telling SQLAlchemy, "Here's another class that you're managing."
+01:36 So for example, put that here and let PyCharm import it.
+01:42 So for the top, we have from model base, import this
+01:45 and those two lines are going to pretty much be the same
+01:48 for all of our types.
+01:49 And that's it, this class can now be loaded and saved
+01:54 from the database once we connect to it.

@@ -1,0 +1,51 @@
+00:00 Our web app is basically built.
+00:02 All we have left to do is test and deploy it.
+00:05 So, let's talk about testing web applications.
+00:08 Now, this is not a chapter on unit testing
+00:11 and all of its benefits in general.
+00:14 The goal is to focus on testing web applications,
+00:17 addressing some of the challenges that we'll see
+00:19 that can be hard, of working with web apps,
+00:21 in terms of testing, for example,
+00:24 how do we, like, set up the web framework around it
+00:26 if it depends upon things like pyramids request object.
+00:30 And what are some of the techniques we can use
+00:32 to take advantage of stuff the web app
+00:34 already provides us, like, the URL structure, and so on.
+00:38 Let's begin by asking the question, "Why test?"
+00:42 Why should we write tests at all?
+00:44 Well, your first response is probably,
+00:45 "So that we can find our bugs, there are surely
+00:48 "bugs in our web app, let's make sure
+00:50 "we find them and then get rid of them."
+00:52 And that is great, but that's not
+00:53 the only reason to write tests.
+00:56 These days in modern software development,
+00:57 we have a lot of infrastructure in place
+01:00 to help with things like continuous deployment,
+01:02 and checking code, and verifying that we don't
+01:05 step on each other's feet if we're working on a team,
+01:07 things like that, and testing for Python web apps
+01:10 is really one of the few verifications
+01:13 that we have that we can work with.
+01:15 Let's suppose that we have continuous integration,
+01:18 which is a system like TeamCity or Travis CI
+01:21 that looks at our GitHub repository, watches a branch,
+01:23 watches for PRs, and when a change comes in,
+01:26 it will automatically check it out
+01:28 and build our project, and that build
+01:30 probably includes running tests, but if we don't have tests,
+01:34 that build passing, what does it mean?
+01:35 I actually don't know what it means
+01:37 in terms of Python, maybe we could
+01:38 install the dependencies, register the website?
+01:41 That might be about it, because Python doesn't
+01:44 even have compiling, so this testing in place means that
+01:48 when our automatic builds pass, that actually says something
+01:51 about the state of our web app.
+01:53 If we want to go farther, and go with continuous
+01:55 delivery and automatic deploy our site
+01:58 when we put it onto a branch and the build passes,
+02:01 then really need some sort of verification with our test.
+02:03 So these tests are important foundational items
+02:06 for many things that we might do around our project.

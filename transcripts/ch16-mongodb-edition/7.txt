@@ -1,0 +1,158 @@
+00:00 We saw our site doesn't work
+00:01 because we're trying to access SQLAlchemy
+00:04 which we're no longer configuring in our
+00:07 various data services, so now what we're going to do
+00:09 is go rewrite these data services
+00:11 like this last latest releases.
+00:14 It might sound challenging, but it turns out
+00:16 to be super easy, let's go do it.
+00:18 Here's part of that design pattern thing I spoke about.
+00:20 We've taken every single bit of data access
+00:23 and we've isolated it down into just these two modules
+00:28 a couple of functions within each.
+00:30 So that means, within the view models
+00:32 within the controller methods, all of that stuff
+00:35 none of them care about the details
+00:38 of how we talk to the database
+00:39 they just expect classes back.
+00:41 And as long as the classes have
+00:42 the right type, it'll be okay.
+00:44 So, that's the beauty right here.
+00:46 Let's go down, and all we have to do
+00:48 is rewrite these queries, rewrite how
+00:51 we get package count, for example.
+00:53 So let's get to it, it's going to be really quick.
+00:55 We're going to change this to nosql.
+00:58 We don't use this unit of work pattern for MongoEngine.
+01:01 I do kind of like the unit of work pattern
+01:03 but they don't use it, so here we go.
+01:05 Now instead of going and creating the query on a session
+01:08 we go to the class and we say objects.
+01:11 Now this is just a blank query
+01:13 there's not filters and stuff, but we could put those here.
+01:17 Okay, so that's going to do that one, let's do Release.
+01:19 This is going to do ...
+01:23 objects().count().
+01:24 Okay, not too hard so far.
+01:26 That's one's kind of the hardest one
+01:28 so let's put that away for a minute.
+01:30 So this one kind of looks complicated.
+01:32 Remember the joins and all that.
+01:35 So we're going to find a package by name
+01:36 so we go to the package, and go to it's objects
+01:39 now we can .. the filter does work
+01:41 exactly like this, but what we can do is
+01:43 if we're just doing one filter
+01:45 we can just put that ... right there.
+01:47 We don't need this filter statement.
+01:49 OK, so it's kind of equivalent.
+01:50 The other thing that's different
+01:52 is we don't use double equal, we use single equal
+01:55 and then we don't use the type, we just say the field.
+01:57 Okay, so it's just id is that.
+01:59 At this point, we can make this
+02:00 look a lot cleaner, like that.
+02:02 That's pretty slick.
+02:03 Alright, we got one more down here.
+02:06 We want to go to create a list of the results of this query.
+02:11 Objects and then we're going to get the limit
+02:14 by whatever that value is.
+02:16 Look at this, this is comin' along pretty easy, right?
+02:19 Now, finally, this one here.
+02:21 So we want the releases ...
+02:26 Objects ... Order by ...
+02:28 Also exists in MongoEngine, but this
+02:30 syntax doesn't exist.
+02:31 If you want to sort by this field
+02:35 descending, you just put it as
+02:36 a string with a minus in the string.
+02:38 I don't like that as much, but that's how it works.
+02:41 That's it, this one's done, and then down here, again
+02:44 we're going to go to our package
+02:46 it's going to be .objects()
+02:50 and this one gets pretty interesting.
+02:51 See how we're doing this query of
+02:53 I like the ID to be contained within this set?
+02:56 Same idea in MongoDB, but it's going to go like this.
+03:00 Say id instead of dot, you do id__in
+03:03 to apply the operator and you don't have the ... there
+03:06 and you just say equal the set.
+03:08 Different, not super hard.
+03:09 I think, I think this might do it.
+03:11 This may well do it.
+03:12 Let's run and see what happens.
+03:14 Now we didn't change the user thing
+03:15 so that might, that might pose a problem, let's find out.
+03:20 None type is callable.
+03:21 Where is this?
+03:22 Yep, user service, user count, okay.
+03:25 We got to do that over here.
+03:26 I think just the one, so, instead of data
+03:28 we'd have nosql, we don't have unit of work
+03:32 we have .objects(). Let's try again.
+03:36 I think that might be enough to make it run.
+03:39 Boom, look at that, it's working! Like a champ.
+03:42 If I login there's going to be some minor issues.
+03:44 We don't have our data yet, but it's great.
+03:46 We can even come over here and try to get to a project.
+03:49 ike request, it's not in the database
+03:51 so it should 404, right?
+03:53 Perfect, didn't crash, it went to the database
+03:55 said eh, not here, 404.
+03:57 Of course it's not here 'cause the database is empty.
+03:59 We're going to solve that problem in a minute
+04:00 but this, this is pretty awesome.
+04:02 We now have our stuff converted.
+04:04 Let's go ahead and finish out this user stuff here.
+04:07 Turns out there's just a few steps left.
+04:09 Okay, remember, create the user, all good.
+04:12 Instead of all of this, you just say user.save().
+04:17 So here we're going to do a query
+04:18 for the user by email, actually
+04:21 we have a little function below called
+04:23 find_user_by_email, let's just re-use that.
+04:27 I think, it's going to do this as well.
+04:30 Alright, that's pretty easy.
+04:33 It's not, but it will now.
+04:39 So again, we don't do it this way
+04:41 we go and say .objects()
+04:44 and we don't use the type name
+04:46 we do assignment like so. That's it.
+04:48 We have now entirely re-written our app.
+04:52 100 percent, to move from SQLAlchemy to MongoDB
+04:57 using MongoEngine, period, done, that's all of it.
+05:00 And, most importantly, notice we've only changed
+05:03 these two files that are focused on data access.
+05:06 Granted, we had to add these, because, well
+05:09 you can't have the entities without adding them
+05:11 but it's not like we re-wrote a
+05:13 whole bunch of stuff up here.
+05:14 Notice, no color changes in this implementation.
+05:17 Down in the view models, there's tons of them
+05:20 all over the place, no changes.
+05:23 Because we implemented this beautiful
+05:25 little pattern of hiding our data access
+05:27 here, and then exchanging classes.
+05:29 Now, there's little tiny issues going on.
+05:32 Like, let's see if we can find one, maybe this one.
+05:36 No, I was thinking maybe some of them import.
+05:40 pypi.data.user, and things like that
+05:43 for, like type-ins, but they're not even doing that.
+05:46 If they did, we'd just change it
+05:47 I've chosen these to be exactly
+05:49 at least really really close in terms of names
+05:53 of the columns and stuff, so that
+05:55 it really doesn't matter which one you say it is
+05:57 but it's better to have it correct, of course.
+06:00 Almost works. There's one ultra small problem
+06:03 well, first, the data's not there
+06:05 but there's one other small problem that we got to fix.
+06:08 It's going to require us to change the base ViewModel
+06:10 so, this thing I told you about, the beauty
+06:12 there's one tiny detail, and the detail
+06:14 is because, over here, the user is using the default id
+06:19 which is what's called an ObjectId
+06:22 whereas in this one, it's using an integer.
+06:25 The cookie handling needs to be
+06:28 slightly adjusted to deal with that.
+06:30 No problem there.

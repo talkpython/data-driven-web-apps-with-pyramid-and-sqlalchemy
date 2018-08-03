@@ -1,0 +1,38 @@
+00:00 Let's review the functional tests concepts.
+00:03 So the idea is we're going to create the entire web app
+00:05 and spin that up and then interact with it
+00:08 from, well as a whole right, we're going to give it a URL
+00:12 and it's going to go through all the stuff that
+00:14 whatever the real web app would do to find
+00:16 the view method to call it, to find the template
+00:18 that's going to generate the response, and so on.
+00:20 So we really get some deep integration tests going here.
+00:25 The idea is we're going to create some test class
+00:28 some test case.
+00:29 We're going to have our app, we're going to set it up.
+00:32 Here we're going to create this test web app, right so we
+00:35 want to make sure that it's not already set.
+00:37 This is one way we could do it that
+00:38 might be a little more handy.
+00:40 We can use class setup instead of just regular setup maybe.
+00:43 And then we're going to import the main method.
+00:46 And we're going to call it, potentially passing additional
+00:49 settings that are not shown here.
+00:51 And we're going to wrap that app in a test app
+00:53 which let's us issue fake HTTP requests to it.
+00:56 It's like a testing WSGI wrapper type of thing.
+00:59 So we're going to do this to get everything set up
+01:02 and get the app created.
+01:04 And we just issue request to it.
+01:06 So there's no real Arrange here.
+01:07 That was the thing we just saw.
+01:08 But the act is go to the app and do a GET request
+01:11 to this URL and verify we get the 200 status back
+01:16 or various other things, right.
+01:17 We could pass all sorts of data.
+01:18 And then we can make basic assert statements.
+01:21 What we get back is the actual final text
+01:23 that would've been sent to the user.
+01:25 So you've got to work with it like in the body.
+01:27 Maybe you could check for cookies, things like that.
+01:29 Whatever you want to assert you assert that on the response.

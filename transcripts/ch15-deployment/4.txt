@@ -1,0 +1,124 @@
+00:00 All right, so let's just start
+00:01 running some commands on the server.
+00:02 We need to install a couple of dependencies
+00:04 to make sure we have Python 3 in place.
+00:08 Now, if we go to our server
+00:09 we should already have Python 3 in
+00:12 because we chose a new version of Ubuntu
+00:14 we got 3.6, which is pretty modern, that's nice.
+00:17 However, that doesn't give us things like pip for example.
+00:23 Or pip3 is really what we are after or python3 -m venv.
+00:30 Oh this one actually works sometimes the older one, it didn't come with it.
+00:33 So there's these various operations
+00:34 like super simple stuff we need
+00:35 like pip that aren't there.
+00:36 So let's install our build essentials
+00:38 and git that's not already there, python3, pip
+00:43 and the dev tools and so on.
+00:45 So we're going to install, let's do those three right there.
+00:50 Yeah, looks like the last one didn't run, okay, good.
+00:52 So those are all set up.
+00:53 Now we're going to install Nginx.
+00:57 Great, so it looks like Nginx got installed okay.
+01:01 Now, one of the things that's nice to set up gzip support
+01:04 in uWSGI is to help our files over the wire
+01:07 be a little shorter, be a little smaller
+01:10 a little quicker but we need some dependencies
+01:12 and so we'll just drop those in there.
+01:17 Okay, great and then let's go ahead and set up
+01:18 this thing called Fail2Ban
+01:20 and that means if somebody tries to continue to login
+01:23 and they keep failing and failing
+01:25 it's a system service that will block that IP address
+01:27 from attempting to log into our servers.
+01:29 So, this is always nice to have around.
+01:34 And while we're at, let's turn on a software firewall
+01:36 and we'll say we want to listen to SSH traffic
+01:41 HTTP and HTTPS and nothing else.
+01:43 Those are only things we want to let in
+01:45 and on this one we're going to be carefully watching
+01:49 to make sure people don't abuse it.
+01:52 So we're going to enable this.
+01:53 It says are you sure you want to enable it?
+01:55 If you don't put 22 in here, you're never coming back.
+01:58 We did, luckily so it's active.
+02:00 Let's just logout one more time and make sure
+02:02 we can get back in. Good deal.
+02:05 Now, one of the things we're going to do
+02:07 is some Git commands and it's super annoying to me
+02:09 that I've go to keep typing them over and over every time.
+02:12 My password is incredibly long.
+02:14 So let's just run this command here which says
+02:18 once we type it as long as we don't reboot or anything
+02:21 for whatever however many seconds 720,000 is
+02:25 just remember this so I won't have to type it again, great.
+02:28 And also, we'll put our name, our e-mail and our name
+02:32 if we're going to do any checkins at all, we have to do this.
+02:36 Same for the name. Okay, so Git should be up and running
+02:42 and we should have already installed it
+02:44 from when we did our dependencies before.
+02:45 I think I saw it already there.
+02:47 Now what we want to do is actually go and
+02:50 create a section on the hard drive
+02:53 where we check out our apps, where we have our logs
+02:55 and things like that. So let's just go do all those things.
+02:59 There we are, great. Now we're going to do a couple of things.
+03:02 We're already here. We're going to create a virtual environment.
+03:06 Now this virtual environment is just like
+03:08 the virtual environments we've been using
+03:10 throughout the course but this one
+03:11 is going to be on the server.
+03:12 Now the server is technically just dedicated
+03:15 to this web app and we could use the system-wide install
+03:19 in sudo pip and all that
+03:21 but I find that we have a little more flexibility
+03:23 if we create this and we decide something goes wrong
+03:26 and we need to recreate it, we haven't busted the server
+03:29 so we're going to create a little virtual environment
+03:32 and we're going to activate it.
+03:37 Notice the prompt change to venv
+03:39 and then we're going to pip install -U pip and setuptools.
+03:44 Those are probably out of date.
+03:46 Let's make sure they're updated.
+03:48 There you go, much better. pip 10 setuptools 40.
+03:51 So we've already done that step.
+03:53 Let's go and install a couple of management tools
+03:55 that are really sweet, httpy, which will let us
+03:58 it's kind of like curl but nicer.
+04:00 And then Glances lets us look at the process.
+04:03 All the processes.
+04:06 So we'll install this into our virtual environment.
+04:09 So now we can run Glances, see what's going on
+04:13 on the server.
+04:14 Make it a little bigger, even get progress bars.
+04:18 So you can see over here, Glances is running.
+04:20 Let's sort by memory, press M for that.
+04:22 And we probably see things like Fail2Ban over here.
+04:26 Yeah, here's our Fail2Ban server
+04:28 that's already running from before.
+04:29 Here's our Glances.
+04:31 Not a whole lot else is going on.
+04:32 Because we haven't done anything with the server.
+04:34 It's about to get interesting though.
+04:36 Let's do one more thing, see this command
+04:39 source or dot venv/bin/activate?
+04:42 If we log out and we log back in
+04:46 we ask which Python, it's the system one
+04:48 it's not the one that controls our web app.
+04:50 What's the chances that we want to modify the system one
+04:52 versus the one that controls our web app
+04:54 when we log in here? Zero. So let's do this.
+05:00 Let's go in here, and at the bottom of our bash
+05:03 let's have it activate.
+05:08 So now when we log out and log back in
+05:10 we ask which Python, oh yeah.
+05:13 So now, just by virtue of logging in
+05:15 we've already activated the virtual environment
+05:17 that we're almost always going to be working with.
+05:20 There may be some drawback to some weird command
+05:22 you need to run but I find this is much nicer, you won't forget
+05:26 to enable and use that virtual environment.
+05:29 Alright, we're very, very close
+05:30 the next thing we need to do is get our code
+05:32 over here and start configuring it
+05:34 and making it run. We'll do that next.

@@ -1,0 +1,54 @@
+00:00 Let's review the core concepts
+00:01 at play with this shared layout.
+00:04 So, the first thing is we're going to have a layout page
+00:08 that defines the overall structure of our site
+00:11 and the way that we do this is we tell it
+00:14 this is a definition of a macro
+00:16 so we say, metal: define-macro.
+00:19 Now, you don't usually have to type this from scratch
+00:21 but Cookiecutter creates it for you automatically
+00:24 and then just copy it from somewhere.
+00:25 But this is how you do it.
+00:27 You give it a name, Layout or something like that.
+00:30 And then you decide where you're going to allow the pages
+00:34 to fill in pieces, so over here we can say
+00:37 here's where the content goes.
+00:38 Maybe above that we have the navigation and other things.
+00:44 Now, because these are optional to fill
+00:47 it's generally better to have more.
+00:49 So maybe have a place for JavaScript to be injected
+00:52 and a place for CSS to be injected in a controlled way.
+00:56 If people don't use it, a particular page doesn't use it
+00:59 there's no harm, it'll just turn into nothing.
+01:02 This is defining the layout page
+01:04 and then to consume that, to add a page to your site
+01:08 then you going to basically just have a div section
+01:11 and here you're going to say, use macro
+01:14 and then you want to use this relative file syntax load:
+01:19 Now here, we've organized our templates a little bit better
+01:22 so this one is in templates/home, and it's index.pt.
+01:26 And then we moved the shared layouts
+01:28 into a shared folder that's one up.
+01:30 So, we can say go up a folder, so got off home
+01:33 into templates, go into the shared directory
+01:34 and find _layout.pt.
+01:37 Then we can put our page contents here
+01:40 and we can add our additional JavaScript
+01:42 there at the bottom
+01:43 so maybe this page requires Angular2
+01:46 so we're going to drop that in.
+01:47 Again, Angular might actually go at the top
+01:49 just because it's one of these single-page app things
+01:51 and you want it to run as fast as possible
+01:54 and not have those little double-mustache things
+01:59 all over the place for just a brief second.
+02:01 So, maybe not the perfect example, but the idea is that
+02:04 we're going to put that JavaScript, specifically for this page
+02:07 this extra JavaScript, at the bottom.
+02:10 And that's it!
+02:11 These are super easy to use, highly recommended.
+02:14 It's basically a mandatory to do something
+02:16 like this for your site, and it's great
+02:18 that Chameleon has this support.
+02:20 Other languages like Jinja also have it
+02:22 but it's great Chameleon has good support for it.

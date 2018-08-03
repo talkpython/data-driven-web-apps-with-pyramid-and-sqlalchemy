@@ -1,0 +1,119 @@
+00:00 Alright so let's write some code
+00:01 and let's interact with these templates here.
+00:04 So lets go over here to our get repository
+00:07 and in chapter five templates
+00:09 I'm going to start on this which is right now the same
+00:12 as the starter code, but obviously when I'm done
+00:14 it's going to be whatever we did during this chapter.
+00:17 So what we want to do is is we want to take this starter site that we created
+00:21 this Py PI site we created
+00:23 in the previous chapter and I want to do interesting stuff
+00:27 with the templates.
+00:28 Because we really just ran the cookie cutter before
+00:30 we could do that again
+00:32 but I do want to take this opportunity
+00:33 to show you how to take an existing pyramid web app
+00:37 and get it set up and ready to launch in PyCharm.
+00:41 So there's a couple of things we could do.
+00:43 We could open in PyCharm and use some of the UI tools
+00:47 or we could use the command line and then open in PyCharm.
+00:50 That's what I like to do.
+00:51 Whichever you're more comfortable with
+00:52 just go with that.
+00:53 So what do we need to do to get this started?
+00:55 This will basically be the same thing you need to do
+00:57 every step along the way that you want to launch
+01:00 and run something you've gotten from GitHub
+01:03 for these projects, so it's worth going over.
+01:05 So what I'm going to do is
+01:06 I'm going to go to the folder that has
+01:08 a production and development.ini in there.
+01:12 So I want to cd over there
+01:16 like that, and I want to make sure there's no hidden files.
+01:20 We have no hidden .env or anything.
+01:23 We'll call it venv so it doesn't hide.
+01:26 It will be more obvious for examples.
+01:28 We got to do just a couple of things.
+01:29 We need to create a virtual environment
+01:31 so that's python3 -m venv.
+01:35 In Windows, you can't put the 3
+01:38 but you got to make sure it's python3
+01:40 that is Python in the path.
+01:42 It's a little trickier.
+01:43 Really wish they would unify that
+01:44 but it is what it is.
+01:45 Okay, so when I do that
+01:48 and then we're going to run, we're going to activate it
+01:50 so we're going to say source.
+01:52 Sometimes you'll see people say .
+01:54 It means the same thing.
+01:55 source venv/bin/activate
+01:59 There's the prompt. It should change and again which or where Python.
+02:01 It should be that one.
+02:03 It's good.
+02:04 Once we've activated it, then the last thing to do
+02:06 is simply to run the setup
+02:08 so it would say python setup.py develop.
+02:11 Let it install and everything and we're good to go.
+02:17 Great, with that in place, we can put away our terminal.
+02:20 Now, I want to open this directory in PyCharm.
+02:23 On Windows and Linux, you have to go
+02:25 open PyCharm, and say file open directory and browse here.
+02:28 On Mac OS, there's a little treat.
+02:30 I can drop this folder here
+02:31 and it will just open that directory.
+02:34 And start PyCharm.
+02:36 All right, so a couple of things happened.
+02:37 Let's expand this out here.
+02:39 PyPI templates.
+02:40 Ah, no, that is not the template folder.
+02:43 I guess the name kind of freaked out
+02:45 so you can come over here on marked directory
+02:47 and mark it as that.
+02:48 And right click here.
+02:51 Save marked directory as template.
+02:53 While we're at it, might as well go ahead
+02:55 and right click and mark directory as resource route.
+03:01 We'll see where that makes sense later
+03:04 but those two things are good.
+03:05 Okay, so this is up and running
+03:07 and we can actually run it.
+03:09 Notice it's already detected this.
+03:10 Let's see if it's using the right virtual environment.
+03:13 Click here. It looks like it is.
+03:15 Could ask which Python or where Python
+03:18 depending on your OS
+03:19 and yeah, that looks like the one we want.
+03:20 So, okay, everything's great.
+03:22 We should be able to, once it's done indexing, click this.
+03:27 Here we have it.
+03:28 Same app, you can see here's the one from before.
+03:30 Here's the one that we got from Cookiecutter.
+03:33 Okay, great, so looks like everything is up and running.
+03:37 If you get an error that the port is in use
+03:39 that means it's already run it somewhere else.
+03:41 A nice little trick, notice it's running here
+03:44 if I try to run it again, it'll crash.
+03:47 It says it's already in use
+03:48 so a quick little trick we can go over here
+03:50 to Edit Configurations, and say only let one of these run.
+03:54 That way, if I try to run it
+03:55 instead of just running another
+03:57 it's going to rerun this one here.
+04:00 So, we can just rerun it, rerun it.
+04:01 That's super helpful.
+04:03 Okay, so that's what we did
+04:05 to get this up and running in PyCharm.
+04:06 We went there, we created the virtual environment
+04:08 we activated it, we did the Python set up.
+04:11 py develop, and then we opened that directory.
+04:15 The very same directory
+04:16 that contains the virtual environment.
+04:21 That's the one we'd open.
+04:22 That's the one with the production and development.ini.
+04:27 Now we're ready to go play with the templates
+04:28 and we'll go over this in the subsequent videos
+04:31 and subsequent demos
+04:32 but I just wanted to make sure we kind of covered that
+04:35 somewhere in the course.
+04:36 Might as well do it the first time we hit it.

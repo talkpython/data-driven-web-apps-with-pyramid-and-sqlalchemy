@@ -1,0 +1,39 @@
+00:00 Configuration's a super important part of our web app.
+00:03 Like I described in the intro to this chapter
+00:05 there's certainly behaviors you would like
+00:08 to be different in development than in production.
+00:12 A real simple is, do you send email notifications to users
+00:17 when you take certain actions?
+00:18 Well, in production, of course you do that, right?
+00:21 I want to reset my password, or I purchased this thing.
+00:24 If you're doing testing locally, especially if somebody
+00:27 comes to you and says, hey, the site's not working for me,
+00:31 I tried this, but this happens, you might want
+00:33 to log in as that user and then try that action.
+00:37 And obviously you don't want them to get the email.
+00:41 The easiest way to do this in Pyramid is to have
+00:44 different configuration files, both for development,
+00:46 production, test, whatever the various scenarios you have are.
+00:50 In fact, when you create a new project,
+00:52 it comes with a development.ini and a production.ini,
+00:55 and in here we have a bunch of settings
+00:58 that Pyramid uses to control itself.
+01:00 But we can add other settings just by saying
+01:03 key equals value, so db_file=/db/webapp.sqlite,
+01:10 API key equals whatever that thing is.
+01:12 Notice there's no quotes on the strings,
+01:14 they just come back as strings anyway.
+01:16 Super easy, we can do that.
+01:18 Now how do you get to them in Pyramid?
+01:19 Well, we saw that main startup method,
+01:22 and the settings being passed in there,
+01:24 so that's super easy.
+01:25 We go to that again.
+01:26 Now we can go to that config and say get us the settings,
+01:29 this is a dictionary that has those keys and values.
+01:33 So if I want the DB file, I just say configsettings.get,
+01:37 and there's just standard Python dictionary access.
+01:40 Get me the thing for DB file, get me the API key,
+01:44 and off you go.
+01:45 And obviously these can be different
+01:47 in development and production.

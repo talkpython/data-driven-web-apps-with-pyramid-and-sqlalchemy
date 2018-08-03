@@ -1,0 +1,45 @@
+00:00 Before we dig into all the code that we're going to write
+00:02 and the technologies we're going to use
+00:04 and the types of things we can even build
+00:06 let's just take a moment and admire the
+00:08 incredible power of the web.
+00:10 The web is one of the most flexible
+00:12 and certainly the most widely deployed
+00:14 and used technology out there.
+00:17 Think about YouTube.
+00:19 YouTube is an amazing web application.
+00:22 It really has brought video sharing to the entire world.
+00:26 It also happens to be a Python-based web app
+00:29 and handles millions of requests per second.
+00:32 Think about Airbnb.
+00:34 With this web application, and a unique sharing philosophy
+00:38 they've literally transformed the way people travel
+00:41 and stay in cities.
+00:43 Netflix uses their web app to redefine
+00:46 TV for many, many people.
+00:49 In fact, this web app and their infrastructure
+00:51 account for 35% of the bandwidth
+00:54 of the United States in the evening.
+00:56 That's pretty incredible.
+00:58 Hey, let's throw one more in.
+00:59 You're taking an amazing course
+01:01 and you're going to be learning all about building web apps.
+01:04 Here's another one, Talk Python Training.
+01:06 This site is built, of course, on Python and Pyramid
+01:09 and has taught a ton of people about Python.
+01:12 In fact, many of the techniques and the lessons
+01:15 learned in building this site
+01:17 along with some of the others
+01:18 I'm going to bring into this course.
+01:21 So it's not just about looking out there
+01:22 and seeing some incredible web apps built
+01:24 it's also taking a pretty amazing web app
+01:27 that I have built
+01:28 and taking the lessons and techniques from that
+01:30 and sharing them with you with Pyramid
+01:32 SQLAlchemy, and so on.
+01:35 Do you have an idea?
+01:36 Something you want to build for everyone?
+01:37 Well, the techniques and technology you're about to learn
+01:40 will let you unleash this incredible power of the web
+01:44 to bring your idea to life.

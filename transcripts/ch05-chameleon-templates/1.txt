@@ -1,0 +1,32 @@
+00:00 When we created our project
+00:01 our website with Cookiecutter
+00:03 you saw it ask a question.
+00:05 What template language would you like to use?
+00:07 Would you like to use Jinja2, Chameleon, or Mako?
+00:10 So let's look at these three template languages
+00:13 all of which are totally viable choices for our web app
+00:17 and compare them and sort of see what the trade-offs are
+00:19 why you might choose one over the other and so on.
+00:23 So like I said there's these three options.
+00:25 We have Jinja2 and I would say really
+00:27 this is the most popular one of these.
+00:31 It's very much the default for Flask
+00:34 and now it is also become the default for Pyramid.
+00:38 So being the default means most people pick that
+00:41 and I believe Flask
+00:43 this is the only one that ships with it.
+00:45 So that really tilts the scale in it's favor if you will.
+00:48 There's also Mako.
+00:49 This is probably the least popular.
+00:51 This is the one I've seen the least of I guess
+00:53 but maybe I'm just not looking in the right places.
+00:56 But Mako and Jinja2 are pretty similar.
+00:58 And then Chameleon
+00:59 we've looked at Chameleon.
+01:01 And below you see the three packages that you have to install
+01:04 only one at a time
+01:05 for enabling that language in your web app.
+01:08 So pyramid_jinja2, pyramid_mako, or pyramid_chameleon.
+01:14 And if you pick the various options
+01:16 in that Cookiecutter template
+01:17 it will choose for you.

@@ -1,0 +1,36 @@
+00:00 When you choose a framework
+00:01 whether that's for a database or web framework
+00:03 it's good to know that you're in good company
+00:05 that other companies and products have already tested this
+00:09 and looked around and decided
+00:11 yeah, SQLAlchemy is a great choice.
+00:13 So let's look at some of the popular deployments.
+00:17 Dropbox is a user of SQLAlchemy and Dropbox is
+00:20 one of the most significant Python shops out there.
+00:25 Guido van Rossum and some of the other
+00:27 core developers work there
+00:28 and almost everything they do is in Python
+00:31 so the fact that they use SQLAlchemy
+00:32 that's a very high vote of confidence.
+00:36 Uber, Uber uses SQLAlchemy.
+00:38 Reddit, Reddit's interesting in that
+00:40 they don't use the ORM, but in fact they use only the core
+00:45 at least a while ago they were using only the core aspect
+00:49 of SQLAlchemy, that's pretty cool.
+00:52 Firefox, Mozilla, more properly, is using SQLAlchemy.
+00:57 OpenStack makes heavy use of SQLAlchemy.
+01:00 FreshBooks, the accounting software
+01:02 based on, you guessed it, SQLAlchemy.
+01:04 We've got Hulu, Yelp, TriMet
+01:08 that's the Public Transit Authority
+01:10 for all of Portland, Oregon
+01:11 the trains, the buses and things like that
+01:15 so they use that as well.
+01:16 So here are just a couple of the companies
+01:18 and products that use SQLAlchemy.
+01:20 There's some really high pressure, some of these are under
+01:23 you know if it's working for them
+01:25 it's going to work well for you, especially Reddit
+01:27 Reddit gets a crazy amount of traffic.
+01:30 So pretty interesting that they're all using it
+01:32 and we'll see why in a little bit.

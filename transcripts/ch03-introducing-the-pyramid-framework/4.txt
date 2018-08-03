@@ -1,0 +1,72 @@
+00:00 So, let's dig into these building blocks.
+00:02 First of all, we have our views or controllers.
+00:06 So, what does that look like?
+00:07 Well, we start by importing the necessary decorator,
+00:11 from Pyramids, so from pyramid.view import view_config,
+00:15 and then we just define a function.
+00:17 The name of the function doesn't actually matter,
+00:20 in this case, and then we're going
+00:22 to map... a route... to that view.
+00:26 In order to make a regular function
+00:29 become one of these controller functions, or actions,
+00:32 what we're going to have to do is
+00:33 we put this @view_config decorator.
+00:36 Usually what you'll find is there's at least
+00:38 two values you set, sometimes it can be omitted,
+00:41 sometimes there's more, we'll talk about that...
+00:44 Is we're going to set the route name.
+00:46 This is what URL maps to this function, it's a route name.
+00:51 And then the template that we're going to use
+00:54 to generate the dynamic HTML, so that's the renderer,
+00:57 we're going to use mytemplate.pt right now.
+01:00 And then this method always takes a request object.
+01:04 Which is one parameter request, and that's the way it works.
+01:07 The request carries with it things like the data passed,
+01:10 and the URL, the form post, all that kind of stuff.
+01:13 It's sort of the jumping off point to get the data out of
+01:16 all the inbound stuff, and things like cookies, and so on.
+01:20 We're going to take that data, do whatever it is we got to do,
+01:23 maybe check for an account,
+01:24 maybe pull some stuff from the database, things like that.
+01:27 And then when we're ready we're going to
+01:28 return our model to the template.
+01:31 We do this by returning our model as a dictionary
+01:34 and the framework is going to manage getting that
+01:37 moved over to the template and rendered dynamically
+01:40 and responded back as HTML to the browser.
+01:45 This is about as simple as things get, with views right?
+01:49 All we do is we have a function,
+01:50 it returns a static dictionary.
+01:52 Let's look at a more realistic one.
+01:55 Over here, we have one and we're saying
+01:57 this actually only responds to POST messages.
+02:02 We're going to reset password and maybe there's one that
+02:04 generates the form but this one is going to do
+02:06 the password reset when they submit that form, okay?
+02:10 And first of all we're going to get the data
+02:13 that they put into the form, right?
+02:14 What is your email that you're going
+02:16 to reset your password to when they click the button?
+02:19 All that data from the form
+02:21 ends up in a dictionary called POST.
+02:23 Alright, we're going to grab that out...
+02:26 And then we're going to try to create
+02:27 a password reset using our data access layer.
+02:31 That may or may not work, but if it doesn't work,
+02:33 then we're going to send them an error saying,
+02:35 "No no, sorry that didn't work,"
+02:37 and we're going to render the reset password again,
+02:40 but this time the error message will be shown.
+02:43 And if it does work then we're going to say,
+02:46 "Alright well it looks like that worked,"
+02:47 so send them a message that says,
+02:49 "Check your email for the reset code."
+02:52 Presumably that repository thing actually sent the email.
+02:54 Not sure that's a great pattern
+02:56 but it fits on one slide, so that's why it looks like that.
+02:59 Alright, the idea is we call that function,
+03:01 and either it did not send the password or send the email,
+03:04 or if it did it saved it in the database, sent the email,
+03:07 and now they just got to go check their email.
+03:09 Alright this is a more realistic type
+03:11 of view here processing a form POST.

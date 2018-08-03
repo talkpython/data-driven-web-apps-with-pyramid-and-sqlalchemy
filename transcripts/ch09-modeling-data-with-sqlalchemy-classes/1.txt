@@ -1,0 +1,95 @@
+00:00 One of the absolute pillars of web applications
+00:03 are their data access and database systems.
+00:06 So we're going to talk about something called SQLAlchemy
+00:09 and in many many relational based web applications
+00:13 this is your programming layer to talk to your database.
+00:18 SQLAlchemy allows you to simply change the connection string
+00:21 and it will adapt itself into entirely different databases.
+00:25 When you use a local file in SQLite for development
+00:28 maybe MySQL for testing and Postgres for production.
+00:33 Not really sure why you would mix those last two
+00:35 but if you wanted to you could with SQLAlchemy
+00:38 and not change your code at all.
+00:39 Just simply change the connection string.
+00:41 So SQLAlchemy is one of the most well known
+00:44 most popular and most powerful data access layers in Python.
+00:49 SQLAlchemy of course is open source.
+00:52 You'll find it over at sqlalchemy.org.
+00:54 It was created by Mike Bayer.
+00:56 And his site is really good.
+00:57 It has tutorials and walk throughs
+00:58 for the various ways in which you can work with SQLAlchemy.
+01:02 One for the Object Relational Mapper
+01:04 one for more direct data access, things like that.
+01:08 So why might you want to use SQLAlchemy?
+01:10 Well, there's a bunch of reasons.
+01:12 First of all it does provide an ORM or object relational mapper
+01:16 but it's not required.
+01:18 Sometimes you want a program
+01:19 and classes and model your data that way
+01:21 but other times you want to just do
+01:23 more set based operations in direct SQL.
+01:26 So SQLAlchemy lets you work
+01:28 in a lower level programming data language
+01:32 that is not truly raw SQL.
+01:34 So it can still adapt
+01:35 to the various different types of databases.
+01:38 It's mature and it's very fast.
+01:40 It's been around for over 10 years.
+01:43 Some of the really hot spots are written in C.
+01:45 So it's not some brand new thing.
+01:46 It's been truly tested and is highly tuned.
+01:51 It's DBA approved.
+01:52 Who wouldn't want that?
+01:53 What they mean is by default
+01:56 SQLAlchemy will generate SQL statements
+01:59 based on the way you interact with the classes.
+02:01 But you can actually swap out those
+02:03 with hand optimized statements.
+02:05 And so if the DBA says, whoa
+02:06 there's no way we're going to run this all the time
+02:09 you can actually change
+02:10 how some of the SQL is generated and run.
+02:13 While the ORM is not required
+02:15 I'd recommend it for about 80%, 90% of the cases.
+02:18 It makes programming much simpler, more straightforward
+02:21 and it much better matches the way you think about data
+02:25 in your Python application
+02:27 rather than how it's normalized in the database.
+02:29 So it has a really really nice ORM with lots of features
+02:32 and this is what we're going to be focusing on in this course.
+02:36 It also uses the unit of work design pattern.
+02:39 So that concept is I create a unit of work
+02:42 I make, insert updates, deletes, etc.
+02:44 All of those within a transaction, basically.
+02:48 And then at the end I can either commit or not commit
+02:51 all of those changes at once.
+02:53 This is in opposition to the other style
+02:56 which is called active record where you work
+02:58 with every individual piece of data separately
+03:01 and it doesn't commit all at once.
+03:04 There's a lot of different databases supported.
+03:06 So SQLite, Postgres, MySQL, Microsoft SQL Server, etc.
+03:10 There's lots of different database support.
+03:13 And finally, one of the problems that we can hit with ORMs
+03:17 is through relationships.
+03:19 Maybe I have a package and the package has releases.
+03:23 So I do one query to get a list of packages
+03:25 and I also want to know about the releases.
+03:27 So every one of those package
+03:28 when I touch their releases relationship
+03:32 it will actually go back to the database
+03:34 and do another query.
+03:35 So if I get 20 packages back
+03:37 I might do 21 overall database operations separately.
+03:41 That's super bad for performance.
+03:43 So you can do eager loading
+03:45 and have SQLAlchemy do just one single operation
+03:49 in the database that is effectively a join
+03:51 or something like that that brings all that data back.
+03:54 So if you know that you're going to work with
+03:56 the relationships ahead of time, you can tell SQLAlchemy
+03:59 I'm going to be going back to get these.
+04:01 So also load that relationship.
+04:04 And these are just some of the reasons
+04:05 you want to use SQLAlchemy.

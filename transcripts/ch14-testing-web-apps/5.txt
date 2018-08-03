@@ -1,0 +1,204 @@
+00:00 And see we have a new project pypi_testing.
+00:04 Again, this just sort of a save point.
+00:06 Let's open that up.
+00:07 Now when we created this, we used Cookiecutter.
+00:10 We said cookiecutter pyramid starter.
+00:13 And it asked a few questions, and boom.
+00:15 Out popped a bunch of stuff.
+00:16 One of the things we got, was this little test section.
+00:19 Now you can see, it's creating some view tests
+00:23 based on the built-in unit tests framework.
+00:28 We could also use pytest.
+00:29 But it's using the built-in one.
+00:30 So we are going to use the built-in one as well
+00:32 just to be consistent.
+00:34 But it really doesn't matter which framework you're using.
+00:37 And it's just doing standard things here.
+00:39 It's setting up and tearing down a few things.
+00:41 And then it's testing one of the views.
+00:46 I noticed it's creating this testing.dummy_request.
+00:49 Where does that come from?
+00:51 Pyramid. So pyramid has built-in testing capabilities
+00:54 to do things like give us either a fake request
+00:58 or a fake web app that it sort of spins up
+01:01 out of its internals.
+01:04 And then here we're calling some
+01:05 what used to be a view method passing the request
+01:08 getting the model back from it.
+01:09 Then we can test things like
+01:11 hey this model that comes back, does it have a project?
+01:14 I think this is maybe project details
+01:17 something to that effect.
+01:18 Anyway this used to be a valid test.
+01:22 So here's how we're going to test.
+01:24 Some of it here you can see a more advanced version.
+01:26 These are the whole web app.
+01:27 We're creating not just a test, a dummy request
+01:29 but a test web app
+01:31 based on our main method that we're calling
+01:34 here from our __init__.
+01:38 So these are some of the things you're going to work with.
+01:40 But instead of just working with these tests here
+01:42 we're going to go and do something better.
+01:44 We're going to organize this into things
+01:47 that are focused around our controllers
+01:49 and grouped in that way.
+01:51 Let's go over here and say new package, I guess.
+01:55 And we will call this tests.
+01:57 And we'll leave this one here for a moment.
+01:59 Eventually we'll delete it.
+02:01 But for now, lets just leave it as an example.
+02:03 And let's focus initially on the account.
+02:06 So remember to create different test files
+02:10 for the various controllers, I will call it account_test.
+02:14 And we're going to get started by importing
+02:16 unittest and creating a testcase.
+02:24 And the way this works in this framework
+02:26 is everything derives from testcase.
+02:28 And then it has methods that are test something.
+02:33 All of these test_ whatever methods
+02:35 will be run by the test framework. Okay.
+02:40 So let's suppose we want to test register
+02:45 validation, valid. I want to do valid one.
+02:51 I want to do another one that'll say no email let's say.
+02:55 Let's do this first one here.
+02:57 Now I'm going to arrange these tests
+03:00 structure them in a way that I think
+03:02 is a pretty good pneumonic for folks.
+03:05 It's going to use what's called the 3 A's.
+03:07 The 3 A's of testing.
+03:10 Which is Arrange, Act, then Assert.
+03:15 So we're going to do all of our setup.
+03:17 Then we're going to do the one thing
+03:18 that we're trying to do, in this case validate our data.
+03:22 And then we're going to assert that it's valid
+03:24 or something to that affect.
+03:25 Depending on whatever outcome we're after.
+03:28 So what's the arrange?
+03:30 Well let's arrange things by creating
+03:32 one of these register view models.
+03:34 So it's going to be a register view model.
+03:40 Now, we could import this like so
+03:42 where it goes up at the top. That's fine.
+03:45 However, look back over here.
+03:49 There's this, or the convention that they're using
+03:51 where they're importing the dependencies
+03:54 only within the test.
+03:55 And the benefit there is that this only runs
+03:58 if we run the test.
+03:59 It doesn't add any overhead.
+04:01 Where would the overhead come from?
+04:03 Well, if we look over here
+04:05 when we call config scan to go find all the routes
+04:07 it's going to look through every file including the tests.
+04:10 And we want to isolate them as much as possible.
+04:13 So we can do that by taking a step back here
+04:16 and say import locally, like that.
+04:19 So let's go over here and call this out as a range.
+04:21 Great. Now we have to pass something. A request.
+04:25 Oh, where do we get that from?
+04:27 Well we sort of saw that before.
+04:28 So we're going to go import  pyramid.testing.
+04:35 And we'll get a dummy request.
+04:37 There's also sorts of things we can get.
+04:39 Dummy session. Dummy rendering factory.
+04:41 We want a dummy request.
+04:43 And we're going to pass that request here.
+04:46 Now one thing that's a little annoying
+04:48 remember on all of our view models
+04:49 we said this is a request.
+04:53 There's not a good enough base class
+04:55 that's shared across dummy request
+04:57 and real request that describes all the things
+04:59 that happen there to make
+05:01 make the intellisense and whatnot useful.
+05:04 So this is going to complain.
+05:05 And we can just say, no no
+05:06 this is going to be fine.
+05:07 Just don't check this.
+05:09 All right, so this arranges everything.
+05:11 Now we have to act vm.validate.
+05:14 So validate the data.
+05:16 And then we have to assert.
+05:19 So self.assert is None.
+05:22 vm.error. So we want to say, there are
+05:27 not is not, is None. There we go.
+05:30 We want to say there is no problem with this.
+05:33 And the way it's working right now
+05:35 it's not going to be so great.
+05:37 We're not done arranging.
+05:39 We haven't passed any data.
+05:41 But let's just run this. See our test fail.
+05:43 It says that, you know, here's a string
+05:45 that is, you know, is invalid in some sense.
+05:49 So let's try that. How do we run our test?
+05:51 Well, we can come over here and we can right click
+05:54 and we can say run unit test in account.
+05:55 Let's do that. We're going to say run.
+05:58 We get a nice little test runner over here.
+06:00 This one that did nothing
+06:02 oh, of course it passed.
+06:03 But this one, it failed with some errors.
+06:06 Let's see. It said, hm, in fact it just crashed
+06:10 trying to do this. Look at that error.
+06:12 DBSession.factory execute that line right there.
+06:19 find_user_by_email is crashing because that is None.
+06:24 And this really highlights one of the challenges
+06:25 that we're going to run into.
+06:28 We're trying to do this register thing
+06:30 and we want to validate it.
+06:31 But this is actually going to the database.
+06:34 All right, but let's finish our arrange first.
+06:36 So in order to simulate submitting the form
+06:39 we have to go to the request.
+06:40 And we got to go to Post.
+06:42 And we have to say this is going to be
+06:45 having an email, which is empty
+06:47 and a password, wait, this is valid, right.
+06:49 Let's put some valid email there.
+06:51 The letter a, that's my favorite.
+06:56 All right so here's an email.
+06:58 Here's a password. This should work.
+07:00 Let's run the test again.
+07:03 But we're getting this database thing.
+07:05 All right, whew, that's annoying.
+07:07 We're going to come back and we're going to figure out
+07:09 how to fix that.
+07:10 But before we do, let's just do one more bit
+07:12 of overall organization.
+07:14 If we split our test into multiple places here
+07:17 like we're going to have
+07:21 PackageController tests
+07:24 a lot of package tests
+07:26 we're going to have tests here
+07:28 and we're going to have tests there.
+07:29 And we don't want to keep right clicking
+07:30 that it run these, no run those.
+07:31 We want an ability to just say run them all.
+07:34 So let me show you really quick
+07:35 a technique we can use for that.
+07:37 Another file, _all_tests.
+07:39 And what we can do is we can import
+07:43 all of the other tests. So we can import
+07:48 let's just do * and package_test.
+07:52 We can PyCharm no no, let's just leave these alone.
+07:55 These are meant to be here.
+07:56 I know they look like they do nothing.
+07:57 But they do something. And we can go run this.
+08:01 It's not going to come out as good as you think.
+08:02 So notice it doesn't even have
+08:04 the ability to run unit tests.
+08:07 'Cause PyCharm doesn't see it.
+08:08 So here's a super simple little hack we can do.
+08:13 So we can just create this little, effectively
+08:15 empty test class. So PyCharm when we click over here says
+08:19 oh, running the test there.
+08:22 And then it actually runs all tests
+08:24 which always always passes.
+08:26 But, then we see these others over here like that.
+08:31 Yeah. So we'll be able to organize them from this.
+08:34 And that way we just add stuff here
+08:36 and just keep running the same command.
+08:37 And we won't skip or accidentally overlook any of them.
+08:41 All right, with that in place
+08:43 we're ready to come back and work on this next.

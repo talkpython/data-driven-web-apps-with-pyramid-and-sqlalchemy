@@ -1,0 +1,38 @@
+00:00 I don't know how you feel about it
+00:01 but this form doesn't seem super-useful to me.
+00:03 Let's go ahead and implement this really quickly.
+00:05 We'll not do too much design
+00:06 but we'll just throw some quick stuff together here.
+00:09 So the other thing we need here is the method
+00:12 to be POST, and then we need a couple of things in here.
+00:16 So let's have an input, the type is text
+00:18 placeholder is going to be your email address.
+00:25 And it also needs a name
+00:26 and I'll put that right at the beginning.
+00:28 This tells the browser what to call the value
+00:32 and gives us a name to retrieve the value by.
+00:34 So this will be email.
+00:36 And this will be password.
+00:39 And let's do also a name, name name.
+00:46 So your name, your email address, and password.
+00:51 And on this one of course we'll want the type also
+00:53 to be password.
+00:55 Now a lot of forms have password and confirm password.
+00:58 I'm not a big fan of that
+00:59 because if long as you add the ability
+01:01 to reset your password
+01:03 if for some reason in that super-odd case
+01:05 that you actually register
+01:06 and then immediately forget your password
+01:08 or more likely screw up the password
+01:10 just go reset it.
+01:11 That's the way I would do it.
+01:12 I would not have a confirm
+01:13 but that's, you know, whatever makes sense for you.
+01:15 And then of course you want to have a button
+01:17 and the type is going to be submit.
+01:19 And the value is going to be register.
+01:22 Let's see where we are.
+01:23 That looks amazing, doesn't it?
+01:24 What do you think, just leave it like this?
+01:26 Probably not, maybe we need a really quick bit of design.

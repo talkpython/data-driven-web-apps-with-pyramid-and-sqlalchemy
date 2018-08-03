@@ -1,0 +1,96 @@
+00:00 So our package table came out pretty well.
+00:03 But notice, there's a few things that
+00:04 you might want in a database that are missing here.
+00:07 For example, we always have to set the
+00:08 created date explicitly, and if we forget
+00:10 it's going to be null, which is not great.
+00:14 Maybe this is a required field
+00:16 and we don't want to allow it to be null.
+00:19 I think by default they're actually not nullable everything
+00:22 but you can control those types of things.
+00:25 Default values.
+00:26 One of the really important things that
+00:28 people often overlook are indexes.
+00:30 Indexes are incredibly important for
+00:33 fast and high performing databases.
+00:35 The difference between a large set of data with an index
+00:38 and without can be a thousand times the query speed.
+00:41 So, it's pretty important to think about it.
+00:44 And in turns out to be really easy to do.
+00:45 The primary key one already has an index
+00:48 by default and a uniqueness constraint.
+00:50 Let's just start knocking out those additional requirements.
+00:53 Like, I want a default value here
+00:55 so we can just put a default.
+00:56 Now, you got to be really careful with this.
+00:59 It can go wrong if you just make a minor, simple misstep.
+01:04 So what we're going to do is we're going to use datetime.
+01:06 So we'll import at the top.
+01:08 We're going to use datetime.
+01:11 And we want to use now, okay?
+01:12 It's so easy to type that.
+01:15 If you type that, it is going to be very bad.
+01:18 What that means is, the default value for when everything's
+01:21 created is going to be basically, app start time.
+01:24 But if we omit this, and we pass the function
+01:26 not the return value of it, then the default will be
+01:31 execute that function, and get the time when it's inserted.
+01:34 That's what we want.
+01:35 Maybe we want the summary to be nullable
+01:38 so we'll say nullable as True.
+01:40 That means that it's not required.
+01:42 Something I want to leave for the description.
+01:44 Same with the homepage, the doc, and the package.
+01:49 Maybe we don't necessarily have an author name.
+01:51 Well, we might not have one actually for the e-mail
+01:53 but if we do, we would like to be able to search and say
+01:56 really quickly, show me all the packages
+01:58 that this author has published.
+02:02 So we come down here and say index
+02:04 equals True, which is really nice.
+02:06 And similarly, maybe we want to know
+02:08 show me all the packages with MIT license.
+02:11 That'd be kind of crazy, but if we want to ask that question
+02:12 having an index here is really important.
+02:16 Of course, these are going to be foreign key relationships
+02:17 when we get them in place, but there.
+02:20 Now this is the table that we really wanted
+02:22 to build at the beginning, just didn't want to
+02:24 overwhelm you with all the pieces.
+02:25 So watch this, if I run it again
+02:27 I'm sure its going to be amazing.
+02:29 It's now, we've done that create table.
+02:30 Let me refresh it, and hmm.
+02:35 Where are my relationships?
+02:37 Here's something you got to learn about SQLAlchemy.
+02:39 It will create the tables, it will not upgrade them
+02:43 it will not change them, it will not modify them.
+02:45 Once they're created, done.
+02:47 No changes.
+02:48 What do you do?
+02:49 Well, in this situation, you just go over here
+02:52 and you just delete the database.
+02:54 You just delete it, and it's gone
+02:56 and that works really well when you're just like
+02:59 really quickly prototyping, getting stuff in place.
+03:01 But if there's data there, if it's
+03:03 in production, that's not going to fly.
+03:04 So later we're going to talk about something called Alembic
+03:07 which will let you do migrations to take the database
+03:10 from one step to the next step, to the next step
+03:12 to the next step, and that works really well.
+03:14 But for now, in this step, we're just going to
+03:17 delete the data, and put it back.
+03:21 So you can go over to here and drop the table.
+03:24 It's gone. Rerun our code.
+03:29 And if we re-sync it, package is back, but this time
+03:32 notice that there's a little indexy right there and there.
+03:35 And if we go and actually open it
+03:39 you can see we have an index on author
+03:41 email, and index on the ID of course, and so on.
+03:46 I don't think, I guess the SQLite
+03:48 doesn't store the nullability.
+03:50 Doesn't have the concept of non-nullability
+03:52 versus nullability maybe here.
+03:56 That's fine, we connect something like Postgres
+03:57 it'll convert that over, and definitely store those.

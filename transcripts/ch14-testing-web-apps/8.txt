@@ -1,0 +1,96 @@
+00:00 Next we want to test these view methods or action methods
+00:03 as I sometimes call them, and again we're going to use
+00:06 a fake request that we pass to it, but the result
+00:09 is going to be different.
+00:10 Now this view model we're going to look at, but we're going to
+00:12 get whatever model would be sent to the template
+00:16 or whatever response is sent back to Pyramid.
+00:19 So we're going to see how to do that right now.
+00:21 Let's do it in demo form first.
+00:24 In some sense it's going to look a lot like what we just did
+00:26 with our controller, and let's go and do a test
+00:30 for packages here, let's go and do a test
+00:33 for packages over here.
+00:35 So we're going to have the same imports as we had before
+00:37 and we'll have a class called PackageControllerTests
+00:42 and it'll be unittest.testcase
+00:45 We're going to define a test somethin' or other
+00:48 let's say package_details, we could test for things like
+00:52 when we request one that exists, we'd get the details
+00:55 and when we request one that doesn't exist, we'd get a 404
+00:58 things like that. So, call this Success.
+01:02 So again, Arrange what are we going to do here, request
+01:11 This time we're going to pass data over in the URL
+01:13 so we need to set something, and let's see
+01:17 we're here in our PackageController
+01:18 what we think we're working with.
+01:20 So we're going to get this, and it's going to go to vm.package.
+01:24 How does it know that?
+01:25 Well it thinks package name is being passed.
+01:28 So, great. Let's go and set that to SQLAlchemy.
+01:34 That seems pretty solid. So our fake request is set up
+01:38 now we need to actually import that method.
+01:42 So we're going to go over here to controllers.
+01:45 let's say, from that, PackageController, we want
+01:49 to import details. Alright let's just go look real quick.
+01:54 Yeah that's the one we want.
+01:55 So we're going to send the details, and we should either get
+01:58 this back or "Not Found."
+02:01 Now the Act part is interesting, what are we going to do here?
+02:05 We're going to come over and call details, we'll say model
+02:09 equals details of request, and the Assert
+02:16 want to assert model package, actually let's get the package back.
+02:24 I'm going to say self.assert is not None and that the package.id
+02:34 that's assert equal we'll get a better message here
+02:36 assert equals SQLAlchemy as a string.
+02:42 Again, we'll get this annoying little type check.
+02:46 So press it like so. Alright, this almost works.
+02:49 This almost works, let's run it
+02:51 and find out whether it works. Hmm, it doesn't work.
+02:54 Again this DBSession is not call-able, again what is
+02:57 happening is we're calling this, and it's going
+03:00 to the database, let's fix that.
+03:10 So we need to come up with something to patch
+03:13 and some test data that will return.
+03:17 So let's see, first of all, what the problem is.
+03:21 We're calling PackageService.find_package_by_name.
+03:24 So that's what we're going to patch.
+03:28 PackageService.find_by_name, that looks good.
+03:31 And let's just have it return nothing for a minute.
+03:37 See at least it's getting there, it's changing the error
+03:40 this is not going to work all the way.
+03:41 Beautiful, dict has no releases.
+03:43 So it made it through, it made it through down
+03:46 to right here, notice that it's going through releases
+03:49 when it gets it back, right there.
+03:52 It checks do we have it, come back and so on.
+03:56 I think we might have found a bug. Awesome, we found a bug!
+04:00 Notice this, we're checking here for our 404, but we're
+04:05 actually not checking in the view model here
+04:07 whether no package was returned.
+04:09 So we'll test for that in just a minute
+04:12 but we'll write a test that finds it and then we'll fix it.
+04:15 But for now let's stay focused
+04:16 on actually working with real data here.
+04:19 So the problem is this thing that we return has
+04:22 to be test_package, a real honest-to-goodness, test_package
+04:28 we can do, so let's go over here and say
+04:31 test_package = Package(), like so.
+04:35 Import that locally, again to say test_package.id
+04:40 = 'SQLAlchemy', releases =
+04:46 we could put a release or two in here if we really wanted
+04:51 like that, probably we should set the values
+04:54 but let's just go with this for a minute.
+04:55 Now, when they call this function
+04:57 we're going to give them this SQLAlchemy back
+05:00 I'm going to check, hey, we actually got this thing returned
+05:02 to us, that is the package.
+05:04 We got a model passed to us that contains the package
+05:07 that is the right one.
+05:08 So let's try to run this and assert that it works.
+05:11 Oh, yeah, it's working! Fabulous!
+05:14 Run our package tests, and that one's great.
+05:17 That's the one we're looking for.
+05:19 self.assert equals such and such.
+05:22 Oh it says assert equals is deprecated please use that.
+05:27 Fine, still passes.

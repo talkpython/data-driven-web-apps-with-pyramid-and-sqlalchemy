@@ -1,0 +1,56 @@
+00:00 Before we actually get started here
+00:01 I want to just do a quick sync up on where we are
+00:04 on the GitHub Repo and the source code
+00:06 that you get for this course.
+00:08 So over here in the GitHub Repo, we are now moving on
+00:11 to Chapter 11, Migrations.
+00:12 We'll be working in Final.
+00:14 Start of course, is where we're starting
+00:16 final, whatever we're going to do in the end
+00:18 that's what it's going to turn out to be.
+00:22 Now in order to use Alembic we need it installed.
+00:26 We need to make sure that we have the right
+00:27 virtual directory, which I've already created
+00:30 for this version of our website.
+00:33 We need to make sure that it's active.
+00:34 So I'm going to say . venv/bin/activate, remember
+00:39 forget the dot, scripts not bin, on Windows.
+00:42 Alright, so now looks like we're using
+00:46 the one in PyPI_migrations. Great.
+00:49 In order to use Alembic we have to, well, have it installed.
+00:52 So pip install alembic.
+00:57 Boom, looks like it's installed. Excellent.
+01:01 Now down here you need to make sure that
+01:03 you are in the folder that has your PyPI folder
+01:07 and the two ini. So this right here is our web app.
+01:11 We're going to put this next to our web app
+01:13 not actually deployed within the sort of request space
+01:17 of our web app. So we have Alembic installed.
+01:20 The next thing to do is to
+01:21 build some basic project structure.
+01:24 And this structure is going to allow us to configure Alembic
+01:27 and it will keep track of the various versions
+01:29 and how to evolve from one to the other.
+01:31 So the way we do that is we invoke Alembic.
+01:35 We tell it to init, and we have to give it
+01:37 a folder to create
+01:38 and the convention is to use the same name Alembic
+01:41 so you will see the Alembic folder.
+01:45 Here we go, it's gone and created that
+01:47 and it's done a couple of things.
+01:49 It's created the folder and an Alembic.ini.
+01:53 Excellent, so it says we're going to need to edit that
+01:57 and that's true, we're going to need to edit that.
+01:59 But now if we look over here, we'll see
+02:02 an Alembic folder and we'll see an Alembic.ini
+02:05 and if we tree Alembic, you can see
+02:08 it just has a couple of things.
+02:09 It has a read.me, it has a mako
+02:13 which is a template it uses
+02:14 to generate the SQL statements, actually
+02:17 that it's going to run.
+02:18 It has an environment, which allows us to plug in
+02:21 our SQLAlchemy models
+02:23 and it has a versions folder
+02:25 which is going to keep track of where things are.
+02:28 So as we use Alembic, we'll start to build up things there.

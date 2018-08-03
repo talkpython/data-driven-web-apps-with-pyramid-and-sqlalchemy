@@ -1,0 +1,75 @@
+00:00 It's time to take what we've learned about
+00:01 Bootstrap and templates and so on
+00:04 and apply them to actually put the design
+00:07 for our website in place.
+00:09 We might leave a few details out
+00:11 until we get to the right location later
+00:13 but for the most part, let's start by
+00:15 ripping out this design and putting in a new design.
+00:19 I'll try to not waste time doing this
+00:21 but I'll also try not to skip over
+00:23 too much stuff for you so hopefully
+00:25 I can find a decent balance there
+00:28 'cause there's a lot of details in
+00:29 some of the CSS and so, alright.
+00:30 So this is what we have so far.
+00:32 We actually have this sort of
+00:33 data-driven even though it's not
+00:35 out of a database, it is you know
+00:36 a model provided to the template, changing it here.
+00:40 This is what we want.
+00:42 Now if you look carefully this is not PyPI.org.
+00:48 It's a slightly different version.
+00:50 It has 96 projects and it's running on localhost.
+00:54 So this is what we want to build.
+00:55 I have the new releases here, some of the top stuff.
+00:58 Click on it, you get details and history, all about it.
+01:02 So we're going to build this and notice up here
+01:04 I have a login and register.
+01:06 Some of these things should look
+01:08 a little more familiar to you
+01:09 now that we've talked about Bootstrap
+01:10 if they didn't already.
+01:12 Notice where it says this is the fake site.
+01:15 So this is is where we're going
+01:16 and let's just focus on a couple of things.
+01:18 Let's design out this front page here.
+01:21 So over here, this is the red version that we have.
+01:24 There's really two files that we're going to have to work with
+01:26 in terms of the HTML.
+01:28 We have our _layout and our index.
+01:32 This does the navigation in the main top level
+01:35 design as we saw, and then the content gets dropped in here
+01:38 and that's going to be that special homepage
+01:40 or the details of the package.
+01:43 Let's do a little bit of extra work
+01:45 to make things easier on us.
+01:47 So let's go over here and let's do some organization.
+01:50 First of all, this is going to become a true nightmare.
+01:52 So let's do some organization here.
+02:05 So far CSS images and JSON, and we'll put these things
+02:10 in their various places.
+02:15 We have to update them over here.
+02:16 It wouldn't be new, so instead of static
+02:18 we now have static img.
+02:26 Let's go and set the title here.
+02:29 Python Package Index Demo.
+02:33 And this one's going to be CSS.
+02:35 Let's just make sure everything is still working.
+02:38 Yeah, it looks exactly the same.
+02:40 That's what we want, okay.
+02:41 So a little organization, reorganization worked okay.
+02:45 Let's go and add a couple of things here.
+02:48 I'm going to add a CSS file, called Site.
+02:53 We're also going to want add one called Home.
+02:57 Now Home is only going to appear in the homepage.
+02:59 It's just going to style like that big top banner
+03:01 and then Site is going to appear on all of the pages.
+03:04 So we'll just work with that one for now.
+03:06 Let's make sure we include it.
+03:11 There we have our site, and we can just do a quick test
+03:13 to make sure that, that's working.
+03:22 Refresh it, and it looks like
+03:23 it had some effect, okay, great.
+03:25 Put it back.
+03:27 Alright, everything seems to be working.

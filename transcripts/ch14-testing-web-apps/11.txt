@@ -1,0 +1,137 @@
+00:00 Now we're going to look at functional tests.
+00:02 The idea is we're going to create a fake HTTP request
+00:05 like just this URL or something
+00:07 and let the entire web app process it.
+00:11 So it's going to use the routing to find the right view
+00:14 it's going to call the right view with everything set up
+00:16 that was done in the __init__ and so on.
+00:18 And we want to test that result.
+00:21 We don't have any home page test.
+00:23 Let's just test this view right here, this home index.
+00:27 So we'll add another. Home test.
+00:31 And again, we're going to do all the import.
+00:35 That's enough to start.
+00:38 I'll create a class called HomeControllerTest.
+00:42 And now, we're going to put a little more infrastructure
+00:44 in place to support this. So let's say have a __init__.
+00:49 And here we're going to have a self.app
+00:51 which right now is None.
+00:52 And then we're going to have a setup.
+00:55 It's not very Pythonic, look at the naming
+00:57 but whatever, it's fine.
+00:58 We're going to call setup here.
+01:00 And then we actually want to go and get
+01:04 its main startup method which is right there.
+01:07 We want to get that. I'm going to call it
+01:10 and it's going to do all the stuff.
+01:11 Set up our database, routing, and create the app and so on.
+01:14 So how's that going to work? We so we from pypi
+01:19 import main well there's that function
+01:22 and we're going to say app equals main of nothing.
+01:26 We could pass a bunch of settings, but we're not.
+01:29 Then we want to wrap this thing in a test WSGI app.
+01:33 So we'll say from webtest
+01:36 which apparently we don't have installed.
+01:39 Notice over here our test requires
+01:41 said we need these things.
+01:42 So let's go pip install webtest and pytest-cov.
+01:50 Looks like that worked. Great, and then now
+01:54 we're going to say import testapp.
+01:57 And then finally we'll say our app is
+01:59 this testapp wrapping around that.
+02:03 So what's the idea here?
+02:04 Well, we're going to, every time we run a test
+02:07 it's going to run setup for us
+02:09 which will ultimately populate that.
+02:12 So we're going to already have this in place
+02:15 and we can just use it. So in some sense
+02:16 this is going to be our Arrange to a large degree, okay?
+02:20 Now, let's write a test.
+02:22 So we're going to test our home page here.
+02:24 Now, this works pretty easily.
+02:25 So we're going to say respond equals self.app.
+02:29 Let's go here and give it a type.
+02:37 That gives us more details, doesn't it?
+02:40 Do a get and / with the status, 200 is what we're expecting.
+02:47 Let's say we're expecting 404. Let's go ahead and run that.
+02:50 Now, if I just run this again
+02:52 it's not going to come out as amazing as you hope.
+02:54 Passed, and you know what? Where's our home test?
+02:59 Well, remember, any time you add a new set of tests
+03:02 you're going to go and do this.
+03:04 And so we have our home. Oh, it did not like it there.
+03:09 Let's see what's going on. I messed up the
+03:12 init actually trying to make it a little bit nicer
+03:15 'cause I don't like defining this here
+03:18 without having it in the init, but
+03:21 We're just going to run it like that.
+03:23 Failed, what did we get? What is the error?
+03:26 There's a whole bunch of html.
+03:27 That looks like html we wrote, doesn't it?
+03:29 All right, what's the error, though?
+03:30 Way up at the top. It didn't really say why it failed.
+03:35 But, it failed because it actually got data
+03:38 and not a 404. It got a 200 status code, not a 404.
+03:41 Let's try one more time. Perfect, it worked great.
+03:46 This is just a warning about the type of constraint
+03:49 that we set up. It wanted a slightly different syntax.
+03:51 It's fine. Now, over here is a response.
+03:54 Now, let's just print out what the heck is this?
+03:57 This response thing? So let's print out the type
+03:59 and the response, and run it again.
+04:02 Look at this. The response is the string
+04:04 and it's a test response. Whew.
+04:07 The value is 200 and the text is so on.
+04:12 So if you want a little help with the
+04:13 values you can work with
+04:14 we can have that here like so.
+04:19 So what are we going to start?
+04:20 We're going to say self.assert.
+04:22 We've already asserted the status code is 200.
+04:23 So that's a good start.
+04:25 Let's say we're going to assert
+04:26 that some piece of text is in here.
+04:30 And, let's just look at the output again.
+04:33 Let's assert, that, just that text is in there.
+04:37 So we want to assert that this text is in response.body.
+04:43 Now, it turns out, I think we might have to put binary.
+04:46 I think this is not a string
+04:48 but let's just run it and see if it works.
+04:50 No, so we have to convert that to a binary string
+04:55 and now it passes. Because this is not decoded text.
+04:59 It's just the binary response
+05:01 that is the encoded utf-8 response.
+05:04 Okay, great. It looks like our tests are going here.
+05:06 So how is this different? Well, a couple of things.
+05:09 We're actually calling the whole main
+05:12 and then wrapping it in a test app and doing this.
+05:15 It's worth pointing out
+05:16 that when we do that bit right there
+05:18 that configures the database.
+05:20 That runs this stuff right here
+05:23 it's going to initialize it
+05:25 and, when we call this
+05:28 it's going to use the routing to find the HomeController
+05:31 to call the home index, over here
+05:34 that's going to use the database.
+05:35 So you may want to mock out
+05:38 or patch those four methods right there
+05:41 maybe even the global init for the database.
+05:43 I don't know.
+05:44 So, you might need to do a little more work
+05:45 to make this independent
+05:46 but we're just going to stop here.
+05:47 We've already gone through that patching process twice.
+05:50 And this is more complicated 'cause it using more of the app
+05:53 but the same basic process up here would work.
+05:57 Now, you have to be a little more careful because
+06:00 we have just a context manager thing.
+06:03 We might want to move, you know
+06:05 move this stuff down
+06:07 into here where we could use a context manager
+06:09 or that we clean those up.
+06:11 So, either way, you want to be really careful
+06:12 about mocking right here
+06:14 'cause it may not persist over here.
+06:16 If you use a with block
+06:18 or it may be having too much of effect if you don't.

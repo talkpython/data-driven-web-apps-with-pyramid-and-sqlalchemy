@@ -1,0 +1,59 @@
+00:00 Alright let's start writing some code to do with routing.
+00:03 Let's being by reviewing the Git repository.
+00:07 Now we have Chapter 6 that's the chapter that we're on
+00:10 and again, here is an exact copy
+00:12 of what we're starting with.
+00:13 This is just copying over Chapter Five's
+00:15 materials the template stuff.
+00:17 It's going to stay that way, this one is the one
+00:20 I'm going to work on, so this one is changing.
+00:22 Now, I'm not going to go over and
+00:24 over again setting up this in PyCharm.
+00:27 If you need help with that be sure to check out the previous
+00:30 previous chapter where we did that.
+00:32 But I will show you one quick thing
+00:34 I'll go ahead and go through the steps and have a shortcut
+00:36 for the rest of the things going on here.
+00:38 So let's go over to this folder.
+00:42 Now over here remember where the development.ini
+00:45 and production.ini there's no venv
+00:48 There's no virtual environment.
+00:49 And there's a couple of steps to go through
+00:51 creating it and activating it and it's also
+00:54 good to update pip and setuptools cause
+00:57 setuptools at the time of this recording is
+00:59 11 versions out of date, oh my goodness.
+01:01 So instead of typing that over and over again
+01:04 I've created this alias venv, which runs
+01:09 python3 -m venv, virtual environment called that
+01:14 and then it's going to activate it
+01:16 and then it's going to update the tools
+01:17 and then just let you know it worked.
+01:19 So I'm going to be running this from the rest of the time
+01:20 and this is the thing I've created, it's not a Python thing
+01:22 so either make a batch file, or put this in you
+01:26 bash.rc or your .bashrc or zshrc whatever you're using.
+01:33 Okay, look's like everything is good
+01:36 notice it activated it, and even
+01:40 got the new version right there.
+01:41 Okay so we're going to just drop this under PyCharm.
+01:46 Let's go ahead and add that vcs root.
+01:50 Alright, in this chapter what we're going to do
+01:52 is we're going to build up the routing URL structure
+01:54 and the basic sort of layout in
+01:58 terms of the views and what not.
+02:00 We're not going to implement all of them, but
+02:02 at least we'll get some place holders in place.
+02:05 We'll just make sure things run and click down here
+02:07 we should have our virtual environment. We do.
+02:13 The one in routing looks like it's working.
+02:16 Now remember for this to work, we also have to say
+02:18 python setup.py develop, we can do that here.
+02:23 Or we can go over here if we click.
+02:25 in the right spot right there, see it runs setup task
+02:29 develop would be the same thing.
+02:35 Okay, you should be able to run this.
+02:38 Looks like it's working let's
+02:39 just make sure we can open it up, great.
+02:42 Everything's good here's our fake data that we showed.
+02:44 Alright.

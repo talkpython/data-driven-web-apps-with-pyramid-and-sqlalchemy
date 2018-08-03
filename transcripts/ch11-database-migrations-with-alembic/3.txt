@@ -1,0 +1,174 @@
+00:00 So, we've initialized Alembic, and everything's working.
+00:02 So, let's go over to PyCharm.
+00:03 I've already opened up this project
+00:05 and here you can see, there's our Alembic folder
+00:07 that we've set, and all of these things should go
+00:10 in a source control, so we can
+00:11 go ahead and add those straightaway.
+00:18 Alright. So everything's up to date
+00:20 we've added tem in source control, remember:
+00:21 we're going to get things starting to pile up in here
+00:24 but first of all, to get started
+00:25 we have to edit alembic.ini.
+00:28 There's a lot of stuff going on in here
+00:30 but the part we care about is down here
+00:33 in this SQLAlchemy URL.
+00:35 So, what we need to do is tell SQLAlchemy how it talks
+00:39 to the database. Remember, we already did that, we did that
+00:43 here in our init_db if we track this down
+00:48 we see, we say sqlite:///
+00:52 and then the path that we worked out.
+00:54 And we can actually hard-code a relative path in here.
+00:56 So, what we're going to do is we're going to say, SQLite
+00:59 and then the URL, it's kind of confusing
+01:02 I'll put some spaces then take them away...
+01:03 The URL's going to be ./pypi
+01:07 that's this folder, and then into there, and then into here.
+01:11 We can actually say copy relative path, I suspect.
+01:14 Let's try that. Oo, perfect! Okay.
+01:18 So, then, obviously there's no spaces here
+01:21 but there's just a lot of /. things going on
+01:23 so that should tell SQLAlchemy how to talk to our database.
+01:29 Make sure you save that. So, we can run Alembic down here
+01:32 we can say Alembic current
+01:34 and ask what this current database version is.
+01:38 Now, it's not super obvious
+01:40 but what it tells you here by having no other statements
+01:43 is no version. This is not being tracked by Alembic
+01:48 and you can even see that if we go over here.
+01:52 Now that I touched it, it has a version.
+01:54 Let's see if there's anything that's in here.
+02:01 Okay, so, by way of interacting with it with Alembic
+02:04 it's created this table that's tracking it
+02:06 but you can see that there's no, 0 rows.
+02:09 When it's actually been migrated and tracked
+02:13 you'll see there's actually only one row
+02:15 with only one column and it's going to be a version number
+02:17 but if you can look at this in your database
+02:20 and get a sense of what Alembic thinks is going on there.
+02:24 We could actually use just this information
+02:26 just setting the connection string
+02:28 and use Alembic to generate the scaffolding
+02:30 the skeleton pieces that we would need to implement
+02:34 to do these migrations, but there's a better way to do it.
+02:38 We can let it automatically infer that
+02:40 from our SQLAlchemy models and that's what we're going to do.
+02:44 So, first, let's see the problem.
+02:48 Let's run it and make sure everything's working.
+02:52 Good. Everything is working.
+02:54 Now, if we make some minor change here, like let's suppose
+02:58 I talked about there being a last updated
+03:02 let's do last updated date here.
+03:07 Uh, datetime.now, that seems decent.
+03:10 What happens if I run this? Well, or you run it, rather.
+03:13 Bad things happen. So, imagine we deployed a new version
+03:16 we're excited to show off how amazing it is
+03:18 and tell everyone about it
+03:19 and instead, boom, last updated does not exist!
+03:23 Ooh boy. What now? That's not good.
+03:27 SQLAlchemy will create new tables
+03:30 but let's just go ahead and create a new table really quick
+03:32 to show that Alembic can also notice there are new tables
+03:35 and create them. So, I'll just make a quick copy here
+03:38 and we'll just call this "auditing".
+03:41 So, let's suppose, this is an auditing table
+03:48 it's going to have a created date
+03:49 and a description, that's fine, right?
+03:51 We're just going to describe operations that happened.
+03:53 Now, obviously that's not really enough, but that's fine.
+03:56 Now, do not run your site.
+03:58 If you run your site, it's going to create this table
+04:00 and that's going to cause some challenges.
+04:02 So, we could do this all at once
+04:05 or we could do it in one step.
+04:06 So let me hold off on this, just for a second, and remember:
+04:09 for this to work, I have to go up here and import.
+04:17 So, right now, we're just going to sort of
+04:19 record this one change right there.
+04:22 We have our app. Not super happy, because it's not running.
+04:26 So, what do we do?
+04:28 Come down to our terminal, and we're going to tell Alembic
+04:30 to generate a new version, a new revision.
+04:33 So we say, alembic revision.
+04:37 And here's the part for the automatic stuff.
+04:40 We also have to integrate one more thing.
+04:41 We can say, autogenerate -m
+04:46 I think we're going to run into a couple problems.
+04:48 New, uh, say, last updated on package.
+04:52 So, if we run this, there's going to be two problems.
+04:55 I'm not sure what error message we're going to get.
+04:57 One problem is we have not told Alembic
+04:59 where our SQLAlchemy models live.
+05:01 The other one is I think it's going to complain
+05:03 that we're not yet managing the database
+05:05 so it doesn't know where to start from.
+05:06 Let's try. Can't proceed because it has not been configured.
+05:13 So, how do we configure it to know what our models are?
+05:16 That's over here. Notice this: target metadata.
+05:22 So we're going to say, where's our data from
+05:24 We're going to say, from pypi.data.modelbase import SQLAlchemyBase.
+05:31 Remember this guy? And then it has a .metadata on it.
+05:35 So we just have to do that one line
+05:38 in order to connect these things.
+05:40 However, it is very likely, remember
+05:42 you have to load all of these in order for this to work.
+05:46 So, what we're going to do, is we're also going to say... this.
+05:49 from pypi.data import *.
+05:58 Tell PyCharm: no, no, this time, it's okay.
+06:02 This is going to load up all the models so that the
+06:05 SQLAlchemyBase has actually seen them.
+06:07 In which case, when this thing starts to work with it
+06:10 all will be good.
+06:11 Okay, so I've done that, and I've just pressed save.
+06:14 I don't need to rerun the app
+06:15 because Alembic runs independently.
+06:18 Now, let's try again.
+06:21 Okay, we're going to tell it to auto-generate a change
+06:24 for last updated on package. Boom! It did it.
+06:29 It said, "we have detected a new column."
+06:32 I guess it realized there was just nowhere to start from
+06:34 which is fine, and then check this out:
+06:36 this created Alembic/versions
+06:39 and then this funky weirdo wrap thing but it's fine.
+06:42 There's a Python file with a hash type thing at the front.
+06:45 It's created.
+06:46 Now, this has done nothing to our database.
+06:49 If I go over here, and I look at it, even if I rerun it
+06:54 we should get the same not-very-nice outcome.
+06:58 Because all it's done is it's sort of
+07:00 computed what needs to be done
+07:02 in order to put the database in the right place.
+07:04 So, over here in versions, we now have this
+07:07 and it says, okay, here's the revision.
+07:10 This is what we're going to take it to.
+07:13 There's nowhere that it started
+07:14 so this is the first upgrade.
+07:16 It says, alright, we're going to do a couple things.
+07:18 If you upgrade the database
+07:19 we're going to add to the package table
+07:23 we're going to add last updated
+07:24 and you can add a bunch of other details about it there
+07:27 and if you say, I would like to roll back this change
+07:29 you're going to drop that column.
+07:31 And you can write whatever stuff you want here.
+07:35 So, let's go ahead and apply this change
+07:37 that we've already put here.
+07:38 So, we would like this, 2FE, whatever changed
+07:41 to create that column in packages so that our code works.
+07:47 If we look over here, it's still not working.
+07:49 So how do we fix it?
+07:50 We go over here and we say, alembic upgrade head.
+07:56 Just the latest.
+07:57 So, it will keep track of all the versions in here
+08:00 and figure out how to get to the end and what various steps
+08:03 in what order need to be applied.
+08:04 So we save this, now it's upgraded
+08:07 and it's applied that change
+08:09 which should have added that column.
+08:11 I should have expanded that before.
+08:13 Oh, great, it doesn't have it because I didn't refresh it.
+08:16 So, let's see, there's no last updated, but
+08:19 if I refresh or synchronize, boom.
+08:22 There it is. Now does out code run?
+08:26 Ta-daa! It does. So Alembic saves the day.
+

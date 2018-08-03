@@ -1,0 +1,100 @@
+00:00 With our package class mostly in place
+00:02 I've already created the other various tables
+00:06 that we're going to need.
+00:07 So we went through creating packages in great detail
+00:09 and we're not quite done
+00:10 we still have to put some relationships on it.
+00:13 But, let's just quickly look at the rest
+00:16 because they're exactly the same
+00:17 and it's not really worth taking tons
+00:18 of time to work it out.
+00:19 So downloads.
+00:21 We're going to have a download thing.
+00:22 Again, it derives from SQLAlchemyBase
+00:24 when I altered the name here.
+00:27 This is interesting. We have an integer, a bigint, primary key here
+00:31 and we're actually telling it to auto-increment.
+00:34 So that way, we don't even have to set it.
+00:36 It's just going to set itself right?
+00:38 That's great.
+00:39 Similarly for created date.
+00:40 So when we insert a new record
+00:41 we don't have to set those two values.
+00:44 But, for the download we got to store the release
+00:46 and the package and the IP address and the user agent.
+00:49 And we might want to do queries by these
+00:52 showing me all the downloads for this release.
+00:53 Count the number of downloads for that package.
+00:55 So we have an index on those.
+00:59 Languages, this is like programing languages
+01:01 like Python 227 or something like that.
+01:05 So we have a little bit of info here.
+01:06 Pretty straightforward.
+01:07 Again, we're using the ID to be both the name
+01:11 and the ID since it has to be unique.
+01:12 So, that will avoid one more join.
+01:15 Same thing for licenses basically here.
+01:19 Want to have a little simple basic information.
+01:21 Here we have the maintainer table.
+01:23 And this represents the many to many relationship
+01:26 between the user table and the packages.
+01:29 So we have one user can maintain many packages
+01:31 and one package can be maintained by more than one user.
+01:35 So here we have that information.
+01:36 Real simple. These we already did. Releases.
+01:39 This is going to be a release of a package.
+01:42 So the release is going to have an ID.
+01:44 More importantly its going to have a major minor build version
+01:47 and a date.
+01:48 It also has a URL to download that version
+01:51 and maybe a comment on what's changed
+01:53 as well as the size of that download.
+01:56 I'm going to put a package relationship in here
+01:57 but, that's not in place yet.
+01:58 We'll get to package relationships shortly.
+02:00 And then finally, the user table.
+02:02 So we have the ID which is auto-incrementing.
+02:05 And we have their name, their email.
+02:08 Hashed password, we will never store
+02:10 plain text passwords. Never!
+02:13 So, we don't want to just put password.
+02:15 We want to make it super clear that
+02:17 this is a hashed password.
+02:18 Again, when do they create their account?
+02:20 What's their profile image?
+02:21 And we'll keep a record of when they last logged in.
+02:24 Maybe we have a table, maybe an audit table
+02:26 but, for now, when did we last see these people?
+02:28 Have they logged in recently
+02:29 or has it been like five years?
+02:32 And that's it. That's all the data that we need.
+02:34 Over here in our database we just have the one.
+02:36 But if we re-run it. We go refresh.
+02:41 There are all of our tables.
+02:43 Perfect, right?
+02:44 So SQLAlchemy will make the new tables
+02:46 but if we had made a change to packages
+02:49 that change wouldn't be applied.
+02:50 Remember, that's migrations.
+02:51 We'll get to that later.
+02:53 Alright so here we are. We pretty much have this up and running
+02:55 and we've got all our data modeling done.
+02:57 The only thing we don't have in place currently
+03:00 are the relationships.
+03:01 That's an important part of relational databases, right?
+03:04 So we're going to put that in place
+03:05 and then I think we will have our models
+03:08 more or less than.
+03:09 Oh, one more thing I didn't point out
+03:10 but I did kind of infer before.
+03:12 Now that we define these new models
+03:15 we have to put them all in here.
+03:17 I actually try and keep them in alphabetical order
+03:19 so I can quickly look, oh have I added licenses?
+03:22 Let's see.
+03:23 Oh yeah there it is.
+03:24 You can end up with many of these.
+03:25 So this alphabetical order thing can definitely help.
+03:28 But every time we add a new class, it has to go here
+03:32 so the SQLAlchemyBase sees it
+03:33 that's why that create worked.

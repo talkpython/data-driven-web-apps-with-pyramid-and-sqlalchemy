@@ -1,0 +1,22 @@
+00:00 Before we move on from our introduction of Pyramid,
+00:03 I want to give you a little extra information
+00:05 if you want to go deeper.
+00:06 So, obviously, I run the Talk Python To Me podcast
+00:10 and over at talkpython.fm/3, so Episode 3,
+00:15 you can see I interviewed Chris McDonough,
+00:18 who was one of the creators of the Pyramid Web Frameworks,
+00:21 who, if you want to hear a conversation going deep
+00:24 inside from the creator of Pyramid himself,
+00:27 well, then, drop over here and you can have a listen.
+00:30 It's about an hour long.
+00:32 Similarly, we're going to talk about SQLAlchemy,
+00:34 and over at talkpython.fm/5 I interviewed
+00:38 Mike Bayer, who is the creator and maintainer of SQLAlchemy.
+00:43 Also, similar story, go deep inside and learn the history
+00:46 and the features of that framework.
+00:49 Obviously, I'll tell you everything I think you need to know
+00:52 to build the web apps and do the data access
+00:55 throughout this course,
+00:56 but if you want to get a little bit deeper
+00:58 and learn the personalities behind all this stuff,
+01:01 then definitely check out the podcast.

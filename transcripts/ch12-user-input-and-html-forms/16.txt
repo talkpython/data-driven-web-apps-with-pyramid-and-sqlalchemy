@@ -1,0 +1,127 @@
+00:00 Let's look at again
+00:01 how we're getting data from the browser.
+00:04 It's actually coming to us in multiple locations
+00:06 and we saw this in the beginning of the chapter.
+00:09 Here we're getting data from the Post dictionary.
+00:12 But remember we also have the Get
+00:14 we also have the matchdict and it's quite common
+00:16 to get them from multiple locations.
+00:18 So imagine, you'll have like part of the URL
+00:22 which maybe describes an item you're trying to
+00:25 let's say it's a book store, you're going to view a book
+00:28 and make a review of that book.
+00:30 The URL might actually say which book the review is
+00:33 but the form might contain the details
+00:35 of your email address and your review details and so on.
+00:39 So you have to get data both from matchdict and from Post.
+00:42 Maybe there's a query string going on as well
+00:44 and you got to get it from Get.
+00:46 All of these things can be confusing
+00:48 and they're sort of needlessly confusing.
+00:51 What I would like to do is just go
+00:53 "Hey, what data did they just give me?
+00:56 "Is there a thing called email, great, what's its value?"
+00:59 And whether that comes from Post
+01:01 or from somewhere else in the URL, great
+01:04 we'll just take it wherever it comes from.
+01:06 Of course we can set up priorities
+01:08 so things like the URL has a higher preference
+01:12 or higher priority than say, the form
+01:14 which is maybe easier to edit
+01:16 which still has higher preference than Get
+01:19 which is the query string, which is super easy to mess with.
+01:21 Things like that, so we'll set up an order of priority here.
+01:24 What we're going to do is really quickly introduce this ability
+01:27 to sort of merge these in a nice automatic way.
+01:31 And then we're going to use that internally
+01:33 in the next chapter even better.
+01:36 So let's over to infrastructure
+01:40 and create a file, I'm going to call, requestdict.
+01:43 So it's going to take all the data passed in
+01:45 and is bundled up there, and just convert it into
+01:48 one big source of data that we can ask
+01:51 "What's the email, what's the password
+01:53 "is the user logged in," things like that.
+01:55 So I have a function just called create
+01:57 it's going to take a request, it's going to be a pyramid request
+02:03 and it's going to going to return, any.
+02:07 I'd like to say it returns dictionary
+02:09 but we're going to give it a little extra feature
+02:11 that dictionaries don't have so any's what we're going with.
+02:14 So the request, remember it has
+02:17 let's just go over here and we'll say it has some data.
+02:20 We'd like to create a new dictionary
+02:22 based on the various dictionaries in there
+02:24 and as of Python 3.5, I think it is
+02:28 the cleanest way to create a dictionary out of say
+02:31 two dictionaries is you **d1, **d2, as many as you have.
+02:36 This little star will let you accumulate these dictionaries.
+02:39 Let's do it like this we want to have the least priority first
+02:43 and the highest priority last so let's say request.get.
+02:48 And then we can even throw in the headers
+02:50 so any information passed along
+02:51 the header we can ask for in this way.
+02:54 Of course we'll have Post and we'll have matchdict.
+02:56 This is the actual URL that we told maps over
+03:00 to this part of our site, so go with that.
+03:02 And then we can just say return data.
+03:06 This is already better.
+03:07 This let's us create this thing where
+03:09 it doesn't matter if the data goes in POST or matchdict
+03:12 we can just ask for it back and boom, we get it.
+03:16 Let's go over here and see how we would go about that.
+03:20 So here we'll say data = requestdict
+03:26 we need to import that, .create from the request
+03:31 and now you don't have to know that it comes from Post.
+03:35 Or really where it comes from, we're just going to say
+03:38 "Give me that data." And let's just check really quick
+03:41 that we're able to log in, that this is working.
+03:44 Great, we're logged out, so let's log in.
+03:49 Here we go. Boom, logged in, perfect, log back out.
+03:55 That's working pretty well, we could go a little bit farther
+03:58 and have it so you could just say .email, like this
+04:01 instead of even using this dictionary access.
+04:05 I'll go and add this, you can decide
+04:06 whether or not it's worth it for you.
+04:08 So we could easily do that by adding
+04:10 just a little class here called RequestDictionary.
+04:14 And it's going to derive from dict
+04:16 so that means it basically is a dictionary
+04:18 and it can do all the stuff we're doing here
+04:22 but in addition to this, we're going to define get_attr
+04:26 and it's going to pass in the item that it wants to get.
+04:27 This is basically the key, maybe a better word there.
+04:32 And then we just say return self.get(key).
+04:37 And that's what we're doing above
+04:38 but it lets us do it in a simpler way.
+04:41 So down here we can convert this
+04:43 to a RequestDictionary like so
+04:46 and let's just change this one to email
+04:49 you don't get any help because it's super dynamic there.
+04:52 It's just reaching inside the dictionary
+04:54 and these are the keys.
+04:56 So let's see we can get email and password
+04:58 I'll do a sort of mixed mode here for just a minute.
+05:03 Sure we log in one more time.
+05:07 Boom, looks like it still works.
+05:08 Logged in, of course it had to get the email
+05:11 to get the right user back so that must have worked.
+05:14 And I guess we'll go with this.
+05:17 It's kind of nice to have this simple little thing
+05:19 and let's just ask really quick for something
+05:22 that doesn't exist to make sure what we get back
+05:24 is just null, rather than a crash.
+05:31 Yeah, password2 is just None.
+05:34 It didn't come back and give you a key error, for example.
+05:38 This thing is pretty slick, it really helps us.
+05:41 We could even throw in the cookies
+05:42 if for some reason we wanted to get data from cookies
+05:45 but I think these four locations
+05:47 are pretty good for starters.
+05:52 Oh, one really quick thing, why don't we just
+05:54 now that we've done this let's tell it we're
+05:55 going to return a RequestDictionary.
+06:00 Which is pretty cool, that way
+06:01 and when we go up here we do get
+06:02 at least the dictionary things.
+06:04 We don't get help with email and password but that's okay.

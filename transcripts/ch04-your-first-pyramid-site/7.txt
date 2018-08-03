@@ -1,0 +1,66 @@
+00:00 Let's take a quick tour
+00:01 of the directory structure, or the file structure
+00:03 that we have for our pyramid project
+00:04 so you can see what, how they've organized it
+00:07 and what all the pieces mean.
+00:09 Regardless whether you've created this in PyCharm
+00:12 or you've created it using Cookiecutter
+00:13 on the Command line
+00:14 you'll get the same basic output.
+00:16 So over here, we'll have our directory
+00:20 here it's called make_your_project.
+00:22 This is basically the top level package
+00:24 that represents our website.
+00:26 So in here we have a static directory.
+00:28 This is where CSS, JavaScript, and Images go.
+00:31 You don't have to drop them all flat in there, right?
+00:34 That's how the templates work
+00:37 but I would create a css folder, an images folder
+00:39 a javascript folder, maybe even more than that.
+00:42 So any, sort of, directory structure
+00:44 you want to create underneath there, it's totally fine.
+00:47 Then the dynamic HTML templates live in templates.
+00:50 And PyCharm colors them purple
+00:52 but there's nothing really special about that directory.
+00:55 When our app starts up
+00:57 it's going to run this __init__.py
+01:00 and there's a main method in there that gets executed.
+01:03 So that is the entry point for your app
+01:06 that's where all the initial setup goes
+01:08 where we register the route
+01:10 and maybe we read the database configuration
+01:12 and get it all set up, things like that.
+01:15 We're going to talk about how to test your web applications
+01:18 and one of the real big advantages of Pyramid is
+01:20 it's super, super testable.
+01:22 We'll talk about how to do that
+01:25 and it's really, really nice.
+01:27 And finally, where your views or controller methods go
+01:30 this is right now, a single views.py file.
+01:34 That might be okay for a really simple app
+01:37 but in practice, we'll want more organization for our tests
+01:40 and more organization for our views, even templates.
+01:43 So, consider this the starting point
+01:46 but as we build this up, I'll show you ways
+01:48 where you'll probably want to reorganize things as if
+01:51 you know, if this is going to be a real major application.
+01:55 That's how it starts out, just a test file and a view file.
+01:59 Now, this .egg_info thing, this is an artifact
+02:03 from running python setup.py develop
+02:06 and it's needed for Python to do its magic
+02:08 but you can just ignore it, okay?
+02:10 So it's going to be there, but just ignore it
+02:12 it's part of the register of this package
+02:15 for development mode.
+02:17 We have our two project settings and configuration files.
+02:21 We've gone over this a few times
+02:22 but development.ini, that's what you want for dev
+02:24 production for production, probably, things like that.
+02:28 And that's really all you need to mess with.
+02:29 Maybe setup.py, maybe?
+02:31 If you're going to add a dependency
+02:33 or something like that in there
+02:34 but this is a starting place.
+02:35 So you know how and where to go look for what you need.
+02:39 Typically you're going to be in __init__.py
+02:41 in views, in templates, dropping stuff into static.

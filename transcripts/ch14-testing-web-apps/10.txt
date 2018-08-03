@@ -1,0 +1,77 @@
+00:00 Let's look at testing these views again.
+00:02 We're just passing in the requests
+00:04 The view method probably works with the view model
+00:06 but it doesn't have to.
+00:07 We also saw this view method probably talks to the database
+00:10 and that can become a challenge.
+00:12 So let's see how that works.
+00:14 Well, we're going to say test the home page.
+00:16 So we're going to do our Arrange which means
+00:18 we import the action method called index
+00:22 in our HomeController we had a function called index
+00:25 that maps to /. In order to call it, which is what we want to do
+00:29 we have to pass a request.
+00:31 So as we've seen before we create the dummy request
+00:34 and we're going to just call index passing the request
+00:36 and getting the model that returned back, back.
+00:40 And in our world there's supposed to be
+00:42 a packages list on the homepage
+00:45 so we can show the latest releases.
+00:47 So we're going to grab that out of the dictionary
+00:49 and then assert that there's at least one package in it.
+00:53 We're also asserting that the key exists
+00:54 'cause the square brackets would be a key error
+00:56 but we could get it the other way, right?
+00:58 So there's no, There's not the absence of packages.
+01:01 They are being passed, right.
+01:02 This might not be the best test for the homepage
+01:05 but it demonstrates the kinds of things you would look for.
+01:09 Well this is cute right. Where'd those packages come from though?
+01:11 They came from the database didn't they?
+01:13 So chances are this won't even work
+01:15 and if it did work it's probably talking to the database
+01:19 by some miraculous way and you want to not let it do that.
+01:23 You want to control where it gets it's data from
+01:25 so let's look at a more realistic view.
+01:28 Now, for the more realistic view we need more room.
+01:32 Okay, but let's suppose we're trying to get ahold
+01:34 of the package details
+01:36 and we want to do that by requesting
+01:38 a certain package but not actually going to the database.
+01:41 Again we're going to Arrange and get our project method
+01:46 our project view from the PackageController.
+01:49 And we're also going to work with package
+01:50 'cause we need to create some test data.
+01:53 We're going to get our fake request.
+01:54 We're going to create some fake package data
+01:57 and we put that into a function
+01:58 and it could be really elaborate, we don't need to worry
+02:00 about the details we just allocate a new package objects
+02:02 give it a bunch of releases and properties
+02:04 and so on right there.
+02:06 Our request has a package name which is SQLAlchemy.
+02:08 Now apparently we use Get so it's like query string
+02:10 but whatever, matchdict, query string
+02:12 whatever your app does we say
+02:14 request, here's what they're asking for, SQLAlchemy.
+02:17 And then in order to intercept a database behavior
+02:20 we're going to define a with block for
+02:24 pypi.services.package_service.package_by_id
+02:27 and also one, in this case imagine we're calling it
+02:29 a function, releases_for_package
+02:31 rather than using the SQLAlchemy relationship.
+02:34 So we're going to intercept both of these
+02:37 and then we're going to finally act.
+02:39 Just call the function with the fake request
+02:42 and the fake underlying database methods.
+02:45 Boom, out comes your info
+02:46 and then finally we can assert around that.
+02:48 Get us thing back, we'll call it web package
+02:50 to make it not ambiguous.
+02:53 By pulling that out of the model return
+02:54 and we can assert things like its id is SQLAlchemy
+02:57 and it has two releases which are
+02:58 create fake package data, give it. Things like that.
+03:02 This let's us create isolated tests
+03:05 by both passing in required infrastructure
+03:09 and replacing it behind the scenes with Patch.

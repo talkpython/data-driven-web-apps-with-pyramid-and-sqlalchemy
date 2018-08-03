@@ -1,0 +1,35 @@
+00:00 Let's review creating Pyramid web apps with PyCharm.
+00:04 So remember, we just go new project, and we pick Pyramid
+00:08 and then we pick a new virtual environment.
+00:10 We set the location, which basically names our website.
+00:13 And make sure you expand out the more settings
+00:15 and choose Starter and Chameleon.
+00:18 So Pyramid, virtual environment, Starter and Chameleon.
+00:22 Basically, it solves a whole bunch of those things
+00:24 we did at once.
+00:27 And then the final thing to do is to run the setup.py task
+00:30 in development mode.
+00:32 Now, if you don't get that little dialogue that says
+00:34 hey you need to run it this way
+00:35 you can go to tools, run setup.py task
+00:37 and just type develop.
+00:39 But the newest version of PyCharm typically
+00:41 finds that and you just click that little bar
+00:43 that comes up across the top.
+00:45 Then you're ready to run your app.
+00:46 How do you run it?
+00:47 Well, you click that little play button
+00:49 and it runs, and then you go interact with it.
+00:51 Easiest way to do that is just to click the hyperlink
+00:53 at the bottom and boom, your site's up and running.
+00:57 So this is really a nice way to create new projects.
+00:59 Honestly, I don't use it very often these days.
+01:02 When I was new to Pyramid, I would use PyCharm
+01:06 to create those projects and it helped a lot.
+01:07 The more I got good at working with Pyramid directly
+01:12 I find myself going to the command line more
+01:14 and sort of doing stuff manually.
+01:16 But either way is totally fine
+01:18 this is certainly a good way to get started
+01:20 because it helps you through a lot of the steps
+01:22 and it makes it real, real simple.

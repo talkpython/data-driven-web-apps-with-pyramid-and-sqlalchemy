@@ -1,0 +1,82 @@
+00:00 View models are awesome for validating server-side code
+00:03 but me might as well do as much validation as we can
+00:07 in the browser before it ever touches our server
+00:10 before it ever even leaves the browser
+00:11 in the form of a request.
+00:13 This won't allow us to entirely skip server-side validation
+00:16 cuz people could always turn that kind of stuff off
+00:19 use scripts and so on and get around it
+00:22 but at least it will give our users
+00:23 a slightly better experience.
+00:26 So let's go back to our PyPI validation
+00:28 version of our demo code
+00:31 and let's add some client-side validation.
+00:33 First of all, let's just run it and see where we are
+00:36 so let's go try to register.
+00:38 Now, if I put "abc" here, and I hit Go
+00:40 notice you'll see a little flicker
+00:42 and then a message comes down here
+00:44 and this is actually ridiculously fast, like it's
+00:48 if we look at what's happening
+00:50 this is in less than a millisecond, pretty incredible.
+00:54 That's cuz there's zero milliseconds being timed
+00:56 between me and the server, right?
+00:58 If we're halfway round the world
+01:00 that could be much, much longer.
+01:02 Either way, this is going back and hitting my web server.
+01:07 It'd be nice if it'd just, as users type, it would say
+01:10 "This is valid, this is invalid," and so on.
+01:13 So, let's go and change that so as much as possible
+01:16 this will validate on the client side
+01:18 turns out it's super easy.
+01:19 Over here, in Register, we have this form, right?
+01:22 Let's go way to the end here, and on this form
+01:25 we can come over here and say Your Name
+01:28 you know what that is, Required
+01:30 we don't even have to set a value
+01:32 just put the attribute of Required on them.
+01:35 The other thing we did is we set
+01:38 the type to be various things.
+01:39 Here we set the Type of e-mail to be text
+01:41 but we can upgrade it to be of type email
+01:45 or number, or things like that.
+01:47 Now, if we just save, we can come over here and refresh.
+01:50 Let's refresh like this, and if we hit Go
+01:54 notice no POST back, and here it says
+01:57 "Please fill out this field."
+01:59 Okay, so Michael, great, and I hit this.
+02:02 Okay, whatever, I don't care.
+02:04 It says, "No, no, no, e-mail address."
+02:06 C'mon Michael that's michael@talkpython.fm
+02:09 yeah, sure give it a password
+02:12 and then I'm going to go over here and go
+02:14 It does appear that we're missing
+02:16 a little validation there, doesn't it
+02:19 cuz it let that submit
+02:20 but let's also fix that really quick.
+02:22 Where do we do validation?
+02:24 We saw we do that in our view model
+02:29 so we can go to our user_service
+02:31 and say, find_user_by_email.
+02:35 It doesn't exist, but it will in a second.
+02:42 Write that really quick.
+02:43 You know what, it's so much like that
+02:47 but here we just say, email and that's going to be email.
+02:52 We can say that's a string, and what we get back
+02:55 an optional of user. Now, let's try one more time.
+03:00 Log out and try to register one more time with that.
+03:05 Boom, this user already exists, so notice
+03:07 if this is missing altogether, it never even goes back
+03:11 there's no flicker up here, it never goes there.
+03:15 Let's actually load it up fresh.
+03:17 Okay, so when I click it, it never goes back
+03:20 but if I fill this out and then I hit it
+03:22 you'll see it flicker and it falls back
+03:24 to the server-side validation cuz the client-side
+03:26 we're not really checking.
+03:27 We're not going to access the database through java script.
+03:29 We're just going to let the server do that
+03:31 so there you can see that's going back to the server
+03:33 once it passes client-side validation
+03:35 so it's not all or nothing on client server
+03:38 it's this blend much of the time.

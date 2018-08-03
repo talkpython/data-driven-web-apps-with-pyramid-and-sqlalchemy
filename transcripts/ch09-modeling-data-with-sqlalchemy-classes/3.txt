@@ -1,0 +1,52 @@
+00:00 Before we actually start writing code for SQLAlchemy
+00:03 let's get a quick, 50,000 foot view
+00:05 by looking at the overall architecture.
+00:09 So when we think of SQLAlchemy
+00:10 there's really three layers.
+00:13 First of all, it's built upon Python's DB-API.
+00:17 So this a standard API, actually it's DB-API2 these days
+00:23 but we don't have the version here.
+00:25 This is defined by PEP 249 and it defines a way
+00:29 that Python can talk to different types of databases
+00:33 using the same API.
+00:34 So SQLAlchemy doesn't try to reinvent that
+00:37 they just build upon this.
+00:39 But there's two layers of SQLAlchemy.
+00:41 There's a SQLAlchemy core which defines schemas and types
+00:45 a SQL expression language that is a generic query language
+00:49 that can be transformed into a dialect
+00:53 that the different databases speak.
+00:56 There's an engine which manages things
+00:58 like the connection and connection pooling
+01:00 and actually which dialect to use.
+01:02 You may not be aware, but the SQL query language
+01:05 that used to talk to Microsoft SQL Server
+01:07 is not the same that used to talk to Oracle.
+01:09 It's not the same that used to talk to Postgres.
+01:11 They all have slight little variations
+01:12 that make them different.
+01:14 And that can make it hard
+01:15 to change between database engines.
+01:17 But SQLAlchemy does that adaptation for us
+01:21 using its core layer.
+01:23 So if you want to do SQL-like programming
+01:26 and work mainly in set operations, well here you go
+01:29 you can just use the core and that's a little bit faster
+01:31 and a little bit closer to the metal.
+01:33 You'll find most people, though
+01:34 when they're working with SQLAlchemy
+01:36 will be using what's called an Object Relational Mapper.
+01:39 Object being classes, relational, database
+01:41 and going between them.
+01:43 So what you do is you define classes
+01:45 and you define fields and properties on them.
+01:49 And those are mapped, transformed into the database
+01:52 using SQLAlchemy and its mapper here.
+01:56 So what we're going to do is
+01:57 we're going to define a bunch of classes
+01:58 that model our database.
+02:00 Things like packages, releases, users, maintainers
+02:03 and so on in SQLAlchemy and then SQLAlchemy
+02:06 will actually create the database, the database schema
+02:09 everything and we're just going to talk to SQLAlchemy.
+02:12 It'll be a thing of beauty.

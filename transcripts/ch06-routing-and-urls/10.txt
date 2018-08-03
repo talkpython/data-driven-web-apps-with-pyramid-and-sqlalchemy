@@ -1,0 +1,128 @@
+00:00 For our grand finale, to do the last thing
+00:03 we're going to do with the routing
+00:04 now we're going to build a custom CMS.
+00:07 Now that might sound hard, but we're actually going
+00:10 to do this, minus the data access layer
+00:13 or the editing layer, in just a couple of minutes
+00:16 because routing is that powerful.
+00:18 So what we'll find often when we're building
+00:20 web applications is, there's some part of the site
+00:23 that is very much driven out of the database
+00:26 in the sense that it has lots of structure.
+00:28 Like the TalkPython stuff, we have the episode
+00:30 the episode has a title, it has guests, it has links
+00:34 it has all these sponsors, all that kind of stuff.
+00:36 And those pages are perfect to drive 100%
+00:39 out of the database.
+00:41 But sometimes, you want to let people
+00:43 often in the marketing, create custom pages.
+00:47 Like I just want to have a landing page
+00:48 that tells the history of our company.
+00:51 And maybe one that shows our team.
+00:52 And you don't want to go create separate views
+00:54 for each of that, so often, people will fall back
+00:57 on to what's called a Content Management System
+01:00 think Wordpress, Joomla, something like that.
+01:03 It turns out that with routing, we can bring
+01:06 that capability right into our Pyramid web app
+01:09 with just the smallest amount of effort.
+01:13 So let's see how we do that.
+01:16 So you can see I've defined CMS page and a CMS controller
+01:20 and we're going to pass them with a page, title, and details.
+01:23 Down here, we're just going to use the same structure
+01:27 but then we're going to show the title on the details
+01:29 notice we're using the structure to save
+01:31 but this is trusted HTML, it's okay.
+01:35 So we're going to show that here.
+01:37 But what we need to do is allow arbitrary URLs to map here.
+01:41 So the problem, well, the fact that we can't get there
+01:45 get it to run, 'cause we don't have the routing in place.
+01:47 But I want to be able to just go like
+01:49 company/history shows this data.
+01:51 users/popular shows another.
+01:56 Lets say deployments/popular
+02:02 who's using our site, or whatever.
+02:06 Just arbitrary stuff up here, and I want it
+02:08 to map to possible entries in the database.
+02:13 Basically, like Wordpress would or something.
+02:15 So how do we accomplish this complicated
+02:17 and difficult thing?
+02:19 Turns out to be not bad at all.
+02:21 So we'll go down here and we're going to say
+02:24 config.add_route like that.
+02:28 And then the name I said was CMS Page
+02:30 but what we put here is different.
+02:33 We're going to say that this is
+02:37 whatever. Remember like in this example here
+02:41 this doesn't capture the /
+02:43 This has to be kind of basic data.
+02:45 The star says, "No, no. This can be anything."
+02:48 So let's go over here and lets grab that.
+02:52 We'll say subpath = request.match.
+02:56 We want the Import there.
+03:01 Now we'll save matchdict.get('subpath')
+03:05 And then let's just print out for here.
+03:07 We'll just put subpath for just a second
+03:08 so we can see what's happening.
+03:12 We'll just run that real quick.
+03:14 So if I come over here and I say company/history.
+03:19 Look, we get company and history.
+03:22 I'll broke them into little pieces.
+03:25 So let's actually convert that into, I don't know
+03:29 probably some kind of thing that looks like this.
+03:33 Well, what I typed.
+03:34 We want to just get that out.
+03:37 So probably the easiest way we could grab the URL
+03:40 but then it might have query string stuff
+03:41 and all sorts of weirdness, so let's just say subtext
+03:45 or suburl is going to be '/'.join('subpath')
+03:52 We'll say suburl.
+03:57 Now we see company/history.
+03:59 Okay, you might of noticed up here
+04:01 you have a little fake data, so I said
+04:03 company/history so I'm going to request
+04:04 that we get these details.
+04:06 They ask for employees, we'll get other details.
+04:08 So lets do a little bit of fake data access.
+04:12 So let's say page is going to be fake_db.get('suburl')
+04:19 Tell PyCharm it's spelled okay for us.
+04:23 We'll say, if not page
+04:25 If they ask for something that totally didn't exist, well
+04:27 we still want to return a 404, so we'll say
+04:30 raise HTTPNotFound from there.
+04:37 Otherwise, we're going to return page.
+04:42 That's the page that came out of the database.
+04:43 It has the same structure that we're expecting.
+04:45 Are you ready?
+04:47 company/history.
+04:52 Look at that!
+04:53 Company history, details about company history.
+04:55 How about employees?
+04:59 There's our team.
+05:00 Beautiful!
+05:01 What about other?
+05:04 Nope, there is no other.
+05:06 Now, the big question of course
+05:10 is does the rest of our site still work?
+05:12 Yes, of course it still works.
+05:14 It's beautiful.
+05:16 Now, why does it still work?
+05:18 This is super important.
+05:20 It works because this goes at the very end.
+05:25 Remember, this will match everything
+05:27 so it's the last chance.
+05:29 So what happens is, if it gets through all of these
+05:32 and none of the data driven parts match
+05:34 it'll come down here and say
+05:36 "Okay, well, why don't you give it a shot?
+05:38 Go to your database and see if we
+05:39 have some conceptual page details for that URL.
+05:44 But if we don't, we're just going to let
+05:46 what would otherwise happen if this CMS wasn't here
+05:48 just a 404.
+05:50 But if it is, hey, let's render it!"
+05:52 So this gives you a final way to sort of add on the CMS.
+05:56 What do you need? You need a way to make entries and edit entries
+05:58 in the database.
+06:00 It's pretty much it. You got a CMS.
+06:03 The trick to make it happen is that little star right there.

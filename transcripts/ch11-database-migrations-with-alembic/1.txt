@@ -1,0 +1,89 @@
+00:00 Relational databases are very powerful, but one
+00:03 of the problems that you have when working
+00:05 with relational databases, and this is exacerbated
+00:08 by when you're working with ORMs, is this ability
+00:12 to have say SQLAlchemy create all the tables
+00:15 and the structures and the relationships automatically
+00:18 is awesome except when you need to change things over time.
+00:23 Once it's already created those tables
+00:24 we saw, it will not change them.
+00:26 Your database is somewhat calcified
+00:28 and it becomes hard to change, so we're going
+00:31 to talk about a subject and a set of tools
+00:33 and techniques to keep your database evolving
+00:37 as your code evolves and this, I think
+00:40 is one of the biggest challenges
+00:41 of running a relational database and is why some
+00:45 of the NoSQL databases with their more flexible schema
+00:48 has some advantages in this situation
+00:51 but you'll see the tooling for SQLAlchemy
+00:54 to actually evolve your database is pretty sweet
+00:57 so let's get started. What is the problem?
+01:00 Here's what happens. We have a wonderful running site.
+01:04 Here's our fake PyPI and it's doing its PyPI thing running
+01:07 working with this database.
+01:09 Then we decide, oh you know, things would be nicer
+01:12 if we could track something else
+01:14 on the package if we had a last updated field
+01:17 so we could do simpler queries
+01:19 and maybe make this page a little bit faster.
+01:21 Who knows, something like that.
+01:22 We make that change in SQLAlchemy.
+01:25 Then we want to run our code, well what happens?
+01:28 Something that will send shivers down your spine
+01:30 if you see this in production.
+01:31 Operational error, no such column, packet, keywords
+01:36 in this case we added.
+01:39 The database schema doesn't exactly match
+01:43 the schema of SQLAlchemy.
+01:44 At least if the SQLAlchemy schema is not a subset
+01:48 of that and will contain all the required fields
+01:51 you're going to get something like this
+01:52 and it's going to be super bad.
+01:54 So here's the thing, you make some changes.
+01:56 You push your code out to production.
+01:58 Instead of your site becoming more awesome
+02:01 it just goes 100% offline.
+02:03 This is any page that touches anything
+02:06 to do with packages will never, ever run.
+02:10 That's a problem. How do we fix it?
+02:12 We keep our database exactly in sync
+02:15 with our SQLAlchemy code.
+02:16 At least two ways to do this.
+02:18 One way is to manually create an update script.
+02:21 Every time we need to make a change
+02:23 to the database, we'll do that update script
+02:25 and we'll apply it to production or staging
+02:27 or some other developer's database, right?
+02:30 It's not terribly hard when using SQLite like we are
+02:32 because that's actually just a file.
+02:34 If you have live data going into it
+02:36 you have to stay in sync with that
+02:38 and that can be a challenge
+02:39 but the real problem is if you have separate databases
+02:43 like Postgres or something
+02:44 and different people are connecting
+02:47 to different databases that are out of sync
+02:49 right, or production versus development
+02:51 things like that. So this is a big problem.
+02:53 So the one way we could do it is manual.
+02:55 Another one is we can use something called Alembic.
+02:59 Alembic is from Mike Bayer
+03:01 the same guy who created SQLAlchemy
+03:04 and maintains it himself.
+03:06 So these are quite closely tied together
+03:08 and Alembic is a database migration tool
+03:11 that will track the versions of databases.
+03:15 So maybe your production database is the latest.
+03:17 Maybe your staging database is some intermediate thing
+03:20 and maybe production is the most behind
+03:23 and long as you continue to evolve with Alembic
+03:27 you can have Alembic catch it up to whatever version
+03:30 of code that you ship with.
+03:31 It's really, really nice.
+03:32 It doesn't solve every single problem
+03:35 but it solves most of the problems
+03:37 and it gives you some plugins
+03:39 for sort of adding the final bits
+03:40 and we're going to use Alembic
+03:42 to help evolve our database over time as we evolve our code.

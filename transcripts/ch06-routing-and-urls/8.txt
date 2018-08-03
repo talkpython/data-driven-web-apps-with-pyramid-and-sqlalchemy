@@ -1,0 +1,40 @@
+00:00 All right, let's real quickly
+00:01 review using the routes
+00:03 creating and using the routes.
+00:04 So, we start out going to config
+00:06 this is in __init__.py
+00:08 Go here and we say add route
+00:09 and we give the route a name
+00:11 and a URL. And that URL may or may not contain variables.
+00:16 We saw in the release example
+00:18 for an individual release
+00:19 there's actually two variables interspersed
+00:21 into the URL there that we could grab out
+00:23 which is pretty awesome.
+00:25 And then we're going to create a view method
+00:28 and apply the route name to be the name passed there.
+00:32 And then things will be better for you
+00:34 just keeping track
+00:35 if you do some organizations.
+00:37 So we'll use the help template in the home folder.
+00:40 The name of the function is help and so on.
+00:42 But there's no reason they have to correspond
+00:44 other than it helps you link these things together
+00:47 because there's no other real way to know
+00:50 what links where.
+00:51 To get the value passed in the URL.
+00:53 So if somebody said /help/installing
+00:58 We're going to go to the request.
+00:59 We'll go to the matchdict
+01:00 then we say get topic and it's going to give us installing.
+01:03 And what I've done here is I've passed overview
+01:05 as a second parameter there
+01:06 so for some reason
+01:08 no topic is passed or it's not found
+01:10 we're going to pull back some kind of default help
+01:12 we can show them
+01:13 instead of showing a 404
+01:14 like here's an overview of the thing.
+01:16 You asked for help that didn't exist.
+01:18 So you're going to get just an overview.
+01:20 And that's really is all there is to it.

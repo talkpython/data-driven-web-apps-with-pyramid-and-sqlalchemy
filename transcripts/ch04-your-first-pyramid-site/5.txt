@@ -1,0 +1,55 @@
+00:00 Over here in PyCharm, let's go create the same
+00:03 type of app that we did on the command line interface
+00:05 but this time using PyCharm.
+00:08 Here you can see we don't have any recent projects
+00:10 it's just basically bare.
+00:11 So we'll say "Create a New Project"
+00:13 and let's use Pyramid, okay great.
+00:16 It says we're going to create a new virtual environment
+00:19 and it's going to create it in the folder, doing exactly
+00:23 exactly what we did, so we don't have to expand that out.
+00:28 And we want to set the location
+00:29 so let's go and say this is on desktop
+00:33 just call this "PyPI Web" or something like that, okay.
+00:38 And we can also, this is important
+00:39 come down here to more settings.
+00:41 Remember there are the different templates?
+00:43 There they are again, and this is going to use
+00:45 basically the same thing.
+00:47 And let's go and switch that to Chameleon from Jinja2.
+00:51 Okay so we're ready, we're going to do
+00:53 all the stuff of running the Cookiecutter:
+00:55 it's going to install Pyramid
+00:58 it's going to run the right template for us
+01:01 create the virtual environment, activate it
+01:02 all those things, ready? Go.
+01:05 They're just creating the virtual environment.
+01:07 Now it's installing Pyramid.
+01:12 So if we look over here, we've got our PyPI Web
+01:16 and everything is pretty much up and running.
+01:19 I'm not sure it's going to totally work yet, notice
+01:22 it's doing some indexing down here, give it just a moment.
+01:26 PyCharm knows that this project is not
+01:29 installed into the virtual environment.
+01:31 You can see if you just click on this terminal and all
+01:32 which virtual environment it is
+01:34 you can ask again which or where Python
+01:37 and it's this new one that we just created
+01:40 and it knows in here that this is not set up.
+01:42 So it knows we need to run python setup.py develop
+01:46 or I can just click that, and it's doing it for us.
+01:50 See up here above it also says these packages are required
+01:53 but that setup action actually installed those packages
+01:57 so it kind of solves two problems at once.
+02:00 Alright, now how do we go run our app?
+02:02 We don't have to type pserve develop, we just press this.
+02:06 and let's click it and see what happened, are we ready?
+02:09 Ta-da, same thing.
+02:11 Our starter template has been used to create a new
+02:12 Pyramid project, this time we just called it PyPI Web
+02:16 it was generated not by Cookiecutter, but by PyCharm.
+02:20 Really cool, pretty much exactly the same thing
+02:22 but a whole lot simpler.
+02:24 All we had to do was click Create New Project, Pyramid
+02:27 give it a name, and then click, it will go ahead
+02:30 and set up this package to be run and edited.

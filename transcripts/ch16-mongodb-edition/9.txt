@@ -1,0 +1,165 @@
+00:00 It's really cool that we have this working on MongoDB.
+00:02 It's less cool we have no data.
+00:04 So the final thing we need to do
+00:05 is actually put some data into our new database.
+00:09 And this is a really good technique to see.
+00:11 It'll show you how to take basically any other data source
+00:15 and import it into MongoDB.
+00:17 And it would of course would've work
+00:18 in exactly the opposite direction.
+00:19 If you want to go from, say, MongoDB
+00:21 to SQLAlchemy in some relational database
+00:24 you'll see there's some serious parallels here.
+00:26 Now there's just a lot of little steps
+00:28 so I'm going to pace this
+00:29 talk through it, and then we'll just run it.
+00:31 So I have this program here called migrate_to_mongo.
+00:34 We're going to putmigrate_to_mongo in the bin folder.
+00:38 Now it's going to say init_dbs is not singular
+00:40 'cause we're going to work with both databases.
+00:42 So down here at the bottom
+00:44 we're going to do the same thing we did
+00:46 before for SQLAlchemy
+00:47 and the same thing we did before
+00:49 except for this one I'm calling nosql
+00:52 same thing we did to set up MongoDB.
+00:54 We need to do them both this time
+00:56 'cause we're going to read from SQLAlchemy, write to MongoDB.
+00:59 We could do reverse, like I said.
+01:01 Then we're just going to import the various chunks of data.
+01:04 We're going to do it more or less by collection in MongoDB.
+01:08 So get all these users there
+01:09 get the packages and the maintainers
+01:11 and then put the releases.
+01:12 So let's just look at an example here: migrate_users.
+01:16 Well, first of all we're going to say
+01:17 if we have some users, this must already have been done
+01:20 so let's bail, and for that to work
+01:22 let's just drop all of them out of there.
+01:25 All right, no records, great.
+01:27 We're going to go use SQLAlchemy to do a query
+01:30 and get all of our users
+01:32 and then just loop over them.
+01:34 Create a Mongo User, copy the values over
+01:36 the SQLAlchemy date time that it was created
+01:40 is now being copied to MongoDB.
+01:42 The password is being copied to MongoDB
+01:44 the name is being copied to MongoDB, and so on
+01:48 and then we call save().
+01:49 That's it, you just copy the values over and call save().
+01:52 There is a way to do bulk inserts
+01:53 if you edit large amounts of data.
+01:55 You could do this without calling save()
+01:57 you know, millions of times
+01:58 and do more of a bulk insert thing that'd be much faster.
+02:01 We don't have enough data for that to matter.
+02:04 Let's look at packages.
+02:05 Same thing, package.objects().count(), don't do it twice.
+02:09 Go to SQLAlchemy, get all the packages
+02:11 for every package copy the values over.
+02:15 We didn't actually put the maintainer relationships
+02:17 into SQLAlchemy so there's no real way
+02:20 to copy them over here
+02:21 but you would just, you know, append them to this list
+02:24 and then you call save().
+02:25 Same thing for releases.
+02:28 Don't do it twice, get all the SQLAlchemy ones
+02:31 loop over, copy the values, save 'em.
+02:33 This is the entire script.
+02:34 The other thing that's interesting is up here
+02:36 notice we're importing the SQLAlchemy User as SqlUser
+02:41 the MongoDB nosql User as MongoUser
+02:45 and that let's us be super explicit in this one script.
+02:50 Let's go over here, a few documents none
+02:53 a few documents none, a few documents none
+02:55 so that's great.
+02:57 Let's run our script, it takes a moment.
+03:00 Remember there's actually quite a few releases
+03:03 like 5400 or something
+03:05 so it's not entirely trivially to do this.
+03:07 Bulk insert would make it much faster but that's okay.
+03:12 Look at that, it's done.
+03:13 No errors, took a little time
+03:15 that's a good sign it probably did something.
+03:18 Let's go look. Go find our users.
+03:21 Oh, there they are, a whole bunch of 'em.
+03:23 They don't have passwords because these imported users
+03:26 well they didn't have passwords.
+03:28 Releases, here's a bunch of releases.
+03:31 Conversions, the dates, the URLs, the sizes
+03:34 all that kind of stuff, looking good.
+03:35 And finally, packages, amqp, our abders, our argpars
+03:40 and their whole description, with long scroll bar there.
+03:44 Let's just go over here not even rerun our app
+03:46 let's just, oh, I guess it's not running at all.
+03:48 We're going to have to rerun it
+03:49 but we wouldn't have to rerun it
+03:51 if it were already running for it to work.
+03:54 Check this out. Here's all of our data
+03:58 awscli, boto3, clickonit.
+04:01 Oh, one other thing.
+04:03 I thought we had covered them all.
+04:04 We had set up a relationship in SQLAlchemy
+04:07 to navigate that foreign key relationship
+04:08 and you could actually technically do that in MongoEngine
+04:11 but I'm not a huge fan
+04:12 I like to be a little more explicit.
+04:14 Let's go write one more function here
+04:17 where we're going to get the releases for the package.
+04:20 So let's say find_releases_for_package.
+04:28 It's going to return a list of releases
+04:30 and we'll just take the name which is, again, the id.
+04:34 So this is pretty straight forward. We have release.
+04:39 We want to go and say package_id is package name.
+04:43 And we don't want first, we want all.
+04:46 Now, in our relationship in SQLAlchemy we set the ordering
+04:50 that's not happening here.
+04:51 So we're going to say there's going to be a .order_by.
+04:57 This is pretty easy, we just say '-major_ver'.
+05:00 Let's just go remind ourselves what these are called
+05:04 major_ver, minor_ver, and build.
+05:07 And notice down here we have a composite keys
+05:10 so that we can do this order with an index
+05:12 which is really important.
+05:13 This one also should have an index.
+05:16 Let's check package_id, yeah, so this'll be super quick.
+05:21 Alright, so now we're going to call this function
+05:25 instead of trying to navigate this relationship.
+05:32 I'll say this and then we got to do one more level here
+05:36 to keep that going. Alright, this looks good
+05:40 and I suspect there's a problem in the template
+05:42 that was trying to use that as well.
+05:45 No, I don't think so. Alright, let's re-run it.
+05:47 See if we've got that little bit fixed.
+05:50 Here we go, look there's boto with its release history.
+05:53 This one is the latest, it's on this date.
+05:56 Everything's looking good.
+05:58 Try one more, if we do two that proves it, right?
+06:01 gevent, here we go, gevent's working.
+06:04 Really pretty awesome.
+06:05 Okay, so we've now juggled a few little variations
+06:09 that you'll have between MongoDB and SQLAlchemy
+06:12 or really any two databases
+06:14 any two sort of implementations of this idea.
+06:17 Hopefully that felt pretty easy.
+06:20 It did to me anyway, maybe I've done enough MongoDB.
+06:22 But there weren't very many changes.
+06:24 Remember, we added our new entities
+06:28 we had to change those
+06:30 but those changes were really minor
+06:32 because the similarities between Mongo engine
+06:34 and SQLAlchemy, they're quite similar.
+06:36 And then just a couple minor variations there.
+06:38 We had to add mongoengine as a dependency
+06:44 and we had to change that one query
+06:46 because we didn't put the relationship together the same.
+06:49 Alright, well that's it running on MongoDB.
+06:51 If you want to use it, go for it.
+06:53 I do encourage you to check out the other two courses
+06:56 at Talk Python Training
+06:57 because we really skipped over a lot of details
+07:00 especially the security and deployment and things like that.
+07:03 Take this as inspiration and proof of the power
+07:06 of some of these design patterns, view models
+07:10 this little service thing that we did
+07:12 modeling with classes, things like that.

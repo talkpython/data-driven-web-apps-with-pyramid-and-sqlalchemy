@@ -1,0 +1,104 @@
+00:00 So, let's take a simple but fairly realistic example
+00:03 to compare these three template languages.
+00:06 Okay so the idea, the goal will be
+00:09 given a list of category dictionaries with an image, name
+00:13 an image and a name on each one of them
+00:15 display them in a responsive grid.
+00:18 In this example we're going to be working with this data
+00:21 and these are actually from a bike shop
+00:24 so there's different categories of bikes:
+00:25 comfort, speed, hybrid, and each one has a category picture
+00:29 we won't go into the details, right, this is not
+00:31 our main demo and stuff, but pretty simple example.
+00:34 We're going to return this data to the template
+00:37 and our goal is to turn that into HTML
+00:40 showing the picture in a responsive grid type of layout.
+00:44 We want it to look something like this.
+00:46 We're going to do this in each of the languages
+00:48 and see what the various moving parts look like.
+00:52 First up, Jinja2.
+00:55 So you can see with Jinja2, every time you have a statement
+00:59 on a given line, you open it with {%
+01:02 so {% if not categories %}
+01:05 So if there are no categories past this view
+01:07 we want to just show no categories
+01:10 rather than like a blank page.
+01:11 But if there are categories, we want to loop over
+01:14 each one of them and print out or add to the DOM a div
+01:18 and within that div having the image within a hyperlink
+01:22 and the category within a hyperlink.
+01:24 So a couple things to note
+01:26 there is a lot of open close, open close, open close
+01:29 notice at the end we have
+01:32 {% endfor %}, same with endif.
+01:36 That seems unnecessary and annoying
+01:38 but the thing that I think is not great about Jinja
+01:42 or Mako you'll see is the same
+01:44 is this is not valid HTML.
+01:46 I can't take this and open it up
+01:48 in an editor that does not understand Jinja
+01:50 and have it think it's okay, right
+01:52 I can't hand this to a designer
+01:54 and have them use their tools on it.
+01:56 But okay, let's put that aside for just a minute
+01:58 what else have we got here?
+01:59 So we do {{ }} to get the value out, we want
+02:01 to get the name, and we want to print the lowercase out.
+02:04 That seems great, there's nothing wrong with that
+02:06 that seems totally beautiful
+02:08 it's as good as it's going to get.
+02:10 But this {% endfor %}
+02:11 and the fact that it's not valid HTML
+02:14 Eh, I'm not loving it.
+02:15 Alright so that's Jinja2
+02:17 let's look at how it looks with Mako.
+02:19 Super similar, a little bit less syntax, it's not
+02:22 {% if not categories %}
+02:25 but it's % and then one line of python
+02:29 including the colon.
+02:31 You do still have the endifs and the endfors and so on.
+02:34 Now, in Mako the values that come in as dictionaries
+02:37 you have to treat them as full-on Python dictionaries
+02:40 you can't do your attribute access, you can't say c.name
+02:43 you got to c.get(name).lower(), maybe if you want the default
+02:47 value that's not none to be a little bit safe here.
+02:50 So the sort of attribute access is not so nice in Mako
+02:54 but the structured stuff, little bit better
+02:57 so I'm not sure which I prefer
+03:00 but just on a pure popularity basis
+03:02 I think I would tend to pick Jinja2
+03:05 just because like I said that's really popular
+03:07 so picking it obviously puts you, so your examples
+03:11 and stuff sort of match what's out there.
+03:13 Okay, so we've already seen Chameleon, let's compare
+03:15 how Chameleon would do this same bit of code.
+03:19 Simpler, right?
+03:21 Do you want to show the no categories?
+03:22 tal:condition, not categories.
+03:25 You want to show the other part when there are categories?
+03:28 tal:condition categories.
+03:30 You want to do a loop?
+03:31 tal:repeat, c.categories, and then you have basically
+03:33 the same type of access as you have in Jinja2
+03:36 c.name.lower(), but instead of doing
+03:39 {{ }}, you do a ${ }
+03:42 I'm not sure actually, I think I like Jinja2's better
+03:45 but look at this, this is valid HTML.
+03:48 Like this is legitimate HTML here, it's not invalid.
+03:51 It has wacky attributes, like tal:condition
+03:55 that don't mean anything to the browser
+03:56 but the browser will just ignore that.
+03:58 So I do really like that, but I also like just the lack of
+04:02 ceremony with all the
+04:04 the % and the {
+04:06 and the endfors and the endifs and all that kind of stuff.
+04:10 So to me, this one definitely wins
+04:12 because it's pure HTML and because
+04:16 it's just cleaner in my opinion.
+04:19 But like I said, you can pick whatever you want
+04:21 you want to use Jinja2, that's totally great
+04:23 you can use that, Pyramid totally loves it.
+04:26 But for our example, for the reasons I just described
+04:28 in this one app we're going to build in this course
+04:31 I'm choosing Chameleon because I think it really is better.
+04:34 It's not as popular, but that doesn't mean it's not better.

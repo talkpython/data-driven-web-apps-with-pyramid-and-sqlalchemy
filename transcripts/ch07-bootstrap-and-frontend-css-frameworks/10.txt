@@ -1,0 +1,153 @@
+00:00 The next thing we want to do is create a form with a button.
+00:03 Maybe some hyperlinks with buttons as well.
+00:05 So we'll just create a new HTML page here called "Buttons."
+00:10 So we'll start by Bootstrappifying this.
+00:13 Of course this goes in your standard and layout page
+00:16 and your normal pages don't have to
+00:18 to this, it just falls into place.
+00:19 But for these little one-offs, it has to be done separately.
+00:23 So let's imagine over here that we have a form.
+00:26 Its action is just going to be nothing.
+00:28 We'll just leave it like that for the minute.
+00:30 And its method equals POST.
+00:34 And in here, we want to have maybe something
+00:36 for your email and your password
+00:38 and let's say it's login, okay?
+00:41 So, we'll come in here and we'll have
+00:42 an input, type equals text and we'll
+00:46 say placeholder equals email
+00:49 we'll say it's required.
+00:51 That's decent.
+00:53 Actually, let's hold off on this just for a second.
+00:55 Let's see it in its raw form here.
+00:58 And let's have another input.
+01:02 Make that password, placeholder
+01:05 that's password also required.
+01:09 And let's have a button, and I'll type equals
+01:13 submit and I'll say login.
+01:18 And maybe next to this button
+01:19 we want to have a hyperlink.
+01:23 Where for some reason, if you don't have an account
+01:25 we can take you over to the register.
+01:28 Okay, if we open that up
+01:32 it looks very bad, very bad.
+01:35 That looks super old school, doesn't it?
+01:38 And of course it's going to look slightly different
+01:40 in the different browsers.
+01:42 So here's our email, here's our password.
+01:45 The placeholders things are working.
+01:47 The required thing is working.
+01:49 Register works, but of course there's no file there.
+01:53 So kind of working, but let's make this look better, right?
+01:57 Actually, one of our goals is to make register
+01:59 also a button, look like login.
+02:01 I'm not sure about really the semantics
+02:03 of putting it like that, but just for an example.
+02:06 So let's start by saying how does it look
+02:08 if we just put Bootstrap.
+02:11 Looks a little bit better, right?
+02:12 The general text input looks better and so on.
+02:17 Let's go down here and just put a little style
+02:19 on this so you can see it.
+02:21 Of course, this would go in CSS, but just
+02:22 for the demo, I'm going to just cram this on here.
+02:25 Let's put it at least in the style section
+02:27 that'll make me feel better.
+02:33 So we'll give the forms a little bit of padding
+02:34 to to push it away from the edge.
+02:36 Let's also do this, let's say width is 500px.
+02:41 I'll say that in just a minute.
+02:42 We're going to make it look a little bit better
+02:44 but let's build it up here.
+02:46 So now we've got the margin is 10 on the input
+02:49 and so hopefully that looks a little bit better.
+02:51 Let's try, woo, it's not amazing, it's
+02:54 nowhere near amazing, but it is better.
+02:57 So what can we do with Bootstrap?
+02:58 Well, let's focus on our buttons
+03:00 since that's where we started.
+03:01 I want that to be a button, and that to be a button
+03:03 and I want 'em to look pretty much the same.
+03:06 So in Bootstrap, a lot of this stuff is done
+03:08 with classes, so we'll come down here and say
+03:11 that first of all I want to treat this like a button
+03:14 so I'll say btn, and then what kind of button?
+03:18 There's themes that have different styles.
+03:20 Is it like a successful thing
+03:22 is it a possibly dangerous thing?
+03:24 So you say btn either success or danger
+03:28 or default or primary, let's go with primary.
+03:33 And then we'll do the same thing
+03:34 so this is our button in HTML
+03:36 and here's our hyperlink, we'll do the same thing here.
+03:43 That one's going to be a successful operation.
+03:45 We want to encourage them to register, right?
+03:48 Refresh, boom, look at that.
+03:50 That's pretty sweet, right?
+03:52 This one submits the form, this one navigates away
+03:55 somewhere we don't have existing, but whatever.
+03:57 You can see these are working well.
+03:59 And that's pretty much it for buttons.
+04:02 You can have small buttons, large buttons
+04:03 different colors, I'll show you a little template layout
+04:06 or a table of those and what they look like in a second.
+04:10 And let's go ahead and round
+04:11 out how these things look, right?
+04:12 They kind of look a little bit boring.
+04:17 We can do better.
+04:18 So over here, we can say a class is a form-control
+04:23 and sometimes this goes farther than you like.
+04:26 It's slightly mobile focused, it trends
+04:29 towards focusing on mobile, so you'll see
+04:31 in a second, look at that.
+04:33 Well, it's like okay that would be great
+04:35 that would look super on a screen like this, right?
+04:39 But the way it is right now, not so much.
+04:42 Let's do a little bit of help on this thing.
+04:52 Let's go put a little class on this
+04:54 and just say text-align is center.
+04:58 Here we go, that looks a little bit better.
+05:00 So this is okay, I like the styles, the rounded edge
+05:03 everything looks good, but I do have this zoomed, right?
+05:06 There's a non-zoom version.
+05:09 Whoops. So pretty decent, but when it looks like this
+05:13 not so much, what can we do here?
+05:15 Let's go and we'll put into our form here
+05:19 a login, that looks a little bit better.
+05:22 And maybe we'll even
+05:29 throw our center on there as well.
+05:30 Let's do one little quick thing
+05:32 to make this look decent, I'm going to go
+05:33 to the form, I'm going to set its max width
+05:37 to be 500px, eh, 450, 450.
+05:42 And then if we set the margin
+05:43 on the left and right to be auto
+05:51 it'll just center that.
+05:52 And let's go ahead and say background color
+05:55 we can even pick, oh it's over here in PyCharm.
+05:59 Let's just create a little border
+06:04 be it solid gray, I don't really want gray.
+06:07 I just want to pick a color like that.
+06:10 Okay, how 'about that, pretty decent.
+06:13 We need a little bit more, maybe put 10 here.
+06:20 Say margin top is 50px.
+06:30 And I've noticed for some reason, periodically
+06:32 that if you look at this, these extend too far
+06:35 to the right by 10 pixels, so we'll just push them
+06:38 back maybe a little bit more, 30, rather, instead of 20.
+06:42 There we go, so here's our nice little login form
+06:44 and it's looking really great.
+06:45 We've got our buttons by just having btn
+06:48 and then btn-style, right?
+06:50 Primary, success, etc. and we threw
+06:53 in some form control to make that look good as well.
+06:57 If you head over to the training site, you'll see
+06:58 that stuff in action all over the place.
+07:00 There's a button, go to login, there's your login.
+07:05 Here's your reset password.
+07:08 If you want to register, there's your register.
+07:11 Little CAPTCHA, 'cause people been trying to hack into it.
+07:15 And so on, go to these course details
+07:18 and we have still more buttons all over the place.
+07:22 This one is a hyperlink, this one
+07:25 actually submits a form, for example.

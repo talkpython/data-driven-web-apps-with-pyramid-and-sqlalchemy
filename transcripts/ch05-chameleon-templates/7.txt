@@ -1,0 +1,179 @@
+00:00 Alright, let's play with this layout concept here
+00:02 over to our project.
+00:04 And we saw we had a templates folder
+00:06 and it has a home_index that I created
+00:08 and this layout
+00:09 and this layout, this is the shared layout.
+00:11 If you look, let's start with the home_index
+00:14 that's what we're playing with.
+00:15 Notice there's this use-macro layout.pt
+00:20 and then, inside
+00:21 it's super critical that it's inside
+00:23 this fill slot content.
+00:25 So what's that about?
+00:26 Well, the macro is just the other page template
+00:29 that's obvious, but down here
+00:32 this defined slot content right there.
+00:36 So, if we looked at our view source on this
+00:39 let's run that really quick.
+00:43 Pull that up again.
+00:46 We'll see that there's this class content
+00:49 and then here is this stuff
+00:50 and it's, here's this outer div
+00:53 and it's contained within this column, mid 10
+00:56 that's grid stuff from Bootstrap
+00:57 I'll talk about that later.
+00:59 We have our starter template
+01:00 container, row, so a bit here
+01:02 and then, column, medium 10
+01:05 starter template, container
+01:07 column two, and then, here's our 10
+01:09 and then, there is that.
+01:13 Right?
+01:14 If we don't fill it
+01:15 it's going to be filled with no content
+01:16 but as soon as we do fill it
+01:18 then obviously, the contents go there.
+01:20 We can have more of these if we wanted.
+01:23 Suppose we want to have a section up at the top
+01:25 that will be extra CSS, let's say.
+01:29 Let's say, additional CSS
+01:32 and we just put nothing, like that
+01:35 and it's going to put a div, which is kind of funky
+01:37 so we can say, omit tag.
+01:40 Just put it like this, okay.
+01:42 So, it will either have nothing
+01:44 or we could go down and fill that slot as well.
+01:48 So, let's go down here, and it turns out
+01:49 I can reload this and show you
+01:52 nothing is changing.
+01:54 Notice, we're omitting the tag right there.
+01:56 This still works.
+01:57 Everything looks the same.
+01:58 So, you don't have to fill these actually
+02:00 these are optional
+02:01 but if we wanted to, inside this page
+02:04 we could say, metal fill-slot, and put this
+02:08 and we could just
+02:12 additional CSS from the page.
+02:15 So, some pages you'll find
+02:16 like if you're doing a store page
+02:18 or some section of your site
+02:21 maybe those pages want to have one more CSS file.
+02:25 Alright, so if we come here
+02:26 and we rerender it, it still looks the same
+02:28 but now you can see we've got that right there.
+02:32 Now, I think I need one more omit tag.
+02:37 There we go
+02:38 additional CSS from the page.
+02:40 So, this gives us a really structured way
+02:42 for these pages to reach back in
+02:45 and basically fill in little holes in the template
+02:50 but otherwise having the template
+02:53 be almost exactly the same except
+02:57 for the places where we're allowing
+02:58 the individual pages to change the content.
+03:01 Probably, would have an additional javascript one
+03:03 at the bottom as well.
+03:04 Let's go ahead and put that down here
+03:07 and it's very likely we want that
+03:09 after jquery and stuff.
+03:11 Put it down at the bottom.
+03:14 Okay, great, this is looking really good.
+03:17 Now, let's go and do one more thing.
+03:18 Let's create another view here.
+03:21 So, I'm going to come, really quickly I'll say.
+03:23 Let's create one called home that's called about.
+03:26 Alright, something like that.
+03:29 The route name is going to be about.
+03:31 The template is going to be home_about
+03:34 and we'll talk more about routing
+03:36 but I have to add a route for this to work.
+03:38 So, when I come down here, I'm going to have one.
+03:41 It's going to be about is the name
+03:42 that's what we used in the decorator we just typed in
+03:45 and then /about is the url.
+03:48 That right there is the name
+03:50 and then, /about is the url.
+03:52 Do a little clean up.
+03:54 We could just return nothing because
+03:57 we don't care about these little packages.
+03:59 It's return empty.
+04:00 Now, when you're not using request here
+04:02 notice PyCharm is complaining it is not used
+04:04 and python, you can put an underscore
+04:06 to say I know primer here is required
+04:08 I don't want to name it
+04:09 and that sort of tells the system like
+04:11 no I'm not using this
+04:13 but just remember to put it back
+04:15 to request when you need.
+04:17 Okay, great. So, the last thing to do is to create this.
+04:20 Well, let's see what happens if I run it
+04:21 without the template first.
+04:24 So, we come over here.
+04:26 I try to go to /about.
+04:28 It runs, but it says missing template home_about.
+04:32 So, we need to create our page template here
+04:34 and the easiest way, honestly
+04:37 to do this is to just take one
+04:39 of these and just copy and paste.
+04:41 So, control c, your command c
+04:42 and then, v say home_about
+04:50 and we'll just say about.
+04:55 So, now if you go refresh it
+04:56 look, home_about, and then if we go
+04:58 back to home, refresh it, we have our home.
+05:02 Let's do one final thing.
+05:03 See these things at the bottom here.
+05:04 These come from the layout up here
+05:08 these right here.
+05:11 So, let's change this.
+05:13 These are FontAwesome, these little slash i's here
+05:16 take care of those in a minute.
+05:18 So, let's change these to just be slash
+05:21 let's put home right here
+05:24 and you'll have another one
+05:25 /about, and we'll just put about.
+05:29 If we come back here and refresh
+05:30 now, I have home.
+05:31 I go home, hit about.
+05:32 As we navigate back and forth
+05:34 the layout is perfect, it's like absolutely perfect.
+05:36 So, we're just punching stuff in
+05:38 to the holes defined by exactly the same stuff.
+05:44 Pretty cool there, okay.
+05:46 So, that's how you use these layouts.
+05:48 It's really, really easy.
+05:49 One convention that I like to use
+05:51 that we'll adopt later and we'll talk
+05:53 about the organization, but when a page
+05:57 is not meant to be shown directly
+05:59 it's just there to support other pages.
+06:01 Like this layout, nobody ever requests this directly.
+06:04 They request this one or that one
+06:06 but never that one.
+06:07 I like to name this slightly differently
+06:09 take a riff off of Python to say this is kind
+06:12 of an internal thing and I'll put an
+06:14 _layout to indicate no
+06:15 this is not a top level page
+06:17 it's just there to support things.
+06:19 Of course, if you do that, you've got
+06:20 to go fix it here and there.
+06:24 So, one more time, rerun everything
+06:26 technically not necessary, but just
+06:27 to be sure, make sure everything is working.
+06:30 There we go.
+06:31 So, we've got our layout in place.
+06:33 This comes as part of the template
+06:35 but it's really an important part
+06:36 of building any large web application.
+06:39 The Talk Python Training site has 62 different templates.
+06:43 Imagine if I had to manage the CSS
+06:45 and HTML, and the structure across all those files
+06:50 and if I wanted to change them
+06:51 I probably just wouldn't.
+06:53 So, really great, definitely take advantage of this feature.
+06:55 It's easy to use, but you have to know it exist.
+06:58 So, take advantage of it.

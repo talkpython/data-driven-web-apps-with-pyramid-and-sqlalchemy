@@ -1,0 +1,18 @@
+00:00 Hello and welcome to Data Driven Web Apps in Pyramid.
+00:04 In this course, we are going to take the Pyramid web framework
+00:07 which is a Python-based web framework
+00:10 and we're going to build some amazing
+00:12 data driven web applications.
+00:14 We're going to use Bootstrap which is one
+00:16 of the most popular CSS front end design frameworks
+00:19 to make our web app we build in Python look great.
+00:23 Of course, almost all web applications access databases.
+00:27 At least the dynamic ones do.
+00:29 And we're going to use the most popular
+00:30 and powerful Python-based ORM called SQLAlchemy
+00:34 to write Python classes and map those to our database.
+00:39 Welcome, welcome, welcome
+00:40 to Data Driven Web Apps in Pyramid.
+00:43 We're going to have a great time building
+00:45 some real world applications and learning
+00:47 some real world ways to put them into production.

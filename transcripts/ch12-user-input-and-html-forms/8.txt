@@ -1,0 +1,78 @@
+00:00 We have the values: email, name and password
+00:02 and we validated that they're okay.
+00:05 We will improve on that but let's just roll with this.
+00:07 Now it's time to actually create the user.
+00:09 So, how do we do that?
+00:13 Remember we have the user service.
+00:14 Let's put that logic right there
+00:16 and let's just call create_user and pass the data.
+00:22 Of course PyCharm knows this doesn't exist
+00:26 and let's do like this, say user
+00:29 and then we'll have a TODO: login user.
+00:32 I'll talk more about that in a moment
+00:34 but let's just first create that user so that they exist.
+00:43 All right looks good to me
+00:44 except for the fact that it's returning None.
+00:47 How are we going to do this?
+00:48 Well at this point it's pretty straightforward
+00:50 I say user = User()
+00:53 and then we're going to return user.
+00:56 Let's set all those values.
+01:00 What do you think? Yes? No?
+01:03 No. Don't do that. Be careful there
+01:07 so what we want to do is we actually want
+01:08 to take this password
+01:10 and turn it into something that is completely irreversible.
+01:15 Hopefully so computational expensive that people will try
+01:19 and then just go "forget this, this is not working.
+01:22 I'm going to go hack some other site that is easier to get to."
+01:29 You know, this assumes they get ahold of the password hash
+01:31 or something like that like if some data leaked
+01:33 but still you got to be really careful here
+01:35 storing this in our database.
+01:36 We don't want to cause trouble.
+01:37 So how do we do that?
+01:39 Well, we're going to use this thing called Passlib.
+01:42 Passlib is really sweet. What it lets you do
+01:45 is it lets you basically choose an encryption algorithm
+01:49 and then just hash it with what's called customized salt
+01:54 so it's extremely hard to guess.
+01:56 It's not just guessing the password
+01:57 it's also guessing other stuff being factored in
+02:00 and then not just hashing it
+02:03 which is sort of a one way thing
+02:05 but it can be, you can sort of brute force
+02:07 you can take a bunch of words
+02:09 and hash them and see if they match
+02:10 if you also knew the salt.
+02:12 So what we're going to do here is hash it
+02:14 over and over and over like 100,000 times or something
+02:18 which will make it way harder.
+02:19 So Passlib makes that super easy.
+02:22 So we're going to do this from passlib
+02:25 we want to install that package .handlers.sha2
+02:34 we're going to import sha512crypt.
+02:38 Okay so this is pretty strong.
+02:39 Bcrypt would be better and they do support it
+02:41 but Bcrypt, I believe, has stronger dependencies
+02:44 and in order to get it to work on your system.
+02:47 sha512 doesn't take any extra setup
+02:49 so just for simplicity sake we're going to go with that.
+02:52 I'm going to just drop two functions in here
+02:55 hashing_text and verifying_text
+02:57 so we're going to just call encrypt
+03:00 and we're going to say not just do it once
+03:02 with custom salt, do it 150,000 times
+03:04 and then you can just ask
+03:05 given a plain text password do these match?
+03:10 So now we're just going to go over here
+03:11 and say hash_text password. Boom.
+03:14 Now we're down to just standard database stuff.
+03:16 Remember it goes like this, session.commit()
+03:20 and then what are we going to do?
+03:21 session.add(user). Well that's pretty much it.
+03:27 See in practice there might be some issues using this user
+03:30 because once you commit you need to requery it
+03:33 from the database.
+03:34 We'll run into that later I'm sure and talk about it
+03:37 but for now this should let us create the user.

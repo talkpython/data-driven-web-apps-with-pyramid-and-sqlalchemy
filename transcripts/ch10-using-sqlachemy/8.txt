@@ -1,0 +1,145 @@
+00:00 Now, to see what I'd like to show you in this one.
+00:02 It's time to finally look at this echo.
+00:04 So far it's been false, but let's set it to be true.
+00:08 And rerun our code
+00:09 and we see a whole bunch of stuff shoot out.
+00:11 Look at all that.
+00:12 So, what we're doing is actually, SQLAlchemy
+00:15 is checking for the existence of various tables
+00:17 like downloads, languages, releases and so on.
+00:22 And then our app finally starts.
+00:23 Alright so this is when we initialize our database stuff.
+00:27 Now, let's go over here and load up this page.
+00:31 Works great. But notice all the different statements.
+00:34 We have over here a begin, select package stuff
+00:40 from packages, where package ID is some sort of
+00:43 limit and offset. Okay so this is getting
+00:46 you can see it's doing the query for
+00:49 the first awscli, right.
+00:52 So, offset is 1, sorry, offset is 0.
+00:54 Limit is one. Okay the thing, that's first. Great.
+00:58 Then, we go back to the database again
+01:02 and we select release stuff from releases
+01:05 where package ID equals some parameter.
+01:08 That parameter being the one we passed.
+01:10 And we order by these three things in that order.
+01:13 Two operations. Not hugely bad here.
+01:17 But imagine, you got a list of these packages
+01:21 and you looped over those packages and interacted
+01:23 with their releases. If you got 20 packages
+01:26 you're doing one query to get the 20 packages
+01:28 and then you're doing this query separately, 20 times.
+01:32 So 21 operations. That's the so-called n+1 problem
+01:36 which is a common anti-pattern in terms of performance for ORMs
+01:41 This lazy loader's nice, but if you know you're going to
+01:44 interact with releases, there's something we can do better.
+01:47 So let's turn this into a single query
+01:50 that would solve the n+1 problem.
+01:51 Great, now we're getting one package so it's not terrible
+01:53 like I said, but the same technique applies regards
+01:56 of how many you're getting back. Alright, let's have a look.
+02:00 So we go over here, and we have this nice, clean bit of code
+02:03 on line 42. Give me a query, filter it like this, first boom.
+02:07 However, for what we're about to do
+02:09 we need a little more space.
+02:10 So let's put some wrap in here and here
+02:15 and we're going to come over and say we would like to
+02:19 go options, and we want to call this thing subqueryload.
+02:24 We're going to import that from the ORM.
+02:26 And what we do here
+02:29 is we're going to put the relationship to be loaded.
+02:32 So package.releases.  So what are we doing?
+02:35 We're telling SQLAlchemy, go do this query
+02:38 and anything you return also go ahead and use a subquery
+02:41 to pull out all the related releases of this one.
+02:45 You could also do a joinedload.
+02:47 I think subqueryload's a little newer and fancier
+02:49 but they both would accomplish more or less the same thing.
+02:53 We have our filter again and first.
+02:55 So now, if we run the same thing again
+02:57 we should see one, more complicated but only one
+03:01 contact to the database. There it is.
+03:05 And let's try it with joinedload.
+03:09 I think actually joinedload might be better here.
+03:11 Try again. Clean that up. There we go
+03:18 now we're down to one interaction with the database.
+03:20 That's what I wanted after all.
+03:21 So, we come over here and we say
+03:23 select the package stuff here from
+03:26 and then we're doing another, sort of left outer joined
+03:30 on releases, to give us that.
+03:32 So one interaction with the database.
+03:35 It echos out to I think a standard error.
+03:38 And then, just standard out.
+03:41 But now we've got it down to one database interaction
+03:43 and that's better.
+03:44 So you can either use subqueryload or joinedload
+03:47 and either will work.
+03:48 Okay, so, let's look at performance.
+03:51 I guess we haven't really talked about performance.
+03:53 I'm going to go back and turn off echo.
+03:55 'Cause we don't want to trace out a bunch of stuff.
+03:59 So let me do this query a bunch of times.
+04:01 Now, just to be fair, over here.
+04:05 There's not a tremendous amount of data.
+04:06 I mean, there are 5000 releases but only 96 projects.
+04:09 It turns out, that even with tons of data
+04:11 we can get really good performance.
+04:13 But let's pull this back up.
+04:15 Have a look. So all that stuff happening is 62 milliseconds.
+04:21 Pretty decent.
+04:22 Let's see if I hit it a few times if I can get it better.
+04:28 Eh, 68, it looks like that's pretty much it.
+04:31 Check this out, we have our render.
+04:33 And we actually have SQLAlchemy.
+04:35 Here's that query, holy moly.
+04:37 That is quite the query.
+04:40 I guess it would be interesting to try the joinedload
+04:43 as well and see if we get any performance difference.
+04:45 Another thing, just while we have this pulled up here.
+04:48 If we go turn on performance and go back to history.
+04:52 And then we refresh this a few more times
+04:56 you can actually pull up performance
+04:58 if I click on the right part here.
+05:00 Pull up performance is slower because we're asking it
+05:02 to do more work, but look at this.
+05:04 Built-in profiling, so.
+05:07 It turns out, where does it start to get slow.
+05:11 Find package by name.
+05:15 Takes about that long, okay.
+05:16 Apparently to do that query, it takes a little while.
+05:19 Let's go back and just, you know
+05:20 since now we can measure
+05:22 let's go change a few things here.
+05:24 Let's try this subqueryload first of all.
+05:35 Do that a few times, pull up the latest.
+05:40 Now, this number's slower than the original
+05:43 but it actually, that's only because the profiling was on
+05:46 let's turn that off. And notice, over here
+05:48 we now have two SQLAlchemy interactions
+05:51 one for releases and one from packages.
+05:54 Let's try again. 20 milliseconds, how 'about that?
+06:01 Subquery join is actually, subqueryload is actually faster
+06:06 by quite a bit, that's three times faster.
+06:08 I guess the final thing to check would just be
+06:10 what if it weren't there?
+06:12 Let's try it one more time, and just do the relationship.
+06:19 And look at that. 16 milliseconds.
+06:22 It's a little bit of a interesting case, right?
+06:24 That we put that performance speed up in there
+06:27 and it actually made it slower.
+06:29 It just reminds you, always, always measure.
+06:32 So, I'll put a little comment here so you have that, like so.
+06:37 Let's put it actually over here, above.
+06:41 The reason I think this is faster is
+06:45 we're not suffering at all
+06:47 from the latency of talking to the database.
+06:50 In a real database, that probably would be slower
+06:53 because you've got a few milliseconds
+06:55 between the interactions.
+06:57 And this whole n+1 problem, if you have a hundred
+06:59 well obviously the join is going to be faster.
+07:01 But I guess just two independent queries
+07:03 is faster in this case.
+07:04 So, you know, measure, measure, measure.
+07:06 See what's up.

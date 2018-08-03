@@ -1,0 +1,53 @@
+00:00 The final building block
+00:01 that we're going to talk about here are templates.
+00:03 Templates are super important.
+00:05 They let us define in an HTML-like fashion
+00:10 the general markup for our site
+00:12 and then add little bits of
+00:14 dynamic behavior to it.
+00:16 There's actually three choices we can use
+00:18 for the template language.
+00:20 We can use Mako,
+00:22 we can use Jinja2,
+00:23 or we can use Chameleon templates.
+00:26 This is a Chameleon template here,
+00:29 and I'll talk later about why
+00:31 I think Chameleon is the right choice.
+00:32 But let's just see how this works.
+00:34 It's kind of the same for all the template languages.
+00:37 So what we're going to do is we saw that we passed
+00:39 a model over that had packages, right.
+00:43 One of the keys in the model was packages,
+00:45 and the value was actually a list of packages.
+00:50 We're going to use tal:repeat and I'm going to say
+00:52 for every package in packages,
+00:55 I want to replicate this HTML block,
+00:58 including the DIV that has the tal:repeat on it.
+01:01 So we'll have a DIV containing a hyperlink
+01:04 in a span for every package.
+01:06 And then for the hyperlink
+01:07 we need to set the URL,
+01:09 so within this little repeat loop
+01:10 we can say p.url,
+01:12 p.name and so on.
+01:14 And then we're going to show the summary
+01:17 but only if the summary exists.
+01:19 Like if there's an empty summary or it's not set,
+01:21 then we're not going to show it.
+01:22 So you can see that if we want to take some sort of text
+01:26 or anything and get a string version of it
+01:28 and just plunk it into the page,
+01:30 we'll use dollar curly expression.
+01:33 We can do these conditions with tal:condition
+01:36 and so on.
+01:37 Often when we take this
+01:39 and actually pass that data to it and render it,
+01:42 that pyramid render it,
+01:43 it's going to look like this:
+01:44 requests, Http For Humans, boto3, AWS API
+01:48 and SQLAlchemy and so on.
+01:49 Cause that was the model of the three packaged requests
+01:53 Boto3 and SQLAlchemay passed along to this template.
+01:56 So that's what its going to look like.
+01:58 Unstyled and ugly of course,
+02:00 we're going to work on that later.

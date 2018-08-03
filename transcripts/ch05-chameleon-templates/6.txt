@@ -1,0 +1,53 @@
+00:00 We saw that our view was actually broken into two parts.
+00:03 And it was using what I'm going to call
+00:05 a shared layout master template.
+00:09 Let's look into this.
+00:10 So what is the concept here
+00:12 why do we have this layout page?
+00:14 Let's look at a real world site, say talkpython.fm
+00:19 This site is built with pyramid and it uses this concept.
+00:23 So over here you can see that I've got this home page
+00:26 this is just the main index page on the site.
+00:30 And it's got this big hero section
+00:32 with episodes and last episode and so on.
+00:35 And it's got this navigation across the top.
+00:37 But as you move around the site
+00:38 you'll see it has the same basic look and feel.
+00:42 Navigation bit and the branding
+00:44 and the Rollbar stuff is there
+00:45 but the content of the page changed.
+00:48 You go into an episode, same thing.
+00:50 But at the top, the same stuff is coming along.
+00:52 Also what you can't see but is happening
+00:55 the same Javascript, the same CSS
+00:57 and lots of other things like that
+00:59 like the RSS feed indicator in a metatag.
+01:01 All of that is being shared across these.
+01:06 It's the layout page that makes sure that this is consistent
+01:08 and automatic on every single page.
+01:11 In order to implement a new page
+01:13 all I have to do is figure out what goes in the middle.
+01:15 And it's wrapped up by the design.
+01:18 If the design changes, it changes across everything.
+01:20 No muss, no fuss, it's super easy.
+01:23 It's important to realize
+01:24 that this is more than just look and feel
+01:26 so that you have consistent head meta information, right?
+01:30 There might be description, there might be a title
+01:33 there's all sorts of stuff that goes up there
+01:35 included CSS, the correct order of the CSS
+01:38 and potentially even some javascript
+01:41 for single-page app type things like .
+01:45 Some of those go at the top, some go at the bottom.
+01:48 It's typical to put the noncritical javascript files
+01:52 at the bottom so that the page loads
+01:55 and half a second later the javascript stuff loads
+01:58 the first time and then of course it's cached, it's instant.
+02:02 We also have consistency analytics.
+02:04 You're sure that every single page includes your
+02:06 Google Analytics tag or your GetClicky tag
+02:09 things like that.
+02:11 And, you also have a controlled way
+02:13 to add on additional CSS and additional javascript
+02:16 and make sure every time that goes in
+02:18 exactly the right place.

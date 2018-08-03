@@ -1,0 +1,60 @@
+00:00 We're going to work with three different types of tests.
+00:03 Now this, like I said is not a general course
+00:07 on just unit testing or testing in general.
+00:09 There may be other aspects of testing
+00:11 that would make sense in this application
+00:14 but we're going to focus on the ones that are special
+00:17 to web applications and how to deal with those.
+00:20 So, let's go from, I guess easiest is probably the way
+00:22 to think of it, to more complicated and more holistic.
+00:25 So one of them is, we might want to test the view model.
+00:28 This is a super important part of validation
+00:31 for almost all of our various methods.
+00:35 So it gets the data in, it maybe normalizes it
+00:38 we saw our registered email takes a potentially
+00:42 space-filled upper case email always normalizes it to
+00:46 just truncated, lowercase versions and so on.
+00:50 We might want to test that. Also has deep validation in here
+00:53 like this is what our validation is
+00:55 and validation is an important this to test.
+00:57 So what's special about this?
+00:59 Well we have to come up with a request
+01:02 a real Pyramid request object that we can give it
+01:05 because it might use it in who knows how.
+01:08 So we're going to have to come up with that
+01:09 and that going to take some special techniques.
+01:12 Also, we saw many of these view models
+01:14 talk to the database, which means, we can't separate
+01:17 the test here from actual having a live database.
+01:21 Which is very much what you want to do.
+01:23 So we're going to see how to address both of those issues.
+01:26 Then we might want to test the view method which internally
+01:29 probably works with a view model, but not necessarily.
+01:32 And again, in order to call the view method
+01:35 we have to pass a request.
+01:37 So this setup here is not that different
+01:39 between the two, but how you test the outcome probably is.
+01:43 And then, we might want to test the entire website.
+01:46 I want to take a URL, make sure the routing is set up
+01:50 correctly, that it finds the right view method
+01:52 passes that data over, runs through all the templates
+01:55 and everything, and gets the right information back.
+01:58 So we might want to spin up the entire web app.
+02:01 Not on a server, but in process in our tests.
+02:05 So, we're going to create this web app
+02:08 and we're going to feed it a fake HTTP request.
+02:12 Again, this might talk to the database
+02:13 do other sorts of things we might like to avoid.
+02:16 So these are the three types of tests that we have.
+02:19 Maybe more fine grained or separate on the left here
+02:22 we might also have just general unit tests
+02:24 for algorithms and things like that.
+02:26 And to the right, even more integrated we might
+02:30 actually deploy our website to a server
+02:32 and have something like Selenium
+02:34 interact with it as if it were a web browser.
+02:37 We're not going to focus on either of those
+02:38 we're going to focus on these three
+02:39 because of their special techniques
+02:42 and the tools from Pyramid and elsewhere.
+02:44 that we're going to use to solve.

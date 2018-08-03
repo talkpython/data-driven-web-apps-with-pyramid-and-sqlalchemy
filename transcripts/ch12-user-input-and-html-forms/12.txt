@@ -1,0 +1,114 @@
+00:00 So we've been able to login our user
+00:02 and register users, and we're doing this just in the context
+00:05 more of demonstrating how to interact with forms
+00:08 more than how to do proper user management.
+00:11 There's a lot of stuff that we're skippping over
+00:13 password resets, welcome emails, all kinds of things
+00:16 that you're really going to have to do, we're not doing.
+00:19 But I do want to have the ability to have users
+00:22 in this web app, and one of the important parts
+00:24 is actually, once somebody has logged in or registered
+00:27 knowing okay well, on the next request
+00:30 who is that, are they logged in again?
+00:33 Because HTTP in the web it's stateless, right?
+00:35 We have to basically carry a cookie back and forth
+00:38 to say here's the logged-in user.
+00:41 A new Python file called cookie_auth.
+00:46 Now, there's a lot of details here that don't matter too much
+00:49 so I'm just going to drop them in here and talk you through them
+00:52 and you can take them or create your own mechanism.
+00:55 Idea is, we want to create a tamper-proof cookie
+00:57 that can live in the user's browser
+01:01 potentially across sessions you can set it to time out
+01:04 after they close the browser if you wanted.
+01:06 This one will live longer
+01:07 and we're going to set this when they log in
+01:09 and then on every request, if we need to know
+01:11 if they're logged in and who they are
+01:12 we're going to check it.
+01:13 I realized I've put this in the wrong place.
+01:15 I want to make a folder, a new category here, called
+01:17 I may make it a new subpackage.
+01:24 And our cookie_auth is going to go there.
+01:26 And I also want to have one other function called try_int
+01:35 'cause periodically we have to parse ints
+01:38 and it can be really annoying
+01:40 to have to do a try except.
+01:41 So we'll have text to the str
+01:45 it's going to return an optional int.
+01:50 So here we'll just bundle this try except up
+01:53 and do it all here, so we'll return int with text
+01:58 and that didn't work, we're going to return None.
+02:00 There's your optional, great
+02:02 so we're going to use this in our little cookie_auth thing.
+02:05 Alright, now it looks like we have everything in place.
+02:10 We're just going to have two functions, set_auth
+02:12 give it a request and a user ID
+02:14 and it's going to do some hashing
+02:17 and then create this, store the ID
+02:19 as well as somewhat tamper proof sort of check
+02:23 that this ID can't be just changed or played with
+02:26 then we're going to say before you send the response back
+02:30 call this function add_cookie, okay?
+02:32 The hashtext is just going to do a little salty hashy stuff
+02:35 again with sha512 and then we're going to be able to ask
+02:39 give me the user from the cookie
+02:40 and then it'll just look in the request cookie
+02:43 pull it apart, make sure some stuff is okay
+02:46 and then get the user ID back
+02:49 assuming that it hasn't been tampered with.
+02:51 Great, so that's all there is to this
+02:52 and let's go and use it here.
+02:55 So down here we say login user, let's do it.
+02:57 We'll say cookie_auth, import that.
+03:01 We'll say set_auth, and what does it expect
+03:04 it expects the request, and user.id that seems easy.
+03:10 Same thing for when we log in down here.
+03:13 Good, now how do we know it's working?
+03:15 Well, there's a couple things we can do
+03:16 but let's go up here to this index one
+03:19 and we're going to say user ID.
+03:23 Instead of setting auth, we're going to say get
+03:27 got to pass in our request here like so
+03:29 but we got to name it.
+03:30 Remember, we unnamed it, so it didn't complain?
+03:32 Now we name it again apparently
+03:34 so we'll say if not user ID, let's just do this.
+03:37 Let's say user equals user service
+03:41 and how about find_user_by_id?
+03:46 Again, this should be super easy to write.
+03:49 That's an int
+03:54 an optional user, and it looks really a lot like that.
+03:58 So let's go down here and just borrow that.
+04:07 Done, isn't SQLAlchemy a thing of beauty?
+04:09 Alright, so we come out here and get our user
+04:12 and we'll say if not user, we're going to do a redirect.
+04:22 Over to account login, otherwise
+04:24 we're just going to say maybe we'll set the user
+04:26 and pass it over so we can set the name.
+04:30 If we need to do something interesting
+04:31 let's go to our index and just say
+04:35 welcome to your account, user.name.
+04:41 Let's see if that all holds together.
+04:44 Right now, we're not sending the cookie.
+04:46 We could try to go and do a count.
+04:49 And it says no result was found.
+04:51 Ah, you know what I want?
+04:52 I don't want one for that one, I want first.
+04:55 One is, it's going to be an error if it's not there.
+04:57 I think I used it before, maybe it was in a place.
+05:02 First, I also want that to not crash.
+05:05 Sometimes you do want it to crash.
+05:06 You're certain you're asking for something
+05:09 and it's not there, but this time I don't.
+05:11 So notice I try to go to account.
+05:13 No, no, you're not logged in.
+05:16 Let's try logging you in.
+05:18 Okay, let's log me in.
+05:20 Oh, how about that?
+05:22 We'll click around, click over and register
+05:27 and then if we go back, account, Tada!
+05:30 Very last thing up here, we have these showing
+05:33 it should say maybe go to your account
+05:35 and log out instead of register and log in.
+05:38 We'll fix that next.

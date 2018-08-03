@@ -1,0 +1,61 @@
+00:00 Let's start her building by doing
+00:01 a little bit of tearing down.
+00:03 Okay, so over here, we've got our CSS in place.
+00:06 For our layout, let's just do a quick tour.
+00:10 We don't want all of this stuff.
+00:12 We want to have more control, right?
+00:13 This says every single page is going to have this stuff up here
+00:17 and then, somewhere in the middle you'll have
+00:20 you know, this inside of a 10, 10/12ths segment
+00:25 a 5/6ths segment, you getta put your content
+00:27 and we don't want that. We want this to be
+00:33 having much more control here.
+00:35 So we'll do something like this.
+00:37 See where we're getting with that?
+00:40 Better. Not great, but better.
+00:44 We're here in the content, we're just going to have Home.
+00:47 Don't know if we're going to end up using that Home CSS
+00:50 but we'll leave this part for here for now.
+00:52 It just says Home. I notice there's a lot of this
+00:55 design stuff from the theme coming in here
+00:58 and we want to go and start rolling some of that back.
+01:03 Now, one thing we can do here is
+01:05 I would like to keep a lot of the theme
+01:07 that is already applied to this site
+01:09 but, I don't like the red. I don't like this
+01:12 huge margin up here, and things like that.
+01:15 So, I want to put them back.
+01:17 We could go and start working on the theme itself
+01:20 one possibility. Another one, something I like to do
+01:23 is when I'm getting started is I come over here
+01:26 and I would maybe make a new style sheet
+01:28 called Theme Overrides, and what the idea is
+01:32 we're going to include that after the Theme up at the top
+01:40 and into this section, we're going to put just a bunch
+01:42 of changes that override some of the settings
+01:44 that we don't like from the theme.
+01:46 Alright, instead of typing this out, there's quite a few
+01:48 let me just paste them and we'll review them. Okay?
+01:51 So, in the body, we want the color to be mostly dark
+01:54 and the background white, instead of having all the
+01:56 padding and being red and so on.
+02:00 Again, the font content of many things
+02:03 we're going to reset here, but from the theme
+02:05 so the colors are being set
+02:07 you can see black and blue for some of the elements.
+02:13 A lot of this is just color or underlying changes
+02:16 really, really simple.
+02:17 We're going to get to the nav bar in a minute
+02:19 that's a bootstrap thing that we're going to use
+02:21 so there's some changes to just change the color to match.
+02:25 These change the color to match pi PI, not the default
+02:29 so that's fine, and then here we've just
+02:31 sort of reset the margin.
+02:33 Okay, so let's see how we're doing now.
+02:35 Here we go, something pretty white and clean and plain.
+02:40 So let's try and go to work on this page next.
+02:43 We're going to try to get this section in.
+02:46 Some of this stuff here, these two pieces
+02:49 and, actually, this is the real live one.
+02:52 We are just going to have one column here, just to keep things
+02:55 simple, so our data doesn't get too complicated.

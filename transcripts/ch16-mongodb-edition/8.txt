@@ -1,0 +1,93 @@
+00:00 Well, we had everything working, seemed like.
+00:03 Come over here and all the queries are running.
+00:05 There's no data, in fact, even if we go over here
+00:07 and we refresh, we now have our packages
+00:10 and their indexes, but again, if we try to look, no records.
+00:15 So, everything looks like it's fine.
+00:17 Actually, here's our six users.
+00:18 That's pretty sweet, must have been playing with that.
+00:21 In fact, I know exactly where those
+00:23 six users are coming from.
+00:24 Let's get rid of that. Remember this?
+00:29 Yeah, let's drop that.
+00:31 So, it even looks like our little count thing
+00:33 is actually working, 'cause
+00:34 apparently we've run this six times now.
+00:37 Okay, so, here's the problem, if I try to login
+00:41 it crashes, and it says hash code has kind of gone
+00:44 insane, well, what is going on here?
+00:48 We're trying to hash like a string, or some...
+00:50 Let's go, let's go get, let's go figure this out.
+00:57 We can even set a break point here and see what's going on.
+01:01 Try to login again, our user object comes along
+01:04 our user hashed_password is ... not set.
+01:07 It's 'cause we haven't actually logged in, right?
+01:09 So there's this sort of messed up data
+01:11 let's go ahead and just clear that out.
+01:14 Now if we go try to login, it says the user wasn't found.
+01:18 So, that's good, hey great, that just must mean
+01:21 we need to register, so let's go register.
+01:25 Here's where we're going to run into the mismatch between the data types.
+01:28 None type is callable, oh, maybe not yet.
+01:31 Our user_service, find_user_by_id, apparently
+01:33 we didn't rewrite that one, did we?
+01:35 No, we're looking straight at it .
+01:37 Alright, let's fix that.
+01:42 Not terribly hard to fix, is it?
+01:44 Try again. Now, check this out, we were able
+01:47 to register, and then we redirected
+01:50 to account, see this is not account/register
+01:52 it did that get post redirect success.
+01:56 However, here's the data type mis-match.
+01:58 It said, look, you can't pass me zero
+02:02 an integer, when I expected an ObjectId.
+02:05 It has to be this weird, sort of
+02:07 UUID format for ObjectIds.
+02:09 And we can fix that really easy.
+02:11 If we go over to our cookie auth
+02:12 you'll see we're passing integers
+02:14 but we don't want to pass integers
+02:15 'cause that's not what the id is anymore.
+02:17 It's now this thing called bson
+02:18 which comes from the dependency
+02:20 we installed, and an ObjectId.
+02:23 So, we're going to turn that to a string
+02:25 this is fine, nothing major happened there.
+02:27 Here is where we get the mistake.
+02:30 We're returning an integer, and we want to return this.
+02:32 So instead of doing this, try int thing
+02:35 we're going to say try return bson.ObjectId
+02:38 of user ID, except ... return none.
+02:43 K, so, we have to convert this
+02:45 from a string to this ObjectId class
+02:48 it knows how to parse it's own strings
+02:49 it's fine, but we can't do it as
+02:51 an integer, it's not an integer.
+02:53 Okay, now we should be able to use the site.
+02:57 Look at that, our account is here!
+02:58 Michael Kennedy, we can go home.
+03:00 We can see we have one user.
+03:02 Let's logout and create one more
+03:03 do this whole path successfully.
+03:05 Register ... Sarah Smith ... ss@gmail.com
+03:09 and ... she just likes the letter s.
+03:12 Boom, looks like she logged in fine.
+03:14 Our ... formatting here isn't amazing, but ...
+03:17 That's fine, we're just going to leave it.
+03:19 So, now we've got this entirely working
+03:21 with MongoDB, and we come over here
+03:23 and we can go look at our users
+03:26 here we can see this one with a massive
+03:28 crazy, hashed_password, same thing
+03:30 for Sarah Smith, with her massive password
+03:33 over here, right, we can scroll way over.
+03:35 That's a serious password.
+03:37 It's pretty sweet, it looks like we've
+03:38 converted successfully from SQLAlchemy over to MongoDB.
+03:43 Hopefully you felt like wow we didn't
+03:44 really do that much, I mean, I talked a lot
+03:46 to help you understand some of the new concepts
+03:49 but if I didn't talk that much
+03:50 we could have cranked that out really quick.
+03:52 Because we add the new entities
+03:54 rewrite the services, we're kind of there.

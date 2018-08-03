@@ -1,0 +1,37 @@
+00:00 The best way to use a Alembic, I think
+00:02 is to let SQLAlchemy at least prebuild
+00:06 the various revision changes for you
+00:08 and then you can edit them still if you like.
+00:11 In order to do that, you have to edit the
+00:12 env.py file and you have to set the target metadata
+00:17 to the SQLAlchemyBase.metadata.
+00:19 And just like before, it is super important
+00:21 that that SQLAlchemyBase thing
+00:23 sees all of your various models.
+00:26 That means you have to do some form of import like this
+00:29 from pypi.data import * or something to that effect
+00:33 to make sure that everything is loaded up.
+00:36 But adding these two things we'll connect SQLAlchemy
+00:38 and Alembic so that Alembic can use your models
+00:42 to generate the revisions. And that is way, way sweeter.
+00:47 So just simply setting this target metadata
+00:50 is all we have to do to connect our ORM models to Alembic.
+00:53 And then to make a change, we just add the
+00:55 auto generate like we had before but now we say
+00:58 auto generate this change.
+01:00 It's going to go detect the various changes
+01:03 and it's going to create another one of these files.
+01:06 We open up that file and now, it's better.
+01:08 We have this little section in upgrade.
+01:10 Instead of pass, it says, "These were auto generated
+01:13 "by Alembic, please review them and if you're happy
+01:17 "just leave them, or if you need to, make changes."
+01:21 Nothing happens when you auto generate this
+01:23 but it generates the file if it can guess
+01:25 and then you edit it to do what it needs.
+01:28 Finally you just apply it again
+01:31 and it's going to apply that auto generated revision change
+01:34 rather than the one you had to manually write. And that's Alembic.
+01:38 A various nice way to keep evolving your database structure
+01:43 along with the evolution of your SQLAlchemy models
+01:47 and for the most part making that automatic.

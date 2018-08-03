@@ -1,0 +1,40 @@
+00:00 Now before we actually go and write the code
+00:02 let's just look, really high level, at the data model.
+00:04 Here is some reasonable representation
+00:07 of what we are doing with SQLAlchemy and SQLite.
+00:12 I don't think this is an exact match of what we built
+00:14 but it's kind of close.
+00:15 Okay, so we've got packages.
+00:17 Packages have maintainers.
+00:19 This is that normalization table
+00:20 and we have users, and then packages have releases
+00:24 and things like that, that's the release history.
+00:26 They also have operating systems
+00:27 programming languages, so on and so on.
+00:31 Okay, so if we take this data model and we reimagine it
+00:34 in a document database, it gets so much simpler.
+00:37 Watch this.
+00:38 See all those relationships in all these tables?
+00:41 There it is in MongoDB or any document database.
+00:44 We have users, we have packages, we have release history
+00:47 and we have downloads.
+00:48 We didn't really model that very much in our example
+00:50 but we do have that in SQLAlchemy as well.
+00:52 This is easier to wrap your head around, right?
+00:54 Much easier.
+00:56 However, when you crack open these little boxes
+00:59 like you look inside packages, it's more complicated
+01:01 because we have more stuff in there.
+01:02 All those relationships in that data is still there
+01:04 so if we dig in, packages are pretty straightforward
+01:07 but the release history, each release
+01:10 at least in this little model here
+01:12 could have a different set of operating systems
+01:14 it works with, a different set of programming languages
+01:16 and then if you look at packages
+01:19 it has that maintainer foreign key relationships
+01:22 so instead of having a normalization table there
+01:24 we just embed that within packages.
+01:26 So we're going to take something kind of like this
+01:29 and build it in MongoDB in our application
+01:32 to replace, entirely, our SQLite, SQLAlchemy based database.

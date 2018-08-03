@@ -1,0 +1,188 @@
+00:00 Alright, we're going to begin creating our project
+00:02 by simply opening up our terminal or command prompt
+00:05 if you're on Windows.
+00:07 Want to going to go to the right location.
+00:08 So over here in our demos, this is the Git Repository
+00:13 that you all have access to
+00:14 created a thing called Chapter Four: First Site.
+00:18 For each chapter I'm going to have a starter and a final bit.
+00:22 So, starters whatever we happen to start with.
+00:24 Later on, we're going to start with our app making major steps.
+00:28 Like one point, it'll have a design added to it.
+00:31 At one point, it'll have SQLAlchemy data access added to it.
+00:35 We want to start from that point on the next chapter
+00:37 so we'll kind of move along
+00:38 so you always can kind of catch up
+00:40 or start from the same place that I'm starting from
+00:42 at any given chapter.
+00:44 So over here we're going to create our site in this final
+00:47 and the starter one, there's nothing to do yet.
+00:49 We didn't start from anything.
+00:50 This is from scratch
+00:51 so we'll just have a blank folder there.
+00:53 So let's change directories over here.
+00:58 In this, you'll see I have oh-my-zsh.
+01:00 It's detected this is a Git repository.
+01:03 It doesn't really matter if your shell does that or not.
+01:05 So what we want to do, is we want to make sure
+01:07 that we have Cookiecutter installed
+01:09 so that we can run the various templates.
+01:12 So we'll say pip, maybe pip3, just to be safe.
+01:16 Install, it will ask for an upgrade just in case
+01:20 and I'll say --user
+01:22 cause we find it just installs in my user profile.
+01:25 I'm not a machine, which means we don't require sudo.
+01:28 Then finally, cookiecutter.
+01:31 I should already have it.
+01:32 Looks like everything's up to date.
+01:33 Yours might have installed it.
+01:35 You can always just type cookiecutter
+01:38 and see what you get, right?
+01:42 Something like that. It shows you where it comes from.
+01:44 Okay, excellent, we already have this installed
+01:46 and ready to go.
+01:47 So step one, make sure we have Cookiecutter installed.
+01:50 We have that.
+01:51 Step two, will be to use one of the Cookiecutter templates.
+01:55 Now if we're over on the Cookiecutter site
+01:57 on read the docs, you'll se that there's this thing called
+02:00 pantry full of cookies; cookie cutters.
+02:03 And there's tons of different things.
+02:05 So heres a flask thing, heres a bottle
+02:07 heres a pyvanguard; whatever the heck that is.
+02:09 If you look for a pyramid
+02:11 there's a whole section on these templates.
+02:13 So here are a bunch that come from the pyramid team
+02:16 and this one down here I actually added myself
+02:20 for the Python for Entrepreneurs course.
+02:22 The one we're going to use is this pyramid cookiecutter
+02:24 which is just a Git repository here.
+02:26 So we can just take the root of the Git repository
+02:30 and we'll just come down here and say cookiecutter
+02:33 and give it the full URL to the repo.
+02:36 Not .git, not that, just the page basically.
+02:41 It says we've already gotten this before
+02:42 can we get a refresh version, yes.
+02:44 It's going to ask some questions here.
+02:47 It's going to say, "What is the name of your site?"
+02:49 We're going to call this PyPI
+02:51 cause that's going to be the name of our site.
+02:53 Let's call this Python Package Index.
+02:56 Alright, that's going to be our demo
+02:58 throughout the whole class here.
+03:00 It's going to say the name that we're going to use
+03:03 in the Python Package in the folder structure stuff
+03:06 "Is Python Package Index okay?"
+03:08 Let's go with PyPI; something a lot shorter to type.
+03:10 That says, "Great, we're almost ready.
+03:12 "What template language do you want to use?"
+03:15 Default to Jinja2, use to default Chameleon.
+03:19 We're going to use Chameleon. You can make another choice if you want.
+03:21 I'll tell you why later
+03:22 why I think Chameleon's the right choice
+03:23 but you can pick any one of these three.
+03:26 Hit okay, and it's gone and created
+03:28 a various project structure over here
+03:30 so we could type tree and see what we got.
+03:34 It's created this folder
+03:36 which because you can see it's got all this kind of stuff.
+03:39 It's has a setup.py.
+03:40 This is actually a Python package
+03:42 and here's the implementation of it.
+03:44 It has the same name always.
+03:47 Then there's a __init__.py for the package.
+03:49 Then here's our pews, here's our templates
+03:52 here's our static files, and so on.
+03:54 We can go up here and see it says
+03:55 "All right you can go in here
+03:56 "and what we want you to do is go into that folder
+03:58 "and create a virtual environment."
+04:00 So, we'll do that.
+04:02 They want to create the virtual environment.
+04:07 You can name it a lot of things.
+04:09 .env, or venv, is one of the best choices
+04:13 if you're planning on using PyCharm
+04:15 cause it will automatically detect those.
+04:17 I'll make it more explicit and say venv.
+04:21 Now the next thing to do, and so we ask "which Python"
+04:25 and Windows asks "where Python"
+04:28 it'll say, "It's the system one."
+04:29 We want to do is use this one, so we need to activate it
+04:36 so we're going to run that.
+04:37 Notice my prompt changes here
+04:38 and if I ask the same question
+04:39 I'm getting the one that I just created.
+04:42 So that's good.
+04:43 On Windows you don't say source
+04:45 and this is scripts; venv\scripts\activate.bat.
+04:51 Okay, so now we have our virtual environment activated.
+04:55 It's created in the directory
+04:58 that is the top level of the package; good.
+05:01 Now all we have to do is to basically register our package
+05:05 and we can run it, register our website.
+05:07 We do that by saying python setup.py develop.
+05:11 Now normally you would run an install command here.
+05:14 What we want to do is tell Python
+05:15 to leave these files in place and just let us edit it here
+05:18 so we don't have to ever rerun this command again.
+05:22 It'll just reference this local working location
+05:25 rather than copying it over to what's called site packages.
+05:28 So we do this, it's going to install all the dependencies
+05:31 and get everything setup so we can run it.
+05:36 All right, great, it's installed everything.
+05:38 Now we can ask what is installed by saying "pip list"
+05:42 and we've got a bunch of things.
+05:43 We've got pyramid
+05:45 and the underlying template language installed.
+05:48 We even have this full local location installed
+05:52 with the package PyPI which is our web application itself.
+05:55 One thing that's kind of annoying
+05:56 about virtual environments in Python
+05:59 is they always install out of date versions
+06:03 of both setuptools and pip.
+06:06 So, go ahead and update that real quick too.
+06:09 There's only 11 versions out of date.
+06:12 What's wrong with that?
+06:13 Okay, so we should be able to run our web app
+06:16 and go interact with it now.
+06:18 Let's see "pserv" and we see if that exists.
+06:22 Looks like it does.
+06:23 That got installed when Pyramid got installed, okay?
+06:26 And that Pyramid got installed when we ran the setup.
+06:29 Then what we're going to give it is.
+06:30 Let's just look around really quick.
+06:31 We're going to give it either the development.ini
+06:34 or the production.ini.
+06:36 Here we want to give it the development one
+06:38 so pserv development.ini.
+06:41 There's a small chance this will fail.
+06:43 There's this weird behavior sometimes
+06:45 that the package in the virtual environment
+06:47 doesn't get registered exactly right
+06:49 unless you activate, deactivate, and then reactivate it.
+06:53 Fingers crossed this works, let's see.
+06:56 Perfect, okay if it doesn't
+06:58 just deactivate the virtual environment
+07:00 reactivate it, and then you'll be totally good.
+07:02 All right, so now if we go throw that into our web browser
+07:04 we should be golden.
+07:06 Let's see what we get.
+07:07 Ta-dah, the Pyramid Starter Project is up and running
+07:11 and this is the Python Package Index Pyramid Application
+07:15 generated by Cookiecutter; hooray.
+07:17 So, we now have this basic structure over here.
+07:22 If we look at it, whew
+07:24 a lot more stuff going on now that we have
+07:25 that virtual environment stuff registered.
+07:28 Up here's what matters.
+07:29 This is all the package installed locally
+07:32 and then the virtual environment.
+07:34 This is what you really care about, right?
+07:36 We've got our package here.
+07:37 We've registered it and now it's running.
+07:39 We can go edit our template
+07:41 to change this look and feel of our CSS.
+07:44 We can go change our view to have different behaviors
+07:47 or to have additional URLs and so on.
+07:50 All right, so we're up and running with Pyramid
+07:52 on the command line.

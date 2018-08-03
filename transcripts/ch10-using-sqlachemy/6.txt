@@ -1,0 +1,55 @@
+00:00 So far we've seen our homepage
+00:01 is looking really sweet.
+00:03 We don't have that much data yet
+00:04 but it is data driven
+00:06 and this is coming out of the database.
+00:07 However, when we pull up the details
+00:10 for one of the packages under project/{package_id}
+00:13 well the details are not so much.
+00:15 So that's what we're going to focus on in this video
+00:18 on how to fix this.
+00:19 Now, the actual design for this page
+00:23 remember, remind you what this looks like
+00:29 it looks like this.
+00:30 It's got this little install instruction
+00:31 whether or not it's the latest version
+00:33 the ability to see all the releases
+00:35 the details, the homepage, the maintainers
+00:39 and so on, and so on.
+00:40 All of this stuff.
+00:41 It turns out the actual web design to do all that
+00:45 would take quite a while
+00:46 and we already spent a ton of time
+00:47 back in the adding design
+00:50 after the bootstrap chapter that we already did
+00:53 on the homepage and this is really pretty similar.
+00:55 So what I'm going to do is just quickly talk you through
+00:57 what we got here. So here is some more html.
+01:00 We're using the same, sort of, hero concept.
+01:03 This time we've got that little install bit.
+01:06 Whether or not it's the latest release
+01:08 and how to switch from that. Same little stats.
+01:11 Here instead of having the numbers though, we have the summary.
+01:14 And the maintainers and we have the side bar
+01:17 navigation thing. And then somewhere down here
+01:20 we have the project details.
+01:22 And we're using structured output html like stuff.
+01:25 Now if this was just marked down
+01:27 to be real easy to convert it to html
+01:29 and actually show it properly formatted
+01:31 but because most of it's restructured text
+01:33 and I haven't found a good library for that
+01:36 I just threw it into a pre
+01:37 so we can just read it, all right.
+01:39 So it's not going to be perfect but it's close enough.
+01:42 So with this in place, you think we could load it up
+01:44 but in fact, if I rerun it here
+01:49 it's going to run into some problems.
+01:50 'Cause we don't have the data.
+01:52 Right so wait hold up, we need the actual package object
+01:54 from the database. You just gave us a fake name.
+01:57 This is not really the package object.
+01:59 Our goal will be to implement the data access layer
+02:03 and pass the right amount data over
+02:05 make this view happy, right.
+02:07 So working our package service and our controller.

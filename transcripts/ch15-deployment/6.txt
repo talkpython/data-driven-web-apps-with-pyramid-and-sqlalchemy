@@ -1,0 +1,110 @@
+00:00 So we saw we can run our development version of the code
+00:02 but we don't want to do that.
+00:03 We want to run the production version
+00:05 not in that developer pserve thing
+00:09 in Waitress I think it is
+00:11 but actually on uWSGI
+00:12 with the real production scale out stuff that we want.
+00:16 So let's look over here really quick
+00:18 and I'll show you one thing I've added
+00:20 this uWSGI section to the production.ini
+00:24 And it just configures uWSGI to listen.
+00:27 So it says "Listen to local host this port.
+00:30 We're going to have to coordinate that with nginx.
+00:32 We're going to run in master mode with ten subprocesses."
+00:36 That's kind of high, maybe we'll go with five
+00:40 because we only have one gig of RAM.
+00:42 Who knows maybe it's okay.
+00:43 It is takes too long more than a minute
+00:47 60 seconds kill it off and just restart that process
+00:51 and then log here. So we should already have those log files there
+01:01 You don't want to go with that tree do you?
+01:04 Here we go we have logs, PyPI outputs for log.
+01:08 Haps logs PyPI oh we're not going to use that part.
+01:12 We use that somewhere else.
+01:14 Okay so this is a uWSGI log
+01:15 this just needs to be in place.
+01:17 There's nothing magical about it.
+01:18 This controls how many subprocesses you have
+01:21 in that fanout thing we talked about
+01:22 enable threads will get us
+01:23 a little more concurrency as well
+01:26 per process so we should be good.
+01:29 And this is the one we want to run
+01:31 in order to run this well
+01:33 we have to have uWSGI around.
+01:36 Well since you don't have uWSGI.
+01:38 So let's do this.
+01:39 And you can install it with apt here
+01:42 but we're going to just pip install uwsgi
+01:47 into our virtual environment.
+01:50 This can take a moment to install.
+01:52 There's I think a lot of compilations steps
+01:53 or something happened in here.
+01:58 Great so our uWSGI is working
+02:00 but it said it gave me no configuration.
+02:03 All right so now we pretty much are ready to go.
+02:06 Let's go back to our server setup.
+02:08 So what we're going to need to do
+02:09 is to copy this pypi.service into systemd
+02:14 so that basically systemd knows to start uWSGI
+02:19 as the system daemon.
+02:20 And if we look over here real quick
+02:22 what we're going to do is
+02:23 we're going to run that virtual environment
+02:26 and this flag -H means you're in a virtual environment
+02:28 so use that one and it's here.
+02:30 And then here this ini-paste
+02:34 this is the config file.
+02:36 So before we go on let's just make sure
+02:37 by copying this part let's make sure
+02:40 that this is actually working okay.
+02:42 When you set it up as a system daemon
+02:44 if it fails you're like "Agh why did it fail"
+02:46 this might get us a little more information.
+02:47 We'll either see that it's working
+02:49 or we'll get a little more information.
+02:51 So here we go. I think it's singular app
+02:55 let's see. No it's app.
+02:57 Let's figure out why it sees what I said.
+02:59 It's good to have this running.
+03:03 Ah, the problem is we want it like that.
+03:07 Just pypi/deploy.
+03:10 And the fact is that it's doing nothing
+03:12 while the logging has captured all the output.
+03:15 But if we open up another terminal
+03:19 and now we do our HTTP
+03:21 not against the development server port
+03:24 but we got to look over here to find this port
+03:28 we can see if the server is working here and it is.
+03:33 Perfect so we have out config from uWSGI working
+03:36 as long as I remember to put that back.
+03:40 Like that. All right let's move these over
+03:51 Over here. Let's cancel out.
+03:53 We don't need that to run anymore.
+03:56 git pull make sure we get the new values.
+03:59 So now we're ready to try this command again.
+04:03 Let's see if this is going to work. Great it is working.
+04:08 So what we need to do is copy that file to where it belongs.
+04:14 So we're going to run this and that worked.
+04:19 Now we can go and use the system control stuff to start
+04:24 assuming everything goes right great that looks good.
+04:27 We can ask for the status
+04:31 and you can see all the processes running in this tree
+04:34 and looks like it's running.
+04:35 No errors we can check on Glances real quick.
+04:39 Sort by memory.
+04:40 So a whole bunch of uWSGI worker processes running.
+04:43 That's good. Let's get out of there.
+04:46 So it looks like it's running but if I reboot
+04:48 it's not going to start again
+04:49 so what we have to do is enable it.
+04:53 And now it tells the system "Let's restart.
+04:57 You know make this active all the time."
+04:59 So any system reboot as soon as it starts up
+05:02 it's going to start this whole series of processes
+05:04 and just keep it running.
+05:06 Perfect so uWSGI looks like it's working.
+05:10 There it is once again but this time as a system daemon.
+05:12 So we can just call that good. That is done.
+05:15 The last thing to do is hook up Nginx to uWSGI.

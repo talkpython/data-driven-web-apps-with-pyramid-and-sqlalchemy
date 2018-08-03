@@ -1,0 +1,109 @@
+00:00 Before we actually start using SQLAlchemy to
+00:02 insert data and query data and so on,
+00:05 Let's talk about some of the core concepts we've seen
+00:07 and some of the fundamental building blocks
+00:09 for modeling with SQLAlchemy.
+00:12 So we started with the SQLAlchemyBase.
+00:14 Remember, the idea was every class we're going to
+00:18 store in the database derive from this
+00:20 dynamically defined SQLAlchemyBase class.
+00:23 You can call it whatever you want.
+00:25 I like SQLAlchemyBase, but there's other
+00:27 you know, it's just a variable
+00:29 name it as you like.
+00:30 So we want to create this singleton base class
+00:32 to register the classes and types that go in the database.
+00:36 Remember, there's one and only one instance
+00:38 of this SQLAlchemyBase shared across all of the types
+00:42 per database. So for example, we're going to have
+00:46 a package, a release, and user
+00:47 they all derive from this one, and only one
+00:50 SQLAlchemyBase type here.
+00:52 To model data in our classes, we put a bunch of
+00:55 class level fields here:
+00:57 ID, summary, size, homepage, and so on.
+00:59 And each one of them is a column.
+01:01 SQLAlchemy.column and they have different types
+01:04 like integer, string, and so on.
+01:06 We can see some of them are primary keys
+01:08 and even if it's an integer
+01:09 they can even be auto-incrementing primary keys
+01:11 which is really really nice.
+01:13 And we can also have relationships
+01:15 like we do between package and releases.
+01:19 One really nice feature of databases is
+01:20 they have default values.
+01:22 We saw with our auto-incrementing ID
+01:24 our primary key we don't have to set it
+01:26 the database does that for us.
+01:28 So here we can pass datetime.now
+01:31 the function not the value, the function
+01:34 and then it's going to call that function, now
+01:37 whenever a row is created and set that value
+01:39 to be, well, right now. That's super nice.
+01:43 We can also do that up here with more complex expressions.
+01:47 So in the bottom one we've literally passed
+01:49 an existing function, datetime.now
+01:51 but above we wanted to define this default behavior
+01:55 in a more rich way.
+01:56 So we're passing our very own Lambda expression
+01:58 that takes the uuid for identifier
+02:00 converts it to a string and then drops the dashes
+02:03 that normally separate it
+02:04 into just one giant scrambled alphanumeric soup thing.
+02:10 You can create these default values by passing
+02:12 any function a built in one or one of your own making.
+02:16 You also want to model keys and indexes.
+02:20 So primary keys automatically have indexes
+02:23 we don't have to do anything there.
+02:24 That's got a uniqueness constraint
+02:26 as well as a indexes. This created one
+02:29 maybe we want to sort by the newest users
+02:32 for example. Well if we're going to do that
+02:34 we very much want to put an index on that.
+02:36 As I pointed out, indexes can have
+02:39 tremendous performance benefits.
+02:41 It's totally reasonable to have a
+02:42 thousand times difference performance in a query
+02:45 if you have tons of data
+02:46 on whether you have an index or not.
+02:49 Indexes do slow write time
+02:51 but certainly, in this case the rate of user creation
+02:54 versus querying and interacting with them is
+02:57 you know, it's no comparison, right?
+02:59 We're creating far fewer users probably
+03:01 than we are querying or interacting with them.
+03:05 We could also specify uniqueness.
+03:07 We didn't do that in our example.
+03:08 We can say this email
+03:10 we can't have two users with the same email.
+03:12 You know, emails are very often used to like
+03:15 reset your password.
+03:16 And if you have two users
+03:17 who's going to get their password reset?
+03:20 All of 'em? One of 'em?
+03:22 Who knows, none of 'em?
+03:23 So you might want to say there's a uniqueness constraint
+03:25 on the email to say
+03:27 "Only one user gets to use particular email"
+03:30 and that's super easy to do by just
+03:31 saying unique equals True.
+03:33 Finally, once all of the modeling is done
+03:36 we have to actually create the tables
+03:39 and it turns out that that's super easy.
+03:41 We import all the packages.
+03:43 Get the connection string
+03:45 and we create an engine based on the connection string
+03:48 and then we just go to SQLAlchemyBase
+03:49 to it's metadata and say
+03:51 create_all and pass the engine.
+03:53 Boom, everything is done.
+03:55 Remember though, this only creates new tables
+03:57 it does not modify existing ones.
+03:59 So if you need to modify it
+04:02 wait till we get to the Alembic chapter
+04:04 the migrations chapter or do it yourself.
+04:07 Or, you know, if you're just in development mode
+04:09 maybe deleting it and just letting it recreate itself.
+04:12 That might be the easiest thing
+04:13 that's what we did.

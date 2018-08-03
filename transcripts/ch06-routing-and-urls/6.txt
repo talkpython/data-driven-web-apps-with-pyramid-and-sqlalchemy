@@ -1,0 +1,64 @@
+00:00 So let's round out the rest of the URL structure
+00:02 we're going to use for our site.
+00:04 So we're going to have a few more things that we'd like to do.
+00:06 We've saw that we've got our home stuff
+00:08 we got some packaged things.
+00:09 We actually want a few more things going on here
+00:11 in the package world.
+00:13 We want a URL that looks like this.
+00:16 So, we're going to go /projects/SQLAlchemy/releases.
+00:20 and that will show all the various releases.
+00:24 We also want one like this.
+00:27 It's starting to stretch a little off the screen
+00:29 with this tiny resolution I have for recording.
+00:32 This is not correct.
+00:33 But we're going to go to the project.
+00:35 Specify the project like SQLAlchemy
+00:36 and then get the releases, and get the details
+00:38 for a particular one, so like, /releases/117.
+00:43 This one will list them all.
+00:44 We interact with one, this is going to be the details.
+00:47 So let's go over here.
+00:49 Let's call this releases.
+00:51 And I'll keep with my little example
+00:53 of having the slash on
+00:56 and not on on the end there.
+00:58 Maybe put a space to show the grouping.
+01:01 Actually, this one we'll just call release version.
+01:05 Right, there's only going to be one.
+01:08 Okay, all that has to do with PackageController.
+01:10 Let's go add these releases here.
+01:14 This URL. So, and the PackagesController.
+01:17 We're going to need something again, like this.
+01:20 And sometimes it's handy to have a URL structure up there
+01:25 to remind you what's coming in.
+01:31 I guess I'll stick with that for now.
+01:32 So we could put this here. Total cleanup.
+01:35 So the name, kind of remember these releases
+01:38 have to match exactly, so let's put releases.
+01:43 Again with a slash, and then the fully releases.pt.
+01:47 Again we're going to get the package name
+01:49 and we're going to pass it on to the view.
+01:51 But we're also going to have to pass the releases.
+01:53 We'll do that later. Let's remind ourself.
+01:56 Something like the releases are going to be some kind of list.
+01:59 Maybe like this.
+02:05 So we'll just say releases there.
+02:08 Again we have this release version one.
+02:10 So let's go put, that'll be our final details.
+02:14 We're only going to need one of those.
+02:18 So we have release version, and also let's copy the URL
+02:21 so we remember the data that we have to work with.
+02:27 So we're going to have package name and a release version.
+02:32 Let's go ahead and grab that data like so.
+02:35 Over package name and the release version.
+02:38 Let's name this is the same here.
+02:43 And there for now.
+02:48 Okay, so this is all looking really good.
+02:50 Let's just make sure that it works.
+02:55 So we've got Pyramid, should still work.
+02:58 And we should have releases, which is going to say
+03:00 "Here are the releases."
+03:02 And then again, one, two, three.
+03:06 There's our details for that particular release.
+03:08 Okay, it looks like that routing is all in place.

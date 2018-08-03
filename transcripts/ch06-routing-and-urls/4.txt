@@ -1,0 +1,94 @@
+00:00 The last thing to do, let's extend this
+00:02 let's have, I'm just going to copy and paste
+00:05 it'll be a little quicker
+00:06 I'm going to call this AccountController.
+00:10 And PyCharm asks, can we add this to Git
+00:13 I'm going to just say yes you can.
+00:15 So we go over to our AccountController
+00:17 I'm going to get rid of most of this.
+00:19 The name has to be changed, so let's just
+00:21 comment this out for a second.
+00:23 But just so we have the pieces in place
+00:25 and we'll do the same thing for packages.
+00:29 Packages, we're going to write some bits here.
+00:32 OK, so for packages, remember
+00:34 what were looking for, is we're looking for /project
+00:39 that's the way it works.
+00:40 Let's just remind ourselves.
+00:42 PyPI.org, if we go over to any particular project
+00:46 and we click on this, notice the url
+00:48 is /project/the name of the package
+00:52 with a /.
+00:54 Okay, so that's what we're aiming for
+00:57 something like that.
+00:59 And let's put a little project, package
+01:05 name bit in there.
+01:07 So this is the route that we're looking for.
+01:09 And let's call that package_details.
+01:18 And this is going to be packages
+01:21 uh, not index, how about details?
+01:24 For now, let's just return no data.
+01:28 We'll return the package name in just a minute.
+01:32 Okay, great, this is looking a little broken
+01:35 but it's actually not broken
+01:36 that's just PyCharm not quite refreshing itself correctly.
+01:39 So we've got our home, it says home
+01:42 let's just call this details.
+01:45 It's going to be contained in the packages
+01:47 so it'll be packages.details, that's
+01:48 we don't really need, since we've broken this
+01:51 up into the modules by category
+01:53 we don't need to put them on the method names.
+01:56 So we need to add this.
+01:57 If we try to run this now
+02:01 and we refresh, well, actually, it doesn't even run.
+02:04 Didn't make it that far.
+02:05 If we come over here and we look
+02:07 you'll see, no route named package_details
+02:11 found in view registration.
+02:13 Alright, so the next thing to do is going to be go fix that.
+02:16 So that brings us back to this method
+02:18 we were working on before.
+02:20 So we've got our stuff to do with home_controller
+02:24 maybe, we'll put it like that, I don't know.
+02:26 Over here we'll have packages
+02:28 or PackageController.
+02:31 And we're just going to do the same thing.
+02:32 config.add_route
+02:34 and we're going to give it a name.
+02:36 What'll we call it, project_details, I think?
+02:39 Let's look, no, package_details.
+02:42 So we'll say package_details
+02:45 and the url is actually going to be /project
+02:49 / whatever the name is.
+02:51 Now, something that's a little bit annoying
+02:54 with Pyramid routes is
+02:56 whether that's there or not makes a big difference.
+02:59 And if you want to let them put it there
+03:00 or not put it there, it's not a great option.
+03:03 So what we can do is, like
+03:05 have two routes, one with a /
+03:07 and one without a /, it's okay.
+03:10 It's not great, but it'll do.
+03:12 So if we come over here, for that to work
+03:17 we're going to have to have both routes here.
+03:20 So let's rerun this, and it should just say
+03:23 the details is not found, so we'll fix that next.
+03:25 But let's see that we can get a little farther
+03:27 what we did, it ran, that's good.
+03:29 If we refresh it, we come over here to
+03:32 /project/requests.
+03:37 Great, details wasn't found.
+03:38 So the next thing we have to do is just put the details
+03:40 in there, easy enough.
+03:44 So let's go down here and
+03:46 what's a great example?
+03:47 Let's take about is pretty simple.
+03:49 Let's paste that as details
+03:52 just copied and pasted in PyCharm.
+03:54 We'll go over here and we'll have package
+03:57 and I'm just going to put the name, package name.
+04:09 We'll figure out the details when we get
+04:10 to the data access section
+04:12 but let's just work on the route to make sure
+04:14 this is loading the correct one, okay?

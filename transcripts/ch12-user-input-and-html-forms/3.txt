@@ -1,0 +1,97 @@
+00:00 Well, it looks like we're making our way
+00:01 through the various subjects over here.
+00:03 Let's open up a new HTML form section.
+00:07 This is Chapter 12 in the source.
+00:10 Of course, I've already pre-configured this to load
+00:13 in PyCharm and registered the site
+00:15 by running to setup.py, things like that.
+00:17 So let's just see where we are.
+00:20 It's looking good. Our sites are really coming along.
+00:22 Alright, quick on logging though.
+00:24 Check out the URL. See, there's nothing here.
+00:26 Click on this. Hash, hash. That's not amazing.
+00:31 That means basically this is not implemented.
+00:34 All right, over here in the AccountController
+00:36 we have a little bit of information and I think I had left
+00:39 more than I intended to in there before.
+00:42 So we're going to start from this.
+00:44 This allows us to show.
+00:46 Well, it did not actually show or anything
+00:48 because we can't get to it.
+00:49 We could come over here and type just /account
+00:52 and it says, "Hey, here's an account."
+00:55 Not a whole lot of details.
+00:57 Also notice we're not checking to see that we're logged in.
+01:00 So it could say your account is such and such, right?
+01:03 I mean, we'd really come up with no data
+01:05 but still, well we don't want people to get to their account
+01:08 if they're not logged in or have an account.
+01:10 We also have over here our templates.
+01:12 We have an account that has a truly bare login page
+01:16 and sort of details, right, the login and register.
+01:20 They all just look like this.
+01:21 I guess it's with pointing out.
+01:23 We also have already added some routes for this.
+01:26 We do that before. We have /account/login
+01:27 /account/register, /account/logout.
+01:34 Place to start would be register
+01:35 because we're going to need an account to login.
+01:37 Let's create it by registry.
+01:39 So we have index and index is really basic.
+01:41 It's just basically a static HTML page
+01:45 but let's go and create another section
+01:48 and these dividers become more helpful
+01:49 when we're working on these forms.
+01:50 This would be register.
+01:53 And this is really easy to forget.
+01:54 Do not forget to change this.
+01:56 If you change like information up here
+02:01 but you don't change the name
+02:02 it's just going to throw away that function
+02:04 and redefine it to be, guess what, register.
+02:07 All right, so let's go to register.
+02:09 Now, like what I was just saying
+02:10 we actually want to have get post redirect pattern.
+02:14 So how does that look?
+02:16 Well, we're going to come over here and say
+02:19 the method equals GET and POST.
+02:26 So this method is going to handle displaying the form.
+02:28 In this case, maybe there's nothing
+02:30 but maybe we pass over data
+02:31 like here's all the countries you can pick from
+02:34 or here's, I don't know, right
+02:35 maybe filling out, drop down, and things like that.
+02:38 In this one, we're going to actually process their request.
+02:41 But the thing is set about the function names
+02:43 also applies if we just leave it like this.
+02:46 There only be one function at the end of this module
+02:49 and when it's loaded
+02:50 and that's the one that only handles POST.
+02:52 So the GET would be 404.
+02:53 So come over here and we can do a GET, and a POST.
+02:58 Now let's just make sure everything
+02:59 is hanging together here. Boom, register.
+03:04 Register seems to be working. It's all wired up.
+03:07 Okay, so this is the starting structure
+03:10 of our get post redirect pattern.
+03:12 We're going to have a form in here.
+03:16 Put our form details in there
+03:18 and then we're going to submit that form.
+03:20 First, I'm going to show the form here
+03:22 and we're going to submit and process it here.
+03:24 In ideal situations we technically won't go back to this page.
+03:28 They submit it, we process it. We move along somewhere else.
+03:31 But if they get something wrong, if they've
+03:33 if I don't fill out the email address
+03:35 well have to have that. We can't register that.
+03:37 So we're going to use the same template
+03:39 to render same details plus an error.
+03:43 If things got successful, when we want to
+03:45 sometimes you can meet this render
+03:46 but if you have any possible chance of an error, you can't.
+03:50 Now one more thing, this drives me crazy.
+03:52 Over here, notice we're not using request.
+03:54 Similarly here, we put underscore
+03:59 but this one we're going to need to use the request.
+04:01 That's where we get the form data from
+04:03 so we're just going to leave it like this.

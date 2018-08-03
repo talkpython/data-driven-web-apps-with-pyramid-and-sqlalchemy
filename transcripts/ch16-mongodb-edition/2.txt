@@ -1,0 +1,21 @@
+00:00 Now, I just want to set expectations
+00:01 before we get into this.
+00:02 This is not a full MongoDB course.
+00:05 I'm not here to teach you absolutely everything
+00:07 about managing, deploying and working with MongoDB.
+00:11 I actually have two courses on that.
+00:12 I have a free one called MongoDB Quick Start with Python.
+00:15 And then a paid nine-hour one, seven hours of
+00:18 quite long and involved, MongoDB for Developers with Python.
+00:22 Either of these courses would be great
+00:24 if you really want to dig into Mongo.
+00:26 The free one gets the basic ideas in place.
+00:29 The paid one definitely covers sort of the whole life cycle
+00:32 of working with it and using it for your app.
+00:34 So this is not going to cover everything.
+00:37 We're going to cover just a sliver
+00:39 like just enough really lightly for you to see
+00:43 how to make this change and sort of evolve our code
+00:46 and more or less appreciate the design patterns.
+00:50 We're going to go quick and we're not going to cover everything.
+00:52 If you need more resources, here are two good ones.

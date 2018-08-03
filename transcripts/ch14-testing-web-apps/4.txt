@@ -1,0 +1,49 @@
+00:00 We've gone through several rounds
+00:01 of reorganizing our code in our pyramid web application.
+00:05 And it may be sometimes hard to see the value in this
+00:09 but as your app grows and grows the better organized it is
+00:14 the less weight you get put onto you
+00:18 conceptually to try to keep all that in your head.
+00:21 So really important organization, makes a lot of sense.
+00:24 We saw that we did this with the templates
+00:26 we did this with controllers
+00:27 we did this with the view models.
+00:30 Guess what? We're going to do it with tests as well.
+00:32 And because the tests usually have to do with either
+00:36 a URL, the view model or the view method
+00:40 these are all grouped into controllers so far.
+00:43 So, it makes sense to go ahead and group them by controller.
+00:46 So, it doesn't have to be this way
+00:49 but it certainly seems like a decent way to get started
+00:52 and you can do additional organizing if you want.
+00:55 So we also have a HomeController and a PackageController
+00:59 so we have their respective tests as well.
+01:01 We didn't write any for the CMS stuff yet so none of those.
+01:05 Now, another thing that's really helpful is if we have a site map in.
+01:10 We'll talk about this at the end of this chapter
+01:13 having a site map. Which is basically just a XML document that lists
+01:18 all of the publicly accessible URLs on your site
+01:22 even if they're not directly linked
+01:23 so that things like Google and Bing can find
+01:25 and search your site.
+01:27 We could leverage that site map to cover a bunch of cases.
+01:31 You'd be really surprised how often you get hard failures
+01:35 instead of what you might consider a soft failure
+01:37 if something goes wrong.
+01:39 If I request the package page but for some reason
+01:41 the package query is wrong?
+01:43 Probably I'm going to get just nothing back
+01:45 in which case the template is going to crash
+01:47 or something else is going to crash because
+01:49 the None type doesn't have whatever they're trying to do.
+01:52 So, simply requesting every page on your site
+01:55 and just checking that those come back with success codes
+01:58 and not failure codes?
+01:59 That's really actually pretty valuable.
+02:02 You can test a lot of semi important
+02:04 not super important things that way.
+02:07 All right, so we'll talk about that as well
+02:09 but we're going to focus on testing the internal logic
+02:12 of these various controllers, view models and so on.
+02:14 And here's an organization that will help us
+02:17 keep that all straight and clean.

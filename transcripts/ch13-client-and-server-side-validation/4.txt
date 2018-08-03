@@ -1,0 +1,69 @@
+00:00 One of the two primary jobs
+00:02 of these view models
+00:04 is to exchange data with the view.
+00:06 And the way it does that is with dictionaries.
+00:09 We saw that dictionaries are passed into us
+00:12 and they're sprinkled throughout the request
+00:14 and Get Post Headers, etc.
+00:16 And they're also passed back as the model
+00:19 in the form of straight, singular dictionaries
+00:23 that is encapsulated up in the ViewModelBase.
+00:26 We have this __init__. We pass a request.
+00:29 And we store the request for the other derived classes.
+00:32 And then there's certain common data that is always present
+00:35 and we don't want the individual view models
+00:38 to care or worry about setting it.
+00:40 So, here for example, error, user_id, things like that.
+00:44 Right, this might be the outer view that needs it
+00:47 or it's just something so common
+00:48 you're going to put it here.
+00:50 Well, then how do we take this information
+00:52 and turn it into a dictionary?
+00:53 There's tons of ways. The most straightforward way
+00:57 and the way that automatically lets the derived classes
+01:00 take advantage of just setting fields
+01:01 and then magically becoming these dictionaries
+01:04 that flow through to the views
+01:06 you just return the __dict__.
+01:08 And we say, here's a to_dict() function
+01:11 and because it's on the base class
+01:12 it's on all the view models.
+01:14 Now the job of the concrete view model
+01:16 that is the ones that derive from this
+01:18 like RegisterViewModel and so on
+01:20 their job is to set fields in their __init__
+01:23 necessary for the view to get.
+01:26 And those will flow through here
+01:27 and also to do validation.
+01:30 But the validation side doesn't appear
+01:31 on the ViewModelBase.
+01:33 If we look at something derived from the ViewModelBase
+01:36 like, here, a registration view model
+01:38 it also has one of these __init__.
+01:41 It also takes a request.
+01:43 And the first thing it has to do
+01:44 is make sure it passes that to its base class.
+01:46 So, it's going to call super and pass a request along.
+01:49 And that pre-populates all the shared data.
+01:52 And then, we're just going to set a bunch of fields:
+01:55 password, first name, last name, email, and so on.
+01:57 Here you can see we're doing
+01:59 some data cleaning along with it.
+02:01 So, we're going to our request and we're stripping out
+02:06 the first name if there's any white space
+02:08 something that drives me crazy about websites.
+02:11 Like if you have a space
+02:12 at the beginning of your email address
+02:14 because you accidentally put a space
+02:15 they're like, "Whoa, that email address is not valid."
+02:18 Not really, you could just strip it out, right?
+02:20 So, here we're doing that for all of our people.
+02:22 We're normalizing that emails
+02:24 are always stored in the lowercase, things like that.
+02:27 And we're even computing full name.
+02:30 Notice that we're using the default value
+02:31 of "", rather than None.
+02:33 So even if first name or last name weren't there
+02:35 this is not going to crash.
+02:37 It's just going to strip an ""
+02:39 which is an "".

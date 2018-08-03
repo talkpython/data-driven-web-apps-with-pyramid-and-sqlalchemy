@@ -1,0 +1,37 @@
+00:00 So far we've kind of ignored design
+00:02 for the most part and we're not going to go deeply
+00:06 into design in this course.
+00:07 It's not a course about CSS and HTML and web design
+00:12 but we should cover enough that you understand
+00:16 the design tools that are in place as well
+00:18 as be able to bring in extra things, like themes and stuff
+00:22 that are really easy wins for making
+00:24 your site look better in a hurry.
+00:27 So let's briefly talk about what
+00:28 we'll learn in this chapter.
+00:30 We're going to do a quick survey of what are called
+00:32 front-end frameworks, or front-end CSS frameworks.
+00:35 These include things like Bootstrap and Foundation
+00:37 but there's actually many of them.
+00:40 Even though the template you start with comes
+00:43 with Bootstrap in Pyramid
+00:44 you don't have to stick with Pyramid.
+00:46 We will for this course, but you don't have to.
+00:48 And so you will have a nice sense of what's out there
+00:51 and what the trade-offs are
+00:53 because we're going to use Bootstrap.
+00:55 It really is the most popular one
+00:57 and it's what the templates come with.
+00:58 We'll go ahead and use that.
+01:00 So we'll do a quick introduction to what Bootstrap is.
+01:02 A few of the features are super-important to know
+01:04 and really helpful, so we'll talk about grid layout
+01:07 and a few of the controls like buttons and widgets.
+01:10 And then we're going to bring it all together.
+01:12 Remember right now, it's just that
+01:13 red starter Pyramid project look
+01:17 and it's fine for a single page
+01:19 that you just want to show off like a picture
+01:20 but it's not really a proper web design.
+01:23 So we're going to see how to use things like
+01:26 layout macro pages and so on to bring it all together.

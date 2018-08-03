@@ -1,0 +1,37 @@
+00:00 This is not an introduction to Python course.
+00:03 We do assume a little bit of working knowledge.
+00:06 We assume that you have basic Python programming skills.
+00:10 I would say if you're, what you might consider
+00:12 an advanced beginner, you're totally
+00:15 good to take this course.
+00:17 We're going to use things like classes
+00:18 and decorators and functions and so on
+00:21 but we're not going to describe what a class is
+00:24 or describe what a function is or things like that.
+00:26 So make sure you have some basic working knowledge
+00:29 of Python in order to take this course.
+00:31 If you don't, consider taking my Python
+00:33 Jumpstart by Building 10 Apps course.
+00:35 That's all about learning Python.
+00:38 So here we assume that you know Python.
+00:40 We also assume that you know a little bit of HTML.
+00:43 That if you look at HTML, at least you can make sense of it
+00:45 you know what, say, an attribute is
+00:48 what a class is, things like that.
+00:50 We're not going to be doing too much advanced stuff with HTML.
+00:54 I'm not sure if there is such thing as advanced HTML
+00:56 but we're not going to be doing too much with it
+00:59 but of course, this is a web class
+01:01 and we're going to be doing a lot of HTML
+01:03 but I assume that you can work with standard markup.
+01:07 Similarly, we're going to be using CSS
+01:09 and I'll talk a lot about what the selectors
+01:11 and classes and design mean, and especially
+01:14 when we get to the bootstraps section
+01:15 and applying that to our website.
+01:17 So we're not going to assume you know tons of it
+01:20 but we're not starting from scratch with CSS either.
+01:23 So basic HTML, CSS, and Python knowledge
+01:26 that's what we assume you're starting with
+01:28 and then we're going to build
+01:30 our full-stack web app from there.

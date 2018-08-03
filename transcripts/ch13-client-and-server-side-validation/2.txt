@@ -1,0 +1,110 @@
+00:01 We're also going to use this over here.
+00:04 And this is going to show you another aspect
+00:06 of these view models that is beautiful.
+00:09 So notice over here that we're saying
+00:11 all right, some form data has been submitted to us.
+00:15 Right here it's, look at this email
+00:17 look at this name, look at this password.
+00:20 Well instead of remembering to do this
+00:22 and on complicated forms with ten pieces
+00:24 like this gets really tiresome really quick.
+00:27 We could actually just do like this.
+00:29 Even on the Get because state is going to come in
+00:33 but it'll just be missing so we could come over
+00:34 and say self.requestdict.get('email')
+00:39 Or we could just say .email, whichever you feel like.
+00:44 That solves those three lines.
+00:46 And then this validation, remember I said really
+00:49 really there should be three lines.
+00:50 You're email is required. You didn't enter it?
+00:53 Oh, wait, you entered your email but your name is required.
+00:55 You didn't enter it, and so on. Well let's go do that.
+00:58 We only want to compute those sorts
+01:01 of things on the form POST.
+01:04 So let's add another validate function here.
+01:07 And when that happens we're going to basically say
+01:10 if not self.email self.error equals?
+01:15 You must specify an email address.
+01:17 And you can imagine, same for name, same for password.
+01:23 So over here that is this sort of stuff and remember
+01:27 all of these things are already being tracked
+01:29 so watch how much simpler this becomes.
+01:32 vm.validate, and remember this is totally scalable.
+01:35 Like this could become way more involved.
+01:38 And it, it means you're more likely
+01:40 to write that extra validation code.
+01:43 Because it's not making this method even worse
+01:45 even harder to understand, right?
+01:47 There's, it never gets more complicated than just validate.
+01:50 So then you just ask if vm.error
+01:52 if there is some kind of error
+01:54 were just going to return vm.to_dic().
+01:57 Which includes the error.
+01:59 Otherwise, we say vm.email
+02:02 vm.name, vm.password.
+02:05 Done, how sweet is that?
+02:07 So, look how clean this method becomes.
+02:11 We create our view model and we ask for validation.
+02:13 And if there's a problem we just let it exchange
+02:15 other data back with potential
+02:17 error messages, all sorts of stuff.
+02:19 And, otherwise, we carry on.
+02:20 Now let's do one more thing, let's go to this part here.
+02:24 And let's add, say if self.email.
+02:28 Remember we stored this in a simplified form.
+02:30 We'll say email == self.email.strip().lower().
+02:34 Just to make sure.
+02:35 I think we're doing that in the data layer as well
+02:37 but let's make sure the data is
+02:38 already prepared when it comes in.
+02:42 And we can come over here and say things like
+02:44 if it's not there we'll just say strip on this as well.
+02:49 We're not going to mess with the password.
+02:50 They owant their password to be space, they can have it.
+02:54 Alright, let's make sure we can still register.
+02:56 So over here, we register get, register post.
+03:00 Let's see if things are still working.
+03:01 Come over here. Right now we're logged in so let's logout.
+03:06 And let's register as user, user2.
+03:12 At u2.com, get my password.
+03:16 Actually, let's first leave some stuff out here.
+03:19 Let's leave out the name and the password.
+03:21 You must spec, specify your name.
+03:23 User2 is my name.
+03:25 You must specify password.
+03:28 Alright, that's our password.
+03:29 Now this should work and we should be logged in as user2.
+03:33 Ready, bam, there we go.
+03:38 So let's review, we've taken and created
+03:40 this RegisterViewModel that has both the ability
+03:44 to load the data and then validate it.
+03:46 We saw our error handling checking
+03:48 to make sure the user name was there
+03:49 the actual name was there, the password was there.
+03:52 We didn't check email but it's there.
+03:55 And then, once all that stuff happens correctly
+03:58 we just use the values from it.
+04:00 So, what's really beautiful about this is it doesn't
+04:03 no matter how much data you exchange, it doesn't
+04:06 get more complicated than this.
+04:08 The view model is in charge of validating the data
+04:10 and exchanging the data with the form.
+04:13 You just work with the, the data that's gotten.
+04:16 It's real, real nice.
+04:18 On this one, they can interact with
+04:20 the database as it needs to, all sorts of stuff like that.
+04:23 So here, it's going and getting the cookie from the request
+04:26 and then it's actually hitting
+04:27 the database to populate the user.
+04:29 If it doesn't find it, we do some hard
+04:31 error handling, we just send them to login.
+04:33 Otherwise it passes that onto the view
+04:35 which is why we saw that right there, user2.
+04:39 So these view models are super, super valuable.
+04:42 And we'll be using them for the rest of this course.
+04:44 I'm going to go ahead and put view models in place for
+04:47 the remaining methods that you don't see.
+04:50 Like on packages and so on, but I'm not not going to
+04:52 walk you through it because, guess what?
+04:54 It's exactly the same as what we've
+04:55 been doing in the last two.

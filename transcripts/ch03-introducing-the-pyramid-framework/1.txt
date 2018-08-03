@@ -1,0 +1,88 @@
+00:00 Now this is obviously a course on Pyramid,
+00:02 so we're going to choose Pyramid as our web framework
+00:05 for this course, but let's talk through the
+00:08 various considerations and some of the trade-offs
+00:10 that you make with the web frameworks in Python.
+00:14 The best way to think about these frameworks
+00:16 is as a spectrum and on one end we have what I
+00:20 refer to as the building block frameworks.
+00:23 These are things like Django.
+00:25 Now what do I mean by building blocks?
+00:26 Well, they're really large sections of functionality
+00:30 you can just drop in or turn on and off.
+00:34 For example, if I want an Excel-like editing
+00:38 experience for all of my database,
+00:40 all my tables in my database, with Django I can
+00:43 just drop that in.
+00:44 I can just turn on a thing and, boom,
+00:46 you have Excel-like editing or maybe Google spreadsheets,
+00:50 more accurate because it's in the web,
+00:52 but you have this sort of big things you can drop in.
+00:54 You want to a CMS, drop in the CMS.
+00:56 You want user management, you drop that in there.
+00:58 It comes with a built-in data access layer.
+01:02 This is all a positive thing in a sense
+01:04 that you get these great pieces of functionality.
+01:07 The drawback, and to me just personally,
+01:09 this is a pretty big drawback,
+01:11 is if you don't like the way those things work,
+01:13 if you don't to follow the prescribed way
+01:17 of doing things that Django offers you,
+01:19 well, too bad.
+01:20 Django's going to make it much harder for you
+01:23 to be different or to choose what I think of as
+01:27 the best of breed building blocks.
+01:30 Do you want to use, say MongoDB and Redis
+01:34 in this unusual way, you want to create your
+01:36 own little management backend, things like that?
+01:38 Well, then you still have all the baggage of Django,
+01:41 but none of the benefits because it doesn't work that way.
+01:44 You're fighting against the system.
+01:47 If you would rather work that way,
+01:48 what you probably want is a microframework.
+01:51 We have one in our framework called Bottle out there,
+01:55 super, super lightweight.
+01:58 It doesn't do a ton, but it basically says,
+02:00 "Here's HTTP request, what do you want to do with that?"
+02:03 That's more or less it.
+02:05 Probably the most popular microframework would be Flask.
+02:08 Flask is very well known and used a lot.
+02:11 Flask is a fine framework.
+02:13 Probably my second favorite of all of them.
+02:15 Flask is good.
+02:16 It's a little more common to use Flask
+02:20 to create web services than it is
+02:22 to create web applications,
+02:24 so HTTP services rather than a bunch of pages,
+02:28 but of course Flask is used for that as well.
+02:32 I'd say Flask offers a little more functionality
+02:34 than Bottle and then we have Pyramid,
+02:36 which has a little bit more support
+02:39 for building full-on web applications
+02:41 than say Flask comes with, in my opinion.
+02:45 There's some benefits.
+02:46 There's some drawbacks.
+02:47 Some of the benefits of Pyramid include,
+02:49 it has better Python 3 support,
+02:51 it has better template support,
+02:54 it's faster, couple of other things.
+02:56 We'll maybe talk about those.
+02:58 It really comes down to the trade-off
+03:00 of do you want a microframework
+03:02 or do you want one of these big building block
+03:03 frameworks like Django, then the difference
+03:06 between, say, Flask and Pyramid
+03:07 is actually much, much smaller.
+03:09 What you learn in one is largely applicable to the other.
+03:13 We're going to see that Pyramid being a microframework
+03:15 will allow us to use something like SQLAlchemy
+03:19 and then if we decide, no actually we'd rather
+03:20 switch to MongoDB, no problem.
+03:22 That's a super, super minor change
+03:25 and everything else will just keep working.
+03:27 That's the really nice stuff of a microframework,
+03:29 real nice features of a microframework is that
+03:32 it let's you pick the various pieces
+03:34 and put them together just the way you want,
+03:36 not the way the framework wants you to
+03:38 or the few choices that framework has made for you.

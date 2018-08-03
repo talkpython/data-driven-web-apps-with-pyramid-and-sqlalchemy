@@ -1,0 +1,49 @@
+00:00 We've seen over here that our login
+00:02 and register still appear even though
+00:04 we are technically logged in.
+00:08 If I go there, we are technically logged in.
+00:11 So let's fix that.
+00:12 This is part of the shared layout template up here.
+00:18 We'll go down to this section here.
+00:21 Put a little separation for these.
+00:24 We'll have some kind of condition here.
+00:26 tal:condition, not userid.
+00:31 So we can communicate back to this template
+00:33 what the userid was.
+00:36 It turns out that this gets to be
+00:37 challenging to always do this in the right place.
+00:40 But let's do it for a minute and then we'll fix it.
+00:45 This one, of course, we're going to
+00:46 change the account and logout.
+00:55 Log out doesn't exist yet, but easy enough.
+00:57 So this might seem like a great idea
+00:59 but if we pull it up, not so much.
+01:02 So it turns out that if we do it this way
+01:05 every single part of our site
+01:09 is going to have to always pass the userid.
+01:12 We're going to do that now and we're going to fix it in the next chapter.
+01:14 Let's go over, we need the HomeController.
+01:20 Here we have to have userid
+01:26 and pass the request.
+01:28 I'm going to show you a better way.
+01:29 But for now, this is what we're going to do.
+01:33 We don't have it everywhere.
+01:34 It's going to fail. But let's just see that it works on the homepage.
+01:37 Boom, it's back and look at this, account and logout
+01:39 because we're logged in that's so awesome.
+01:40 'course if I click on account, it fails.
+01:43 Let's go work on that one. That one's easy.
+01:52 So I'm just going to put these on the rest, it's all the same.
+01:56 Alright, look everything is back.
+01:57 It looks like its all working.
+01:59 We can even go to the packages.
+02:00 That was super annoying
+02:02 but it is nice that it's driving this.
+02:04 We're going to fix that, like I said.
+02:05 But here we have our site up and working
+02:08 with user sessions and cookies.
+02:09 Let's do one more thing.
+02:10 I'll fully quit Firefox and come back
+02:12 just to see we're still logged in.
+02:17 Logged in, of course in a private window, not so much.
+02:21 Log in and register versus account and log out, awesome.

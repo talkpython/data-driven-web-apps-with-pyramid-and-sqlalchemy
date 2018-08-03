@@ -1,0 +1,73 @@
+00:00 Down here we're missing the footer.
+00:03 That's what we're going to add next.
+00:04 I think once we have that in place
+00:06 this page will be basically done.
+00:09 The footer's going to appear on all of the pages.
+00:12 We're going to come down here and put that
+00:16 I think we want to put it in this section here.
+00:18 We're going to use a footer tag.
+00:20 This is HTML5, after all.
+00:22 I'm going to say div.copy. Copyright.
+00:26 Put that in here. We'll just something like
+00:28 "This is a fake site." Alright.
+00:32 So we'll just put this
+00:33 "Hey, this is a fake site.
+00:34 It's meant to simulate the real one.
+00:35 Go check that out if you actually want something.
+00:38 And it's ours." Okay.
+00:40 Let's do a little refresh and see what we get. Hmm.
+00:44 Not exactly what we were hoping for.
+00:46 Let's put a little style in there.
+00:49 I want to apply this style to the footer
+00:51 the width. At 100%
+00:54 just to make sure that it totally stretches
+00:56 the padding.
+00:58 Want nice, big bold spacing down here
+01:00 so I have 30 pixels all the way around.
+01:05 Text-to-line is going to be center.
+01:08 Color it's going to be white.
+01:10 Background color 006.
+01:14 Notice that it's finding this in the style sheet
+01:16 and saying, "Here is one you've already used.
+01:18 If you want to be consistent just grab that."
+01:20 That's pretty cool. How're we doing?
+01:24 Oh, yeah. There we go.
+01:26 Go back to our About. Refresh that.
+01:29 Probably need a little padding but, you know
+01:31 it's more or less working across
+01:34 the two places here. Looks good. Looks good.
+01:37 Let's do one more thing.
+01:38 Let's add a margin on top of that
+01:40 just so we have a little more space. Margin top.
+01:43 Let's put that at 50px. There we go.
+01:47 This one was okay more or less. But, there we go.
+01:50 That's a little bit better. Still a bit tight
+01:52 but I think that's okay. The final thing to do
+01:56 let's go and actually set the background
+02:00 of our whole thing up here to this. Now
+02:08 we still want to leave that white here.
+02:09 That'll make our footer sort of fade all the way
+02:12 to the bottom. Even on these short pages.
+02:15 We have page. This page content id thing here.
+02:24 That's background color. Set to be white.
+02:27 Just like that. Here we go.
+02:31 Now, it looks like the way we want it.
+02:33 Oh! Alright, great.
+02:35 All the main page content is going to be white
+02:37 but not matter how tall the site is
+02:39 our little footer thing will fade through the bottom.
+02:43 Quite nice. Now, I do want to work on this page
+02:47 project/requests. This one
+02:51 here's what it's supposed to look like.
+02:53 It's supposed to have all this great detail here.
+02:56 We're going to put this in place
+02:58 but a lot of these things are hard to do
+03:00 until we actually have some data.
+03:02 Let's come back to this when we get to the
+03:03 SQLAlchemy section in our... Finish that up.
+03:06 We'll build out this page here. Alright.
+03:09 Just looks basically blank
+03:10 but we don't have any data to fill it.
+03:12 It's a lot easier to do when we actually have
+03:14 that data. But it looks like the overall site design is
+03:18 off to a really good start.

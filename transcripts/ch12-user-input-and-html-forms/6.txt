@@ -1,0 +1,70 @@
+00:00 We have our register form in place
+00:02 so let's actually be able to register for the site.
+00:06 Well, first of all I click here. Hmmm.
+00:09 Doesn't really take us there.
+00:10 We actually have the route in place
+00:12 we just haven't put it up here
+00:13 so let's say account/register.
+00:17 Try again. Okay, now we have our register form here.
+00:21 We have our name, our email address, and password.
+00:23 And we can submit it.
+00:25 And if you look at the browser at the top
+00:26 it is submitting stuff back to the server
+00:29 bunch of empty things. But if we look in here
+00:34 this is what we get when we click
+00:36 the link in the navigation.
+00:38 This is what happens when we submit the form
+00:40 'cause one is a GET and one is a POST right?
+00:43 Let's just print out the data that we're passing in.
+00:45 So, we're going to say request
+00:46 and the way we get this is...
+00:49 well that's not very helpful is it?
+00:52 There's four different places that this data can come from.
+00:56 Let's enhance this a bit.
+00:58 If you have a smart editor like PyCharm
+01:02 we're going to say this is a request
+01:03 and make sure you import that from Pyramid.
+01:06 Oh, let's try this again.
+01:07 Comes from, oh yeah we've got POST
+01:10 capital Post. We also have Get
+01:15 Also have matchdict
+01:16 So let's uh, let's real quick print out
+01:20 what's coming in here.
+01:23 Alright, remember you have to rerun it
+01:24 for the Python bits to take effect.
+01:26 If I put my name as Michael, my email address
+01:29 is michael@talkpython.fm and the password
+01:34 is amazing, it's just going to be the letter a.
+01:37 If we go back over here let's see what we got.
+01:39 We have this thing called a multidict
+01:41 but as far as you're concerned
+01:42 you might as well just treat it like a dictionary.
+01:43 One thing they do that's pretty slick
+01:44 is when you print it out if there's a password or something
+01:48 it'll star it out so it's anonymous.
+01:50 Even though I told you it still is just the letter a.
+01:53 So the name, it's passing though just like that.
+01:55 Email's passing through, like that and password.
+01:58 And then Get, Get doesn't have anything.
+02:01 But if we had something up here like:
+02:03 question mark source equals promo, and we do the same thing
+02:10 you can see in this case those right there
+02:12 now our Get has the source.
+02:13 So Get is the query string
+02:16 and then the matchdict is actually
+02:18 the data coming from the route.
+02:20 If we look at the route definition
+02:22 there's nothing here, but if we had
+02:24 I don't know, something like mode
+02:27 or some additional data
+02:28 like we are with our package name up here.
+02:32 Where were kind of come up here and say this is going to be:
+02:35 /newuser, right? That would be the mode.
+02:42 Now if we look back you can see the matchdict
+02:43 has that mode. These pieces coming through over there.
+02:48 Okay, super. So this is the data
+02:50 that's being provided to us, now our job is to take
+02:53 well, in this case, just the POST data
+02:56 and use that to actually create the user
+03:00 to register the user.
+03:01 So that's going to be our next step.

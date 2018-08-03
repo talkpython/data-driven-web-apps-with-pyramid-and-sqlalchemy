@@ -1,0 +1,41 @@
+00:00 Let's focus on some of the special
+00:02 challenges we might have in testing web projects.
+00:05 Here is a POST view method that's going to handle
+00:09 the postback, when we're doing registration.
+00:11 So, this is how users actually register on our site.
+00:14 And, you look at it, you can see there's things
+00:15 we might want to test, this interaction with the ViewModel
+00:19 this error handling, the actual creation of the account.
+00:22 But, look carefully. You'll see there are certain areas
+00:26 where this is much harder than
+00:29 just some sort of algorithmic thing.
+00:31 We're creating a register ViewModel
+00:33 and, oh it takes a request.
+00:35 That's an actual Pyramid request.
+00:37 With various dictionaries like the Post, Get, matchdict
+00:41 headers, URLs, all sorts of stuff.
+00:45 Hmmm, how do we create one of those?
+00:47 That could be tricky. Validate.
+00:49 Remember the register ViewModel actually goes back
+00:51 to the database to make sure the user that's trying
+00:53 to register isn't already registered.
+00:56 How do we talk to the database?
+00:57 We don't actually want to go to the database in our test.
+01:00 What we want to do is run these tests in isolation.
+01:03 So, how do we make that still do something meaningful
+01:05 without actually going to the database.
+01:07 That's really tricky. We're going to create an account.
+01:10 Well that's definitely going to go to the database, right.
+01:12 Maybe it's also going to send like a welcome email
+01:15 who knows what that user service thing does.
+01:17 It might do all kinds of things we don't want to happen.
+01:20 So, we don't want an email to get sent to a random person
+01:23 every time these automatic tests run, right.
+01:26 We want to make sure that doesn't happen
+01:27 but we might want to verify that the email would
+01:30 have been sent correctly.
+01:32 Similarly login, what does that mean?
+01:34 This redirect that probably throws an exception
+01:36 but in a positive way, right, throws a HTTPFound exception
+01:40 for /account. So, all of these things are special challenges
+01:44 of working with the web when we're doing testing.

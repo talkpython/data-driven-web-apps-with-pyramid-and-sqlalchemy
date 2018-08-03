@@ -1,0 +1,97 @@
+00:00 Here we are back at our demo app
+00:01 and remember, this is all being driven with fake data
+00:04 but we're about to change that.
+00:06 Notice these 0 projects, 0 releases, 0 users.
+00:09 Not so amazing
+00:11 and here, these are just things that we've hacked in here.
+00:15 So our goal during this video, this lecture, is
+00:18 to actually fill out of those pieces right there.
+00:22 So first of all, where is it happening?
+00:23 Let's close some of this stuff off.
+00:26 Right here we're returning the test packages
+00:28 and in our template, we literally just have
+00:32 zero, zero, zero.
+00:34 So first of all, we need to pass that data along.
+00:37 So let's say package_count, release_count, user_count
+00:41 is zero and then we can use these over in our template.
+00:48 So we can put 'em like that.
+00:49 We could actually get a little better format
+00:51 if we do it like so.
+00:54 Like this, that way we'll get comma separators
+00:57 or digit grouping there.
+01:01 So do the same for releases and users.
+01:08 Let's rerun it and see how it works.
+01:11 Ooh, releases_count.
+01:14 Release, singular, count, it didn't like that.
+01:17 Amazing, it's still zero but now
+01:19 it's coming from that place.
+01:20 We can see if we were to put something here
+01:25 like 10,000, remember you've got to rerun it
+01:27 for the Python code to change.
+01:29 There we are.
+01:30 Now we have 10,000 projects, awesome.
+01:32 So it is being driven with that data.
+01:34 Now our goal, of course, is not to type zeros here
+01:37 but to go and get the data from the database.
+01:40 There's two ways we can do this.
+01:41 Well, there's probably infinitely many ways to do this
+01:43 but there's two obvious ways in which we can do this.
+01:45 One obvious way would just literally be
+01:47 to start writing queries inside this home index.
+01:51 That is not the way we want to do things.
+01:53 It makes it hard to test our code.
+01:56 It makes detangling the controller logic
+02:00 from the data access logic problematic and so on.
+02:04 So a pattern that I've settled in on is putting
+02:07 what I call data access services
+02:09 and sort of grouping them by their roles.
+02:12 So what we're going to do is we're going to come over here.
+02:13 We're going to define I guess a Python package.
+02:17 We'll call this services
+02:18 and these are not external services
+02:19 these are the data services I'm talking about
+02:22 and let's go and add Python file called package service.
+02:27 In here we can have some functions, def.
+02:39 Do a release count and let's take something similar
+02:44 and we'll put that in and do a user services
+02:46 well they're going to do many more things than count
+02:48 of course, but this will get us started.
+03:00 All right, so up here we're going to save
+03:03 from pypi.data, import, oh not data, sorry.
+03:10 services, ah, it looks like I made that
+03:14 in the wrong place, oops.
+03:20 Okay so we'll import this and then we can come down here
+03:22 and we can just say, .package_count
+03:26 and release_count and we'll do the same for users.
+03:29 User service, okay?
+03:34 Now, I think it returns None, which is probably going to
+03:37 crash, so let's go and actually implement these.
+03:40 All right, so they're all going to be basically the same.
+03:43 In order to interact with the database, we need session
+03:46 right, so we'll say session = DBSession.factory
+03:51 like that and later, we're going to just call close
+03:55 on the session.
+03:56 We don't actually have to do anything
+03:57 and we can just skip it.
+03:58 I think it'll get garbage collected straightaway.
+04:00 So we want to do a query so I'll return session.query
+04:05 and what do we want to do a query on?
+04:07 Well that's on packages, so we import that
+04:11 and we could do a filter.
+04:12 We could do an orderby
+04:14 but really all we care about is a super simple count.
+04:17 That's pretty easy, right?
+04:18 See the release
+04:23 and let's go do the user.
+04:32 All right, run it again.
+04:33 This thing should work.
+04:35 Let's go refresh and look at that.
+04:38 How many packages did we import, 96.
+04:40 How many releases do we have, 5,400
+04:42 with 84 users, awesome.
+04:45 So everything is in place and now we can start doing
+04:49 things like get our new releases by just simply
+04:52 adding one more function over here.
+04:54 So we'll do that later but everything's coming together
+04:57 and our little data access piece, well
+04:59 it's working really nicely.

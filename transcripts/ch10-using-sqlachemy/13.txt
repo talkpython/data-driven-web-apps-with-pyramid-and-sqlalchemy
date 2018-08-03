@@ -1,0 +1,16 @@
+00:00 We started off this chapter by demoing
+00:02 how to insert data.
+00:03 Let's actually summarize now here at the end.
+00:06 So again, we're going to create a session
+00:08 which is the corresponding unit of work
+00:11 bit of syntax in SQLAlchemy.
+00:13 Then we're just going to allocate some objects
+00:15 so here we're going to create a package
+00:17 and set its ID and its author
+00:19 maybe create some releases, set the release
+00:23 not package value, other properties similarly
+00:26 release two, set its package.
+00:28 We're going to add the package, call commit
+00:30 whoosh, all three of those things
+00:32 because of the relationships get inserted into the database.
+00:36 Super easy.

@@ -1,0 +1,23 @@
+00:00 It looks we'll be able to call create_user
+00:01 over from our Account Controller
+00:03 but, you know, let's actually try it.
+00:07 Let's go over here and register.
+00:08 Actually, let's first look in the database
+00:09 and see that there is no user with that name.
+00:19 So we'll check the email equals michael@talkpython.fm.
+00:26 Zero rows, okay. Now let's go register.
+00:32 Alright, it seemed to work. Seemed to register.
+00:35 Rerun our query. Boom, look at that.
+00:39 User 85 has been created.
+00:41 Here's Michael Kennedy, there's the email address I passed.
+00:44 We got our default values of created_date.
+00:46 Last logon, login we didn't set the profile image
+00:49 but I don't really know what to put there for now.
+00:51 So we're going to leave that alone.
+00:53 But check out this password.
+00:54 That is one gnarly-looking password.
+00:56 So apparently 150,000 times some custom salt
+01:00 a whole bunch of crazy so this is really really good.
+01:03 This is, this should be totally fine for our password story.
+01:07 Oh, sure looks like we're able to create an account
+01:09 and register. Maybe we should try to login.

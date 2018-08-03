@@ -1,0 +1,46 @@
+00:00 Let me just make a one final comment here
+00:02 on cleanup before we finish with this whole chapter.
+00:05 We won't write anymore code.
+00:06 Just think about some ideas here.
+00:09 Now that we've migrated all of our data over to MongoDB
+00:12 if we're truly committed to moving away
+00:15 from our relational database and over to Mongo
+00:18 or whatever direction you're going.
+00:19 It doesn't really matter. The same thinking applies.
+00:22 If you're fully committed to being over into that new space
+00:25 we've moved our data
+00:27 well, the next step would be to go over here
+00:30 hit delete, just wipe away all those files.
+00:33 Commit that to GitHub.
+00:35 Maybe tag it or somehow like create some kind of branch
+00:38 or do something to make a really clear spot
+00:40 that you can go back and find it.
+00:42 But then remove it.
+00:44 Don't keep these things hanging around
+00:46 because you'll have to somehow maintain them.
+00:49 You know, the way it works when you do the scan
+00:51 for the routes is it's going to read through all these
+00:54 and then these are going to see things
+00:55 like the top import SQLAlchemy.
+00:57 You'll still have to install those dependencies
+01:00 even though you have no intention of using them.
+01:01 So wipe that away, delete that file
+01:05 'cause same reason that I just described.
+01:08 It's going to have the SQLAlchemy dependencies
+01:10 and it's going to cause trouble.
+01:11 We're not doing that 'cause I want to leave it
+01:13 in this state where you can come to this
+01:16 look at this migration.
+01:17 You can take the data that is being shipped through GitHub
+01:22 here and then run this migrate to Mongo
+01:25 to actually get the data into MongoDB
+01:27 because I'm not shipping the MongoDB database separately.
+01:30 It's not so easy.
+01:31 So anyway, I think I'm going to keep it for your demo
+01:35 for your example to be around.
+01:37 However, in practice, once you've made this transformation
+01:42 it's time to, you know, put a save point in GitHub
+01:46 wave goodby to whatever the other data model was
+01:48 and move on.
+01:49 If you need it back, there's always source control.
+01:51 You can get it back.

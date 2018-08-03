@@ -1,0 +1,78 @@
+00:00 In this course, you're going to learn
+00:01 what's sometimes referred to as full-stack web development.
+00:05 Now, we don't spend that much time
+00:07 on the JavaScript side of things
+00:09 but everything else we do spend a fair amount of time on.
+00:11 So, what the heck is full-stack anyway?
+00:14 Let's look at all the pieces involved
+00:16 in a typical web application interaction.  We have a browser
+00:20 we have our server running out on some cloud hosting
+00:23 we have usually a virtual machine
+00:25 or set of virtual machines in the background
+00:27 and our database we're working with.
+00:29 So, a request is going to come in.
+00:30 It's going to magically find it's way
+00:33 through the internet to our server.
+00:34 Our server is going to do some processing
+00:37 talk to the database, and so on.
+00:40 Where's the full-stack part come in?
+00:41 Well, let's look at the technologies involved here.
+00:45 On the server side
+00:47 there are a bunch of different technologies
+00:48 you need to learn.
+00:50 We're going to learn Python.
+00:51 Well, we're going to use Python at least
+00:53 and we'll probably learn little bits of it along the way
+00:55 but we're going to focus on using Python
+00:58 along with Pyramid
+01:00 the web framework that we're going to work with.
+01:02 The dynamic HTML templates
+01:05 in this case Chameleon.
+01:07 The data access layer SQLAlchemy.
+01:10 In order to deploy and configure our servers
+01:12 we're going to need to know a little bit of Linux.
+01:14 Learn that.
+01:15 We're going to use Nginx and uWSGI.
+01:18 These are two cooperating web servers
+01:20 that we're going to with to run our Python code in Pyramid.
+01:24 Then we're going to talk to the database.
+01:26 Well, what do you need to know for that?
+01:27 Well, maybe this is Postgres or MongoDB.
+01:31 For the course, we're actually going to use SQLite
+01:33 and also a little bit of touch of MongoDB at the end
+01:36 but it's easier to switch to something like Postgres.
+01:39 You many need to know the query language to get to that
+01:43 like SQL, or MongoDB's query syntax
+01:46 it's like a JSON type thing.
+01:48 We're not going to actually focus much on the query syntax
+01:52 because we're going to use SQLAlchemy
+01:53 which lets us sort of abstract that away
+01:56 but you would more or less need to know that in practice.
+01:59 You also need to know how to migrate or manage your database
+02:03 over time as it's structure changes.
+02:05 Look at all these technologies just on the server side.
+02:08 That's a lot to learn
+02:09 and this whole stack of technologies put together
+02:13 is part of what's called full-stack
+02:14 but there's more to it.
+02:16 Over here on the browser side
+02:18 we have HTML and CSS we have to deliver
+02:21 to the browser, right?
+02:22 That's ultimately the goal
+02:23 is to show stuff on the screen for the web browser.
+02:27 HTML and CSS, we're going to do some work with that.
+02:29 You typically don't want to do the design from scratch
+02:32 so you'll pick a front-end framework like Bootstrap.
+02:35 Maybe you're even writing some rich JavaScript apps
+02:37 with say, Vue.js.
+02:39 Those are grayed out, because like I said
+02:41 we're not doing much with JavaScript
+02:42 but these are the technologies that you might put
+02:45 into play for a full-stack web application.
+02:49 The web can be a little bit daunting.
+02:50 We're going to go through most of these technologies.
+02:53 All of the white highlighted ones in this course
+02:56 and you'll have concrete small examples for each one.
+03:00 In the end, we'll have it all put together in a full-stack
+03:03 Python-based web app using Pyramid
+03:06 SQLAlchemy, and Bootstrap.

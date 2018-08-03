@@ -1,0 +1,47 @@
+00:00 We saw relationships are extremely powerful
+00:02 and let us imagine as if our code and data
+00:06 were just connected almost hierarchically
+00:08 the way we would in a regular Python program connect it
+00:12 not split apart like we do in a database.
+00:14 The way we define these
+00:15 we had an orm.relationship field to the class.
+00:18 So here we have our releases
+00:19 say the relationship is against the release type
+00:22 that we're speaking in terms of SQLAlchemy entities
+00:25 not database and then we're going to do an orderby.
+00:27 This could be a single thing or a list.
+00:30 Probably an integer actually
+00:32 and so we're going to pass that in.
+00:34 And then we're going to say it back-populates package.
+00:38 What does that mean?
+00:39 If we want this relationship to work in both directions.
+00:41 So we have a package we can see the releases
+00:43 and if we have an individual release
+00:44 we can see the single package that it corresponds to.
+00:48 So over in the release we're going to do the package ID value
+00:52 to actually store the relationship
+00:54 like we would store any value that's a string or an integer
+00:57 whatever it corresponds to in the other field.
+01:00 And then we're going to say this is a foreign key
+01:02 and in the foreign key part we speak in terms of database
+01:05 packages.id
+01:08 But then we also would like to establish that relationship
+01:11 so we say there's orm relationship
+01:13 for the package type form released back to the package.
+01:17 And it back populates releases and it's called package.
+01:20 So you can see the symmetry here.
+01:22 Not too hard to set this up, once you have an example.
+01:25 Put them side by side, you go okay
+01:27 here's where I fit all the pieces for my particular data set
+01:30 and then you saw that when we load a package
+01:33 it doesn't actually load the releases
+01:35 unless we interact with it.
+01:37 So if we touch it, it would go back to the database
+01:39 and do the query.
+01:40 We also saw that if we create new releases
+01:43 and put them into the release package.releases
+01:46 what becomes a list and commit those changes
+01:50 that will actually insert the releases.
+01:52 We work on the same but in reverse as well
+01:54 if we had said a package on a release.
+01:57 So it's sort of bi-directional in that sense.

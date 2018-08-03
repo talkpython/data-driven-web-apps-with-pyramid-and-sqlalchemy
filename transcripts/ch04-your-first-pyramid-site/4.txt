@@ -1,0 +1,13 @@
+00:01 You've already seen how to create a pyramid website
+00:04 from the command line interface
+00:05 and like I said, that works everywhere.
+00:08 But if you happen to be using PyCharm Professional
+00:11 this gets a whole lot simpler.
+00:13 So, this does not work on the Community Edition
+00:15 one of the differentiators between the paid
+00:18 and Community Edition of PyCharm is this web
+00:21 development stuff, so really for this course
+00:24 the professional one is the only one that makes sense.
+00:26 But if you have that, you could skip a lot of this
+00:29 and go ahead and just do it in PyCharm.
+00:31 So, let's see how that goes.

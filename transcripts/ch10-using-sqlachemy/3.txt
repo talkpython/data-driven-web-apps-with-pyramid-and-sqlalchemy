@@ -1,0 +1,59 @@
+00:00 One of the core concepts of SQLAlchemy
+00:02 is this Unit of Work.
+00:04 Let's dig into that.
+00:05 The unit of work is a design pattern
+00:07 that allows ORMs and other data access frameworks
+00:11 to put a bunch of work together
+00:14 and then at the very end
+00:15 decide to go and interact with the database.
+00:18 Decide, now, we're going to actually
+00:21 save this data within a single transaction.
+00:24 So here we have a bunch of different tables
+00:27 customers, suppliers, and orders.
+00:29 They're all providing entities into this operation
+00:32 this unit of work.
+00:34 So maybe we have a couple customers
+00:35 one supplier, and one order.
+00:37 We've also maybe allocated some new one
+00:39 like we did with package
+00:40 and we're inserting that into the database.
+00:42 And maybe we've changed things about the supplier.
+00:45 We're updating those in the database.
+00:47 And the order is canceled, so we're calling delete on that.
+00:51 All that gets kind of queued up in this unit of work
+00:54 and then we get, so I'll call commit in SQLAlchemy syntax
+00:58 and that pushes all those changes
+01:00 which are tracked by the unit of work
+01:02 the so-called dirty records, right?
+01:04 The things that need to be inserted
+01:06 the things that need to be deleted
+01:07 the things that need to be updated, and so on.
+01:09 So we can use these unit of works like that.
+01:11 And the way we create them are with these sessions.
+01:14 So we've seen that we create these engines
+01:19 and the engine gives us this session factoring.
+01:21 That was all encapsulated within our DBSession class.
+01:25 We do this once, right?
+01:27 And then, every time we want to interact with the database
+01:30 we create one of these sessions.
+01:32 So we come over here and we call that session factory
+01:34 it gives us a unit of work, which is often called a session
+01:39 kind of treat this like a transaction.
+01:41 A bunch of stuff happens in memory, then it's committed.
+01:44 Maybe we add something, maybe we do some more queries
+01:47 maybe that tells us what we've got to do to add some more
+01:49 we could make changes to the results of those queries
+01:52 either updates or delete.
+01:54 All of that work has not interacted with the database.
+01:58 In fact, other than the query
+02:00 there's not actually been any interaction with the database.
+02:03 This add doesn't actually add it to the database.
+02:06 It just queues it up to be added
+02:08 and when you call commit
+02:10 that commits the entire unit of work.
+02:12 Don't want to commit it?
+02:14 Don't, nothing will happen in the database.
+02:16 There will be no changes to your data.
+02:18 And that's how the unit of work pattern appears
+02:21 and is used in SQLAlchemy
+02:23 through this session factory, and then committing it.

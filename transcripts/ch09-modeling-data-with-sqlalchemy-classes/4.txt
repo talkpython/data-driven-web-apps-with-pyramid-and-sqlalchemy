@@ -1,0 +1,76 @@
+00:00 When you're trying to model something like PyPI
+00:02 a website with a database the clearer of a picture you have
+00:06 the better you're going to be.
+00:09 So let's look around this running, finished version.
+00:12 Remember this is not, even though it looks
+00:14 very much like what we built.
+00:15 This one is actually the finished one
+00:17 that we going to sort of be aiming for.
+00:20 Alright, and we're not going to look at the code
+00:21 but we'll poke around what the web looks like.
+00:24 And we could just as well look at
+00:26 the real one but lets look at this.
+00:28 So on any given package
+00:31 this is pulling up the package AMQP.
+00:35 And apparently that's a low level AMQP client for Python.
+00:39 OK, great I actually have never used this.
+00:41 We have a couple of things going on here.
+00:43 We have the name of the package
+00:45 the version, bunch of different versions actually
+00:49 a description, right here.
+00:52 We actually have a release history.
+00:53 So each package has potentially multiple releases.
+00:56 You can see this one had many
+00:58 different releases and we can pull up the details
+01:00 about different ones, and jump back there.
+01:03 We have downloads, we have information
+01:05 like the homepage, so right over here
+01:07 we go to GitHub, apparently that has to do with Celery.
+01:11 You could pull up some statistics about it.
+01:13 It has a license, has an author.
+01:17 So, remember up here we have a login and register
+01:19 so we could actually go login to the site or
+01:22 create an account just as a regular user
+01:25 and then we could decide as Barry Peterson
+01:28 apparently did, to just publish a package
+01:31 and then there's a relationship
+01:33 between that user and this package
+01:35 as a maintainer and is probably a normalization table.
+01:37 Also have a license, BSD in this case.
+01:41 And we want to model this situation
+01:43 in a relational database.
+01:44 Let's see how we do that.
+01:46 PyCharm has some pretty sweet tooling
+01:47 around visualizing database structure.
+01:50 So here we're going to have a package and it's going to
+01:52 have things like a summary and a description
+01:54 and a home page, a license, key words.
+01:58 Things like that.
+01:59 It has an author but it also potentially
+02:02 has other maintainers so we have our users
+02:05 name, email, password, things like that
+02:08 and then I don't have the relationship drawn in
+02:10 this diagram but there'd be a relationship
+02:12 between the user ID and the user ID
+02:14 and the package ID and the package ID there.
+02:17 So this is what's often referred to as
+02:19 a normalization table for many to many relationships.
+02:22 So that's one part and then the package, remember
+02:25 it has releases so here each release has an ID.
+02:28 It has major and minor build version
+02:30 a date, comments, ways to download that.
+02:33 Different sizes as it changes over time.
+02:36 We also have licenses that relate back there.
+02:39 And we have languages.
+02:42 So here, this is going to relate back to that ID right there.
+02:46 Finally we're not going to track any of this but there actually
+02:49 are download statistics about this.
+02:52 About downloading all these packages and
+02:54 the different releases and so on
+02:55 so we went ahead and threw that in there.
+02:57 This is what we're going to try to build
+02:59 but we're not going to build it in the database.
+03:01 We're going to build it in SQLAlchemy
+03:03 and SQLAlchemy will maintain the database for us.
+03:06 I think the place to get started is packages
+03:08 so let's go on and do that.

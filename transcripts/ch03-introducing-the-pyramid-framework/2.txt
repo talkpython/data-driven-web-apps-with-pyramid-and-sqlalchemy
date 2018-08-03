@@ -1,0 +1,97 @@
+00:00 Let's spend a moment on the Pyramid philosophy
+00:03 and some of the principles that they use
+00:05 to drive their project.
+00:06 I love their tagline:
+00:08 The start small, finish big, and stay finished framework.
+00:12 You'll see that the principles
+00:13 really drive that mission statement there.
+00:16 First of all, they focus on simplicity,
+00:19 and the pay-only-for-what-you-eat approach.
+00:22 And what that means is they've designed the framework
+00:25 so that you can get results even if you have
+00:28 only a partial understanding of Pyramid.
+00:30 You don't need to understand all the stuff
+00:32 in order to make use of it.
+00:34 You just need to know how to, say,
+00:35 create a view and a template and pass data to it.
+00:38 That's really all you need to know
+00:39 if you just want to show simple data, things like that.
+00:42 So they've built this start small and add your understanding
+00:47 to do more and more advanced stuff over time
+00:49 but if you don't care about it,
+00:50 you don't need to know about it, and that's really nice.
+00:53 Being a microframework, they focus on minimalism;
+00:57 the core things that web applications do:
+00:59 mapping URLs to code, templating,
+01:02 security, and static assets.
+01:04 And that's pretty much it.
+01:05 Every web application has to do stuff like this,
+01:07 so that's what they've focused on,
+01:09 doing this really fast and really well.
+01:13 Because Pyramid's relatively small,
+01:15 they can focus on having documentation for everything.
+01:19 So their goal is to make sure nothing goes undocumented.
+01:22 And I could tell you, I've submitted a couple of PRs
+01:24 back to various aspects of Pyramid
+01:26 and a lot of the conversation actually has been,
+01:29 well, what are the effects of this change
+01:31 on the documentation, on the tutorials,
+01:33 and making sure that that's always up to date.
+01:36 Maybe even more so than,
+01:38 is this the right change for the framework?
+01:40 So I can tell you they take documentation super seriously.
+01:44 We talked about focusing
+01:46 on the core things the web framework does,
+01:48 routing URLs, serving static assets, and so on,
+01:51 and I can tell you that Pyramid
+01:53 is one of the fastest Python web frameworks out there.
+01:57 It's super fast, really runs well,
+01:59 and it runs well on Python 3.
+02:01 Some of the frameworks out there,
+02:02 you'll see they run pretty fast on Python 2
+02:04 but not on Python 3,
+02:05 and nobody wants to be in that place these days, right?
+02:08 Python 2 is on its way out, so having this run fast
+02:11 on Python 3 is really, really awesome.
+02:14 I can give you a little bit of background
+02:15 just running Pyramid for my web applications,
+02:18 both the podcast website
+02:20 and the training website run on Pyramid.
+02:22 I've had various things of those sites each featured
+02:27 on Hacker News, and be on the front page,
+02:30 in the top five or top 10 on Hacker News for a day or two,
+02:34 and that sends a ton of traffic over.
+02:36 You go over to the web server, pull it up,
+02:38 it's like a $5/10 web server, virtual machine,
+02:41 and it's doing like 5/10% CP usage
+02:45 even though it's just getting hammered
+02:47 with all this traffic. So this framework is super fast and easy on the hardware,
+02:51 and really, really scales in some impressive ways.
+02:55 We obviously want our web frameworks to be reliable,
+02:58 and it's really encouraging that every release of Pyramid
+03:01 has 100% statement coverage for their unit tests.
+03:04 That's awesome.
+03:06 Pyramid is open source and released
+03:09 under a permissive license.
+03:10 You can see your github.com/pylon/pyramid,
+03:13 and you can go check it out, download it, clone it,
+03:16 do whatever you want so you'll always
+03:18 have access to your web framework.
+03:22 One of the first things that drew me to Pyramid was actually
+03:25 it's super strong support for Python 3.
+03:29 So they made a statement early on saying,
+03:32 Python 3 is the future,
+03:33 Python 3 is going to be our default implementation.
+03:36 Yes, it may still run on Python 2,
+03:39 but we are going to build all of our demos,
+03:42 build all of our examples,
+03:43 and primarily test and develop on Python 3,
+03:47 and make sure things run fast on Python 3.
+03:50 Which they've done really well, and that's awesome.
+03:53 You definitely need to be on Python 3 these days,
+03:55 Python 2 is on its way out really, really soon.
+03:58 At the 2020 deadline, it's basically going unsupported
+04:02 and you do not want to be built on a framework
+04:04 or a runtime that's unsupported.
+04:07 So the fact that Python 3 is the default implementation
+04:10 for Pyramid is just excellent.

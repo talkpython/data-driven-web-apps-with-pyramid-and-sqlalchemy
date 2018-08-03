@@ -1,0 +1,100 @@
+00:00 Let's review some of the concepts we saw during deployment.
+00:03 Now, we deployed to Ubuntu and DigitalOcean.
+00:07 But you don't have to go to DigitalOcean.
+00:09 What you saw would work almost exactly the same
+00:11 in places like AWS, or Azure, or Linode, or whatever.
+00:15 You do have to be aware on AWS
+00:17 there's also a cloud-controlled firewall
+00:20 that happens to be blocking things
+00:21 so you have to unblock the HTTP ports in a couple places.
+00:25 That's AWS. It's kind of super complicated.
+00:27 And if you're doing basic things that
+00:29 anyway, that's a whole different discussion.
+00:31 Let's talk about the concepts.
+00:33 We started by having a production.ini.
+00:36 And there's a couple settings
+00:37 that I didn't point out there that are important.
+00:40 I did point out the uWSGI section.
+00:43 So here you have the localhost port
+00:46 it's going to listen on, this is where Nginx speaks to it
+00:49 you don't expose this on the internet directly.
+00:51 Master mode means we're going to run
+00:53 five processes for parallelism.
+00:56 Five actually can handle quite a bit.
+00:57 Threads amplifies that further.
+00:59 And then the hari kari thing
+01:01 is if they don't respond in a certain amount of time
+01:03 they'll get killed off.
+01:04 And finally, you want logging in your app
+01:07 so you can figure out what's happening.
+01:08 The production.ini settings I did not show you were
+01:11 there's a difference between the development.ini
+01:14 and production.ini, where for example
+01:16 the templates don't auto-reload.
+01:18 You have to restart the process if you change the templates.
+01:20 The debug toolbar thankfully is not there in production.
+01:24 That would be bad, you don't want it there.
+01:26 So things like that, you can check the differences.
+01:28 They're not major but there's a few other differences
+01:30 that Pyramid itself puts into those two files, plus this.
+01:35 Once we have our production.ini ready to go
+01:39 we want to create a system daemon, using the systemd
+01:42 that's going to run uWSGI anytime the server is on.
+01:46 It's going to auto-start it and keep it running.
+01:48 So here is the settings we used.
+01:51 Here, we just say execstart
+01:52 use that virtual environment to uWSGI
+01:55 and use our production.ini to do it, so really simple.
+01:59 I just noticed I didn't have a forward slash
+02:01 in the runtime directory in the end.
+02:03 uWSGI claims that the directory is invalid
+02:05 if you don't explicitly put that trailing slash
+02:08 so make sure you put that there, if you care.
+02:11 Alright, so you have basically this file
+02:13 in the files I'm giving you as well.
+02:15 So this would be uWSGI running as a system daemon
+02:18 and you're going to need to copy that from wherever it is
+02:21 over to etc/systemd/system.
+02:24 Finally we want to set up the outer shell
+02:27 the thing that listens on the actual internet
+02:29 the thing that serves the static files
+02:31 and then also delegates the Python request
+02:33 back to uWSGI and that's Nginx.
+02:36 So here's how we can configure that.
+02:38 You can listen on more than one port.
+02:40 You can listen on 80 and do a redirect to 443.
+02:43 There's a lot of configuration stuff you can do
+02:44 but here's a super basic one.
+02:46 Listen on 80 for fake_pypi.com
+02:49 as the domain name that we registered.
+02:52 You know, registered by typing it into our host file.
+02:54 My serve up static files
+02:56 point at the static directory and set some expiration date.
+03:00 And this one you want to copy over
+03:01 to etc/nginx/sites-enabled.
+03:06 Now finally we also have in our Nginx files
+03:09 telling it to go, if you don't go to /static
+03:12 just go to / or anything below that, except static.
+03:15 Just go and do a request over to your application
+03:18 which forwards over to our configuration in uWSGI.
+03:23 Be really careful that that port 8999 is the same one
+03:27 as you have back in your production.ini's
+03:29 configuration for uWSGI.
+03:31 They have to match, of course
+03:32 so that they can find each other.
+03:33 Or use a system socket.
+03:35 That takes a little more setup
+03:36 so I'm just using the localhost HTTP.
+03:40 And that's it. I gave you the script of all the pieces you need to run.
+03:43 These are the details of the
+03:44 configuration files you have to set up.
+03:46 And hopefully you come away feeling like
+03:48 setting up that Linux server wasn't too much work.
+03:51 Did talk a lot about it, but if I just put my head down
+03:53 and focused, and went after it
+03:54 we could probably do it in 10 minutes
+03:56 And most of that time is waiting on installs
+03:58 you know, apt this, pip that, right?
+04:01 Just waiting for those things to happen.
+04:02 So not a lot of work once you have the scripts
+04:05 and everything put together for you.

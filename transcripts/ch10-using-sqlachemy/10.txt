@@ -1,0 +1,19 @@
+00:00 Databases are really good at filtering and ordering.
+00:03 Here's a function, find_all_packages
+00:05 and the idea is I would like really
+00:07 a list of all the packages in the database
+00:10 showing the newest ones first
+00:11 and the oldest ones last.
+00:13 So we're going to do a query on package
+00:15 and we don't do any filtering 'cause
+00:16 you know, we said in the name, we want them all
+00:19 but we are going to do an order by.
+00:21 So we say query a package.orderby
+00:24 and then we always express these operations
+00:26 in terms of the type, so package.created.
+00:29 And if we just said package, dot, created
+00:30 it would order ascending by the created date
+00:33 but we want descending, so we go to that descriptor created
+00:37 and we say, .desc, we call the function
+00:39 to reverse the sort and then we just say
+00:42 give us all the packages, here they come.

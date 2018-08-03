@@ -1,0 +1,20 @@
+00:00 Now, before we get to the rest
+00:01 of the course, let me just quickly introduce myself.
+00:04 Hey, I'm Michael, feel free to reach out to me
+00:07 on Twitter where I'm @mkennedy.
+00:09 I've done a number of things
+00:10 in the Python space, one is create the Talk Python
+00:12 To Me podcast, where I've interviewed
+00:14 a lot of people who were involved
+00:16 in these various technologies, Mike Bayer
+00:18 from SQLAlchemy, Chris McDonough, the founder of Pyramid.
+00:22 I'll talk a little bit about some of those episodes
+00:24 when we get to the right place
+00:25 and how you can learn more.
+00:27 But I started and run the Talk Python To Me podcast.
+00:30 I also run the Python Bytes podcast
+00:32 which is sort of a news one. Check that out.
+00:35 And of course, I'm the founder
+00:36 and one of the main authors at Talk Python Training.
+00:39 Nice to meet you, I'm really excited you're in my course
+00:42 now let's get started.

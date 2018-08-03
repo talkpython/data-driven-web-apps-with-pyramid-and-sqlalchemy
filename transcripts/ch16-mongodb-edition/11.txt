@@ -1,0 +1,106 @@
+00:00 Let's close out this chapter by reviewing
+00:01 some of the concepts that we discussed
+00:03 while going through our conversion
+00:05 from SQLAlchemy to MongoDB.
+00:07 First thing, we have to register connections
+00:09 so pretty straight forward.
+00:11 We just pass an alias in a name for
+00:13 the database, and off it goes.
+00:15 So here we said core, pypi_demo, and we
+00:17 call MongoEngine.register_connection.
+00:20 As long as our entities use the same alias
+00:23 which is called db_alias in their little meta data thing
+00:27 long as they use the same one, it just uses this connection.
+00:29 Alright, it's kind of this ambient way to get to the database
+00:32 so you don't have to go through that session stuff.
+00:35 The classes that we map to the database derive from
+00:38 a built-in base class mongoengine.Document.
+00:42 Everything that's going to be saved to a
+00:43 top level collection is a mongoengine.Document.
+00:46 Here we have a package.
+00:48 In this one, we're changing what the id is, like we did
+00:51 we used the string instead of auto-incrementing id.
+00:54 If we want to take a BSON, auto-generated BSON id
+00:58 we can just omit that line
+00:59 but this one we want to make sure it's a string
+01:01 which is that unique, I guess we don't say unique here
+01:04 we should say unique but that's a feature
+01:07 but it's not one that we set.
+01:08 Anyway, we want to make sure this is a unique thing
+01:11 and that is just the name of the package.
+01:14 And we have DatetimeField, StringField and so on.
+01:16 Pretty straight forward.
+01:18 What's really powerful though, is that we don't have to
+01:20 limit ourselves to just tabular data.
+01:23 We can have things like name, summary and homepage
+01:25 that would be tabular, but then we can embed stuff.
+01:28 Normally in a relational database, this takes other tables
+01:31 to manage these many-to-many relationships.
+01:33 Here we just have maintainers
+01:35 and we're just embedding a list of items.
+01:37 If we look at the record in the database
+01:40 it looks like this.
+01:41 We have our id, a date, the summary, and then we have
+01:44 a bunch of maintainers that were put in there.
+01:46 And this is just the id, this is like a relationship
+01:49 back to the user table, cause it's many-to-many
+01:51 we're not embedding users in here, right
+01:54 but we can't avoid that maintainers table
+01:56 that is the normalization table.
+01:58 If you want to do a simple query, so easy.
+02:00 Just package.objects(), column equals value
+02:03 for direct equal, and you want one you say first()
+02:05 if you want to do all of them, you just iterate over it
+02:08 or you say .all(), things like that.
+02:11 If you want to filter on one or more of the fields
+02:13 if you want to filter on more than one and do an and
+02:15 just comma separate them like any keyword arguments.
+02:18 So in this case, the ID must match
+02:19 the name of the past package name.
+02:21 Like Request or SQLAlchemy.
+02:24 We call first, and this actually triggers
+02:26 the execution of the query.
+02:29 If we didn't call that, we'd have to loop over it
+02:31 or something, until then we could keep adding to it.
+02:34 Now, it's going to return either one or None.
+02:36 Let's imagine a world that we haven't been working in yet
+02:40 that's a little bit more complicated.
+02:41 We're doing a hotel, or Airbnb or something
+02:44 and we have hotel rooms, those rooms have bookings
+02:47 and the bookings store which guests are in them.
+02:51 So we have a booking, object, it has an embedded object
+02:55 called guest, that embedded guest object has an id.
+02:58 If we want to answer the question of
+03:00 show me all of the bookings for a given user
+03:03 or given owner, we'd come through and say
+03:05 go find that owner, going to do a simple query to get them
+03:08 and then I can go to the room and say
+03:10 go to the room's bookings, this double underscore
+03:14 right there says, navigate the hierarchy.
+03:17 We have bookings, a list of guests or something like that
+03:22 or an embedded singular object called guest
+03:24 and it has a guest id, so we're going into the
+03:26 bookings list or embedded item.
+03:29 So we go to the guest id, and then we want to do an
+03:32 in query which is a list of IDs.
+03:34 So find me all the bookings who have a guest
+03:38 who is contained within the owners family IDs.
+03:40 Pretty awesome that we can do this.
+03:42 And the way you do it, is these double underscores
+03:44 both navigate hierarchies, and they apply operators like
+03:47 in, so __in, that's the operator
+03:51 that's being applied in the query.
+03:53 Now one of the patterns that I like to use
+03:55 is make sure there's no data access outside this function.
+03:59 We could return kind of a prepared query that's not
+04:02 actually executed, and then if we run into an error
+04:05 that error might happen in a view model
+04:07 even maybe in a template.
+04:08 So my sort of best practice for you is
+04:11 to make sure all the data access is done
+04:13 by the time you leave this function.
+04:15 In this case a real easy way to do that is
+04:16 convert this to an in-memory list.
+04:19 That means the whole thing is exhausted
+04:20 and we're not using data access anymore
+04:22 we're just now working in memory.

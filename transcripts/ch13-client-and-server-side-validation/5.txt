@@ -1,0 +1,44 @@
+00:00 Saw the one job of these view models
+00:03 and that's to do the data exchange.
+00:04 The other is validation.
+00:06 So, let's look at that now.
+00:08 Here we have our gathering of data, right.
+00:12 We're creating this view model based on a request
+00:14 and it's populating even normalizing some of our data
+00:17 like first name, last name, and email.
+00:19 Great but on the POST side of things
+00:22 where we're taking this data in
+00:24 and we're doing a operation based on
+00:26 assuming that we have good data
+00:28 like that they actually set the name
+00:29 they set the email and so on.
+00:31 We want to do validation.
+00:33 So that's where this error thing comes in.
+00:36 So we're going to do this validate
+00:38 and we're going to say check the first name or last name
+00:41 and if either of them are empty
+00:42 we'll say you must specify your full name.
+00:45 If there's no email you must specify an email address.
+00:48 If you don't specify a password similarly
+00:51 you get a message that says that.
+00:54 So, we set these errors and then the
+00:56 action method or the view method
+00:58 its job will be to make sure that there's no errors
+01:01 before it actually does its operation.
+01:04 We can even do things that interact with the database.
+01:08 So, here this is a registration operation.
+01:10 We did basic validation on the form values.
+01:13 First name, last name exist and are not empty.
+01:16 Email is set, we could do regular expression
+01:19 to say this is a valid email
+01:20 or something simpler like check for @ and .
+01:24 A few things like that.
+01:25 But here we're actually going alright
+01:27 once you pass all the basic validation
+01:29 let's go to the database and see if there
+01:31 is a user with the email address
+01:33 that you're trying to register as
+01:35 because if there is we're not going to let you do that.
+01:38 The user already exists, right.
+01:40 So, we have these sort of basic validation
+01:42 and higher level validation we can do.

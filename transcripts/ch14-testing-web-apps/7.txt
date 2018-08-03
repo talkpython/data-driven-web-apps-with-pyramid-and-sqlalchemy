@@ -1,0 +1,18 @@
+00:00 Let's review testing view models.
+00:01 In this case, we're just going to focus on the simple version.
+00:04 So we have a view model and we need to provide it a request.
+00:07 What does that look like? Well, we have test.
+00:10 We're going to validate that there's an error
+00:11 if we have no email. So we're going to arrange.
+00:15 Remember the 3 As of unit testing, Arrange, Act, Assert.
+00:19 So here's our arrange. We're going to create the dummy_request.
+00:21 We're going to give it the Post dictionary.
+00:23 And this is the simulated values from the form
+00:26 so we're simulating there's no email submitted
+00:29 but there is a password of value pw submitted.
+00:32 We're going to act. I'm going to create our login view model
+00:35 using the dummy pregenerated request object
+00:38 and then we're going to validate that
+00:40 and then we're going to assert that email is in the error
+00:43 first, effectively that there is an error
+00:46 and that email is in it.

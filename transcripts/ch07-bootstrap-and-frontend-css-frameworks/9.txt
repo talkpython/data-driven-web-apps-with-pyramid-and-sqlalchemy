@@ -1,0 +1,33 @@
+00:00 Another really visible aspect of Bootstrap
+00:02 is buttons and related to that, forms.
+00:05 So let's look at that.
+00:07 Here's wistia.com, the signup form
+00:10 where you create your account on Wistia.
+00:12 Now Wistia's like a video hosting company
+00:14 I don't use them really for anything
+00:16 but they're a pretty cool company
+00:17 and this is a decent login page.
+00:19 It's kind of nicely styled and somewhat unique.
+00:22 And notice, there's a couple of buttons here.
+00:24 We have a button down at the bottom
+00:27 which is going to submit this form
+00:29 and in html, there's actually angle bracket button.
+00:33 Probably has type equals submit, something like that.
+00:35 So this is actually the button
+00:37 that html itself knows will submit the form.
+00:40 Up here, we also have a button.
+00:42 But that's not actually a button, it's just a hyperlink.
+00:45 These could look exactly the same
+00:47 or they could look slightly different
+00:48 like they have them here.
+00:49 But the idea is, we have this concept of a button.
+00:52 I click on this big thing and it does button-like stuff.
+00:55 It does some action.
+00:56 Whether or not that's buttons or links
+00:58 in html, it doesn't really matter.
+01:02 My rule of thumb is: it's a button if it submits a form
+01:05 otherwise it's a link; pretty much is the way it goes.
+01:08 But the visual aspect and the conceptual aspect of button
+01:12 and whether or not it's a button or hyperlink
+01:15 those are separate
+01:16 and Bootstrap lets you easily style them in that way.

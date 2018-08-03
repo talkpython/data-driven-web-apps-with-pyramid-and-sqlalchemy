@@ -1,0 +1,115 @@
+00:00 Here we are in DigitalOcean.
+00:01 Obviously, have an account and am already logged in.
+00:05 So what we're going to do is we're going to create
+00:06 what's called a droplet, virtual machine.
+00:08 There's lots of options.
+00:09 We can just pick our various distribution.
+00:12 We can actually go and say well
+00:14 I could like a discourse server running on
+00:17 you know, whatever
+00:18 but we're just going to start a Vanilla Linux Ubuntu server.
+00:23 If you get the choice to pick something new
+00:25 you might as well.
+00:26 The .04, the long term releases
+00:28 so this is long term, this is long term.
+00:31 Might as well pick the newest long term one.
+00:32 You'll get the newest version of Python that way.
+00:35 We can pick our droplet size.
+00:36 Check this out.
+00:37 We can get a gig memory terabyte of transfer
+00:40 plenty of RAM for $5 a month.
+00:43 This server will be able to literally handle millions
+00:47 of HTTP data-driven requests, no problem, no problem.
+00:53 Think it's going to be more busy than that?
+00:54 Go crazy and spend 10 bucks
+00:56 but we'll just create this simple, cheap one here.
+00:59 You can always change the sizes after you create 'em.
+01:01 We don't need available block storage
+01:03 but if you want kind of a drive independent
+01:06 of your actual server, you can set that up there.
+01:08 I'm going to pick just something close to me.
+01:10 Normally, I would run it in New York
+01:13 somewhere on the east coast.
+01:15 Given my customer base, a lot of people from the US
+01:18 lot of people from Europe and east coast is pretty much
+01:22 as good as it gets, so, anyway.
+01:24 I'm in Oregon, so we're going to pick San Francisco.
+01:26 That's close as it gets.
+01:28 Include monitoring.
+01:29 If you don't have an SSH key, go and create it here
+01:32 and put it there, but I've got some already.
+01:35 I checked 'em all 'cause I couldn't remember
+01:36 which one I have on this user profile
+01:39 and then it just says give it a name
+01:40 so this is going to be the PyPI server.
+01:44 How 'about that?
+01:46 And then all we do is click create.
+01:49 You can see it's creating it.
+01:58 Alright, our droplet has been created.
+02:00 We have an Ubuntu 18 server running in San Francisco.
+02:05 It's IP address is that.
+02:06 There's lots of nice little copy these things here.
+02:09 So it looks like it's about ready
+02:11 for us to go interact with it.
+02:12 We're effectively done with DigitalOcean.
+02:15 Now, let's do one thing really quick here.
+02:21 What we're going to do is I'm going to go
+02:22 over here and edit our server
+02:28 and we're just going to put fake_pypi.com as the name.
+02:32 So I copied that IP address and I put it here
+02:35 and this will let us go over here and like ping that URL.
+02:40 As far as our system is concerned
+02:42 that thing is alive, and 30 millisecond ping time
+02:44 that's pretty solid, especially since
+02:46 my network is actually quite busy right now.
+02:49 How do we get to it?
+02:50 Well, we don't need that for a minute.
+02:53 We're going to SSH there
+02:54 and this is super easy on Mac and Linux.
+02:56 On Windows, you might have to install something like PuTTY.
+02:59 Just google SSH server Windows.
+03:03 I want to SSH to root@fake_pypi.com.
+03:07 Now, that only works because I put that in the host file.
+03:10 If you don't edit that, and also in Windows
+03:13 that host file's in a different location.
+03:15 The host file is c:\windows\system32\drivers\etc\hosts
+03:22 It's been a long since I've edited that
+03:24 but I think that's where it is.
+03:26 Alright, let's go.
+03:28 The very first time you connect
+03:30 its going to say we've not see this before.
+03:31 You sure you want to go here? Yes.
+03:35 Now it's going to log in and say this thing is up and going
+03:39 but you know, it's a shade bit out of date
+03:41 so the very first thing we've got to do as soon
+03:44 as we turn this on is apt update
+03:46 to get all the latest possible changes
+03:49 and then upgrade it right away. apt upgrade.
+03:54 We'll let it do that.
+03:56 You don't want to have a server running on the internet
+03:58 that potentially has like security holes
+04:00 or other issues hanging around
+04:02 so let's upgrade it, update it straight away.
+04:11 Ooh, that was a lot of updating.
+04:12 Took a couple minutes, but I sped up time there.
+04:15 That's an awesome power I have, isn't it?
+04:16 Okay, so this thing is all updated
+04:18 but if you exit and came back, you would see it says
+04:21 a reboot is required, a restart is required.
+04:23 So let's do that before we do anything further.
+04:27 Now, I think that actually upgraded
+04:29 from kernel 22 to 25 which means
+04:34 that's probably going to take a moment to do
+04:36 when we restart here, and normally
+04:37 get back in in a few seconds, five, six, 10 seconds.
+04:41 Probably, we're not there yet.
+04:44 Ooh, speedy. That was very fast.
+04:45 Okay, no, not 25. 23.
+04:47 But it did upgrade it and it looks
+04:49 like there's now zero updates.
+04:50 We have a fully patched Linux server.
+04:54 Ubuntu 18.04 ready to do our bidding.
+04:57 Now we're going to start setting it up to be our server.
+05:00 Going to install Nginx.
+05:01 We're going to install uWSGI and configure Python
+05:04 all the things that we need to do.

@@ -1,0 +1,50 @@
+00:00 We went through several cycles
+00:01 of creating these GET
+00:03 and then POST view or action methods
+00:07 while building out our user interaction in the site.
+00:10 So let's review some of those core concepts.
+00:13 Whenever we're going to start we typically start
+00:15 with a GET action. Because we're going to have to
+00:18 show the form to the user before they can submit it, right?
+00:21 If this was like a RESTful API maybe that's not the case
+00:24 but this is a website so we've got to show
+00:26 the data, the form and any initial data to the user
+00:29 so they can submit it back. So how's that work?
+00:33 Well, we're going to set the GET request method
+00:36 and we're also going to set the route name to a shared URL.
+00:40 Right, so this is register.
+00:42 It's going to be registered for GET
+00:44 and it's going to be registered for POST.
+00:46 Same thing with the template.
+00:48 Then we need to make sure we have a unique function name.
+00:52 I like to just call it, register_get, _post, whatever.
+00:57 It doesn't have to be named that way, but it must have
+00:59 a unique name that's not the same as POST or the other verbs
+01:02 or it's going to erase it. Right?
+01:04 Python doesn't give you an error when you do that.
+01:06 It just takes the last one you typed in.
+01:09 And finally, we're going to pass any data the form needs
+01:12 Really it's going to exchange. So we're going to pass
+01:14 the email address, the password, and even whether or not
+01:18 there's an error. These are typically empty
+01:19 but if you have things like comboboxes and dropdowns
+01:22 and things like that, radio buttons, you might
+01:24 pass those along to initially populate the form.
+01:28 So this is the GET action, this shows the form to the user.
+01:31 They do some editing, then they are going to submit it back.
+01:34 In that case it's going to hit the POST action.
+01:37 So again, we're going to set the verb, this time to POST
+01:41 and we're going to use this shared route name.
+01:44 Again here's register for both the template or the render
+01:47 and the route name. We have our unique function name
+01:50 this time registe_post.
+01:53 We have our data in this Post dictionary so we pull it out
+01:58 and we use the get instead of key access.
+02:00 That's a little bit safer.
+02:01 This is just get it and check to see whether it was passed
+02:05 and we're going to do some validation, this is super important.
+02:07 If it doesn't work pass that data back
+02:09 with some kind of error message. If it does
+02:11 you're going to do whatever processing you do here
+02:15 and then probably redirect them.
+02:16 This is the final part of the get post redirect pattern.

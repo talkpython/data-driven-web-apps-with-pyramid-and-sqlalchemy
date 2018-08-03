@@ -1,0 +1,51 @@
+00:00 So we're able to add that change to that column.
+00:03 We also added our auditing table, but I commented it out
+00:06 so, Alembic wouldn't notice those changes.
+00:09 So now let's go over here and we can have it do
+00:12 another change. So I'm going to say generate another upgrade
+00:17 and this upgrade is going to be adding auditing.
+00:24 Now it goes and runs again and says oh, this time we
+00:27 are going to create a new table and that table's going
+00:29 to have a special index on created date.
+00:32 Cool, huh. So let's see what else we got.
+00:34 We now have two pieces and this one says
+00:37 here's the revision and it derives from it depends
+00:41 upon this previous one.
+00:42 So this is how they chain together.
+00:44 We're going to upgrade.
+00:45 It's going to go create the table in the primary key
+00:49 and all that. Then it's going to create the index and of course
+00:51 dropping that in reverse is what's going to happen
+00:53 if we undo it. So let's go and run this.
+01:00 Let's get this database updated to the current version.
+01:03 Again alembic upgrade head.
+01:05 This time it's going to upgrade from this version
+01:08 do as many steps as necessary, to that version
+01:12 by adding auditing. Now again, what do we get?
+01:15 We now have an auditing table, beautiful.
+01:18 Granted that auditing table could have been added by
+01:20 SQLAlchemy, but suppose that auditing table was defining
+01:26 a foreign key and maintainers that linked back to it.
+01:28 It wouldn't be all put together correctly.
+01:31 Here's how we can use Alembic to manage the structure
+01:34 of our database.
+01:36 What's really nice is we can use the Auto Generate feature
+01:39 here to actually keep it in sync with whatever's happening
+01:44 on our database.
+01:47 Let's do one more quick thing to round out this lecture.
+01:50 At the beginning we asked alembic current to see
+01:52 what the version was and it kind of did a no op
+01:54 and so that meant there was no version.
+01:56 Now we can say alembic current and it will actually
+01:59 tell us this is the current version of the database
+02:02 and that's the latest as far as Alembic's concerned.
+02:04 Double check the state of any database by asking Alembic
+02:08 about Current.
+02:09 Also in the slides I'm going to talk about this
+02:12 alembic_helpers and so I'm dropping this in here
+02:15 so you have it. If you want to use the operations that I talk about
+02:19 in a moment, but they're not actually used in the demo.
+02:22 I'm just including this here for the manual side of things.
+02:26 Maybe it will even be helpful in the auto generated
+02:29 steps as well. It's especially helpful in the manual bits.
+02:33 I'll just throw that in there just so you have it.

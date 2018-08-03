@@ -1,0 +1,57 @@
+00:00 The last thing we're going to do
+00:01 is we're going to have the ability to login and out
+00:03 and basically manage accounts.
+00:05 You've noticed, I've already created that part there.
+00:07 Let's go and add the routes for that
+00:10 and we'll figure out what we need.
+00:12 So, here we'll say account_controller
+00:16 just for time sake, let me just drop those in there.
+00:20 We're going to have /account, account_login
+00:24 account_register and account_logout.
+00:27 Go over here.
+00:28 I'll implement those real quick and we'll come back to it.
+00:32 OK, I've just dropped in a few of the things
+00:34 that we're going to need that correspond to account
+00:37 account_login, account_register, account_logout.
+00:40 Over here we've got, here's just going to be /account
+00:44 this is going to be you're home, and notice, in this one
+00:47 I'm explicitly setting the request method.
+00:50 I really only want this to respond to GET
+00:52 and this one, actually, it doesn't matter so much
+00:54 but down here it definitely does.
+00:56 So, here's the login that's going to use the template login
+01:00 which I've created over here
+01:02 and this one responds only to GET.
+01:04 This is going to show the form
+01:06 whereas this one is going to process the login
+01:08 when you submit it as an HTTP POST.
+01:11 So we'll set the name, because we can't have two functions
+01:15 with the same name
+01:16 so we're going to have to name the route there.
+01:20 With registration, same thing, register_get, register_post
+01:24 and finally just to logout.
+01:25 So that rounds out all the URL's
+01:28 that are going to be at play here.
+01:30 Let's run this, and just double check.
+01:33 So, let's go over here to /account/login
+01:40 All right, looks like the account stuffs working.
+01:43 Trust me, I think the rest is going to be just fine as well.
+01:46 That was a lot of juggling of various pieces
+01:49 and I find that to be one of the things that can be tricky
+01:52 routing, because we've got these view methods
+01:55 that are contained within the controllers.
+01:57 The controllers then link, you know
+02:00 leverage these templates
+02:02 and the templates are then laid out in a certain way.
+02:04 Pretty straight forward.
+02:05 What we've done is we've registered our core home routes
+02:09 the various ones to do with packages
+02:10 that we put in to the PackagesController
+02:12 the one to do with accounts
+02:14 put them in the AccountController
+02:16 and then finally, we run scan
+02:17 and it just goes through every file
+02:19 looking for @view_config decorators
+02:22 and then lines them up.
+02:23 We saw that if they don't match
+02:25 there's going to be an error.

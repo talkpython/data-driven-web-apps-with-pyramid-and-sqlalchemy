@@ -1,0 +1,69 @@
+00:00 In the next two chapters
+00:01 we're going to talk about accepting user input from the web.
+00:05 And, primarily, this is going to be around
+00:07 creating HTML input forms and submitting those back.
+00:10 We'll talk about validation
+00:11 both client and server side
+00:13 that's the next chapter
+00:14 as well as some design patterns
+00:16 that make this really sweet in Pyramid
+00:18 or, honestly, any server-side web framework.
+00:23 But let's start with a super quick review
+00:25 of just what is an HTML form
+00:27 and what are its key elements.
+00:30 They have an action and a method.
+00:32 Here our form action is empty.
+00:34 And it might look like that means
+00:36 like it doesn't do anything.
+00:37 In fact, this is probably the most common action
+00:40 and that is to submit the form back
+00:42 to whatever URL you are on.
+00:44 And this has some advantages.
+00:46 It means you stay on the same page
+00:49 until the form is submitted correctly.
+00:50 So, if they filled out something
+00:52 you can say, "Hey, you forgot to fill this out on the page."
+00:55 That's great.
+00:56 The other one is it also submits additional information
+00:59 that might be carried in the URL.
+01:00 Rather than just the route, it could also
+01:03 carry over like query string parameters and stuff.
+01:05 So, we're going to, in this form
+01:07 submit it back to the same page
+01:09 for processing or the same action method, really.
+01:12 And then, it has an HTTP verb for the method.
+01:16 And, the majority of these, are POST.
+01:18 This is really important
+01:19 because post is treated differently.
+01:21 This means it can't be cached.
+01:23 It means that it won't become stale.
+01:25 Accidentally submit it twice
+01:27 you get like a browser warning for things like that.
+01:30 Then we have various forms of input.
+01:33 So, we have an input, maybe, a text.
+01:36 We're going to put email addresses in there.
+01:38 We have a password.
+01:39 And you can see, we're actually pre-filling that
+01:41 with the email address if email address has a value.
+01:44 Right, so, if we're loading up a page
+01:47 and we already have information about them on the server
+01:50 we can pre-populate these fields.
+01:51 Those will have a password.
+01:53 And, of course, the password doesn't show.
+01:55 It has little stars or dots.
+01:57 Right, so, these inputs have a type, optionally, a value.
+01:59 I really like to put placeholders on them, as well
+02:02 rather than labels, so people can see really concisely
+02:05 what they're supposed to type.
+02:06 And, finally, you need a way to submit the form.
+02:09 It could be done in Javascript
+02:10 but more likely, there's some kind of button.
+02:12 So, we're going to have a button
+02:13 and its type is going to be "submit."
+02:15 That just tells the browser
+02:16 when I click this button, submit the form.
+02:19 And that's it.
+02:20 This is a pretty standard HTML form.
+02:22 We'll kind of take this basic construct
+02:23 and build a bunch of cool design patterns
+02:26 and the operations around it.

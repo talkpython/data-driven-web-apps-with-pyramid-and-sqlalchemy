@@ -1,0 +1,105 @@
+00:00 You've seen view models in action
+00:01 let's review them as a concept.
+00:04 When you look at a web application
+00:06 at a very high level
+00:07 we have the browser and our job
+00:09 is to send html to it.
+00:11 In this case, the html defined a form
+00:13 that's going to be submitted back.
+00:15 So you see we're doing HTTP POST to register.
+00:18 And there's some data being passed along.
+00:20 Now in a naive sense
+00:22 we might write a really complicated
+00:25 long method to process this register request.
+00:29 So here is a big action method.
+00:31 Why is it big?
+00:32 It has to get all the data out of the form.
+00:34 Let's imagine, there's six or seven
+00:35 fields it's got to pull out of there.
+00:38 It has to validate them.
+00:39 If they don't validate
+00:40 it has to send back an error message.
+00:41 And then, and only then does it actually
+00:44 do what it's supposed to do
+00:45 register the user.
+00:47 So that's a lot of work.
+00:48 And it makes these methods hard to test
+00:50 it makes them hard to read
+00:52 hard to maintain, error prone and so on.
+00:55 If we could separate that
+00:56 if we could put the place where we get
+00:59 the data from the form and validate it
+01:00 and make that the sole purpose of the entire file
+01:04 is to validate the register form
+01:05 well then, that's way easier.
+01:07 Way easier to test and we can separate
+01:09 the validation and getting of the data
+01:11 from the other things.
+01:12 We move that validation and that data acquisition
+01:15 apart and put it somewhere else
+01:16 into this thing we call a view model.
+01:18 So we still have out action method
+01:19 but now the view model knows about
+01:22 the data exchange, it does that.
+01:23 It knows about the validation.
+01:25 And we just have the action method work with this.
+01:28 The action method now becomes sort of orchestration
+01:30 for the high level steps that need to happen here.
+01:33 So at a high level
+01:34 this is what the view model pattern looks like.
+01:37 Let's see how it makes things
+01:38 simpler when we use it.
+01:40 So over here, we're going to look inside
+01:43 that register method, and like I said
+01:44 in theory, it could be really complicated.
+01:47 But in practice because we're using view models
+01:49 it's quite simple.
+01:50 We have the get post redirect pattern still
+01:52 so the top register under score get, this shows the form
+01:56 and it doesn't matter how many
+01:58 fields there are, what default data has to be there
+02:00 it's basically just going to look like this.
+02:03 Register view model and pass off the to_dict stuff.
+02:07 It's up to the view model
+02:08 to make sure the default data is there.
+02:10 Things like, data that drives dropdowns are there and so on.
+02:13 So this is pretty much it.
+02:15 And then when we go and do our post
+02:17 again, we're going to go to our view model
+02:20 we're going to pass it the request
+02:22 it's going to now validate that, right?
+02:25 We don't need to validate it in the GET
+02:26 because it's empty, it's always going to have errors like
+02:28 "Your name's missing"
+02:29 Yeah, I know 'cause we're showing the form.
+02:31 But here we need to validate it.
+02:33 And then we just check.
+02:34 Anything go wrong?
+02:35 Well, show them the error message
+02:37 and give them back their data.
+02:39 That's super easy.
+02:40 Doesn't matter how many thesis' there are
+02:42 how much validation there is
+02:43 this is what we do.
+02:45 And then we actually do the thing we're trying to do
+02:47 in this case, register the user
+02:49 based on the data we already have.
+02:50 We know we have it because
+02:52 it passed the validation on the line above
+02:54 that if statement above.
+02:55 But if it failed, we'll just set
+02:57 another error message and pass that back.
+02:59 If it succeeds, here's the redirect part
+03:01 of the get post redirect pattern.
+03:03 We've now registered them as a user
+03:05 and we just send them back to /
+03:07 or /account or welcome
+03:09 or where ever we send them to.
+03:11 This code is super easy to test
+03:13 and it's very maintainable.
+03:15 Moreover, you know exactly where to go
+03:17 to look at the validation and data exchange
+03:19 for registering.
+03:21 It's in viewmodels/account/registration/viewmodel.
+03:25 Boom, really nice design pattern
+03:27 and here it is in action.

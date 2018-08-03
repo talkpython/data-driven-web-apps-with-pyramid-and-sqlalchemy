@@ -1,0 +1,62 @@
+00:00 Now before we write some code
+00:01 let's talk a little bit about the flow
+00:03 that people go through when they're working with forms.
+00:05 There's many ways to do this
+00:07 but there's one pattern that really helps
+00:09 both organize your server side code
+00:11 and prevent that annoying warning like
+00:14 "are you sure you want to refresh this page?
+00:17 "You've posted it, it might resubmit
+00:19 "your purchase request" or whatever.
+00:22 I'm calling this the Get Post Redirect pattern.
+00:26 So what's that look like?
+00:27 Well, we have of course our server.
+00:30 Our server has some sort of data.
+00:31 We have a web browser, and our web browser
+00:33 is going to interact with our site.
+00:35 It's going to say, "Hey, I want to view this HTML page
+00:37 "that happens to have a form
+00:38 "like I want to register for your site."
+00:41 And then over here locally, they're like
+00:42 "All right, great.
+00:43 "Here's my username, here's my password, my name,"
+00:47 whatever you got to do to register.
+00:49 They type that in and they click that submit button
+00:52 we just talked about.
+00:53 That posts all that data back
+00:55 and they're like, "Great, we've got a new account.
+00:56 "We want to create it, we're going to save that to the database."
+00:58 Now we're going to tell the browser to move over
+01:02 to another page, redirect, send a temporary redirect
+01:06 302 over to /welcome, and welcome to the site.
+01:10 That way, if they bookmark it
+01:12 or they refresh it or whatever
+01:14 they're going to end up on welcome
+01:16 having already created it not being left on the same URL
+01:21 where a POST just happened.
+01:22 Like I said, if you refreshed that
+01:24 you would get a warning saying
+01:26 "Hey, this page is going to resubmit
+01:27 "Are you sure you want to do that?"
+01:29 So this Get Post Redirect pattern is super common
+01:32 and it's really nice on the server side.
+01:35 I'll show you how to break that out
+01:36 into different methods nice and easy
+01:38 so one handles the get, one handles the post.
+01:42 So one handles the show the form
+01:45 pre-populated with starter data.
+01:46 The other processes that input
+01:48 and keeps the code really clean.
+01:49 You don't have to test whether it's being submitted or not.
+01:52 This common pattern is sometimes known
+01:54 under a different name, the Post Redirect Get pattern.
+01:59 So over here on Wikipedia, they have an article on it.
+02:02 You can read more about it as you want.
+02:04 To me, you have to start from somewhere
+02:06 and you start from the get, and then you do the post
+02:10 and then you do the redirect.
+02:11 That's the life cycle of that form interaction.
+02:14 So I think that's why I call it Get Post Redirect
+02:16 but Wikipedia, they have a different name.
+02:19 It's fine. It's a pretty common pattern
+02:21 and you can get more information about it here.

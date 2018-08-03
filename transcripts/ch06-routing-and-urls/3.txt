@@ -1,0 +1,94 @@
+00:00 Go work on the routing now.
+00:02 We've got this main method.
+00:03 Now, this is going to start to get complicated, in fact
+00:07 as you get these real apps filled out
+00:09 I think in Talk Python, possibly this might be 150 lines.
+00:14 I don't know.
+00:15 It's more than just 12, 13 lines of code.
+00:17 So let's do a little refactoring here.
+00:19 Let's take the stuff to do with the routing
+00:21 and make it it's own little method.
+00:23 So that part, we can come over here.
+00:24 Say right click, refactor, extract, method.
+00:29 Of course there's hot keys for all of this
+00:31 which I normally use.
+00:33 And I'll just call this init_routing.
+00:36 OK, let's get a little room.
+00:38 Let's keep going here; let's do this one as well.
+00:44 There's includes.
+00:46 Alright, looks pretty good.
+00:47 We'll add some stuff about databases
+00:49 and other things as we go.
+00:52 Alright so down here with this
+00:53 well let us just focus on the routing.
+00:56 So far we have two routes
+00:58 mapping to two viewer action methods
+01:00 and those are over in here.
+01:02 So this, I'm not a huge fan of this.
+01:05 This is all kind of crammed together into one thing
+01:07 and well they're kind of related, home and index home about.
+01:10 Whatever. Let's put that home prefix here as well.
+01:13 Right.
+01:14 Remember, keep these in sync, and you'll be happy.
+01:17 Of course we got that.
+01:18 Alright, so let's do this.
+01:19 Let's create a controllers folder.
+01:26 Careful here. Notice I said, "create directory."
+01:28 That is actually going to make this part likely fail.
+01:32 So what that does is that loops through all the files
+01:34 in this package and subpackages.
+01:37 What we need to do is create a subpackage.
+01:39 Now, packages in Python can be mysterious.
+01:41 They're quite simple in this context.
+01:43 I'm going to call this controllers.
+01:48 And what it does is simply make a directory
+01:49 with an empty __init__.py.
+01:52 Okay, so that's all we got to do to tell Python that
+01:56 "Hey, there's this thing going on here."
+01:57 So let's move that over.
+02:00 And let's rename that to HomeController.
+02:08 Let's see that things still work.
+02:09 And again we want to tell the single s's only.
+02:17 But clicking on it, problems.
+02:19 So this, basically, is not working for us
+02:23 we need to change this just the tiniest bit.
+02:26 So what we need to do is go over here
+02:28 and put the package name, just say
+02:30 "Go to the top," and look.
+02:31 So PyPI: right here.
+02:34 And PyPI: right there.
+02:36 Python says that's misspelled; I say, "Learn it."
+02:39 Okay, try one more time.
+02:42 Try it again.
+02:43 Hey, hey, it's working again!
+02:45 Alright, so everything is good.
+02:49 We've got our organization going here.
+02:51 And the templates, let's go ahead
+02:52 and organize these as well.
+02:57 So, create one called home.
+03:00 And we're going to have packages.
+03:02 We're going to have a PackageController.
+03:03 I'll just create one called packages here as well.
+03:06 And finally, we're going to have some account stuff
+03:09 in our route. So let's have account.
+03:12 Alright. Oh, and also, don't forget, shared.
+03:15 So, you might be saying
+03:17 "Michael, what does this have to do with routing?"
+03:18 Well, it technically has nothing to do with routing exactly
+03:22 but as we're adding these routes
+03:23 I want to make sure we're putting the structure in place
+03:25 so this doesn't become a mess.
+03:26 Because we have to have controllers for the routes
+03:28 which means we got to have the layouts, and so on.
+03:31 Alright, quick reorg.
+03:38 Over here we can probably drop the name home.
+03:47 Of course, one more time, we've got to fix these up.
+03:49 This has to be home.
+03:52 That has to be home.
+03:53 And then in our various things up here
+03:56 this has to be ../shared/layout.
+04:05 Let's rerun it and try one more time
+04:07 make sure everything's good.
+04:09 Alright, looks like it's hanging together.
+04:11 Click the various bits.
+04:13 Okay, all good.

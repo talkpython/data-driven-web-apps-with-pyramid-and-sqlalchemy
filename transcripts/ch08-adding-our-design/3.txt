@@ -1,0 +1,111 @@
+00:00 Alright, let's put the basic HTML structure
+00:02 in place for this page.
+00:04 We're not going to do the navigation yet.
+00:05 That's part of the overall site look and feel, right?
+00:08 We want to go over here, that sticks around, but
+00:11 from basically here downward.
+00:13 And that's going to be an index.pt.
+00:15 Okay so it's nice and room to work here and we'll just
+00:17 type this out real quick.
+00:18 These sections at the top
+00:20 if you look over here, at freemongodbcourse.com
+00:22 for example, there's a big, sort of bold
+00:25 called to action section
+00:26 is often referred to as a hero, or a jumbo-tron.
+00:30 I'm going to call it a hero, but it can be whatever.
+00:31 So we want to have a div with a class hero.
+00:36 And that's going to be that big section.
+00:38 Then in here, we're going to have an h1, which is the main header.
+00:42 And of course you should always have one and only one h1.
+00:46 This is really important for SEO on your site.
+00:50 Let's go over here, and so we find, install and publish.
+00:54 This is taken straight from their site.
+00:56 So let's see where we get into so far.
+00:58 Oops, that stays like it is.
+01:01 Alright, that looks amazing, doesn't it?
+01:03 No, not all. We're going to fix it.
+01:04 We're just going to get the HTML here
+01:05 and then we're going to fix it.
+01:07 Now remember, on the real one, we have a little search box
+01:12 or browse projects. So let's work on that next.
+01:18 We get a text input with a form-control
+01:20 and have a placeholder. Search projects.
+01:25 And down here we'll have a few br.
+01:30 And over, browse projects. How are we doing now?
+01:35 Oh yeah, it's lookin' just like the real thing, isn't it?
+01:40 It's comin' along though, it's comin' along.
+01:42 So now we have our little hero section.
+01:44 And we can tighten this up.
+01:46 Let's go ahead and collapse that bit. So, good.
+01:48 We're going to leave that alone for a minute.
+01:50 The next thing that we have to work on
+01:53 is this little slice right here.
+01:55 We're going to make another div for that section
+01:57 and give it a class, so we can style it.
+02:00 So we're going to say, we have a div.pypistats.
+02:03 And in there, we're going to have a div with the stat value.
+02:06 And we want 3 of those.
+02:08 One for the projects, one for the releases
+02:10 and one for the users. Okay, great.
+02:13 Now let's just say, something really simple for now:
+02:14 0 projects, 0 releases, 0 users.
+02:19 Now if I was actually doing this from scratch, I'd
+02:22 probably just start focusing on designing the hero bit.
+02:25 And then this.
+02:26 But there's really only a few tiny pieces of HTML left.
+02:29 So let's go ahead and do that.
+02:30 The final part that we need to work on is
+02:33 this new releases stuff, right here.
+02:36 So we have this h2 thing and then h3 maybe it is
+02:39 I'm not sure, it's a subheader.
+02:40 Hot of the presses, the newest project releases
+02:43 and then we're going to repeat this in a data driven way.
+02:45 So remember, we're going to have a div with a container.
+02:48 It's going to be the grid layout stuff.
+02:50 It's going to have a div with a row.
+02:51 And then, we're going to have three divs.
+02:56 Now for this one, we actually want to put, project-list
+03:00 So in addition to being a container, it's the container
+03:03 that contains the projects, great.
+03:07 Now let's do a medium sized grid.
+03:10 And we'll use this blank one here, just to do
+03:12 a little offset. This line is going to be 50% of the screen width.
+03:17 And it's going to be roughly in the middle.
+03:20 And then that's eight, we need four left.
+03:22 I guess if we really wanted it right in the center
+03:23 we could do three and three; however we want.
+03:28 Let's see how that's looking. Here's are little section
+03:33 the 50% in the middle that we're going to have.
+03:36 Alright, so the last thing to do is, this is where we want
+03:39 our projects to be listed.
+03:42 So we're going to have a div, that is a project.
+03:45 It's going to contain a div, that has a title.
+03:47 That's going to contain a hyperlink, okay.
+03:52 Now we're also gonna have a div, that's a description.
+03:56 So there's going to be a title that clickable
+03:58 and there's going to be some sort of description.
+04:00 And this block of code we repeat for every package.
+04:04 So remember this.
+04:08 And here, lets just put, p, the package id.
+04:17 Don't even remember that we better check and see
+04:18 what those values are.
+04:19 It's been a long time since we looked at that.
+04:24 So it has a name and a version.
+04:26 I'll just drop the version in here because
+04:31 so if somethin' happens, alright. Ready! Boom.
+04:34 There are three things.
+04:35 Now of course, the styling isn't there.
+04:38 And I guess we should put the version up there.
+04:42 Let's put the version up here like this and I'll
+04:43 just put the description. There we go.
+04:49 That looks exactly like what we were hoping for.
+04:52 Remember when I said that blank page seems scary.
+04:56 Scary because it was a blank page not 'cause
+04:58 it only had Bootstrap.
+05:00 Go from this to that, that's pretty far.
+05:05 But it turns out the CSS that we need is actually
+05:08 not that bad, but just conceptually
+05:09 those look really, really different.
+05:12 The next thing that we need to do is actually
+05:14 put the CSS in place to make this
+05:17 amazing transformation happen right here.

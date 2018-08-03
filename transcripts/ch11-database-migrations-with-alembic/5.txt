@@ -1,0 +1,37 @@
+00:00 Let's take a moment and review
+00:01 the core concepts of using Alembic
+00:03 and I think the place to get started is getting started.
+00:06 The way we're going to get started is we have to make sure
+00:08 we have Alembic. We simply get that by pip install alembic
+00:12 make sure this is the virtual environment
+00:14 that you want it to be in, okay?
+00:16 So that works great; let's go install
+00:19 then we need to initialize the project structure
+00:21 just once, so we say, alembic init alembic
+00:24 first one is a command, last one is the folder
+00:27 and then it's going to go through and create all the structure
+00:29 and says don't forget you have to set your connection string
+00:31 in Alembic.ini or this isn't going to work.
+00:35 Afterwards, you have a project that looks a little bit different;
+00:38 you've got an Alembic folder and here we have versions.
+00:42 They're going to be initially empty but as you apply
+00:44 as you create revisions they're going to be stored in here
+00:47 and chained together as we saw.
+00:49 Some scripts that are used to generate the SQL
+00:54 and run Alembic so environment does things like tells Alembic
+00:59 what your sqlalchemy models are
+01:01 the script.py.mako is actually going to generate
+01:05 the SQL structure that's going to be sent to the database
+01:08 things like that. And finally, we have our Alembic.ini
+01:12 that configures how Alembic runs.
+01:14 In order to use Alembic, you have to configure it
+01:17 so there's a whole bunch of settings in Alembic.ini
+01:20 but the one that you probably care about first
+01:22 is sqlalchemy.url and then you just set it
+01:25 to whatever your connection string is.
+01:27 We're using SQLite so it's sqlite:/// the name of the file
+01:31 and we're able to use a relative path
+01:33 I think this may only work
+01:34 if you run Alembic from the right location
+01:37 so do that. Turns out that's pretty easy from PyCharm
+01:41 cuz the terminal always opens in the right place.

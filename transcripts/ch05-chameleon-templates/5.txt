@@ -1,0 +1,55 @@
+00:00 Let's quickly review what we just saw in action.
+00:02 So we saw that we can use the TAL
+00:04 the template attribute language
+00:07 to control most of the things we do here.
+00:10 So for example if we want to have something
+00:12 not shown, if there's no categories
+00:14 or shown when there are categories
+00:16 then we can use the tal:condition.
+00:19 If we have a set of objects, or some sort of variable
+00:22 we can say tal:repeat.
+00:24 Here we're going to say for each category I want
+00:26 to replicate this div.
+00:30 So loops are written with tal:repeat.
+00:32 Anytime we want to output some form of a string
+00:35 like for the source attribute on it's image
+00:37 we want to say well it's the image URL
+00:39 or the text is c.category, things like that.
+00:43 We use this curly bracket expression
+00:47 if we want to test something true or not.
+00:50 Optionally show or hide some segment
+00:53 say tal:condition
+00:54 then we put any truthy or falsey statement in Python
+00:58 so not categories or categories that's in intervals
+01:01 so our list it's going to be true if it's not none
+01:06 and it's not empty.
+01:07 Otherwise, nothing.
+01:08 So it's the perfect test for us here in Python.
+01:12 One thing you need to be aware of is
+01:14 this is generally a good thing
+01:16 is that when you say ${} expression
+01:21 that tries to protect you from any form of injection attack.
+01:25 So imagine you're creating a comment section
+01:28 at the bottom of a book store.
+01:30 Somebody could go and say well my comment
+01:31 is angle bracket, script evil java scripty right?
+01:37 So in order to protect you from that
+01:40 Chameleon will actually, HTML escape
+01:42 anything that it prints out there.
+01:44 So if category had some kind of HTML in it
+01:47 say it were bold or something, it shouldn't be
+01:49 but let's say it did
+01:50 if it had some kind of text in there that was HTML
+01:55 it would appear as view source to the user
+01:58 if you did it this way.
+01:59 So, if you want to actually show the HTML
+02:02 you have to say structure: for raw HTML
+02:06 and then it'll just drop it in there
+02:07 and the browser will interpret it as HTML.
+02:09 Be extremely careful here.
+02:11 Make sure whatever exp is
+02:13 that does not come from user input
+02:15 that comes from you, maybe some kind of CMS or somewhere
+02:18 where it has trusted input and it won't be
+02:21 some kind of injection attack.
+02:23 That's the basics of Chameleon.

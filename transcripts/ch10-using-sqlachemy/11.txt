@@ -1,0 +1,19 @@
+00:00 In order to update existing data, we start
+00:03 like we always do, we get a session, and then we
+00:05 retrieve one or more records from the database.
+00:08 Here we're just getting one package.
+00:10 We're going to get this package back, and if we make
+00:12 changes to it, so we set the author value to a new name
+00:16 and we set the author email to a new email
+00:18 SQLAlchemy will track within the session that
+00:22 that record is dirty and it needs to be updated
+00:25 because we've changed some fields.
+00:27 And then, when we're ready to actually
+00:29 save it, push all the changes back.
+00:32 I could apply this to as many entities as we'd like
+00:34 it doesn't have to just be one, then we're going to
+00:37 commit the unit to work, and it's going to look
+00:39 at the changes, do all the changes in a single
+00:42 transaction, back to the database.
+00:44 We use the unit of work to do
+00:46 our updates just like we do the inserts.

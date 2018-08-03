@@ -1,0 +1,120 @@
+00:00 Now it's time for the grand finale.
+00:02 And we've seen a few of the building blocks of Bootstrap
+00:05 and I told you that Bootstrap was the most popular
+00:07 and that had benefits and here they are.
+00:10 So the idea is we can start with this basic page here
+00:15 Yuck! You know it's completely un-styled
+00:19 we can just drop Bootstrap in there
+00:21 and that actually is a really nice improvement.
+00:24 However, this is still mostly a blank canvas
+00:28 and if you're new to design, this is really hard.
+00:32 It's like, what do I do now?
+00:33 I've seen some great landing pages and some other designs
+00:36 but it's a long ways from just making the fonts look better.
+00:39 So what we can do is we can apply a Bootstrap theme to this
+00:43 and go from basic to really, really awesome
+00:47 with almost no work on our part.
+00:49 You need to understand the grid, a few other basic concepts
+00:52 and just put your content in there, put it
+00:55 into a layout template Chameleon and you're off and running.
+00:59 So where do these themes come from?
+01:00 Let me just take you on a tour of some places
+01:03 that are pretty good for finding these themes
+01:05 and where you can get them.
+01:07 Mostly they're open source and you just download 'em.
+01:09 CSS, HTML, Javascript.
+01:12 So over here, one place to start is
+01:14 Start Bootstrap at startbootstrap.com.
+01:17 And this has a list of all sorts of popular ones.
+01:21 This one should look familiar, right?
+01:23 This one's nice down here, this one is really cool.
+01:26 So I pulled up some of these.
+01:28 Here is this one that I showed you
+01:30 on the animation previously.
+01:33 That looks super nice, doesn't it?
+01:36 Come in here, it's got, you know, here's your button.
+01:40 It's got your elements broken in to pieces here
+01:43 it's got these nice designs where you hover over them.
+01:48 I like these little animations as stuff comes in.
+01:51 So I actually use this theme for something.
+01:54 I used it for freemongodbcourse.com
+01:57 So freemongodbcourse.com is just like a special
+02:00 dedicated page for my free MongoDB course.
+02:04 No surprise there, but look at this.
+02:05 Alright so, new background image, similar button.
+02:08 Come in, here's your four elements in a Bootstrap grid
+02:12 you know split it into three's.
+02:16 Come down here, you've got this little call to action
+02:19 little video, these things you hover over.
+02:21 It was really easy for me to take
+02:23 that theme and make this page.
+02:26 Like a day, maybe. So, really, really nice easy way
+02:30 to make your stuff stand out.
+02:34 So you can grab this and go and download it.
+02:40 But all this stuff that's right here, you just go
+02:43 and download it and adapt it to your page.
+02:45 Alright let's look at some more.
+02:47 Stylish portfolio, this is a really nice looking one.
+02:50 Alright, you can see some of the similarities coming along
+02:52 but these background images that are really bold
+02:55 are awesome, by the way if you need awesome and bold
+02:58 background images, Unsplash is an amazing site
+03:01 that gives away free, hundred percent royalty free
+03:04 credit-free, do-whatever-you-want-with-'em images.
+03:08 So you come down here and find some great ones
+03:12 and you want stuff to do with servers, right
+03:14 some web servers, some actual servers, but here they are
+03:18 you can grab 'em, download 'em, beautiful.
+03:19 So if you need bold pictures, Unsplash.
+03:22 Another thing you might need is some
+03:23 kind of admin dashboard, most sites won't need this
+03:28 but if you're building some sort of dashboard application
+03:31 there's some really good stuff, like look how cool this is.
+03:33 See these little navigational cards, these smart
+03:38 interactive graphs that you can interact with here.
+03:41 So we can go and look at the different charts
+03:43 we can look at tables, we can say I want to go to the cards.
+03:48 Here's all the different cards, all kinds of stuff.
+03:50 And you can even have, example of a really pretty login page.
+03:55 Things like that. So this is a theme that you can get
+03:58 over here, here's another super simple one.
+04:01 You might think, Michael there's no theme here
+04:03 but actually there's a cool little side
+04:05 hidden sort of a minimalist one.
+04:09 WrapBootstrap is another place that I like.
+04:11 WrapBootstrap mostly has paid themes
+04:15 but when I say paid, I don't mean an arm and a leg paid.
+04:19 Look at this $35, $25, $28, $20... $18
+04:25 If you can go from zero to nearly fully-designed awesome
+04:28 site for $18, you're doing well.
+04:31 So, here's a few I chose out of that site.
+04:34 Check out this dashboard. Holy moly this is cool.
+04:37 So we can go over here and get all
+04:39 sorts of cool graph stuff, again if you're building
+04:42 dashboard-y type stuff, come down here and it'll give
+04:45 you graphs and things about countries.
+04:49 Let's see there's just tons and tons of widgets.
+04:52 They've got this sort of Outlook email view. I love it.
+04:56 Come over here to tables, let's see, forms.
+05:00 Want to have a wizard, look at that little wizard.
+05:02 That's beautiful. It's got its own grid
+05:03 its own buttons, and so on.
+05:06 So again, if you're building some kind of dashboard-based
+05:09 thing, this is really quite amazing.
+05:15 Here's another one that I like
+05:16 this has lots of little animations that fly in.
+05:19 You can see the grid stuff at work again here.
+05:26 All the stuff fades in as you go down
+05:27 really, really wonderful.
+05:29 So that's it, that's just a few of the themes
+05:31 I went through on StartBootstrap and WrapBootstrap
+05:33 and pulled 'em out because they stood out to me
+05:35 and here again is an example of how I took one of them
+05:40 and sort of adapted it for something that was pretty simple
+05:43 but needed to be well-done on design.
+05:48 We're not going to go into applying these themes
+05:50 we're just going to design some stuff from scratch based
+05:53 on our starter projects that we already have.
+05:56 But, once you become familiar working with the templates
+06:00 and Bootstrap, you should be able
+06:02 to integrate these pretty easily.

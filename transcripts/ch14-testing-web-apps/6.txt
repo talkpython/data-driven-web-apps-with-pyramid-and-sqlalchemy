@@ -1,0 +1,120 @@
+00:01 Things looked so good.
+00:02 We were about to test our simple little register view model
+00:07 but even just that, just testing the view model
+00:09 turned out to unearth a serious, serious problem.
+00:14 Let's run it again. I can see it's failing.
+00:16 The failing is None type is not callable.
+00:20 Well once you look into it you realize
+00:22 the DBSession.factory is not initialized
+00:25 because we've not set up the database.
+00:28 Wait, we don't want to set up the database.
+00:29 Why is this using the database?
+00:32 This one we might be able to get away without the database.
+00:35 Let's try. This one we're going to do it with no email.
+00:40 We make sure that there's an error and we can also assert
+00:43 that email is in that error.
+00:48 Okay so we're expecting some kind of error message
+00:50 to be set like email is required.
+00:51 Right? So let's run that.
+00:55 We don't need to call that out too explicitly there.
+00:59 Run it again, how are we doing?
+01:05 No sadly this one is also running into that problem.
+01:09 If we structure it like this, if we just make that an L if
+01:12 which would be reasonable
+01:14 so the first time we hit an error we bail.
+01:18 We probably could get one of these to pass, let's see.
+01:24 Yes, our no email came back and it did find that
+01:28 it was an error set and the word email appeared in that error.
+01:33 But this one, this valid one, is never
+01:36 going to work without the database, okay.
+01:38 We'll leave this one here.
+01:40 This one can go without the database but this one
+01:42 we're going to need a new technique.
+01:45 I have to introduce you to a new idea here
+01:47 under this Act section.
+01:49 What we want to do is we want to go to the database
+01:51 more importantly we want to go to this data service
+01:54 and this is why it's really awesome that we
+01:56 wrote this service separately
+01:58 is we're calling this function find_user_by_email.
+02:00 How do I know?
+02:02 Here, oh now it says you must specify your name, okay.
+02:05 So let's go and do that really quick.
+02:08 We'll get an error I was going to show you back.
+02:09 This will be name. There we go.
+02:18 Now we get our None type error back.
+02:20 We go look, you can see it's calling find_user_by_email.
+02:24 Well the problem is it should be going to the database
+02:28 to check that user.
+02:29 What we can do is we can use something called mocking.
+02:32 Mocking will change the behavior of this user
+02:36 service module and this function in particular
+02:38 so let's go do that. We're going to use a context manager
+02:41 so we only redefine it really narrowly within the context.
+02:45 So say with unittest.mock.patch.
+02:48 Oh we need to import that.
+02:53 patch and then we're going to give it the target.
+02:56 The target is the full string name that we're looking for
+02:59 so pypi.services.user_service.find_user_by_email.
+03:08 We're going to set the return value to be None, okay.
+03:13 I'm going to define that with block.
+03:15 Let's make this a little more readable.
+03:20 And only in that little block when we call
+03:23 this one function does it not actually call that
+03:25 find_user_by_email, but it just returns none
+03:28 for whatever values are passed in there.
+03:31 Okay now so this should work because
+03:34 it's going to come back, validate is going to call
+03:37 this function, this function is going to return None
+03:39 to say hey there actually is no user
+03:43 by that email address you thought
+03:46 so it should be fine. Let's try it again.
+03:49 How awesome is that? Oh my goodness.
+03:52 Okay so really really cool.
+03:54 I'm going to expand it out and you can see
+03:56 it ran pretty quickly. Let's do one more test here.
+03:59 Let me duplicate this and do one other test.
+04:02 register_validation_is_valid, I'll say existing user.
+04:07 So let's test what happens if we try to register
+04:11 as an existing user and let's say that this user does exist.
+04:16 Say we're going to return a user
+04:18 which we have to import locally.
+04:22 I still kind of like these up at the top
+04:24 in our arranged bit.
+04:25 I'm going to create this user and it doesn't really matter
+04:27 what we set here to the test.
+04:29 It's just going to say we called that, a user came back
+04:30 so there must be an existing user with that email address.
+04:33 Now we're going to assert.
+04:36 This is not None and existing is in the error.
+04:42 Let's give it a shot.
+04:43 So this way, we're controlling
+04:44 a different outcome for validate.
+04:46 One more time. Boom look at that.
+04:50 Expanded out, existing user.
+04:53 All right, you want to see what the error is.
+04:55 We could print out error just to see it real quick here.
+04:59 User already exists. Oh no we can't continue.
+05:03 So that's how we're able to punch out these dependencies.
+05:06 We'll go in here and just for this little Act section
+05:11 we are using a context block along with the patch
+05:16 aspect of unit testing to change the behavior of
+05:20 find_user_by_email.
+05:22 We might have to do this for more than one method
+05:24 and that would be fine, but here we are.
+05:27 We're going to change this behavior this time to
+05:30 return a new user so we can check for this validation case.
+05:33 Previously to say no there's no user with that email address
+05:36 whatever you gave me, so validation should pass.
+05:39 Pretty awesome.
+05:40 We could use this for email systems or databases or
+05:44 calling web services, calling purchase gateways.
+05:46 You name it, this allows us to get in the way
+05:51 of all these other dependencies that we have.
+05:54 We saw that Pyramid itself supplies some
+05:57 testing primitives that we can use
+06:00 like our fake request that we can pass
+06:02 to get our register view model up and running.
+06:04 That's how we test these view models.
+06:06 You can also see that's how we
+06:07 test the view methods as well.

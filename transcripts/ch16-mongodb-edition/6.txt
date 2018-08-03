@@ -1,0 +1,176 @@
+00:00 With our connection all set up and in place
+00:02 it's time to start creating our models.
+00:04 Remember, over here, we had like a Package and the User.
+00:08 The User was pretty simple, we can go with that.
+00:10 So, we created a class
+00:11 it derived from a certain base class
+00:13 we gave it a little meta information
+00:15 and we declared the columns, their types
+00:17 and their behaviors, whether they're primary keys and so on.
+00:20 We'll do exactly the same thing for MongoEngine.
+00:23 That looks like it's going a little crazy
+00:25 let me just restart PyCharm so it gets its cache
+00:28 for auto-complete corrected.
+00:32 Ah, better, looks like it now knows about everything.
+00:35 Every now and then PyCharm goes a little wonky
+00:38 and loses some stuff there. So it's good.
+00:42 Now let's go create the equivalent
+00:44 of this User class over an our nosql.
+00:49 Call it users, we're going to keep exactly the same file names
+00:51 that'll help us a little bit in conversions
+00:54 and then we're going to import mongoengine
+00:56 just like we imported SQLAlchemy.
+00:59 We're going to create a class, called User
+01:01 and it's going to drive from mongoengine.Document.
+01:04 We're don't have tables, we have a records
+01:05 we have documents in MongoDB.
+01:07 It has an implicit id, which is going to be fine
+01:12 for the primary key and it'll auto-generate that for us.
+01:15 We don't have to say that like we do over here.
+01:18 Put these other things, let's put them across.
+01:21 So we want to name
+01:22 and SQLAlchemy obviously is not what we want.
+01:26 We're going to use mongoengine
+01:27 and this time we're going to have a StringField
+01:30 and we could say required equals False
+01:34 to match this nullable is True
+01:37 but unless we say required is True
+01:39 it's going to be effectively nullable by default.
+01:41 So the top one and these two lines, four and five, same
+01:46 and we'll do the same for email.
+01:50 Nullable, now notice this index down here
+01:53 we don't put the index here, we put it somewhere else
+01:54 so I'm going to just put a little comment here.
+01:56 Index, nullable, let's just keep going.
+01:58 This is real similar, it's a string. Just like that.
+02:05 This is a datetime, we know what that looks like.
+02:09 We have a DateTimeField, and guess what
+02:11 we have default values, just the same.
+02:16 So hopefully this feels super comfortable to you
+02:18 because you know it's really very, very little difference.
+02:22 Again, a StringField, actually we never use this.
+02:24 Let's just drop that one and same for this.
+02:26 Let's just go with this.
+02:28 So final thing to tie these together.
+02:32 Over here we controlled stuff
+02:34 by saying we want this to be in the users table like this.
+02:37 On this version we do it a little bit different.
+02:38 We have a meta dictionary in here
+02:41 and it's not really obvious
+02:42 but we're going to set some keys.
+02:43 We're going to say db_alias
+02:44 that's the alias we set before
+02:46 and it was core, remember, this is the one?
+02:48 You can have multiple connections to different databases
+02:50 and say these entities go here or there.
+02:53 This is how you do it SQLAlchemy
+02:54 you would have different base classes
+02:56 whereas on this one
+02:58 you have different connection aliases.
+03:01 Then the table name is now Collection
+03:03 'cause we don't have tables we have collections.
+03:04 And this is going to be users.
+03:06 And then remember the index is up here.
+03:08 We had email and hashed_password .
+03:13 Want to set that to an array of just the names
+03:16 email, hashed_password .
+03:18 Maybe we also want one for created date, just to be safe.
+03:21 We want to find the newest users or something like that.
+03:24 There we go then we can get rid of these bits here.
+03:26 Done, that's it!
+03:27 Let's see really quickly how we just use this.
+03:30 I'm just going to throw this into the most wrong place
+03:33 there possibly is, right in the init_db.
+03:36 Well let's suppose we wanted to create a new user
+03:38 and first of all
+03:39 I'm going to connect to this thing called Robo 3T.
+03:41 I already have MongoDB running
+03:42 and Google how to do that for your OS on how to set that up
+03:46 or go check out the other courses.
+03:52 So you notice we have this PyPI Demo full thing
+03:54 that I already made.
+03:55 This one actually has more data.
+03:57 We can play with it later
+03:58 but notice around here there's no pypi_nosql.
+04:02 Database doesn't exist yet, right?
+04:04 So, when we begin to talk to it the first time
+04:08 MongoEngine will create the database
+04:10 and configure the tables with the indexes
+04:12 and names, and things like that.
+04:13 So let's say that's just really quick.
+04:25 So here we've created a new user.
+04:27 Now rememeber in SQLAlchemy
+04:28 we have what's caled the unit of work pattern.
+04:32 MongoEngine is more like Django style
+04:34 in that it follows what's called active record.
+04:36 In that pattern, we work in individual documents more.
+04:39 So we'll juts come over here and go user.save()
+04:42 and that'll insert it into the database.
+04:43 So by starting the website
+04:45 it's going to run this code which is going to talk to MongoDB
+04:48 create the database, create the tables
+04:49 and insert it all in one shot.
+04:51 Let's go.
+04:55 Great, we registered our development connection
+04:58 and it didn't crash so that probably worked.
+04:59 Let's see.
+05:00 Right, go in refresh.
+05:02 There's our nosql.
+05:03 Here's our one collection.
+05:04 Here's our indexes.
+05:05 And let's go find our user.
+05:08 There, not super interesting
+05:10 nothing embedded or anything like that
+05:12 it's just a stardard record but there it is in the database.
+05:15 You can see the ID is automatically created.
+05:18 The defaulte value is set on the created date
+05:19 and then these are the two I entered.
+05:21 Super easy to work with, right?
+05:23 There's not a whole lot of value
+05:24 for you seeing me to do that for each one of these
+05:27 so let me just drop in all of these entities
+05:31 because they're all the same.
+05:32 We'll talk through anything that's interesting, okay?
+05:37 Okay, so now you can see we've got them all.
+05:39 We've got our mongo_setup we added
+05:40 that didn't change.
+05:42 Our users, pretty much the same thing.
+05:45 Here's our releases, it's all good.
+05:48 So you can see these are all pretty standard.
+05:50 The one that gets kinda intereseting
+05:52 and let's go look at packages real quick.
+05:54 So over here this stuff is all sort of columner
+05:57 you know, standard real column type stuff
+06:00 but this one, check this out.
+06:01 This is a list field.
+06:02 So this is that embedded relationship of maintainers.
+06:06 In SQLAlchemy we have packages, we have users
+06:09 and we have another table called maintainers
+06:11 that is mapping the many-to-many relationship between them.
+06:14 This one line right there avoids that other table
+06:18 avoids those joins
+06:20 and does that many-to-many mapping perfectly.
+06:23 And of course we'll want to have some kind of index on this.
+06:27 So maybe maintainers just like that.
+06:29 Alright, so let's run this again.
+06:32 So it looks like it's working, right?
+06:33 Man, now let's see how much we've got going on over here.
+06:36 Did this fill up all the tables?
+06:37 Now we haven't interacted with the others
+06:39 so nothing's happening yet.
+06:40 If we click it, not so much.
+06:43 None type is not callable.
+06:45 You know what that is?
+06:47 That is us trying to work
+06:48 with our session factory in SQLAlchemy.
+06:52 So our next step is going to be going
+06:54 let's show you where this is.
+06:56 This is in our package service.
+06:58 Our next step is going to be to take these data
+07:01 these new entities that we've created
+07:02 and rewrite our data access layers.
+07:04 Maybe that sounds not very fun.
+07:06 It turns out it's almost no work.
+07:08 It's amazing. So we're going to do that
+07:09 and then we'll pretty much have our app running.
+07:12 It'll have no data, but it'll be up and running.

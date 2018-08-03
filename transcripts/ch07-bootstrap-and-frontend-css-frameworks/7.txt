@@ -1,0 +1,66 @@
+00:00 So we saw this little grid layout HTML in action here.
+00:05 We've got our grid layout, and now let's go and see
+00:08 how we define this grid layout itself.
+00:12 So maybe we'll do a separate container here.
+00:15 Do an h2 and in PyCharm you hit tab and
+00:17 it'll expand stuff, that's great.
+00:19 So we'll call this new section
+00:24 This can be starter section.
+00:27 So down here, the way this works
+00:29 is you need to have a div that is a container
+00:32 and then for each row, you have a div that is a class row.
+00:36 Then you break your piece among these divs
+00:39 by partitioning the 12.
+00:42 So here, 8 and 4. 4, 4, and 4.
+00:45 6 and 6, so on.
+00:46 PyCharm has a cool zen coding feature
+00:49 that lets you write stuff like this more quickly.
+00:52 So watch, I'll do div.
+00:53 Then how do you say the class in CSS?
+00:55 You would say, ".container" right?
+00:57 Then you say, "immediately contains" in CSS like this.
+01:01 That's a div.row.
+01:04 Then what if we want to have three divs
+01:07 that have this class right there?
+01:12 We can come down here and say, "div dot that times three."
+01:15 Now if I hit tab watch, boom.
+01:18 It's pretty awesome. So div with the container, div with a row, three things.
+01:23 So this will be, thing 1
+01:29 thing 2, thing 3.
+01:33 Now if we open this up
+01:34 we got thing one, thing two, and thing three.
+01:36 Remember these are medium, so they're going to break
+01:38 at about medium size screen there.
+01:42 Okay, so pretty awesome.
+01:45 We want one more row, so we could come here div.row
+01:49 and maybe want div.
+01:53 That multiple always needs to be 12, right?
+01:55 So we'll have
+01:56 let's say 6 little horizontal slices, like that.
+02:00 Now if we look at it, you can see there's those slices.
+02:03 By the way, I put a CSS style in this page
+02:05 to make it have these little gray borders
+02:07 so that they stand out.
+02:08 If you didn't add on that extra style
+02:15 and you just run it like this
+02:16 you would not see those pieces stand out nearly as clearly.
+02:19 But the grid is still there, right?
+02:21 Notice the behaviors happening is just super hard to see
+02:25 so I of course put that in here
+02:27 so it stands out in a really obvious way for you.
+02:31 Okay, that's really all there is to the grid.
+02:34 You can pretty easily use those to design the stuff
+02:37 so we come look here.
+02:39 You can see we have a container, we have a row
+02:42 and then we have a column md 4.
+02:45 md 4, md 4, that's how we get our thirds
+02:48 right there on that page; super easy.
+02:51 And of course, the responsive design bit
+02:52 just falls right into place there.
+02:54 Oh, last thing on the image is worth pointing out here
+02:58 since I don't think we're going to talk about it anywhere else
+03:00 these images have the class img and img-responsive.
+03:06 Those two things are what are in place
+03:09 to make them actually change size
+03:11 to match whatever container they're in, okay?
+03:15 So, img and img-responsive.

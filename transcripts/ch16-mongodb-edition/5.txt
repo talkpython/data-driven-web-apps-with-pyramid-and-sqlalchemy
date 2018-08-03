@@ -1,0 +1,112 @@
+00:00 Now, let's get started with MongoDB.
+00:03 We're going to do something very similar
+00:04 to what we did with our relational database
+00:06 and we're not going to write in raw SQL.
+00:09 When we did our relational stuff
+00:10 we worked with SQLAlchemy and classes.
+00:13 Same thing here, we're not going to write
+00:15 in the lowest level query syntax
+00:17 and just exchange dictionaries with MongoDB
+00:20 which is the lowest level, by the way.
+00:22 We're going to use something that is sort of a parallel
+00:24 or the equivalent of SQLAlchemy
+00:26 something called MongoEngine.
+00:31 So, let's start by adding that as a requirement here.
+00:33 Notice now, we're running 3.6.
+00:35 You may not have noticed before we were running 3.7.
+00:38 At the time of this recording
+00:41 3.7 just came out and MongoEngine does not support it.
+00:44 There's some incompatibility.
+00:46 They have a fix in GitHub.
+00:47 It's not yet published to PyPI.
+00:52 I'm going to go ahead and install that.
+00:55 That's good, and apparently, I have an old pip.
+00:57 So, this is the old pip
+00:59 in my new virtual environment, right?
+01:04 We have MongoEngine satisfied.
+01:05 Great, that was super easy.
+01:06 That was the same as putting SQLAlchemy here.
+01:09 The other thing we did with SQLAlchemy
+01:10 remember, we created this DB session
+01:14 with the connection string
+01:16 and then we created the engine with the connection string
+01:18 and then we created the session factory from that
+01:22 and all those things?
+01:24 Well, we're going to do all of this
+01:25 but we're going to do it a lot simpler for MongoDB
+01:27 because it is simpler.
+01:28 Now, I may well just put it into data.
+01:31 If I was doing a fresh, from scratch only MongoDB site here
+01:36 I would just make a data folder
+01:37 and put stuff in there that is MongoDB-related
+01:39 not SQLAlchemy-related.
+01:41 But one of the steps I want to do for you
+01:43 in this chapter is to convert, to import
+01:46 all of our data from a relational database into MongoDB.
+01:50 For that to work easily
+01:51 we're going to still want these to be around
+01:53 because we need them to do that transformation.
+01:56 So, I'm going to create a second folder
+01:57 and we'll call this nosql.
+01:59 But really, data would be appropriate
+02:01 if it weren't already taken.
+02:02 So just like we have this DBSession.factory
+02:05 I'm going to create a new file called mongo_setup.
+02:09 And we'll define a function, just like we said before
+02:12 global_init, and it'll have a db_name, which is str
+02:17 and it's going to do some really, really simple stuff
+02:20 for a simple case.
+02:22 And then, I'll show you a slightly more advanced version
+02:24 that you will have to use in production
+02:25 with all the various settings you have to pass.
+02:28 So the simple version is we're going to import mongoengine.
+02:31 I'm going to come down here
+02:32 and say mongoengine.register_connection.
+02:35 I'm going to pass an alias.
+02:37 So this is like the shared database connection name.
+02:40 We'll reference this later.
+02:42 And then the name, it's going to be the name of the DB
+02:45 so we'll say pypi_nosql.
+02:48 We'll just call it that.
+02:49 That seems decent.
+02:51 And that's all we have to set.
+02:52 The host, the port, all those things
+02:53 are going to default across.
+02:56 Though I guess if we're passing the name
+02:58 let's say DB name here
+03:01 we can even just default it.
+03:02 So we call it like this or we can override it.
+03:04 Okay, great, this is the simple version
+03:07 and this is all we're going to need
+03:08 but let me just drop the real, quote, real version
+03:12 that you'll need for a real complicated remote server
+03:17 with authentication and encryption and all that.
+03:19 So instead of this nice simple version
+03:20 which is our localhost version
+03:22 this'll totally work
+03:23 we're going to have a slightly more complicated version
+03:25 with our default name there.
+03:27 So here's the version what you just saw
+03:31 but here's the version that we're going to use
+03:34 for actually connecting to MongoDB in production with SSL
+03:37 and authentication, and usernames, and passwords
+03:40 and remote servers, and all that stuff.
+03:41 Okay, so this is what we need to get connected.
+03:44 I'm going to just put that away.
+03:47 Let's go to our init_db.
+03:49 We're going to not do that stuff anymore, are we?
+03:51 We're now going to go mongo_setup
+03:54 and we got to import that of course.
+03:57 I think that that needs to be package
+04:00 sub-package so let's do this.
+04:06 That was it.
+04:07 So now we're going to import that
+04:08 and we'll say global_init
+04:09 and we won't pass anything
+04:11 just going to do the defaults
+04:12 no user, no password, localhost
+04:14 everything, just like that.
+04:16 And this is it.
+04:17 This is enough for us to talk to MongoDB
+04:19 and it also will do all that create table equivalent stuff.
+04:23 Okay, so this step is going to get us connected.

@@ -1,0 +1,50 @@
+00:00 Now, I've tried to structure this course
+00:01 so it's easy for you to follow along.
+00:05 It's great to have a bunch of building blocks.
+00:07 Here's how you do routing.
+00:08 Here's how you do templates.
+00:09 Here's how you talk to the database.
+00:11 And then say well go forth
+00:13 and you can put your building blocks together.
+00:15 Good luck. But it's way more fun to build them up
+00:18 and have something you've created over time.
+00:21 So, I've tried to design this course
+00:22 in a way that you can do that
+00:23 and if you get off track you can sort of reset.
+00:27 I talked previously in the other video about having a before
+00:30 and after code for each section in the GitHub repository.
+00:34 Let me show you that right now.
+00:35 Here we are in the GitHub repository.
+00:37 If you go over here to the source section
+00:39 you'll see it doesn't sort it really great numerically
+00:42 but for each chapter that we've written code
+00:45 we don't actually write code until Chapter 4
+00:48 but for each one we have a separate section.
+00:51 You'll see that say Chapter 5
+00:53 is based on Chapter 4 code.
+00:56 Chapter 6 is based on Chapter 5 code.
+00:58 Things like that.
+00:59 So if you want to follow along with the routing part
+01:01 you come over here
+01:02 and you can see we have this start section.
+01:04 This is the code that we typed in
+01:06 that I typed in when we started Chapter 6.
+01:08 This is the result of all the
+01:10 work we did during Chapter 6.
+01:12 So if you want to say start from where we were in Chapter 6
+01:15 and then do the routing work yourself
+01:18 just make a copy of this folder and start going.
+01:22 Of course, this will become the
+01:23 starter code for Chapter 7 and so on.
+01:26 We talked about in the course
+01:28 how to get one of these loaded up and running.
+01:31 How do you create the virtual environments
+01:33 and register the packages and stuff like that that you need?
+01:36 So, we'll get to that in due course
+01:38 but just know that we have these sort of
+01:39 before and after codes for each chapter
+01:43 and ideas that hopefully that helps you follow along
+01:46 if you get lost or something along the way
+01:48 just grab the starter code from a particular section
+01:51 or you can go back and sort of diff the two directories
+01:54 and see what changed.

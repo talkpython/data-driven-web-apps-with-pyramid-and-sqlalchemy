@@ -1,0 +1,34 @@
+00:00 Have the logic for login in in place.
+00:02 We think. Haven't been able to test it yet.
+00:04 Cause we have no log in form.
+00:06 Let's do that real quick.
+00:07 Over here in register, we honestly have basically
+00:10 exactly what we need, minus one field so
+00:13 let's just take that and put it over in login.
+00:19 So put that there. We don't need the name.
+00:22 Change this to login.
+00:26 Think we're good. Let's try it.
+00:29 I'm also not including the proper CSS.
+00:36 So down here. After this one.
+00:43 Alright login looks good.
+00:44 We should totally make it look better but
+00:47 user can not be found or the password was incorrect.
+00:51 Well, let's try this with some data.
+00:55 The letter a. Nope, still didn't work.
+00:58 Let's try it with the actual log in details, ready?
+01:02 Boom. Wow. Login is working. That's sweet.
+01:05 So let's just go review real quick.
+01:07 So over here, obviously this shows the form and
+01:10 there is nothing super interesting there at this point.
+01:13 But this is what is processing the POST. We get the email.
+01:16 We don't bother checking that the email and password exist
+01:18 because this will fail if they don't. Obviously.
+01:22 I can feel further reasons
+01:23 like they put in the wrong password or the wrong email.
+01:25 But that certainly will fail if these are missing.
+01:27 So that's sort of our double check right there.
+01:30 For whatever reason
+01:32 the value doesn't come back from the database we say
+01:35 the user couldn't be found and we already saw that.
+01:37 But if there is a user, we did a proper log in, then boom.
+01:41 We over at account.

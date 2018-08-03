@@ -1,0 +1,45 @@
+00:00 Often when people are designing their sites
+00:02 or making decisions more on the technology
+00:04 to use for their site
+00:06 they have to think, well, is this mostly a CMS?
+00:09 In which case, people are going to be just making pages
+00:12 out of the database and it's not really that data-driven
+00:16 it's sort of more edited.
+00:18 Think WordPress, Squarespace, things like that.
+00:22 Or, is it data-driven, like say Amazon?
+00:26 Which, should I make my data-driven app
+00:28 or should I go and get an off-the-shelf CMS?
+00:32 But most of the time you'll find
+00:34 you kind of want a little bit of both, actually.
+00:37 Sometimes you want to have a few extra pages
+00:39 that really don't need to be data-driven
+00:42 they're just filled out.
+00:43 But you want to put them into your main site
+00:45 so you're going to create, what?
+00:47 Templates and empty views, or other weird stuff like that.
+00:50 So what we can do is we can actually leverage routing
+00:53 and create data-driven pages that just show content
+00:57 and we can let the marketing team create their landing pages
+01:00 just using the CMS.
+01:02 And it turns out, it's incredibly easy.
+01:04 All we do is create a * subpath route URL structure.
+01:08 And it just says, "match everything".
+01:11 So we can then apply this route to some function
+01:14 and we have a page that is going to fill in all the pieces
+01:18 and keep our general design but let them drop in
+01:20 pretty much whatever they want, you know, arbitrary HTML.
+01:24 And then we're just going to go
+01:26 and build that up out of the subpath
+01:28 and give us the structure, 'cause that's an easy thing
+01:31 to drop in the database and query for.
+01:33 Go get the page, if that page is not registered
+01:36 in the database, be sure to return a 404.
+01:38 Because otherwise you'll have no 404s
+01:40 at all on your site again.
+01:42 That wouldn't be great.
+01:43 Probably those would convert to 500s in bad ways, anyway.
+01:48 But, if it does match, you just return the page
+01:49 and then you can use that in your page.pt template
+01:52 to put all the details in there.
+01:54 Super easy, just don't forget
+01:56 that this must, must, must go at the end!

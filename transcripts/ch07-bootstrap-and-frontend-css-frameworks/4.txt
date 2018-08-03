@@ -1,0 +1,23 @@
+00:00 Two quick parting thoughts.
+00:01 One, thee lorem ipsum, the filler text that I put here
+00:06 is not standard for ipsum, it's what's called
+00:09 hipster ipsum, so if you just search for hipster ipsum
+00:13 you know ipsum like that and hipster
+00:16 you'll get a slightly more entertaining filler text here.
+00:19 So we have like Etsy, bicycle rides, Kickstarter
+00:22 gentrify, Buschwick, Brunch Craft Beer, and so on.
+00:26 It's kind of fun to play with.
+00:27 So you can go and generate paragraphs of text there.
+00:31 And also, even though this is not a python site
+00:34 sometimes you need to run the html page
+00:38 in the browser to get it to work right.
+00:40 What we're doing, that's not true
+00:41 but in PyCharm, even on plain html pages
+00:45 and come over here and say run and it opens
+00:48 over here like this.
+00:50 The reason it looks a little bit different than that one
+00:51 is I have this one zoomed like that
+00:54 so you can see the differences a little more clearly.
+00:56 There you go, so now you can see it's actually
+00:57 running in a proper web server.
+00:59 Sometimes that matters for JavaScript and things like that.

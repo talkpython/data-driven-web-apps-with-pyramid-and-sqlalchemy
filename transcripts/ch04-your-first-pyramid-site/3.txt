@@ -1,0 +1,62 @@
+00:00 So you've seen how to create a Pyramid website
+00:02 using Cookiecutter, virtual environments
+00:05 and what not on the command line.
+00:07 Let's review those steps
+00:08 so that you have a nice, clear series to follow.
+00:12 Okay, so, what do we do?
+00:13 We started by sayin' we're going to use Cookiecutter
+00:16 and we're going to need a template to work with.
+00:18 So I use the Pyramid Cookiecutter starter template.
+00:20 Just copy that URL and we're going to feed it to Cookiecutter,.
+00:23 You can use any one of the five actually
+00:26 if you feel they match what you're doing better.
+00:30 So we got to make sure we have Cookiecutter installed.
+00:32 So pip install cookiecutter
+00:34 maybe throw a -U for upgrade
+00:37 a --user so it doesn't require sudo
+00:40 things like that.
+00:41 But here we go it's going to get it going.
+00:42 That's great.
+00:44 We pip install cookiecutter
+00:46 and then we're going to create the scaffolding.
+00:48 We want to create the site using Cookiecutter.
+00:51 So we'll say cookiecutter and we'll give it
+00:53 the URL to the template.
+00:55 It's going to ask a bunch of questions.
+00:57 If you want to follow along
+00:58 make sure you choose 2 here for your project
+01:01 otherwise there's going to be trouble.
+01:03 Alright, great, so you choose that
+01:05 you answer the various questions
+01:07 and it gives you a few steps to follow after that.
+01:10 It says go to the project, create a virtual environment.
+01:13 Make sure you upgrade pip inside of tools
+01:16 because Python doesn't do that for you.
+01:18 How frustrating but that's the way it goes.
+01:20 And then, once you've registered the project
+01:25 we'll be up and running and then you can serve it up.
+01:30 Oh, what's that look like?
+01:31 Well, we're going to run python3 -m venv.
+01:35 Some versions of Mac and python intersected with PyCharm
+01:40 all require this --copies.
+01:42 If you have the latest version of everything
+01:44 you don't need it but you can throw that
+01:46 on there if you're finding you're having trouble.
+01:48 So we're going to create our virtual environment
+01:50 and we can activate it.
+01:52 Say source .env/bin/activate on Mac or Linux
+01:57 on Windows it's just .env\scripts\activate.bat
+02:01 and then you can ask well which Python or where Python
+02:04 should be the one in your virtual environment.
+02:06 Then final step is to install the dependencies
+02:09 install Pyramid, and to register the site with Python.
+02:13 So python setup.py develop.
+02:19 Everything should be up and running and working.
+02:21 It's just time to serve up your app.
+02:23 Open the web server and start interacting with it.
+02:26 So pserve and give it one of your configurations
+02:29 probably development.ini.
+02:31 What'd you get?
+02:32 Well you get your site up and running of course.
+02:35 So really nice, here we are on the close
+02:37 looking at our starter project just like we did in the demo.

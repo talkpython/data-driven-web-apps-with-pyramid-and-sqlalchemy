@@ -1,0 +1,77 @@
+00:00 Register sure seemed to work. Let's do login.
+00:03 Now again, it's going to follow the 
+00:10 get post redirect pattern.
+00:11 In fact, there's going to be so much similarity
+00:13 between those two, I'm just going to highlight
+00:15 all this and hit Command D to duplicate it.
+00:18 All right so let's make sure we change this to login.
+00:27 Now we're not going to pass the name around.
+00:29 Just email and password, potentially
+00:31 error as well, so we'll go with that.
+00:40 All right let's clean up some of this print stuff.
+00:42 This was just to show you where the data was coming from.
+00:48 All right now we don't actually need to validate
+00:51 the password and stuff.
+00:52 We'll just try to login and either
+00:54 it's going to work or not.
+00:55 So let's just do this little login bit here.
+00:58 This part, when I say login, I mean put
+01:00 like a cookie so we remember them as a session.
+01:04 So here we'll just say do this login.
+01:07 If not this, hope it's not user.
+01:09 Here we'll say, the user could not be found
+01:14 or the password is incorrect.
+01:21 All right this looks pretty good right?
+01:22 We'll come in here, I'm going to do a POST.
+01:24 Submit the form.
+01:25 It's going to have those two pieces of data.
+01:27 We'll write this in a moment.
+01:29 If we go to the database and the user existed
+01:32 that email and the password is valid
+01:34 then we're just going to send 'em along.
+01:36 Of course we want to save their session
+01:38 do some logging or recording
+01:39 all those sorts of things.
+01:40 But for now, let's just put an error
+01:44 or no error depending on what we get.
+01:46 It's going to turn it optional of user
+01:50 It's going to return an optional
+01:54 of user, 'cause maybe they don't login.
+01:57 Right they try, but they fail.
+02:00 All right so here's some interesting stuff.
+02:01 Again we're going to need our session
+02:02 Again we're going to need our session.
+02:05 So we want to create the session
+02:07 and then we want to create a query.
+02:09 So we'll just say.
+02:10 Let's see if we can do it super simple like this.
+02:12 Return session query of user when the filter is.
+02:18 Actually hold on. Do it like this. email == email.
+02:26 Now one thing I really like to do is make sure
+02:28 we store these things in lowercase and stripped.
+02:32 Not on the password, but on the email.
+02:35 So down here we can say if email.
+02:40 How about if not email, return None.
+02:48 And how about we say user.email
+02:50 And it's going to be one.
+02:51 So we may have a user back if we say if not user
+02:55 return None, user, whatever, same thing.
+02:58 Now you might reasonably expect you could say
+03:00 well, let's just say hash the password
+03:02 and do the query in the database where
+03:04 the email and the password matches.
+03:07 But every time you create a new password hash
+03:10 it generates a different salt.
+03:12 So what we need is to ask Passlib
+03:14 to say, given the salt that you stored
+03:17 somewhere in that giant blob of goo
+03:20 take this raw password and validate that it is the same.
+03:25 So we'll say, if not, verify_hash.
+03:30 What does it take? It takes the hashtext which will be user.hashpassword
+03:35 and the plaintext password.
+03:40 Return None. And finally return user.
+03:44 Not super hard but you want to make sure
+03:45 you don't forget some of these steps.
+03:47 That would be bad. Let's try.
+03:51 It's not going to turn out as well as you think.
+03:54 Where's our form? Well, now we should put our form in here.

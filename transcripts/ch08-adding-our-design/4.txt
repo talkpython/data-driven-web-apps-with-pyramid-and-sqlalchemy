@@ -1,0 +1,87 @@
+00:00 So, here's where we want to be
+00:02 but here's where we are.
+00:04 Little bit of a difference, huh?
+00:07 So let's focus on this
+00:08 what I'm calling the hero section right here.
+00:11 So we go over to our site
+00:12 and we're going to have a hero
+00:14 notice that PyCharm is finding the classes
+00:17 used in HTML, and suggesting them here
+00:19 that's pretty awesome.
+00:20 And let's start with color.
+00:23 Alright, obviously, this is just white and black
+00:26 and that one is white fonts on a blue background.
+00:31 So let's set the background color
+00:33 and I'm going to take a color that I've already grabbed
+00:36 from the design over there
+00:39 and the color is going to be white.
+00:44 Let's see what that does for us.
+00:46 Nothing on that page.
+00:48 Uh, a little bit better, not 100 percent.
+00:51 Okay, so that's a start.
+00:54 Let's set the padding, notice over here
+00:57 there's a lot of space, and here, not so much.
+01:04 We'll do 50 top and bottom and zero left and right.
+01:09 Let's set the text align to be center.
+01:12 The line height to be 1.0
+01:15 and the font size is going to be 18 pixels, okay.
+01:23 Little better, we still have some real weirdness
+01:26 going on with that that's quite large, so let's fix that.
+01:30 So that's going to be the hero eight one.
+01:33 Now first of all, notice this going all the way across
+01:36 and the font size is really wrong
+01:38 so let's go to the font size and say that's 32 pixels
+01:40 see what that does.
+01:43 I think we need a little bit more to control this here
+01:46 let's do starter.
+01:54 There we go, that looks like pretty comparable font size.
+02:00 Set the font weight to 400, that's a little bit bold.
+02:03 And here we'll set the line height to 1.3
+02:06 so it's a little bit more space
+02:07 again text align is going to be centered just to be safe.
+02:11 Here we go, getting a little bit closer.
+02:13 Let's also make sure it doesn't change size in a weird way
+02:17 so well set the max width, 810 pixels.
+02:24 And also let's set the padding.
+02:30 And one more thing, now that we set the max width
+02:32 it looks like it's off to the left
+02:33 so we're going to want to set the margin left to be auto
+02:37 and the margin right to be auto
+02:39 kind of like we did with our login box.
+02:41 Okay, that's looking good.
+02:43 Next up, let's just work our way down
+02:45 this thing being all the way across
+02:46 not so amazing, let's fix that.
+02:48 So that is a forum control
+02:53 and let's set the max width to be 550px.
+02:58 And we also need to change the display style
+03:01 cause right now I think it's in line
+03:02 which you can't control some of these
+03:03 so we'll do inline block, oh I typed minwidth I meant the set.
+03:08 So we have the width, that looks pretty good
+03:10 let's cycle back and forth.
+03:12 Now the rounded edges verses square edges let's work on that.
+03:19 We'll set that, we'll set the border radius
+03:22 to something like two pixels. Here we go.
+03:25 Now it's starting to look pretty close.
+03:27 What else we got to do? Let's up the font size to 20 pixels.
+03:32 Change the padding to 20 pixels as well.
+03:38 See how we're doing. Oh, those look pretty similar.
+03:41 Now the nav bar up top is changing the, sort of
+03:44 vertical alignment, we haven't worked on that yet
+03:46 we're just working on the blue hero
+03:47 but boy those are good.
+03:49 I notice this one is white and underlined
+03:51 and this one is not, so let's go address that.
+03:55 So that's going to be a hero
+03:56 and there's only one hyperlink so we can just say a
+04:00 and the color is going to be white
+04:02 and the text decoration is going to be underline.
+04:06 Boom, there it is.
+04:08 It looks pretty good, the font size is tiny bit different
+04:10 than what we're aiming for but that was also just an approximation.
+04:13 So I think this hero piece is basically done.
+04:17 Now this nap doesn't navigate anywhere
+04:19 that's fine, but in terms of modeling
+04:22 these two pieces here, I think this first hero slice
+04:24 is good enough.

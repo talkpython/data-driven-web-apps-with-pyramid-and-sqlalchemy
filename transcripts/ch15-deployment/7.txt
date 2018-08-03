@@ -1,0 +1,70 @@
+00:00 I'm pretty sure we already have Nginx installed
+00:02 Let's just double check here.
+00:04 It's already there, already set up, everything is good.
+00:07 Great, so what we have to do is we have this
+00:09 other Nginx file and let's look at it really quick.
+00:12 It says you're going to listen on port 80.
+00:15 You're going to listen to this, we can even put
+00:17 things like www that, and so on.
+00:20 As many domains, names or subdomains as you want up there
+00:24 we're just going to listen on this main one.
+00:26 Put a few limits, and configuration there, and then it says
+00:29 Nginx itself is going to handle all of our static files
+00:32 our CSS, our JavaScript, everything.
+00:35 And it's going to find those right here
+00:37 and it's going to actually cache them
+00:39 for a year which is pretty sweet.
+00:41 And then what it's going to do, it says
+00:42 look, if somebody goes anywhere other than /static
+00:46 we're just going to go and pass that URL on to here.
+00:50 This is exactly how we've configured uWSGI
+00:53 already so just to confirm, perfect.
+00:57 So it's just going to delegate that across.
+01:00 It's also going to pass the real IP and host name
+01:03 because that stuff gets lost in this configuration
+01:06 if you don't pass it through
+01:07 that's a new header you got to ask for.
+01:09 So this should be good and what we're going to do
+01:11 is where going to remove any default
+01:13 website that Nginx may have and we're
+01:15 going to give it this one instead.
+01:19 Be careful about doing that if you care
+01:21 for it being there but we've gotten rid of it
+01:23 'cause we don't want to use it, we don't care.
+01:25 Go like this, and now last thing to do is just
+01:28 update Nginx like we did in uWSGI
+01:31 just start as a service.
+01:33 And restart it or start it if it's not running
+01:37 let's see about this, http://localhost.
+01:40 Boom. It's working.
+01:42 You know what we can do now?
+01:43 We can do better than that, we can come over here
+01:46 and say HTTP://fakepypi.com I think I call it.
+01:52 Bam, there it is.
+01:54 It's up on the internet, let's go log in.
+01:57 Yeah I know it's not secure. There's my account.
+02:01 The reason it already exists is we copied
+02:03 that SQLite database so it was already there.
+02:06 Isn't this cool? Look how quick and speedy this thing is.
+02:11 If we come along let's do a little
+02:14 inspect element with the network and just look at HTML.
+02:17 So if we hit this a few times
+02:19 our ping time is around 30 to 40 milliseconds
+02:22 and the response time all the way back here
+02:24 to my browser is 50 milliseconds.
+02:26 That is super, super sweet.
+02:29 So really really digging it
+02:31 looks like our server is up and running.
+02:33 Let's just do one more thing just
+02:34 to prove everything is good, let's just reboot the server
+02:37 and make sure it all comes back.
+02:38 There's nothing we have to do, we've already done it
+02:40 I just want to show you that it's all configured.
+02:50 There we go it's alive, let's see if it still works
+02:51 as we click around, account, yeah it looks live to me.
+02:55 Let's logout, bam, just like that.
+02:58 Our server is up and running and there's a lot of details
+03:02 in these files here but nothing magical
+03:06 and I'm giving them all to you
+03:07 and they're ready to just take them
+03:09 and configure your server and your app as you see fit.

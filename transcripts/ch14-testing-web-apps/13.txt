@@ -1,0 +1,94 @@
+00:00 You've heard of the Pareto principle
+00:01 in one form or another.
+00:03 It's often referred to as the 80/20 rule
+00:05 the idea that most of the value can be gotten
+00:08 by doing a little bit of the work...
+00:10 80% value, 20% work.
+00:13 That's good right? We can actually accomplish a lot of that benefit
+00:16 by having a site map. Well, what's a site map?
+00:20 So, a site map is actually a listing of all of the URLs
+00:24 and a little bit of detail about them
+00:26 targeted for search engines.
+00:28 Google, Search bots, Bing, things like that.
+00:32 Here's an example that might make sense for our...
+00:35 And what we can do is we could define a Chameleon template
+00:38 that will generate this.
+00:40 So we can have one for the site, one for account/login
+00:43 one for account/register and then every package on the site
+00:47 we could use data-driven behaviors to pull out all of that.
+00:51 See that down there at the bottom
+00:53 tal:repeat p in packages, we're going to spit that out.
+00:56 You want to have one of these types of things anyway.
+00:58 It's massively helpful for search engines.
+01:01 So we could have this template
+01:02 and our view model would be really simple.
+01:04 It's just going to go and say "Give me all the packages."
+01:07 We may want to set a limit, probably not, more likely
+01:09 you want to just cache this and refresh it periodically.
+01:12 Anyway, we want to generate this somehow
+01:15 and here's our controller, super easy.
+01:18 We register sitemap.xml as the URL
+01:22 and than we just generate this stuff using that template.
+01:25 If we have this in place
+01:26 and I'm going to give you one for this website
+01:27 we're not going to write it from scratch.
+01:29 I'll give it to you, you can adapt it for your own.
+01:31 Then we can use this for testing.
+01:33 We can go through here and just request
+01:35 every single page in the sitemap
+01:37 and make sure that none of them 500
+01:39 you know server crash or 404 or things like that.
+01:42 That's actually really helpful. This is the 80/20 rule.
+01:46 We can just do a little bit of work to grab the site map
+01:48 and request everything.
+01:50 It won't test everything we're looking for
+01:51 but like I said most of the time when these pages fail
+01:54 they fail hard and just fully crash
+01:56 500, 404, something like that.
+01:59 They don't just send back wrong HTML.
+02:01 That does happen, but they fully crash most of the time
+02:06 which is actually kind of good for testing.
+02:09 So, let's see this just in the concept here
+02:11 and then we'll go look at it in code for just a moment.
+02:13 We're going to write a little bit of code
+02:15 to get the sitemap text, so what we need to do
+02:18 is actually use our functional test behavior
+02:22 to request /sitemap.xml.
+02:25 It's going to return some value, response.
+02:28 We can go to the text and we can say
+02:30 so the XPath queries are simpler
+02:32 let's get rid of the namespaces
+02:34 replace this namespace that has to be there with nothing
+02:37 that means we don't have to worry about it
+02:38 in what we're about to do.
+02:40 We can write a test that'll say
+02:41 I want to go and test every URL there, so get us that text.
+02:46 I want to create an XML DOM element, an etree.from_string
+02:51 and in there we're going to do an XPath query for URL/location.
+02:55 This will pull through, pull it out
+02:58 and generate every single URL on our site.
+03:02 Here where we are doing the replace localhost:6552
+03:05 to say, I mean we would put that in our sitemap
+03:08 but we just want to do a relative request here
+03:11 like /account and so on. And then, we can just
+03:15 now we have just the URLs as a flat string.
+03:19 Well, at that point let's just go ahead with a bunch of requests.
+03:22 So, we'll go through each one of these
+03:23 and, we'll just do a request for them.
+03:27 Self.app.get URL status should be 200.
+03:31 I know that I threw a "if the project is in here"
+03:34 in the URL.
+03:36 We've already tested it, lets not do it again.
+03:39 In the real PyPI, imagine, this was the real PyPI data
+03:43 we'd have 140,000 different packages.
+03:47 It may be valuable to request every one
+03:50 but, you'll probably get most of the value
+03:52 by just requesting an example one.
+03:55 So, we're just, if we've requested one
+03:58 so okay we've tested that part of our site
+04:00 we don't need to it do it over and over and over again.
+04:03 So, it's an optimization, it gives up some tests
+04:05 makes it much faster, put it in here if you like.
+04:09 And this is it. We can go and write this simple test
+04:12 against this simple site map you want anyway
+04:14 and get a lot of verification right there.

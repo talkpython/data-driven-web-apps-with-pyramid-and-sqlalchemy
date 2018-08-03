@@ -1,0 +1,24 @@
+00:00 Now, I suspect you're probably very familiar
+00:02 with the GitHub repository, but before
+00:04 we move along, just remember, if you haven't
+00:07 starred this, maybe even forked it, you probably should.
+00:11 That'll help you keep track of it
+00:12 and keep your own version exactly like
+00:14 it was at the end of this course.
+00:16 If you don't use Git, you could just come over here
+00:18 and just download it as a ZIP.
+00:20 So we already have all of our data
+00:23 and this is what the data importer uses.
+00:25 And the source, and we have the before
+00:27 and after code for many of the various changes.
+00:30 So for example, validation, this is where we started.
+00:33 This is where we finished.
+00:35 If at any point you want to jump in and go awe
+00:36 I want to go from here to there
+00:38 hopefully the structure here will make that really easy
+00:42 instead of just having, here's the final code
+00:44 at the end, good luck on how it was in the middle.
+00:46 So I really tried to save for each chapter
+00:49 a beginning and an end along the way
+00:51 so it would really help you be able to jump
+00:53 in and out and see what we built at each step.

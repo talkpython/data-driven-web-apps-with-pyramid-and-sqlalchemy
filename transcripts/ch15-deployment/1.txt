@@ -1,0 +1,90 @@
+00:00 Now that we've built our web app
+00:01 it's time to share it with the world, right?
+00:04 It's great to have a little app that we built
+00:06 but it's basically useless
+00:07 if we don't put it on the internet.
+00:09 It is a web app after all.
+00:11 At least put it on a internet
+00:12 for your internal company, right?
+00:14 So, that's what this chapter's all about.
+00:16 We're going to see how to deploy our web application
+00:20 onto a standard Linux server in the cloud.
+00:23 I want to be clear that this is not the only option
+00:26 there's certainly other ways to put our web app out there.
+00:29 We could go use something like, Heroku
+00:31 and just configure Heroku to grab our stuff
+00:35 out of our GitHub repository
+00:36 and launch it into their system.
+00:38 Those to me seem easier
+00:40 they're less flexible and often more expensive.
+00:42 But they're easier.
+00:44 So what I want to do is show you how to deploy
+00:46 to a standard Linux server
+00:48 run it in some cloud VM somewhere
+00:50 and you can adapt that from DigitalOcean, Linode
+00:53 AWS, Azure, where ever you want to run it.
+00:56 So, we're going to do that in this chapter.
+00:59 And that brings us to our overall architecture and topology.
+01:03 One of the things we're not going to focus on here is
+01:06 setting up and configuring a database server.
+01:09 I consider that a little bit outside of the scope
+01:11 of this course, and you can pick the database server
+01:13 that you want and then configure it
+01:15 so you'll have to fold that in here
+01:17 right now, we're just using SQLite, which means
+01:20 as long as the file comes along we have our database.
+01:22 So, with that caveat, here's how it's going to work.
+01:25 We're going to go get a box in the cloud
+01:27 which is going to be an Ubuntu server
+01:30 probably 18.04, that's what that little icon
+01:33 on the bottom left means.
+01:34 On here we're going to install Nginx.
+01:37 Nginx is the thing that people will actually talk to.
+01:41 This listens on port 80 and on port 443
+01:44 and for regular HTTP and on 443 for HTTPS encrypted traffic.
+01:50 A request is going to come in here
+01:52 but this does not run our Python code.
+01:55 It serves up static files and it delegates to the thing
+01:58 that actually runs our Python code.
+02:00 That thing is called uWSGI
+02:04 uWSGI, I guess it should be.
+02:06 Now uWSGI when we run it
+02:08 will handle our Python request.
+02:11 However, we don't want to just run one of them.
+02:14 Remember, you may or may not be aware that Python
+02:16 has this thing called the GIL, Global Interpreter Lock
+02:19 which inhibits parallelism within a single process.
+02:23 And a lot of the ways people get parallelism in Python
+02:26 is to actually create multiple processes.
+02:29 This also has great benefits for fail over
+02:31 or if something goes wrong with some process
+02:33 running one of our requests we can kill it
+02:35 and have other processes deal with it.
+02:37 It's not the only way to get parallelism
+02:39 but it's one really nice way.
+02:40 So we're going to do that and have uWSGI
+02:42 spin off a whole bunch of itself.
+02:46 This will actually run our Python code.
+02:48 I'm just going to host the Python runtime
+02:51 and it's going to launch and initiate a bunch of copies
+02:54 of our website running in parallel.
+02:56 Here we have it configured to run six worker processes.
+03:00 So, here's what's going to happen.
+03:02 Request is going to come in
+03:03 hopefully over HTTPS, right, you want to set up
+03:06 some sort of encrypted layer here
+03:07 right, that's the way the web's going these days.
+03:11 And once we're inside the server
+03:13 we no longer need encryption
+03:14 so we'll just do a regular HTTP request
+03:16 over to UWSGI itself.
+03:18 UWSGI will decide which of it's worker processes
+03:21 is ready to handle it. This time that one is.
+03:23 Maybe next time this one's free or maybe that one.
+03:26 It will find one that's not busy or less busy
+03:29 and then pass that request off
+03:31 and then return the response back through Nginx
+03:34 back out over HTTPS, to the client.
+03:37 So this is what we're going to set up.
+03:39 An Ubuntu server, with these things along with Python 3
+03:43 and our web app ready to roll.

@@ -1,0 +1,19 @@
+00:00 Let's review client side validation as a concept.
+00:04 We saw that it's really easy to add HTML5 based validation
+00:08 to our forms. All we have to do is set the type
+00:11 and say whether things are required.
+00:14 For example, on the first input here
+00:16 we have the type is email and it's required.
+00:18 The second one, the type is password, and it's required.
+00:21 Password you'd typically set 'cause you're
+00:24 it's really clear right away that you don't want people
+00:26 to see the password, but email versus text, not so obvious.
+00:30 You might as well put it in there
+00:31 'cause it'll help make sure that email is actually valid
+00:34 for most users. So once we have this in place
+00:36 if we try to put just something like our name
+00:38 where an email address is expected
+00:40 it goes no no, that's not a valid email address.
+00:42 You need the @. Michael is missing an @.
+00:46 Real easy, just add a few requireds and types
+00:49 and you'll get much better client side validation.

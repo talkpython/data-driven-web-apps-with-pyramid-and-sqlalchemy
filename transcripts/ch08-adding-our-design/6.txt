@@ -1,0 +1,74 @@
+00:00 So first two sites is lookin' great.
+00:01 That part, not so much.
+00:04 We want it to look like this, right here
+00:06 with new releases, hot off the presses
+00:07 and then a list formatted like so.
+00:10 Alright, so first of all, it seems like I forgot
+00:12 the little subtitle there, so let's put that in place.
+00:17 So I want to have a little h2 and then a little subtitle.
+00:23 Okay, get in there.
+00:24 Those need some styling.
+00:26 Alright, bolded, smaller, things like that.
+00:28 But it's on the right path.
+00:29 Come on down here.
+00:31 Now if we look at this, it's going to be in the project list.
+00:35 So we're going to use that along with h2, the subtitle
+00:38 and the project pieces, just file that.
+00:41 So do that again over here.
+00:44 So the first thing let's target that h2
+00:47 and set the font size to 24 pixels.
+00:51 Font weight to bold, and the color to almost black
+00:57 but not all the way.
+01:00 Lookin' good, lookin' good.
+01:03 Also our project list, and then we have
+01:05 a little subtitle thing.
+01:07 That was sort of italics there.
+01:09 So we say font style, is that italic? Good guess.
+01:14 Hot of the presses, that's in italics.
+01:17 Okay great, the last thing to do
+01:18 is to put these bits into those nice little boxes
+01:22 and give 'em some spacing and borders and so on.
+01:25 So these have just the project for the overall section
+01:29 and there's a bunch of styles we want to set here.
+01:31 I'll just paste those in.
+01:34 So we're going to set the border.
+01:37 Apparently I had that in there twice.
+01:38 Set the border, the padding, and the background
+01:40 the minimum height.
+01:42 Set a margin at the top and bottom.
+01:44 Let's see how that looks.
+01:48 Oooh, looking much better, looking much better.
+01:50 So the overall box, I think is ready.
+01:52 That looks totally good.
+01:54 And then the last thing to do
+01:55 is to style those little pieces, right there.
+01:58 So our project list.
+02:00 Now this you can use just the starting characters here.
+02:05 project.title.
+02:08 In this one, we just want to set the font size to 20 pixels.
+02:11 Make that a little bit bigger.
+02:13 See how that affected it. Closer, closer.
+02:19 While we're at it, let's go ahead and set that hyperlink
+02:21 which is going to be project list.project.title
+02:26 that contains the hyperlink.
+02:28 I'm going to set it's color to be that value.
+02:32 There we go. Startin' to look good.
+02:34 Well, yeah just got to do a few more things
+02:37 and then we're done. So project list.
+02:44 The description, that's also italic, but not bold.
+02:48 So we'll say normal. The font size is 16 pixels.
+02:54 See how that description is comin' along.
+02:57 Oh yeah, lookin' like what we're waiting for.
+02:59 The last thing to do
+03:01 actually I think the version looks okay.
+03:03 The version is good.
+03:05 So we're not pulling this data from anywhere
+03:07 but we're more or less gettin' what we're after.
+03:11 Excellent, let's do a quick run through.
+03:14 Sure is lookin' really good.
+03:16 This part is lookin' really good and this.
+03:20 We still have the outer shell to build.
+03:22 Right, we've got the navigation up in the top
+03:25 and down at the bottom, we've got this footer thing.
+03:28 So maybe we'll work on the navigation next.
+03:31 But we are almost done with this page.

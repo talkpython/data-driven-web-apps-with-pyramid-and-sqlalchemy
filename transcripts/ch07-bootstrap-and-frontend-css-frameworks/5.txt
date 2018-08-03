@@ -1,0 +1,68 @@
+00:00 Let's start explaining Bootstrap
+00:01 by looking into one of its most
+00:03 powerful and useful features.
+00:06 We're going to look at its grid layout system.
+00:09 This is something people often get wrong
+00:11 when they're doing web development, and Bootstrap
+00:14 makes super easy for you.
+00:15 So, that's a really nice place to be.
+00:19 Something easy that used to be really hard.
+00:21 Alright, so here is the Talk Python Training website
+00:24 circa 2018.
+00:26 Probably still looks like this, but maybe it's
+00:29 changed at some point when you're watching.
+00:30 But the principle is the same, I'm sure.
+00:33 Here is how things look on a standard laptop
+00:36 or desktop browser.
+00:37 Alright, so you scroll down.
+00:39 This is in the middle.
+00:41 We've got this part broken into thirds
+00:43 with an image and then below it, details about it.
+00:47 Here we have these sort of three...
+00:49 What, what's the value proposition?
+00:51 You can learn online.
+00:52 You don't have to get a subscription, those sorts of things.
+00:55 These are broken up into thirds as well.
+00:57 Here's a part that, maybe it's hard to tell, but it's
+01:00 broken up into halves.
+01:02 There's this half and that half.
+01:04 The student testimonials, again, halves here
+01:07 halves here, and so on.
+01:10 So this is how it looks on a desktop, but
+01:13 what if we make it skinnier?
+01:14 The top part, not so interesting, so I'll pull up
+01:17 one of these thirds.
+01:20 So we make it smaller.
+01:21 Notice the images automatically get smaller.
+01:25 That's not technically the grid layout, but
+01:26 that's inter played with Bootstrap and the grid layout.
+01:29 A little bit smaller and eventually it says
+01:31 you know, this is too small to make sense
+01:33 as a grid, so maybe you're on some kind of phone.
+01:36 So now, if we go to the site
+01:37 maybe that's even a little skinny for a phone.
+01:40 Now we're on the site.
+01:41 Here's maybe how it looks on as standard iPhone
+01:43 or Android or something like that.
+01:45 Notice how these wrap super nicely, and they break
+01:48 instead of being broken into horizontal slices
+01:51 they wrap, basically become more sort of vertically
+01:56 stacked elements, and that happens throughout the site.
+01:58 And this happens incredibly easy for us using
+02:02 the Bootstrap grid, so we'll talk about how that works.
+02:04 Also, we're not going to cover it in the course
+02:07 but it's an easy feature.
+02:08 Notice up here we've got this navigation
+02:11 and as you get smaller, it's going to run out of space
+02:13 for, say, pricing and business and podcasts
+02:17 and eventually, notice some of the elements
+02:19 went away because instead of totally breaking that
+02:22 we say, you're only allowed to how the extra
+02:25 sort of secondary items in the Nav when there's
+02:29 enough room, and if it gets too small, then put them-
+02:31 You know, take them away, put them back like that.
+02:33 If it gets really small, then there's no room for the
+02:35 Nav, so make that a dropdown menu.
+02:37 So all sorts of cool stuff for Bootstrap.
+02:40 Somewhat on the same principle, but the
+02:42 main thing we're going to focus right now is this grid layout.

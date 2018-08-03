@@ -1,0 +1,77 @@
+00:00 You saw how to insert data, now let's go through the
+00:02 nitty gritty details of actually inserting all the data
+00:05 from real sources.
+00:07 So there is an API for PyPI
+00:11 I've used that API to get most of the top 100
+00:15 packages. So for example, here's click.
+00:17 Let's look at that real quick.
+00:19 And I've downloaded this and it's from
+00:21 Armin Ronacher, creator of Flask.
+00:23 Here you can see the licenses and the languages in
+00:26 this funky format.
+00:28 The author info embedded in there.
+00:32 You see the license, it's not set here but it's set
+00:35 up here, so it's kind of a kind of confusing and
+00:39 tricky to make this work, but that's fine.
+00:40 So here's a home page
+00:42 The maintainers right now, there's no other maintainers set.
+00:46 The full summary and then here are a bunch of releases for it, right?
+00:50 Each release has comments and so on.
+00:53 Now, this data is not super useful to us in this format.
+00:59 There's not much description but the other ones...
+01:01 Let me just throw one in here so you can see.
+01:03 It's sterling, park, parse or an alternative there.
+01:06 Here you can see the description has a lot more
+01:09 a lot more detail, it goes over to column 1,614
+01:13 so that's pretty long.
+01:15 Right, so what we're going to do is we're going to import this
+01:18 data so you have actual packages, releases, users, etc.
+01:22 to work with, how are you're going to do that?
+01:24 Well, I'm not going to leave that up to you 'cause that's
+01:26 pretty messy but what I am going to do is I'm giving you
+01:29 these PyPI top 100 JSON files right here.
+01:33 They're going to be just at the top of your repository right there.
+01:40 Now, over here we're writing basically the same code.
+01:43 Initialize the data base, get a session and what it's going to
+01:46 do is it's going to go through and check if and only if there
+01:51 are no users, it's going to load those files and it goes
+01:54 through and parses out all the users and then
+01:58 it actually saves them to the data base and then it goes
+02:00 through and finds all the packages, saves them to the
+02:02 data base, along with their releases and languages and
+02:05 licenses and so on. And it prints out a little summary.
+02:09 So right now there's no data and I actually deleted those
+02:11 other two releases I put in there.
+02:13 So let's run this and I'm actually going to
+02:16 run it outside 'Cause it has a cool little progress bar.
+02:26 So, let's go over here and say I'm going to activate our
+02:30 virtual environment 'cause we need the same packages and
+02:33 everything there.
+02:34 And then we're going to say "python," copy that path
+02:38 and we're going to run that right here.
+02:41 Let's see how we do. Beautiful!
+02:46 It's got some extra junk that it printed out apparently
+02:49 but you could take that out.
+02:50 Here's the final numbers it found
+02:51 84 users, 96 packages- from those packages we have
+02:55 5,400 releases, 10 maintainers, 25 languages and
+03:00 30 licenses.
+03:02 Cool, now let's just go over here and do a quick query to
+03:04 make sure that's in there.
+03:06 So if we run that again, now you can see there's tons
+03:08 of releases.
+03:10 This is all AMPQ, they go in order basically AsyncIO
+03:13 view packages there's all the packages.
+03:19 Right, here's Tornado and so on.
+03:20 These are the popular ones.
+03:22 Really nice, so now we have actual data to work with.
+03:25 You're welcome to look through this load data.
+03:28 It's pretty interesting, how to take these actual real
+03:32 world data sets and import them using SQLAlchemy.
+03:35 So, we've got all this JSON data now we're putting it in
+03:37 our data base, it's a lot of yucky details about making it
+03:41 work so I'm not going to go through it.
+03:43 But, if it's useful for you feel free to grab it
+03:46 we now have data in our database.
+03:48 And all the inserts and everything was done
+03:50 just the way you saw in the previous video.

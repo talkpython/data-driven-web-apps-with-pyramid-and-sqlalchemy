@@ -1,0 +1,78 @@
+00:00 Having properly structured URLs is super important
+00:03 for web applications.
+00:05 It matters for SEO, Search Engine Optimization
+00:09 but it also matters for usability and discoverability
+00:11 of your users.
+00:13 I'm sure many of your users will be either
+00:15 typing into the URL bar
+00:17 or looking at it and trying to make sense
+00:20 of the structure there
+00:21 so you want to have good control and put some thought
+00:25 into your URL structure.
+00:27 And we're going to dig into the mechanism in Pyramid
+00:31 how we do that, how we create the best possible set of URLs
+00:36 and map those to our view methods.
+00:39 So let's start by just talking about what is routing.
+00:43 We've mentioned it a few times
+00:44 and it's basically mapping URLs into action methods
+00:48 or controller methods.
+00:49 So let's go through this.
+00:51 So a request comes in.
+00:53 This request is an HTTP GET, that's a verb, a HTTP verb
+00:57 for /project/sqlalchemy.
+01:00 And imagine, over on the right we have our server
+01:03 and this sort of weird conceptualization
+01:05 of the various view methods, or controller methods
+01:08 index and details to do with packages
+01:11 and index and about to do with home.
+01:15 We've registered some routes in this application.
+01:19 We've got / and that goes to HomeController.index.
+01:23 And so the system's going to ask
+01:24 Is /project/sqlalchemy a match for that?
+01:28 No. And in this case it has to be an exact match.
+01:31 There's no ambiguity or variability here.
+01:35 So, no it's not that.
+01:37 We also have /about that goes to home.about.
+01:41 Now, also not a match, so we'll keep goin'
+01:45 The next one we have is /project.
+01:47 And then that last part can change, right.
+01:50 This is data driven, so that's part of the data, alright.
+01:53 sqlalchemy, requests, mongoengine
+01:55 whatever goes in there, Pyramid, alright.
+01:59 that's what goes after /project.
+02:02 In our route, we've defined a little variable here
+02:04 and this one we said
+02:06 "If something like that comes into the system
+02:10 "map that over to details."
+02:11 And in addition to that, capture whatever value
+02:15 goes into that {package} location
+02:17 and pass it into the method as, not a parameter
+02:21 but as a piece of data.
+02:22 We'll see how to get that in just a sec.
+02:24 So this one's match and as soon as it finds the first match
+02:26 it's just like, we're done, calling this one.
+02:28 So it's going to prepare the request
+02:30 it does a bunch of stuff.
+02:32 In addition to the common things
+02:35 it's going to go to the matchdict
+02:36 which is a dictionary that's always on request.
+02:39 Sometimes it's empty, sometimes it's not.
+02:40 These variables that come from the URL
+02:43 the routing itself like {package}
+02:45 those values get stored in that part of your request.
+02:49 So here our request is going to have, more than just this
+02:53 but the matchdict will have at least package as a key
+02:58 and then that value for this URL is going to be sqlalchemy.
+03:01 And it's going to call details passing that request
+03:03 and we can pull out that matchdict and work with it.
+03:07 So that's the gist with routing.
+03:09 We'll see that we can do all sorts of interesting
+03:12 and powerful things like we could say
+03:14 I want to map this to details
+03:16 but only if those are only letters, no numbers.
+03:20 Or maybe if it's only a number
+03:21 we want to do something different.
+03:23 So later on in this section, in this chapter
+03:25 we're going to and do some really powerful things with routing.
+03:28 But let's stop here and add this functionality
+03:31 to our application.

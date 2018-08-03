@@ -1,0 +1,171 @@
+00:00 With our connection and engine set up
+00:02 it's time to create the tables.
+00:04 One way the wrong way
+00:06 would be to go to the database
+00:08 and actually start using the database design
+00:11 and modeling tools to just go and model the stuff.
+00:14 Because we've already got that right here.
+00:17 In fact, we need those to match exactly.
+00:20 So it's better if we just let SQLAlchemy do it.
+00:22 So, it's actually super easy here.
+00:25 Let's go down after we've done this bit
+00:28 and if we can import our SQLAlchemyBase
+00:33 which we can, it has metadata right there.
+00:37 And on the metadata
+00:38 there's no help from PyCharm here
+00:40 but it does exist when we say, create_all
+00:42 and pass the engine.
+00:44 So, if the database doesn't exist
+00:46 whatever connection string info we gave it here
+00:49 it will create it
+00:51 and then it's going to create the tables
+00:53 and the primary keys and the relationships
+00:56 and all that stuff
+00:57 based on all of the various types that derive from this.
+01:01 There's one really big caveat that's easy to miss here.
+01:05 By the time line 27 is run
+01:08 every single class that derives from it
+01:11 must have already been imported, so SQLAlchemy has seen it.
+01:16 If you import those afterwards, too late
+01:19 those tables are not getting created.
+01:21 So I'm pretty sure right now, the way this is working
+01:24 is it's going to be failing
+01:27 So we need to do something kind of like this.
+01:30 We need to go over here and say
+01:31 from pypi.data.packages
+01:35 import package, release
+01:39 and user, and whatever.
+01:42 Alright, so we got to do this for all of 'em.
+01:44 So we got to do it like this.
+01:45 Now that, expanding out of all the ones you need
+01:48 turns out to be super error prone
+01:50 so let's add one little trick here.
+01:53 And add one more file.
+01:54 Now let's call this all_models
+01:57 kay, and over here I'll say, well exactly that.
+02:06 So we're just going to list everyone here
+02:08 from packages, import package
+02:09 and we define release and we're going to import that
+02:10 and we define languages, we're going to import that
+02:12 and let's tell PyCharm
+02:14 "Hold on, no this, I know it looks like this does nothing,"
+02:17 "but for the moment, we need to have this here."
+02:20 "It actually has an effect that you don't realize."
+02:22 "So thanks for the help, but not this time."
+02:24 And then over here, we can just make this a little simpler.
+02:29 We can just import it like
+02:32 that, and we'll put that little, you know
+02:35 "PyCharm, please ignore this."
+02:37 So that way, we can just model it right here
+02:39 and it doesn't matter where
+02:41 where we do this import
+02:42 but that's a really not obvious thing
+02:44 but you have to basically, before you run this
+02:46 import every single model
+02:48 or it's not going to work.
+02:49 However, with this in place
+02:51 and if we call this function, it should work.
+02:53 So let's go to our __init__ down here
+02:57 we're going to include the net routing
+02:59 let's have a init DB config.
+03:05 And we'll come down here and we'll just put that at the end.
+03:09 And this should be pretty simple
+03:10 so we'll say, "DB session,"
+03:13 import that
+03:14 and we'll just say, "global_init,"
+03:16 and we'll have to give it a file.
+03:17 What file do we give it?
+03:19 Well, let's make a little folder
+03:21 'cause this is SQLite, we'll just make a little folder
+03:24 called DB and we'll put it in here, okay?
+03:27 If we were using, say PostCraft, like I said
+03:29 that we'd just give it a regular connection string
+03:31 like here's the server.
+03:32 But we're going to need this, so how do we do that?
+03:35 Let's say, "DB folder."
+03:39 We'll use the os module, yeah?
+03:41 So come over here and say, "path.absolutepath"
+03:45 "of some stuff, we're going to say, os.path.join"
+03:49 And what are we going to put in it?
+03:50 We'll say, "os.path.dirname of wherever we are."
+03:55 So, we're going to be in the PyPI folder just __init__.
+04:01 So we want to be in the PyPI directory
+04:03 and then down here, we're going to say
+04:05 "The next thing we want is DB."
+04:08 And then the next thing we want is pypi.bin
+04:11 or let's call SQLite, how's that?
+04:15 Want that right there.
+04:18 And we'll just pass DB
+04:20 let's call that file.
+04:22 'Cause it's not just the folder, but it's the file.
+04:26 Great, now if we run it
+04:29 we're not using the config for now
+04:30 so let's put an underscore
+04:31 probably need it later if we say
+04:33 "Store different DB settings in production"
+04:36 "and development" here.
+04:38 But now we don't need it.
+04:39 Alright, so when we run this
+04:41 we should see it print out a path that's located here
+04:45 and actually create the database files.
+04:47 You'll notice there's no little expando
+04:49 chevron thing here.
+04:50 There's no files in there.
+04:51 Let's run it.
+04:54 Well it didn't crash, that's a good start.
+04:57 It's creating this, you can see way down there.
+05:00 Now, if I go over here
+05:04 say "Synchronize."
+05:06 Oh look, look look look what we got!
+05:08 How cool is that?
+05:10 Okay, so, it's really nice that this is here
+05:12 how do we know what's in it?
+05:13 Did it actually create that packages table
+05:16 or did it not?
+05:17 Well, in PyCharm that's easy to answer.
+05:20 So we come over here and we can drag and drop this
+05:24 and it'll open up if, if if if
+05:26 it's a big if.
+05:27 So you got to go here once on your machine
+05:29 and go "datasource SQLite serial"
+05:32 and then notice here it has driver.
+05:36 It looks like it can update the driver files
+05:38 but sometimes it'll say you have to download
+05:41 the driver files 'cause there's no file.
+05:42 So we can download 'em again
+05:45 just to show you what that looks like.
+05:48 Alright, apparently that's updated.
+05:49 That's cool.
+05:51 We can come down here and expand this out in the schema
+05:54 and main and look!
+05:55 There's our packages.
+05:56 Primary key with an index ID.
+05:58 Right, there's that.
+06:00 We got a create date, which is a datetime.
+06:02 Our summary which is varchar.
+06:03 Our license which is varchar.
+06:05 There's a lot of varchar happenin' around here.
+06:07 But there is our database with our one table
+06:10 and notice it's named packages plural
+06:12 not upper case P package singular.
+06:15 You go over here, say "Select,"
+06:18 "star from Packages where author email"
+06:22 look at that, beautiful.
+06:23 Beautiful beautiful.
+06:25 If for some reason you don't have the pro version
+06:26 of PyCharm
+06:28 you can use this app DB Browser for SQLite.
+06:35 Come over here and find the file.
+06:41 And you get the same thing, right?
+06:42 So here you go, it's not.
+06:44 I dunno, maybe it's nicer or maybe it's not quite as nice.
+06:46 I haven't used it that much
+06:47 but this is also another thing you can get for free.
+06:50 Just google DB Browser for SQLite.
+06:52 Either way, our database is all up and running.
+06:56 Now this is only the beginning of course
+06:58 but we've created our database
+07:00 and we've got a lot of stuff in place.
+07:02 Really all we have left to do
+07:04 is just to expand out all the other various tables
+07:07 we're going to work with.

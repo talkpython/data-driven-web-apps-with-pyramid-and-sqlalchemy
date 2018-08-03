@@ -1,0 +1,83 @@
+00:02 It's time to take a quick tour
+00:04 of the various building blocks or the concepts
+00:06 that we use in Pyramid to build our web applications.
+00:10 But what are these building blocks?
+00:12 Everything starts with a route.
+00:15 When we get a request into the web server,
+00:17 we're only given a URL and the URL has to be
+00:21 mapped over to some sort of behavior.
+00:23 And Pyramid is a MVC, model-view-controller framework,
+00:28 which means we need to come in and figure out
+00:31 which function should that map to which controller.
+00:34 And then let it process that and return
+00:37 whatever view it decides makes sense, okay.
+00:40 So the first thing that we're going to do
+00:41 is to define a set of routes
+00:42 or pattern-matching on URLs to
+00:46 figure out where does that request
+00:47 get handled within our application.
+00:50 Then we'll have, what Pyramid calls views, but I'd prefer
+00:53 to think of as controllers because of the MVC nature.
+00:56 And these are either methods or they can be
+00:59 classes that process our requests.
+01:01 In our course, we're going to stick to the method style
+01:04 of working, but think of it as just something that you can
+01:07 call some function or method that can be called
+01:10 to actually handle the request.
+01:12 Here's the URL.
+01:13 Here's the data associated with it.
+01:15 Maybe from the URL itself.
+01:17 Maybe from a query string.
+01:18 Maybe from a POST.
+01:19 Take that data and just process the request
+01:22 whatever that means to you.
+01:24 Once the request has been processed,
+01:26 we need to generate a response.
+01:28 And, very often, what this is going to be
+01:30 is some form of dynamic HTML.
+01:32 Maybe you run a podcast and you want to be able to say
+01:36 /<podcast_number> is going to show the details for that podcast.
+01:39 Well, the template itself, the basic HTML stucture's always
+01:43 going to be the same, but the various pieces of data,
+01:47 what is the description, what is the play link
+01:49 and things like that, is going to change.
+01:51 So we want some kind of dynamic HTML.
+01:53 See the Pyramid has at least three options
+01:56 on how you can build these.
+01:57 Three different templating languages you can use.
+02:00 But really nice support there.
+02:03 The data that is passed from the controller
+02:07 down to the template, this is called a model.
+02:09 So this is both data and behavior passed to the view.
+02:13 And this is typically done in the form
+02:15 of a Python dictionary.
+02:16 There's also support for static, or cached, assets.
+02:20 So if you've got CSS, JavaScript images, those types
+02:23 of things, one of the easiest things you can do to make
+02:26 your website seem ultra-fast is to cache those
+02:30 really, really carefully.
+02:31 So you'll see that maybe, even though you might return,
+02:34 I don't know, 250K of JavaScript and images on a
+02:38 particular page, if your browser caches that, that site
+02:42 is going to get much, much faster after the first request.
+02:45 Of course, configuration is super important.
+02:48 The way we want our app to work locally,
+02:50 whenever we're working on it.
+02:51 The way we want it to work in production.
+02:53 These are probably very different things.
+02:56 Maybe different database connections.
+02:58 Maybe one has outbound email
+03:01 turned on for all the actions.
+03:02 Like if you click the reset password button for a user,
+03:05 well that's probably the user doing that in production,
+03:08 they want to get an email.
+03:09 In development, you want to make sure that does not happen.
+03:12 If you're testing some problem, like I'm interacting
+03:14 with a user that says, "I can't get into my password reset,"
+03:17 and you touch that button, logged in as them, you don't
+03:20 want to actually send them a bunch of fake emails.
+03:22 So you want different configuration settings.
+03:25 No email in dev.
+03:27 Real email in production.
+03:28 Things like that.
+03:29 So Pyramid has support for that, as well.

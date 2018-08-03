@@ -1,0 +1,91 @@
+00:00 The next thing that our site needs
+00:01 is an overall navigation look and feel.
+00:04 So here's our expected target
+00:07 we got this little icon up here
+00:09 and got those here, and then the bottom we have a footer
+00:13 but our pages, we don't have any of that.
+00:15 So, our goal this time is to add the navigation at the top.
+00:20 Also, we're going to need this image and two others
+00:23 so I'm going to copy those into our image location here.
+00:28 You see we have like a blue cube
+00:31 here's that logo and a white cube.
+00:33 The blue and white cube are going to be
+00:35 used in a minute, but we need
+00:38 the logo one right now
+00:40 so might as well get those files in place.
+00:42 So the next thing that we need to do is
+00:43 we're going to put a nav item right here.
+00:47 And we saw the really nice dynamic behavior
+00:51 a responsive design becoming a dropdown menu
+00:54 and all that kind of stuff in Bootstrap.
+00:58 And in order for that to work
+00:59 we have to follow a very precise layout
+01:01 with lots of pieces involved.
+01:02 So, just because I'm sure I'll make a mistake
+01:05 I'm going to copy this over.
+01:06 I got it by copying it from the Bootstrap site
+01:09 and I'll put it over here.
+01:12 So here, let's do a little cleanup and look at this.
+01:16 So we're going to have a nav bar
+01:18 and normally these are whitish
+01:20 but if you say inverse
+01:21 it's darkish, usually black and gray.
+01:24 And over here we're going to have what's called
+01:27 the hamburger menu when it collapses, right.
+01:29 This is the toggle bit.
+01:32 Here is that logo and then in this part
+01:35 we're going to put as many items as we want
+01:38 so I'll put three for now.
+01:40 Let's look and see what we got.
+01:43 It's probably not going to look good. Let's see.
+01:46 Ooh, that looks better than I expected.
+01:49 Remember when I did the theme overrides
+01:51 it took some of these and put them in there.
+01:54 Still need to do a little work
+01:55 to get these items down and over
+01:57 and of course to get help
+01:59 donate, log in, and register
+02:00 so we can do that really easy.
+02:11 There, now we have the actual items.
+02:13 Let's put a little bit of style in place
+02:15 to make sure that those go down and over
+02:17 like they're supposed to.
+02:18 So down here for the navigation
+02:19 let me just pace this
+02:20 so you don't have to watch me type out.
+02:22 So the image we're going to set to be a certain size
+02:25 we set the width to be fixed
+02:27 and that automatically scales the height
+02:28 and we also push it over a little bit.
+02:31 We take and set the margin a little bit higher.
+02:34 And then these items, we're going to push them down.
+02:37 That's only part of the solution
+02:38 but let's see what we got.
+02:40 Looking better, right?
+02:41 This is looking really good.
+02:43 But notice this is pushed
+02:45 into the left a little more than this
+02:47 so we need to do one more thing.
+02:50 I want to target this register
+02:52 so I'm going to give it an id
+02:54 of Last, Nav, Link.
+02:57 So I can push that one to the right.
+03:00 For IDs, you'd say hash, so it'd say Last Nav Link
+03:04 margin right, 50px might be decent.
+03:10 There we go, cycle back and forth.
+03:12 Eh, close enough, let's say 45.
+03:16 Ooh pretty close, I'm going to call that close enough.
+03:18 It doesn't actually matter just as long as
+03:20 it has basically has the look and feel, right?
+03:23 Now, let's see if we have any
+03:24 responsive design behavior here.
+03:26 Oh yeah, look at that.
+03:28 How awesome is that? Bootstrap is really cool, isn't it?
+03:32 How 'about that?
+03:33 We got our navigation bits in place.
+03:36 Now, remember, we do have other pages.
+03:40 Here we go, we have our about and we have our home.
+03:43 So if we go back and forth, notice
+03:44 it's already taken that design
+03:48 back and forth as we go here
+03:49 so that's really, really great.

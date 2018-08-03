@@ -1,0 +1,81 @@
+00:00 With our hero in place, the next thing
+00:01 just let's work top to bottom
+00:03 to focus on is this, what I'm going to call the stats slice.
+00:06 And that's here we have
+00:07 number of projects, number of releases, number of users.
+00:10 Now what we're going to get is getting a little bit of gray
+00:12 a little bit darker, and then three little segments
+00:15 maybe in the middle third.
+00:17 Alright, let's do that.
+00:19 So here's what we're working with.
+00:21 We've got a divet that is PyPI stats
+00:24 and in there we have stat, stat and stat.
+00:27 Let's go and put that down here.
+00:29 We have the stats.
+00:31 This part is still going to be the gray slice
+00:34 so we'll set the padding at 10 px and 0
+00:37 so up and down but not on the right.
+00:40 We'll set the background color.
+00:42 Now, I've already copied this, or copied it down before.
+00:45 It's ec, ec is the gray, so let's see
+00:49 how we're doing already.
+00:53 Looking pretty good.
+00:54 Color seems to match, but of course
+00:57 the text pieces not so much.
+01:00 Let's set a border bottom
+01:04 one PX solid and then a little bit darker
+01:07 is going to be d3.
+01:11 How does that look?
+01:12 And there's a little border coming in
+01:15 some orderly on the top.
+01:18 I'll have the same thing, and then
+01:20 let's set everything to align center.
+01:24 How's it looking now?
+01:26 Better, looking better.
+01:28 Of course, that stuff's not vertical.
+01:30 It has new lines in it because these are divs
+01:32 but we can tell them to be in-line blocks
+01:34 rather than block display, which we will fix those.
+01:37 So let's focus on that part now.
+01:41 So those are going to be contained within here
+01:43 and they have the class stat so we can set
+01:46 their style right here.
+01:47 The display is going to be an in-line block
+01:52 which should fix that wrapping or new lines.
+01:56 I set the width to the other all equal space to 170.
+02:01 If you wonder how I came up with these numbers
+02:02 I was just playing with it before and that's what I came up
+02:05 with that seemed decent.
+02:06 So now they are kind of spaced out like we were hoping.
+02:11 Let's do a little bit of padding.
+02:12 Font size is 16, and then the color we have set to this
+02:17 Again, I just got this straight off PyPI and wrote it down
+02:19 so we could use it here.
+02:21 There we go. Now it's looking pretty close.
+02:26 It's not exactly right because we're not using
+02:29 the same fonts, so let's go ahead and fix that now.
+02:32 We're going to use fonts from Google
+02:35 some of Google's free web fonts, and let's go ahead
+02:37 and put those right here like so.
+02:40 So we're going to use Source Sans Pro
+02:45 and we're also going to use Font Awesome as well.
+02:47 So let's go ahead and drop those in there, and that way
+02:50 we can make things look a little bit nicer.
+02:52 So if we come up to the body, come up here and set the font
+02:56 to be Source Sans Pro or Helvetica or Arial
+02:59 and then just some kind of Sans Serif.
+03:01 So now we should be a little closer.
+03:03 There we go.
+03:04 Now, that's the final step to make these two
+03:07 look exactly the same, okay, besides the Nav bar.
+03:11 That's pretty good, right?
+03:12 I think that little slice is here.
+03:14 Now, no data is being passed in, right?
+03:17 We're not actually computing that yet.
+03:19 We'll do that when we get to the SQLAlchemy section.
+03:21 But for now at least the place holders are there
+03:24 and then when we get here we just need to say something like
+03:29 this project count, like that, something to that effect.
+03:33 Maybe a little more formatting.
+03:35 But we don't have those numbers yet so we're just going to leave 0 for now.
+03:39 Alright, that's the first two slices.

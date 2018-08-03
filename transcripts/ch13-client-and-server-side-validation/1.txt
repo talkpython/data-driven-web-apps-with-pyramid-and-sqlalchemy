@@ -1,0 +1,168 @@
+00:00 I feel like we kind of made a mess
+00:01 and we actually skipped over some important stuff
+00:03 in the previous chapter when we talked about forms
+00:06 and user input.
+00:08 We didn't do all the validation that we should have
+00:11 and, we kind of made a mess while doing it only partially.
+00:14 So we're going to do some dramatic clean up
+00:16 using a design patern called view models.
+00:20 Let's just jump right into it and see it in action
+00:22 and then we'll come back and review the concepts.
+00:25 We're on to a new chapter so that means on to a new section
+00:28 in our GitHub repository. So Chapter 13 validation final
+00:33 of course starter is the same
+00:34 but right now, but final is going to be
+00:36 whatever we do in this chapter.
+00:38 These numbers are of course subject to potentially changing
+00:41 as we evolve the course, but for now Chapter 13.
+00:45 I've already setup all the virtual environments
+00:46 and stuff for here, let's open it up and get going.
+00:50 So let's start by looking over in the AccountController.
+00:53 That's probably the dirtiest or messiest
+00:57 on this little auto import stuff up here.
+01:01 I kind of got stuff sorted out of order, but here we go.
+01:03 So even when we are just trying to show the homepage
+01:07 we do have to pass the user but we also have to pass this user ID.
+01:09 Remember we have to constantly get that from the cookie_auth
+01:15 here to pull it back, but even down here we're passing it.
+01:18 We're going to pass all this extra data
+01:21 when we're even just showing the form.
+01:23 So what we're going to do is we're going to create
+01:26 these things called view models.
+01:27 See, they're just classes, and the classes are
+01:29 deeply tied to the data that's exchanged by this method
+01:34 and the data contained in the HTML.
+01:37 So we know there is a form and register
+01:40 that is going to exchange that data.
+01:43 And we know the layout, the shared layout, needs that data.
+01:46 So what we're going to do
+01:47 is we're going to bundle that up into a class.
+01:50 So we sort of keep the class in sync with the data
+01:53 in the validation and all that checking stuff
+01:55 is going to go into that class as well.
+02:00 There are a lot of these things and they're
+02:02 like I say very much tied to
+02:04 the things being exchanged here.
+02:07 So just like we did with templates we created
+02:10 some for account, we created some for the home and so on.
+02:13 We're going to do the same thing for view models.
+02:15 It's going to have a similar
+02:16 although, not exactly identical, structure.
+02:19 So let's come over here and create
+02:21 a sub-package called view_models
+02:24 and in here I'm going to create a directory called shared
+02:30 and let's do one for account.
+02:33 So as you might guess from these names
+02:35 there's going to be a base class that has
+02:36 lots of stuff that is shared like almost
+02:38 everything needs this error
+02:40 and absolutely everything needs user_id.
+02:44 So that kind of stuff is going to go in there
+02:46 as well as the ability to take an arbitrary
+02:49 in memory class and convert it to a dictionary
+02:51 which is what's required in the web framework.
+02:54 So let's start here.
+03:00 Create a thing called view_modelbase
+03:02 and we'll create a class called ViewModelBase
+03:04 and this is going to be the base class of all of the
+03:06 other view models.
+03:07 And it's going to have two important things.
+03:10 It's going to come in here and it's going to take the request
+03:13 and of course, let's go ahead and type that
+03:15 so things work a little nicer
+03:17 and it's going to come here and it's going to say
+03:18 sel.request. Just go ahead and hang onto this
+03:22 because sometimes the derived classes will need it.
+03:25 And, let's go ahead and set that error
+03:30 which is a str to None.
+03:33 So this means any of the forums that have errors
+03:35 it's just it's not everything using this
+03:37 but it's so super common
+03:38 that we're going to just put it here.
+03:40 We'll say self.user_id.
+03:44 And this is an int.
+03:46 And for a second I'll say None.
+03:47 Alright, so these shared pieces of data
+03:50 are going to be now available everywhere.
+03:53 Well that's the storing the common data
+03:57 and how do we return this to a dictionary?
+03:59 Well let's just say create a function called to_dict
+04:04 and it's just going to take
+04:05 the attributes or fields here that we're setting
+04:08 which actually go into
+04:10 an internal dictionary for this class.
+04:12 I'm just going to return those. Say self__dict__.
+04:15 Alright, we can override this in base classes.
+04:18 For more complicated things, but, here we are.
+04:21 So let's actually do a few more things.
+04:23 Here, we'll say self.equestdict, remember this thing?
+04:27 It's going to be requestdict, going to import that
+04:30 .create_from_request. Let's go actually go to our cookie_auth
+04:39 and we're going to say, try to get the user ID from the cookie.
+04:44 Maybe it doesn't exist, maybe it's messed with
+04:46 might be None, but if it's not, let's store it.
+04:50 Okay, so this is the shared bits.
+04:53 And everything is going to derive from that.
+04:57 Let's go over here and create an AccountHomeViewModel.
+05:06 So AccountHomeViewModel, it derives from this, whoops.
+05:10 No, it derives from this, which we have to import.
+05:14 Takes an init, it has a request, which is a request.
+05:20 And, we have to make sure that we call super()
+05:23 init with the request before we do anything else.
+05:27 Now, let's go back here on this home thing
+05:30 on the details let's do this one first.
+05:33 What other information do we have to do?
+05:36 Well, we're going to actually pass the user along as well.
+05:39 Alright, we're actually getting the user and we're
+05:41 trying to show it, so the user is included.
+05:44 Let's roll that in here.
+05:46 After this, we'll say self.user
+05:49 maybe with a little more space.
+05:50 self.user = UserService.find_user_by_id(self.user_id)
+06:02 Look how slick that is.
+06:03 Okay, and let's just make sure this can take None.
+06:06 Yeah, if it's none it will just
+06:08 come back with nothing, great.
+06:10 So, let's go re-envision this method
+06:13 now much cleaner with view models.
+06:14 So we'll say vm = AccountHomeViewModel()
+06:21 we're going to pass a request
+06:23 we don't need this stuff, we just say
+06:24 look, if there's no vm.user
+06:28 we got to get out of here.
+06:29 Otherwise, or turn vm.to_dict().
+06:33 Now, this one didn't get that cleaned up
+06:35 but the more validation, and the more complicated
+06:38 the data exchange, the better and better this gets.
+06:41 Let's just see that our account page works.
+06:44 Let's go over here, we may have to log in, nope.
+06:47 Click on our account page, oh look at that.
+06:49 Account is here, whether or not we're logged in is here
+06:51 the user was found, all of that, completely isolated.
+06:55 So what we get is these view methods that our super
+06:59 focused on orchestrating what has to happen.
+07:02 They're not down in the nitty gritty details.
+07:04 So, that one was pretty nice.
+07:06 Let's do one about register.
+07:11 We're going to create a couple of these
+07:13 so I think what I'll do is I'll just
+07:15 talk through this one more time
+07:16 and then we'll go quick for the rest.
+07:20 All of them are ViewModelBase derive.
+07:23 They all have an init.
+07:26 That takes a request.
+07:30 They all call super, like that.
+07:33 Thank you PyCharm, and then they add additional data.
+07:36 So let's go look over here, and copy this to get started.
+07:41 Let's go over here and see what we need.
+07:42 Well, we need, let's go like this.
+07:49 Import that real quick and we're going to say
+07:51 return vm.to_dict().
+07:52 What else do we need?
+07:53 We have user_id, and we have error, common.
+07:56 But these three things have to come along.
+07:58 So let's just cut them to sort of
+08:00 remind us what we got to put here.
+08:02 So we're going to have self.email = None
+08:12 So, here's those three pieces of data
+08:13 and now, that comes super nice and clean.

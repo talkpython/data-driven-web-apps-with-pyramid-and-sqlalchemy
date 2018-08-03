@@ -1,0 +1,181 @@
+00:00 You can see we've defined our schema
+00:02 and modeled those in our data classes here
+00:05 and everything seemed to be working just fine.
+00:08 However let's see what kind of data we are having over here
+00:10 and we can jump to the console, do a little query
+00:19 okay get all the packages, 0 packages.
+00:22 Not so interesting is it.
+00:24 Well I guess we're going to have to insert some data.
+00:27 Now the reality of inserting data is
+00:29 we're going to need some web forms.
+00:31 We're going to need people posting data to the service
+00:35 and things like that. We're going to do that when we get to say the user section.
+00:38 But for the moment we need to bootstrap this whole project
+00:42 and get some data in here so we can show it, things like that.
+00:46 Along those lines, we're going to do two things.
+00:49 First of all we're going to write a little bit of basic code.
+00:52 And notice I've made a bin folder over here.
+00:56 Create a new little Python file called basic_inserts.
+01:02 Now in this basic_inserts
+01:03 what we're going to do is just insert a couple of packages
+01:06 and maybe some releases just to see how it works
+01:09 and then we'll go and actually use this little data
+01:13 to load up all the real PyPI data
+01:15 using exactly the structure that we have here.
+01:18 Great, so let's get started.
+01:21 Now notice we have two new requirements
+01:23 Python dateutil and progressbar2.
+01:25 I'll go ahead and install those.
+01:26 PyCharm is noticing that I've updated down here
+01:33 but I've updated the setup
+01:35 so we're going to need that for this load data thing
+01:39 but we're not using it yet.
+01:40 One thing we will need
+01:41 is we're going to need to initialize the database.
+01:44 So what we're going to do is we're going to come first
+01:48 import os and our DBSession.
+01:52 And we need to import pypi as well.
+01:54 So we're just going to go figure out the path
+01:56 to that file right there.
+01:59 Then we're going to call DBSession.global_init.
+02:01 We did that previously
+02:03 nothing new here but you have to do this at the beginning
+02:05 of every process is going to talk to the database.
+02:08 Great, so let's define the main method
+02:10 that we're actually going to use.
+02:17 I'll do the sort of main convention
+02:19 that Python uses for its processes.
+02:22 So that's going to initialize the database.
+02:25 And then let's just go over here and do a method
+02:28 I will call it insert_some_data.
+02:32 So we'll just say insert a package.
+02:36 So what do we want to do here?
+02:37 Well let's figure out what we have to set
+02:39 in order to insert a package.
+02:41 So what we going to do is we're going to insert a package
+02:43 and we're going to give it a one or two releases.
+02:45 So we'll just come over here
+02:48 and grab some of this stuff so we can see what we need.
+02:53 And let's just get started.
+02:54 So we're going to say p = Package().
+02:57 We're going to allocate one of those like that.
+03:01 That's the one we defined
+03:02 we don't need to set the ID.
+03:04 Actually, sorry we do is not auto-incrementing like the others.
+03:07 So let's say id is going to be input package name
+03:12 and then the created_date.
+03:14 We don't need to set the summary.
+03:16 Summary is input.
+03:19 Package summary.
+03:21 We won't set the description or the home page
+03:24 of the docs for now.
+03:25 We'll leave that alone.
+03:27 Say p.author
+03:30 and also set the email here.
+03:32 Okay that's going to cover that
+03:34 that sequence set the license that's easy.
+03:40 Now we're going to create two releases.
+03:43 So what do we need for a release.
+03:45 Let's drop that stuff right there.
+03:49 In the release, the id is going to be set automatically.
+03:51 We need those.
+03:53 We have a created_date they'll be set automatically
+03:55 and I will just copy this over.
+03:59 So let's say r1 = Release().
+04:03 So here let's set the version
+04:04 and the created_date will be automatic.
+04:06 comment, url, size
+04:08 I guess we'll leave those all alone for now.
+04:15 We'll set the size to a 100k.
+04:16 How's that.
+04:17 And we can do the same for release two.
+04:20 Technically don't need to call it release.
+04:22 Just keep the same variable name but just so it all crazy.
+04:26 Got a little bit bigger.
+04:27 Okay so we've created these in memory
+04:29 but that doesn't put them in the database.
+04:31 How do we put them in the database?
+04:33 What we have to use is what's called a session.
+04:35 So here's this unit of work design pattern
+04:38 as opposed to active record that SQLAlchemy uses.
+04:41 So we come over here and we say DBSession
+04:45 go to that factory and that creates our session.
+04:49 And then later we're going to say session.commit().
+04:52 Assuming we want to save it.
+04:54 And it's somewhere in between
+04:55 we'll say session.add(p) for the package.
+04:59 We could also go over here and say okay
+05:02 r.package_id = p.id.
+05:08 And that would associate them in the database.
+05:10 But we could do something more interesting
+05:12 now we could say p.releases.append([r1, r2])
+05:19 And just put them together in memory
+05:22 the way we would in code.
+05:24 And then this will navigate that relationship.
+05:27 All right. Well let's give that a shot.
+05:29 I'll insert a couple of these.
+05:31 Let's go and run our basic inserts
+05:33 let's see if we got things working right.
+05:35 So far let's go with a request.
+05:38 requests HTTP for humans, connect, writes
+05:45 oops misspelled it but that's alright
+05:46 MIT I don't know, we'll just guess to be
+05:49 1, 0, 5, 6, whatever, 2, 0, 0.
+05:55 Now let's do one more of these.
+05:56 Let's go with SQLAlchemy
+05:59 the ORM for Python, Mike Bayer.
+06:05 I'll go with BSD.
+06:07 I've no idea of that's what it is
+06:08 but I'm just going to make this up.
+06:09 1, 1, 1 and 2, 2, 5.
+06:14 Then lets just bail out
+06:17 go back over to our database.
+06:19 I want to run a select of packages.
+06:24 I think I got it open again.
+06:28 Look at that, here we have it.
+06:30 It's all inserted we have requests
+06:32 and SQLAlchemy both inserted today.
+06:35 We didn't set a lot of the details
+06:36 but we did set many of them.
+06:38 Got our licenses and those
+06:40 now the other interesting question is what about this?
+06:42 What if we go over here
+06:44 to over here and say releases and run the same query
+06:49 Look at that.
+06:50 We have the various releases and most importantly
+06:53 the package ID was already set.
+06:55 So that's really beautiful.
+06:57 Let us fully leverage the object oriented nature of this.
+07:01 We create the package
+07:02 packages contain releases.
+07:05 So we went to the releases
+07:07 and we put the various releases in there
+07:09 release 1 and 2 and we just called add
+07:11 for the package and it followed the entire object graph
+07:14 to create these relationships for us.
+07:16 So you get to skip out a little bit
+07:19 on thinking of all the ways your data is split up
+07:22 in SQLAlchemy and just think of how you wanted
+07:24 to focus and work in memory.
+07:27 Now these relationships can have performance issues
+07:29 and we'll talk about that when I get to querying
+07:32 on how to fix it because SQLAlchemy does have ways
+07:34 around the inherent performance problems you might get here.
+07:38 but it's a really really nice way of working
+07:40 and this is how we do inserts for data.
+07:44 Over here we create a session.
+07:45 We've allocated the objects.
+07:46 We just add one or more of them and then call commit.
+07:49 All happens successfully or with a failure right there.
+07:55 If we wanted to make an update
+07:56 we could do a query.
+07:57 Get one of these back from one of the sessions.
+08:00 Talk about query, do a query
+08:02 make a change to it and then call commit
+08:03 and that'd push the changes back.
+08:05 Okay so this is basically how we work inserting data.
+08:09 And this is the real simple one
+08:11 and that's how it works.
+08:12 Inserts in SQLAlchemy, create the objects
+08:14 add them to the session, called commit.
+08:16 Boom, Inserted.

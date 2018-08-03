@@ -1,0 +1,35 @@
+00:00 Let's quickly review the concepts around this grid.
+00:03 We've seen this little section
+00:06 from our Temple HTML that we've worked on.
+00:08 We've got columns that live within rows
+00:12 and the idea is the columns are broken up into 12 elements.
+00:16 And we can have columns that are one wide
+00:18 or 12 wide or anywhere in between
+00:20 as long as that's an integer.
+00:21 So the top, we said we wanted a 2/3 to 1/3 split
+00:24 so that's column 8, column 4.
+00:26 The bottom, we want 12 little bits
+00:28 so column 1, 1, 1, ... and so on.
+00:30 The other distinction here is we have sm, md, lg.
+00:34 But the idea is that tells the layout how soon
+00:37 to go from horizontal to vertical partitioning.
+00:41 And we saw in the html, we have a div that is a container
+00:43 a div that is a row, and then divs
+00:46 that have col-<sizing>-<partitio>
+00:49 so col-md-8 column-md-4 and so on.
+00:55 Then you have as many rows as you want
+00:57 in this case four, within that container.
+01:00 And bootstrap just handles the rest.
+01:02 So this col-md-8 goes right there
+01:05 col-md-4 goes right there
+01:06 it makes it 2/3, 1/3.
+01:09 And if you're wondering about the sizes
+01:11 sm, md, lg and so on.
+01:12 Here's the exact pixel definition
+01:14 of sm, md, lg, xs, xl.
+01:18 So xs is less than 576 pixels
+01:22 sm is larger than that up to md
+01:25 which is 768, 992, and 1200 or larger.
+01:29 That's a really large, large, extra large.
+01:32 So this is where that breakdown happens
+01:34 when you use these specifiers.

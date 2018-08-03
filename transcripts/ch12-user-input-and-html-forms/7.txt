@@ -1,0 +1,93 @@
+00:00 We have our data submitted
+00:01 to this register post action method here.
+00:04 However we're doing nothing with it right?
+00:07 So let's do something.
+00:08 Let's actually create the user
+00:09 and save them to the database.
+00:12 Okay so what we're going to do in this chapter
+00:15 is we're going to do kind of the ugly way of doing this.
+00:18 And then we're going to improve dramatically
+00:21 upon that when we get to the validation
+00:23 and other sort of data handling things.
+00:26 I'll show you the naive straight forward way
+00:28 and then a better way in a minute.
+00:31 Remember when we ran this we saw that
+00:33 the POST has really the data that we're after.
+00:37 And so what we're going to do is we're
+00:38 going to get that data out here.
+00:39 We'll say email equals request.Post.get('email')
+00:45 We could of course get it out like this
+00:48 but if it's not there for some reason
+00:50 somehow this thing got submitted incorrectly.
+00:52 Boom key error. So if we do it this way we can test and say
+00:55 "No no the emails supposed to be there." something like that.
+00:59 Alright so we could also get the name. We'll do the password.
+01:07 So that gets the three pieces of data out
+01:09 and then what we want to do is we want to check
+01:13 hey is this correct? So we'll do something to this effect.
+01:16 We'll say, if not email, or not name or not password for now.
+01:24 Normally it would say if you didn't
+01:25 set the email send a message emails required.
+01:28 If the name... we'll do that later.
+01:29 For now we'll just say error equals some
+01:33 required fields are missing.
+01:35 In this case we don't want to go on
+01:37 and try to create the user
+01:38 we want to just send them back to the form.
+01:42 Over here though when we are... and here
+01:44 we'll have a little... create user
+01:48 and then we'll have a redirect.
+01:50 So we'll just say return... lets go over
+01:53 here and import HTTPExceptions as x
+01:57 something like that right? Keep it short.
+02:01 We'll do HTTPNotFound and it's going to be /account.
+02:04 So once you register it's just going to
+02:06 send you to your account page like
+02:07 "Hey welcome new user."
+02:10 so how do we communicate this error back to them?
+02:13 What we want to do is lets actually add something over here.
+02:18 And we have some piece of data
+02:21 I'll have a DIV and the class will be error-message like that
+02:25 We'll define that in a second and then we're going to put error
+02:28 and we want to say only show the error section
+02:33 if there is an error and of course we'd like that
+02:35 to look error-like, right? So let's go to our site and say
+02:43 Color is some kind of red. Let's darken it a tad.
+02:49 Like that. If I run this you'll find it's not as amazing
+02:53 as it seems like it's going to be. See why. You go here.
+02:57 Register. Boom. No. Error. Where did that come from?
+03:00 Well that came from the GET. That came from not here
+03:05 but over here. See what we need to do is we need to
+03:07 say errors None. Again we're going to make this better shortly.
+03:14 So here we'll say error is the error message.
+03:17 We can fact in line that if we want like so.
+03:21 Let's try again but sure to rerun. Good. If I submit this
+03:26 some required fields are missing. Well. That's pretty good
+03:29 but watch this. If I say Michael and I say my email address
+03:33 and I submit it. Everything is gone.
+03:36 Do you know how frustrating that would be if this
+03:37 was a big form with important stuff in it?
+03:39 It's already a little frustrating. So what we need to do
+03:42 is also carry that other information across so
+03:45 email is you guessed it email and so on.
+03:50 And for the same reason above
+03:52 we need then pass these as None.
+03:57 Great. Now the form actually needs to put that data back in
+04:01 so lets go here to the end and say value equals $name
+04:06 and similarly for all the rest. Password. Okay. Rerun it.
+04:12 All this roundtripping should be working.
+04:14 If I put Michael and my email address and I enter.
+04:18 Look it stays. Very nice. But some errors are there.
+04:21 So let's look back over here real quick.
+04:24 It's coming through but first we're
+04:26 pre-populating it with nothing.
+04:27 You could put values if you wanted but if there's an error
+04:30 we're actually going to not create the user.
+04:33 Carry that information back and send the error message
+04:36 in this case. And that's what just happened.
+04:39 So let's just see what happens if we make it through.
+04:41 We're not actually creating the user yet
+04:42 but if we make it through. Boom.
+04:45 Now we're in the account page. We passed the validation.
+04:48 Now the step is going to be to come down here
+04:50 and actually do something with this.

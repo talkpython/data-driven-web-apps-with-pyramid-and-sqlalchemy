@@ -1,0 +1,46 @@
+00:00 Now we have our code that we want to run
+00:01 over here on GitHub, right?
+00:02 If we got source, 15, final deploy
+00:06 I haven't shown you this running
+00:07 but this is the final thing that we do want to run here.
+00:11 So what we're going to do is we're going to clone this repo
+00:18 so SSH back to our server
+00:22 go to the apps, I want to say Git clone that.
+00:25 I want to be very careful about the directory
+00:28 that I'm going to put it in.
+00:29 Going to clone it into app_repo
+00:31 just so the file names are a little bit shorter.
+00:34 Like that. This is public, so it doesn't ask us what's our
+00:39 username and password but if you were cloning your private app
+00:43 which very likely you would be it would need you to log in
+00:47 but that caching stuff would mean
+00:48 just the once until you reboot.
+00:50 Okay, so this looks good.
+00:53 If we go to app, source, Chapter 15.
+01:00 Here you can see our files
+01:02 here's our servers stuff
+01:03 which we're going to need in a little bit
+01:04 here's our production.ini that we're going to need and so on.
+01:07 So we've gotten our files onto the server.
+01:10 We have our virtual environment active.
+01:13 'Member, what we're going to need to do
+01:15 is we need to say Python, and be careful
+01:18 you want to make sure it's the virtual environment one
+01:20 that means it's Python 3.
+01:23 Good. We want to remember to do python setup.py develop
+01:35 Think we should be able to run this
+01:36 let's see really quick here.
+01:37 So we should be able to say pserve development.ini.
+01:43 And look at that, it's listening.
+01:44 If we go log in in another terminal window
+01:49 now we have HTTP, that's the httpy command
+01:54 and you hit that, and what do we get?
+01:57 Boom, that looks a whole lot like our little
+01:59 boot-strappy site that we wrote.
+02:01 Pretty darn cool, I would say.
+02:04 Now, be careful, it does have the debug toolbar
+02:06 that's because we ran the debug command over here
+02:10 the development command
+02:11 and we're not going to do that on uWSGI.
+02:13 Okay, so it looks like we got this
+02:14 all setup and working, more or less.

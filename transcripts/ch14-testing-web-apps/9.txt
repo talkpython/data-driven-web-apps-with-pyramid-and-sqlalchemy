@@ -1,0 +1,62 @@
+00:00 So we've made it pretty far through this app.
+00:02 We've built the whole web app without
+00:04 running into this error I'm about to show you.
+00:07 So, when we were looking at the testing
+00:08 I said oh, I think there is a bug
+00:10 if we come request a package that doesn't exist.
+00:13 So, we can go request photo3
+00:15 and it gives us all the details about it.
+00:17 But what if we request photo300?
+00:20 What's going to happen then?
+00:22 Boom, None type has no releases.
+00:24 We're not checking that, right?
+00:25 So let's first, before we fix this
+00:27 write a test that says we get proper 404 handling
+00:31 and then let's fix it. How do we do that?
+00:34 Well, it's going to look similar to this.
+00:38 But when I put that as 404
+00:40 and we're going to say we're asking for
+00:43 doesn't really matter, but let's say SQLAlchemy missing
+00:46 we don't need any of this test data
+00:49 because we're going to return None, okay?
+00:52 We'll call this function
+00:54 and there's going to be nothing to assert, for now.
+00:58 Let's just run the test again.
+01:02 None type has no releases, okay, this is the bug.
+01:05 What we want to do, is check and make sure
+01:08 that this actually raises an exception.
+01:11 Let's first fix the error in our view model.
+01:14 So let's go over here, now we're going to say
+01:17 if self.package and their releases.
+01:23 That looks good to me, I think that'll fix the bug
+01:25 that tiny little bit right there, should fix it.
+01:28 Let's try again. Boom. Perfect. So it did make it work
+01:33 and we got this exception, right there.
+01:37 However, it failed our test
+01:39 because our test did not expect it.
+01:42 So let's go back to our test, and tell it
+01:44 expect an error right here.
+01:46 So we'll come down here and say with self.assertRaises
+01:51 and we give it the exception type, and of those.
+01:57 We're going to import that up there, HTTP exceptions
+02:02 like that, and then we're going to run this code here.
+02:07 We don't really care what the model is, we just want to say
+02:10 if we pass it here None instead of crashing
+02:15 we're going to get an HTTPNotFound error, as an exception.
+02:19 Let's do it. Boom. Passes. So, there you go.
+02:23 We actually found a bug in our little app
+02:25 and we fixed it, and now we have a test for it
+02:28 to make sure it's never coming back.
+02:30 Because, if it ever comes back
+02:32 this test right here will fail again. Beautifully.
+02:35 By the way, if you're not familiar with this assertRaises
+02:38 if, for some reason, this doesn't execute that error
+02:42 if for some reason it passes that block
+02:44 without an error, that itself fails the test.
+02:47 Let's just see that real quick. Boom. Failure.
+02:51 We did not get HTTPNotFound, right
+02:55 that's sort of a double negative, but it says
+02:57 you told us there should have been an error
+02:59 there was no error, therefore this test fails
+03:01 because you were testing for an error case
+03:04 that didn't happen. Now it's back. Perfect.

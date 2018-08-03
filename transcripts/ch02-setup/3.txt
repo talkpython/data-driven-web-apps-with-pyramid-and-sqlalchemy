@@ -1,0 +1,33 @@
+00:00 Everything you see me write.
+00:01 Every bit of code that we create and all the stuff
+00:04 that we generate during this course and even some
+00:07 of the raw data needed to generate
+00:09 that is available for you on GitHub.
+00:12 So I encourage you to drop over here
+00:14 at GitHub.com/talkpython/
+00:17 here's a long one
+00:18 data-driven-web-apps-with-pyramid-and-sqlalchemy
+00:21 separated by dashes.
+00:23 Go over there and star and fork this repository star
+00:27 so you can get back to it and fork it, of course
+00:28 so you have a permanent copy in your GitHub account.
+00:31 If you don't want to, you can just go to the clone
+00:34 and download button and download the zip.
+00:35 But I recommend that you link it to your GitHub account.
+00:38 That way you have access to it forever.
+00:41 So if you're wondering how something worked
+00:43 dropped over here in the GitHub repository and check it out.
+00:46 There's a section that has the various versions
+00:49 the various chapters.
+00:51 Every single chapter we have a
+00:52 separate saved copy of what we built.
+00:55 You can go and see exactly what was built.
+00:57 There's a before and after section.
+01:00 So that you can compare and see
+01:02 what was done during just that chapter.
+01:04 Alright, so, be sure to grab this.
+01:06 And, and get it yourself.
+01:07 We're ready to go.
+01:08 You could start from scratch and follow along.
+01:10 But like I said, at some point, you'll need, like
+01:12 the data and stuff to generate, say, the database.

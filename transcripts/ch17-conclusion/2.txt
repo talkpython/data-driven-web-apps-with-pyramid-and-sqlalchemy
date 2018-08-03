@@ -1,0 +1,284 @@
+00:00 The first core concept that we talk about
+00:02 were just the building blocks Pyramid.
+00:05 We saw that Pyramid was built upon routes
+00:08 which map URLs to a view method
+00:10 sometimes called action methods.
+00:12 We have templates, like Chameleon templates
+00:15 that we take and pass models from our view methods
+00:19 down to the templates. And the templates then take that
+00:21 and generate HTML, the templates are basically dynamic HTML.
+00:26 And then we added a bunch of our own layers.
+00:28 We added the concept of view models and data services.
+00:32 And all of this organization that allowed us
+00:34 to evolve our web application super, super easy.
+00:37 These are just some of the core building blocks
+00:39 of Pyramid and our web application.
+00:42 We saw there are two powerful ways
+00:44 to create your Pyramid app, at least two right.
+00:47 There's always more than, more than you might expect.
+00:50 One really simple out of the box was
+00:53 is to use PyCharm and its tools
+00:55 to create Pyramid web applications.
+00:57 The other one is that we could use CookieCutter
+01:00 and the command line to create them.
+01:02 I guess another, you could just start from empty files
+01:04 and start typing but that seems
+01:06 like you're wasting your time.
+01:07 So when I was new I found I used
+01:10 the PyCharm way a lot.
+01:11 It made me feel real comfortable.
+01:12 And it was like super easy to get started.
+01:15 And the more I get into it
+01:17 and the, as the years have gone by
+01:19 I much prefer to do the command line stuff
+01:21 and then finally edit in PyCharm.
+01:22 But not create in PyCharm.
+01:25 You will find maybe that right now
+01:27 one thing is the right solution.
+01:28 And then later as you get more experience
+01:30 there might be something else that is a different
+01:33 better solution.
+01:34 There are many different types of templates.
+01:36 We have at a minimum Jinga 2, Maco, and Chameleon.
+01:40 We saw that Chameleon is the most web like.
+01:42 With the least extra syntax.
+01:45 And so I awarded it this little blue trophy
+01:48 and said, this is the best way
+01:50 because this is still proper HTML.
+01:54 Where all of the other template languages
+01:55 are madly broken HTML with lots of open
+01:58 begin this, end that, end if, end for sort of stuff.
+02:02 And to me that's just, I just don't like typing that stuff.
+02:05 And I don't like the fact it's not proper HTML.
+02:08 Pyramid supports all three.
+02:10 We use Chameleon and I encourage
+02:12 you to make those decisions for yourself
+02:14 and think through the trade offs.
+02:17 Closely related to Chameleon was this idea
+02:20 of a core layout template.
+02:22 Now this exists in Jinga, Maco, and Chameleon.
+02:25 And whichever template language you use
+02:27 it's really important that you create
+02:28 one of these layout templates that's going to drive
+02:31 the overall look and feel of your site
+02:33 your navigation
+02:34 common things like JavaScript, CSS, and so on
+02:37 and then your pages punch out the holes
+02:39 where the template allows it to basically.
+02:42 Here you can see the Talk Python to Me podcast website.
+02:44 Although there are many pages here
+02:46 the home page, the episodes page
+02:48 and the individual episode details
+02:50 they all have this very structured common look and feel
+02:53 and that's done by the layout template in Chameleon.
+02:57 One of the really important things
+02:59 we focused on in the beginning was routes.
+03:01 Typically we have some kind of static route
+03:03 the ability to serve static files like CSS and JavaScript.
+03:06 And then we add routes that map conceptual ideas
+03:10 URLs, to their implementation in our web app.
+03:13 So we might want to have / go somewhere.
+03:15 And that's pretty much required for a website.
+03:18 And then we might want to have /help.
+03:20 or /project/package.
+03:22 These can be static like the first two.
+03:24 Or it can pass data in the URL like the package one.
+03:27 And we can even put predicates and constraints.
+03:31 So we said, we'd like to be able to just say
+03:34 /7, and have that look up
+03:36 which is the seventh most popular package.
+03:38 It's kind of a silly idea.
+03:39 But that's what we did.
+03:40 We can do that by having this little
+03:42 lambda function which is a test.
+03:44 Is that thing a number?
+03:46 Well this route is only going to match then.
+03:48 Now remember, there's an order of operations here.
+03:51 We must have the most specific first
+03:53 and the most general stuff at the end.
+03:56 The way this works, think of Pyramid just taking a URL
+03:59 and running it from top to bottom through this list
+04:01 the first one that matches, that's it.
+04:03 So if you have some super broad thing at the beginning
+04:06 well the stuff below it will never hit.
+04:08 So very very specific stuff at the beginning
+04:11 working your way down to more general.
+04:15 We saw that Bootstrap allows us
+04:16 to make our design much better.
+04:19 The CookieCutter templates already come with Bootstrap
+04:22 which would take us from the really bad page
+04:24 to the middle page, which is already better.
+04:27 And then we can use themes and some of the other Bootstrap
+04:30 elements like buttons and nav bars and so on
+04:32 to get a really nice page.
+04:34 Be sure to take advantage of what Bootstrap
+04:37 and its theme ecosystem has to offer for you.
+04:41 With our design in place, it was time to write
+04:42 some database access code.
+04:45 We wanted to work with a relational database
+04:47 for most of this course, so we were using SQLAlchemy.
+04:50 SQLAlchemy has this concept of a unit of work.
+04:53 And that is embodied in this thing here
+04:55 we're calling s, a session.
+04:57 So we use the session to create the queries.
+04:59 Also to do the inserts and deletes and commit the changes.
+05:03 Here we're not committing any changes so that's fine.
+05:05 But we write this query against our models
+05:07 in this case an account that has an email
+05:09 and a password hash.
+05:10 And then SQLAlchemy's job is to generate
+05:13 the SQL targeted at the database we're talking to.
+05:17 If you're talking to Oracle, generate it one way.
+05:19 If you're talking to SQLite
+05:21 generate maybe different SQL statements.
+05:24 Which would still be different than say
+05:25 Microsoft SQL Server.
+05:27 And you can see down on the bottom
+05:28 it writes more or less the SQL code that you would write.
+05:31 Select star from account where these values
+05:33 are equal to this.
+05:34 And it uses a parametrized query
+05:36 which is really really nice.
+05:37 Relational databases are nice, until their not.
+05:40 And one of the times they're not nice
+05:42 is when you have to evolve from one shape to another.
+05:47 We saw SQLAlchemy really hates that.
+05:49 Queries themselves
+05:50 Don't work very well unless you evolve
+05:52 those types of things.
+05:53 If we're already using SQLAlchemy
+05:54 we might as well use Alembic, which can automatically
+05:57 generate the sequel statements
+05:59 and sequel operations to transform
+06:01 from an old database with an old set of models
+06:04 to a new database matching the current models.
+06:07 So Alembic allows us to do what are called migrations.
+06:09 And this is super important for evolving
+06:12 our application and our database structure
+06:15 once SQLAlchemy has created it.
+06:18 When we are accepting user input
+06:21 we use the get post redirect pattern.
+06:24 The idea is the user gets some form.
+06:26 They edit it locally.
+06:28 They post that data back.
+06:29 We save it to the database.
+06:31 And then we redirect them somewhere else.
+06:33 The redirect is really nice because now they're
+06:36 in this new location and if they refresh the page
+06:38 that's fine, it just keeps showing them that new stuff.
+06:40 As opposed to, this form has been submitted.
+06:43 Are you sure you want to submit it again?
+06:45 And those kind of weird things.
+06:46 So it's a really nice and clean workflow
+06:48 for accepting user input in web applications.
+06:52 As we accept user input, we have to do things
+06:55 like validation, and data exchange
+06:56 and all of that.
+06:57 And we came up with this concept of the view model
+07:00 which handles mapping the data from the HTML
+07:03 into Python's memory and validating it.
+07:06 That doesn't sound like a big deal.
+07:07 But that turns out to be a massive amount
+07:09 of what we would otherwise put inside these action methods.
+07:12 And it makes it real easy to test
+07:14 this validation and data exchange.
+07:16 And it really simplified our action methods
+07:18 and lets it focus on orchestrating the steps
+07:20 and doing the high level stuff.
+07:22 And our view model can do all of the nitty gritty
+07:24 data exchange and conversion.
+07:26 Speaking of testing
+07:27 we focused on three types of tests
+07:29 that I consider to be somewhat unique to the web.
+07:33 And we talked about how to do this in Pyramid.
+07:35 Of course there's many types of tests.
+07:37 One of the tests that we might want to do
+07:38 is this data exchange and validation.
+07:40 And in our world that means testing the view model.
+07:43 And that means passing a real true request object
+07:46 from Pyramid on to the view model
+07:48 so it can interact with all of the various dictionaries
+07:51 and other data exchange mechanisms.
+07:53 We can use webtest to create these dummy requests
+07:56 and even pre-populate them with data
+07:58 to test various scenarios.
+08:00 We could do that for the view model.
+08:02 We could do that for the view method
+08:04 which may or may not use a view model.
+08:05 Or we could entirely start up the entire web application
+08:09 and pass fake web requests to it.
+08:12 So we talked about the three levels of tests.
+08:15 And then like I said
+08:16 there are others in testing in general.
+08:18 But these are pretty relevant to the tools and techniques
+08:21 that come along with Pyramid and WebTest
+08:23 and things like that.
+08:25 Once we wrote our app, we tested our app.
+08:27 It was up and working.
+08:28 Then we decided to deploy it to a Linux server in the cloud.
+08:32 So we used Nginx, which was the front end web server.
+08:36 The request came into Nginx.
+08:38 That's probably HTPS and get static files
+08:40 and stuff like that.
+08:41 But when there was a logic based request
+08:44 like show me this package
+08:45 we need to run our Python code.
+08:47 So those requests would flow on through uWSGI
+08:50 which is running in this sort of master emperor mode.
+08:53 And there's a bunch of worker processes
+08:54 where our Python code actually runs.
+08:56 And uWSGI figures out which one
+08:58 to pass off the request to.
+09:00 And then flows it back in reverse through this whole thing.
+09:03 So you have a bunch of scripts that set this up.
+09:04 And we went through it.
+09:05 And it should be pretty straight forward
+09:07 to get it working with that all in place.
+09:10 The last thing we did is said
+09:11 let's change databases.
+09:13 That seems like a good idea
+09:14 now that we've done all this work.
+09:16 Well, there was two ideas here.
+09:18 One, we wanted to say well
+09:19 maybe some people want to use MongoDB, and NoSQL.
+09:22 And actually our relational database
+09:24 and our NoSQL database were much closer
+09:26 than people might realize
+09:28 'cause we could use SQLAlchemy and Mongo Engine
+09:30 and those are quite similar to those things.
+09:32 Not the same. One is active record.
+09:34 One is unit of work. Things like that.
+09:36 But not terribly different.
+09:37 It was a pretty small amount of effort
+09:39 to considering the type of changes we made.
+09:41 So we switched to MongoDB.
+09:43 And that was maybe interesting in its own right.
+09:45 It's also interesting in showing the power
+09:48 of what we had built up to this point.
+09:50 We only had to change the data services
+09:53 obviously new entities, and a few very minor things.
+09:56 Like we had to change the type of value exchange
+09:59 for the user cookie 'cause one was a BSON object ID
+10:02 and the other was an integer.
+10:03 And those are obviously not the same thing.
+10:05 So there's a little bit of work in the cookie level
+10:07 to make that change.
+10:08 Other than that, our design patterns
+10:11 really isolated the types of changes
+10:13 to the locations that we, well want them to be.
+10:16 Data changes and the data services for example.
+10:18 So hopefully you found that really interesting and powerful.
+10:22 And the main takeaway I wanted you to get
+10:24 was we don't have to be stuck with how
+10:27 we started building our app.
+10:28 It's actually if we build it correctly
+10:31 quite easy to transform and change
+10:32 from one style to another.
+10:34 This database change is just one of those types of changes
+10:38 that we prepared ourselves for by clearly
+10:41 and nicely structuring our code.
+10:43 Well that's it.
+10:44 Those are the major concepts
+10:45 of what we covered in this course.
+10:47 I hope you feel like you learned a lot.
+10:49 And I hope this quick review helps them stick.

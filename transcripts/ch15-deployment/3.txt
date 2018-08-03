@@ -1,0 +1,56 @@
+00:00 Now our server is set up.
+00:01 Let's talk about the things that we have
+00:04 to put in place for this to work.
+00:06 We're going to need to install uWSGI and Nginx
+00:09 but we're also going to need to provide a number
+00:10 of configuration files to make this all work.
+00:13 So, to that end let's jump back over here to PyPI Deploy
+00:18 and that chapter in the Git repo
+00:20 and I'm going to put a new folder here.
+00:22 Instead of typing this out I'm just
+00:24 going to show you 'cause there's tons
+00:25 of detail that's just not important
+00:27 you just have to do those steps.
+00:30 So we're going to have an Nginx file
+00:32 this is the configuration file for
+00:34 well you guessed it, Nginx.
+00:36 We have a service file, this is for
+00:40 systemd, to manage the system service there.
+00:42 This is going to control the process of uWSGI
+00:47 the overall monitoring process here.
+00:50 We're going to tell it to go and use
+00:52 our production.ini, our production.ini
+00:56 this has some more configuration settings for uWSGI.
+00:58 Right, but this is like the system daemon
+01:00 that's going to run, that's going to be the Python side of things.
+01:04 We're going to do the same with Nginx
+01:06 and this is listening for static files
+01:08 and then just delegating the commands
+01:10 off to uWSGI for the Python stuff.
+01:12 And then finally we have our bash stuff here
+01:15 and we're just going to run these commands.
+01:16 We already did these two to make sure
+01:18 our server is not super duper out of date.
+01:20 And notice PyCharm says, oh we know about bash files
+01:23 and we know about Nginx files
+01:24 so let's do that real quick.
+01:33 Here we go, now we have the little
+01:34 syntax highlighting other help
+01:36 and our bash, and same thing for Nginx.
+01:39 Let's go ahead and commit these files
+01:40 'cause one of the first things we're going to
+01:41 do is go over here and do some git clone action
+01:45 to get our files from here onto the server.
+01:48 Let's make sure we're in sync with GitHub.
+01:59 Okay, so everything's ready, what we're going to do
+02:01 is I'm not going to flat out run this script
+02:03 although technically you could.
+02:05 I'm going to go through sort of block by block
+02:08 and talk about what we're doing.
+02:09 And some of those are going to move these two files
+02:12 which if I've done everything right
+02:13 I've configured the folders and everything to line up
+02:17 long as I put these all together successfully
+02:19 we should be able to just copy these
+02:20 files in place, run a few script commands
+02:23 and our server will be up and ready to go.

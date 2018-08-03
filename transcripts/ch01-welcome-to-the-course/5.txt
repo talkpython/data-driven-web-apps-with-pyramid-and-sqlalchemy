@@ -1,0 +1,91 @@
+00:00 When we talked about the incredible power
+00:01 of the web, we saw some amazing web apps built.
+00:04 Only some of them were built with Python.
+00:06 Let's look at a whole bunch of other apps
+00:08 web apps, built with Python.
+00:10 I think it's always great to have some examples.
+00:12 You know, maybe you're trying to convince your team
+00:14 or your boss, or something like that.
+00:16 "Hey, we should build this particular app we're trying
+00:18 to launch in Python and here are five examples
+00:21 of other apps that are similar, that are amazing."
+00:23 So let's go through a quick list
+00:24 to give you some ammunition.
+00:27 You might be familiar with The Onion.
+00:29 This is a fake news comedy site that's hilarious.
+00:33 They post all sorts of crazy, outrageous news items
+00:36 and that, of course, is built on Python.
+00:39 Spotify, the music streaming service, their web app, Python.
+00:43 NASA and JPL make heavy use of Python
+00:46 for all their awesome space stuff.
+00:49 Bitly, the URL shortening site that gets tons of traffic
+00:54 does all sorts of analytics and stuff
+00:56 around the URLs they shorten, Python.
+00:59 Bitbucket, SurveyMonkey, Quora
+01:03 what I think one of the very best online Q&A forums for
+01:07 thoughtful, somewhat deep answers.
+01:10 Not always great but pretty good, built with Python.
+01:13 They're actually pretty enthusiastic users of Python.
+01:15 If you look at their engineering blog
+01:17 they often write about how they use and configure
+01:20 and optimize Python for what they're doing.
+01:22 Disqus the comment section that you can embed
+01:25 into any web application.
+01:27 If you go to either of my podcast sites, talkpython.fm
+01:29 or pythonbytes.fm, you'll see at the bottom
+01:31 this little Disqus section.
+01:33 That is built with Python.
+01:35 Many of their services are based on Python.
+01:36 Instagram, an incredible amount of traffic goes
+01:39 to Instagram, and they make heavy use and, again
+01:41 are very passionate users of Python
+01:43 and their engineering blog covers a lot of cool things
+01:45 like how they disabled garbage collection, for example
+01:49 to make their web apps run much faster.
+01:52 Reddit, the front page of the internet, as some say
+01:55 gets tons of traffic, I think it's in
+01:57 the top ten websites on the internet
+01:59 built with Python and SQLAlchemy.
+02:02 Youtube, we already talked about that.
+02:03 Youtube is amazing, they get millions of requests
+02:06 per second and are based on Python.
+02:08 The brand new relaunched PyPI, the Python Package Index
+02:12 at pypi.org, is built with Python and Pyramid.
+02:17 They get tons and tons of traffic
+02:18 and they actually tried Flask, they tried Django
+02:21 and they tried Pyramid and they decided Pyramid was
+02:23 the best choice for what they were building.
+02:26 Pinterest, also built on Python.
+02:29 Paypal has some of their pricing services written
+02:33 in Python, and these pricing services are called
+02:35 by different parts of Paypal's infrastructure
+02:38 and other services and websites to figure out
+02:40 what the exchange rate is, what the fee is
+02:43 that goes along with various transactions and so on.
+02:45 That has two to three billion requests per day
+02:49 written in Python with sub-millisecond
+02:52 maybe just single millisecond response time.
+02:54 It's pretty incredible.
+02:56 Dropbox is a heavy user of Python, the client you get
+02:59 on your machine, as well as much of
+03:02 their backing services, Python.
+03:03 In fact, Guido van Rossum, the guy
+03:05 who created Python, works there
+03:07 at least at the time of this recording
+03:09 so you can bet that it's a real
+03:10 center of the universe around Python.
+03:13 And, last but not least, Talk Python.
+03:16 All the Talk Python stuff, the training site
+03:18 the podcast site, all that stuff is based
+03:20 on Pyramid and Python.
+03:21 It's been working out amazing.
+03:23 We get incredible, high-performance web apps
+03:26 that are easy to maintain.
+03:28 We'll share a lot of the lessons
+03:29 from that experience in this course.
+03:32 Want to read more about all of these
+03:33 how these companies are using Python?
+03:35 Well, how about we use a little Python to get there.
+03:37 Bitly/pyapp-25, that'll take you over
+03:41 to an article where I pulled a lot of this stuff together
+03:43 with more background info than I put in here.

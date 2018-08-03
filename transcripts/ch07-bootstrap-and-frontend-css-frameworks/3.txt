@@ -1,0 +1,100 @@
+00:00 Let's begin our exploration of Bootstrap by installing it
+00:03 and just seeing what effect that has.
+00:04 It's actually kind of remarkable.
+00:06 So if we come over here, we now have
+00:09 a Chapter 7 Bootstrap, and again
+00:11 we have the starter and the final code.
+00:13 The starter code is what we're starting with
+00:15 and then the final code actually, is a copy
+00:17 of starter right now, but will, of course
+00:19 evolve into whatever we do during this part.
+00:22 So we're going to break this into two sections.
+00:24 We're going to play with basic HTML, CSS, things like that.
+00:29 So we're going to do a little bit of bare HTML
+00:31 some stuff with grids, and so on
+00:33 and then we're going to go back to PyCharm, back to Pyramid
+00:36 and apply that in a major way to our web app.
+00:40 So, let's begin at looking at what I consider
+00:42 kind of a scary page.
+00:44 Not scary in the sense that the HTML is complicated.
+00:47 In fact, it's as simple as it can be.
+00:50 We have head, we have a title, we have a body
+00:52 we have an h1, and a couple of paragraphs.
+00:54 That's simple, right?
+00:56 It's scary in the sense that
+00:58 it's a blank slate to start from and design.
+01:01 Everything has to be done.
+01:02 You have to figure out the line spacing, the fonts
+01:05 the colors, the color balance
+01:07 the background colors, everything.
+01:11 Everything you want to do, layout systems, right?
+01:14 If you're going to do some some kind of grid layout.
+01:16 Don't use tables by the way, that's not so good
+01:18 unless it's tabular data of course.
+01:20 But, to me, this looks, anyway it's hard to read
+01:23 it's kind of icky. So we can do one super simple thing to get started here
+01:27 that's going to make it nicer.
+01:28 So let's just open this in PyCharm.
+01:32 Remember file open directory on the other OS's.
+01:37 Alright, here we are inside PyCharm.
+01:39 As you can see from what view source was
+01:41 yeah it's a simple little html page.
+01:44 But what we can do is we can simply add a reference
+01:48 import through style sheet Bootstrap.
+01:52 So, for the moment, I'm going to use the Bootstrap CDN
+01:55 I prefer to install it locally, but let's just drop
+01:58 this one in here and we're using Bootstrap 3
+02:03 Bootstrap 4 has been released at this point
+02:05 but all the templates that Pyramid uses
+02:07 and all the Cookiecutter stuff even outside
+02:10 of what Pyramid does uses
+02:11 to generate these sites is in Bootstrap 3.
+02:14 So, here's the trade off I'm making
+02:17 we could use Bootstrap 4 and talk about that
+02:19 but that would mean every, well not every bit
+02:22 much of the existing website would stop working
+02:25 the navigation and what not, so we'd have to unravel that.
+02:31 And this way, we can just build on what
+02:32 the scaffolding is generating for us.
+02:34 I decided less effort, less confusion, let's just
+02:38 go with Bootstrap 3 for now.
+02:39 If you want to upgrade to 4, that's fine
+02:41 they're incompatible, so just be aware.
+02:43 A lot of things about them operate differently.
+02:46 It matters whether this is 3 or 4
+02:48 but we're going to use 3 for now.
+02:51 Alright, with this simple change, let's go back here
+02:54 and I'm going to duplicate this tab
+02:56 so that we have them side-by-side.
+02:59 Check this out, look how much nicer
+03:01 and more legible that is.
+03:04 Old, new, old, new.
+03:09 Bootstrap has default values for fonts, spacing, padding
+03:13 colors, notice even the color of the fonts, it's a little
+03:16 bit different and it's just, it's just nicer.
+03:19 So just the act of putting Bootstrap here
+03:21 makes our site look better.
+03:23 It also has another really important purpose.
+03:25 Bootstrap functions as what's called a reset CSS.
+03:29 You may have heard that it's hard to write
+03:32 code for the web because on different browsers
+03:35 things appear differently.
+03:36 Now, sometimes that's just true incompatibilities
+03:39 in the browser, but a lot of times that is
+03:41 browsers making different assumptions about what a
+03:45 non-styled element should do.
+03:48 What should the padding be on a non-styled text input?
+03:51 I don't know.
+03:52 But if you don't explicitly set it, it's up to the
+03:54 browser to go, "I think it's this."
+03:57 And sometimes those assumptions or those defaults are
+04:00 different or incompatible and that can be really annoying.
+04:04 So what reset CSS's do is they explicitly set every possible
+04:09 style of every possible element.
+04:12 That means browsers no longer get to guess
+04:14 and there's more consistency.
+04:15 So you get that sort of easier to design for the web
+04:18 also by dropping Bootstrap in here.
+04:21 That's how we get started, nice and easy.
+04:23 And it's already having a positive effect
+04:25 on what we're doing.

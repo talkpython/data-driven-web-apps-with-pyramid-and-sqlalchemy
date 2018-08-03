@@ -1,0 +1,150 @@
+00:00 We have our design in place
+00:01 but we don't really have the data being passed.
+00:03 Let's go fix that, so if we go over to our controller
+00:07 here we're just passing package name.
+00:09 But we actually have to pass a whole bunch of other stuff.
+00:11 So let's start by treating this for real
+00:15 and let's go over here and say package.
+00:17 It's going to be package_service, and find_package_by_name.
+00:24 Alright well that doesn't exist, does it?
+00:26 So PyCharm can write it for us, thank you.
+00:28 And this is going to be a str
+00:30 and it's actually going to return an optional package.
+00:35 Optional comes from the typing library.
+00:37 Okay so, what are we going to do?
+00:38 What we always do when talk the database. And then go here.
+00:42 And we're create a session, and then we'll be able to return
+00:45 some result of a query.
+00:47 Turns out this is super easy, remember the package name is
+00:50 also actually the ID and maybe want to strip off anything
+00:56 like spaces, or make this lowercase
+00:58 but we're just going to just do the query with it.
+01:00 Assuming everything comes together, so we'll just say
+01:03 give us a query of package, and then we're going to filter
+01:07 on the package.id == to package_name.
+01:13 What do we get if we do this?
+01:14 Well we get one or zero packages of course
+01:18 but what we actually get is a cursor into the database.
+01:21 Cause, it has no way of knowing that that means just one
+01:23 so if we want to make sure we get just the one we'll say first.
+01:27 So first, or None if it doesn't exist.
+01:30 Instead of returning like a query set thing
+01:32 we're going to get actually either the first package
+01:35 or nothing if the name doesn't match, hence the optional.
+01:39 Okay so now instead of checking for this package name
+01:43 we'll check to make sure the package is actually found.
+01:46 So there's a few things we're going to have to put here
+01:47 and it's going to be a little complicated
+01:49 it's going to get more complicated before it gets better.
+01:51 Okay, so go over here and pass the package
+01:54 that's not needed anymore.
+01:56 Now in order for this to actually work
+01:58 we're going to have to, let me point at some pieces here
+02:02 we're going to have to come and indicate whether
+02:04 it's the latest version, and if it's not
+02:06 which version it is here is the numerical value
+02:09 of the latest version and whether or not
+02:11 that numerical value is the latest, okay?
+02:13 And by the way, if it turns out to not be the latest
+02:16 we'll get a different install statement right there, okay?
+02:21 So, for that we got to return the latest version.
+02:27 Now this is the part where it gets messier
+02:28 before it gets better.
+02:29 I'm going to show you a way to vastly improve this
+02:31 but it adds another layer on top of things.
+02:34 So first of all let's just come up with the details here
+02:37 and then we'll clean it up in another
+02:38 section under validation.
+02:40 So we'll save the latest version
+02:42 we're going to default this to zero and we'll say
+02:44 if package.releases, remember this?
+02:47 Our releases' navigating that relationship.
+02:50 Now, right now this is going back and doing
+02:52 another database interaction
+02:54 which is not terrible but it's not awesome.
+02:56 We'll fix that in a minute.
+02:57 So we'll say r equals, let's call this latest release
+03:01 we need the latest version to be set to nothing.
+03:05 An empty sort of nothing value or the real version
+03:09 but we're also going to need, if that exists
+03:11 there is a latest release we'll actually need that object.
+03:13 So I'm going to say this is None.
+03:16 I'm going to pass that in a second.
+03:18 Alright so the package has releases
+03:20 the latest release is going to be the first one, why?
+03:25 We go over to the package class, notice we're sorting
+03:29 descending by the highest version number.
+03:32 Okay so it means the zeroth one is the latest release.
+03:36 Have the latest version text is going to be
+03:42 alright pass these along, it's kind of big.
+03:44 So let's wrap it, and we're getting close.
+03:46 We're also going to need to pass the maintainers
+03:48 we haven't dealt with that yet.
+03:49 So, I'm just going to pass that as an empty list
+03:53 so it doesn't crash.
+03:55 And the other thing we need to discuss is
+03:57 is this the latest release?
+03:58 And I'm just going to say it is for now
+04:00 remember the ability to navigate to different versions.
+04:02 We're just going to say is latest
+04:05 is true, for the moment.
+04:07 We don't actually take the versions here
+04:10 under these details exactly but down here
+04:14 when we look at the released version.
+04:17 Pull up the details, here we're passing that.
+04:19 So we'll come back to that.
+04:20 I think this might be enough, so what are we going to do?
+04:22 Going to go to our super simple query
+04:25 make sure we got something back.
+04:26 If we didn't, must not be found.
+04:30 Come up with the various data here's a little default.
+04:32 If we actually do have releases we'll put those here.
+04:35 I'm going to return these values.
+04:37 So one more thing we'll need
+04:38 when we get the more complicated bit
+04:41 but we're just going to say that our current version
+04:42 we have out there is this, is the latest version.
+04:47 Oh, look at that.
+04:48 Alright let's do quick comparison.
+04:51 Real, fake, real, fake.
+04:56 Looks like our, oh our fonts maybe are not the most amazing
+05:00 here we might not be bringing those in.
+05:01 But nonetheless, it's close enough for what we're doing.
+05:05 And notice here's our description
+05:06 right, if we could transform this restructured text
+05:09 that would be better, but it's not.
+05:11 Here's our project description, our release history.
+05:14 I think we might need to put a wrap there.
+05:18 Got the home page.
+05:19 Here's the awscli, here's information on the status
+05:23 here's the license, here's the license again.
+05:25 Here's all the extra metadata.
+05:27 So it's looking pretty good, and here our latest version.
+05:31 Well, it's good, it is the latest version.
+05:33 We're also missing a little CSS, hold on I'll fix that.
+05:39 There we go, now we got that wrapping and everything.
+05:42 Looks a little bit better
+05:43 I just forgot to move a little CSS over.
+05:45 Like I said, we're skipping over the design.
+05:47 It's very very similar to before
+05:48 but just needed a few more styles.
+05:51 Alright what do you think?
+05:52 Pretty close, again it's not exact
+05:54 like we don't actually have the copy feature
+05:55 but I think it's close enough for
+05:58 our little demo app that we're building.
+06:00 Here's the summary that was entered in the database.
+06:02 Here's the package ID, here's the latest release.
+06:06 Here's the date of the latest release
+06:08 that's those kind of are why we actually needed the object.
+06:11 And yeah, everything looks really good.
+06:14 So I think that's pretty much working.
+06:16 Let's just review it real quick here.
+06:18 In order to do this, all we had to throw in a filter
+06:21 and say package.field or column ==.
+06:25 I know Django and Mongoengine have equals here
+06:28 but in SQLAlchemy, you put the equality statement here.
+06:32 So you can do greater than and stuff as well.
+06:34 So ID equal equal the value
+06:37 and then to get just one of them first.
+06:40 And the rest was just passing the data off to the template.

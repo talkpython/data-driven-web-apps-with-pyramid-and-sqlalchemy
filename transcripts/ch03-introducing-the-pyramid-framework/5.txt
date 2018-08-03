@@ -1,0 +1,59 @@
+00:00 The next major building block to cover is routing,
+00:02 or routing, if you prefer British English.
+00:05 Routes allow us to define patterns that match
+00:08 some URL and map over to a particular view
+00:13 or controller method.
+00:15 Sometimes that just says, "This URL calls this function,"
+00:18 other times it says, "This URL contains Data,"
+00:21 so like /package/request or /package/sqlalchemy
+00:27 would pass the request or SQLAlchemy to that function.
+00:31 So, let's see how we do this in Pyramid.
+00:33 So, we're going to go to the main method
+00:35 in the __init__.py file
+00:36 that is basically the entry point or the start up
+00:39 for our web application, or we're going to
+00:41 start with this thing that's a configuration file reader.
+00:45 On there, it has a function called add_static_view.
+00:48 So here, we're naming the route static,
+00:50 and saying it maps to /static or anything under there.
+00:54 So, what we can do is we can go here and say
+00:56 anything in this directory or below it,
+00:59 will be cached by a quick little calculation.
+01:03 It's one month, so you've got to put an integer
+01:05 that is the number of seconds to cache it for,
+01:07 I like to put this as calculation so I can see
+01:10 60 seconds, 60 minutes, 24 hours a day, 31 days,
+01:13 okay, that's a month.
+01:15 Then we're going to define the routes
+01:17 that are the various URLs
+01:19 that go to our action methods.
+01:22 So the first one is /, just like that, and that's home.
+01:26 Right, that's just the basically the main page
+01:29 when you hit the site.
+01:31 And we want to have a /help
+01:32 so add a route for that for help.
+01:35 Then we're going to have, in our PyPI example,
+01:38 the route that they use for an individual package
+01:41 or the URL is /project/{package_name}.
+01:45 Now notice, this one is different.
+01:46 It has package_name as a curly bracket
+01:50 and then a variable looking thing.
+01:53 package_name will actually be passed to the function
+01:56 that we apply this to.
+01:57 So, like I explained before, SQLAlchemy, requests, whatever
+02:03 so the URL itself will carry the information along
+02:05 and that's defined in the route here.
+02:08 Also, we have things like account/login.
+02:10 And the final action to do is to tell the system to go
+02:14 figure out what functions are associated with these,
+02:17 so we have the route name, we also need to have to have the
+02:21 route to actually apply to this.
+02:23 So we run the scans and it looks through all
+02:25 the Python files, looks for that view_config decorator
+02:29 using various route names and then it
+02:31 puts those two things together.
+02:34 And finally, we have to return this WSGI application,
+02:37 W-S-G-I, WSGI, application that the web framework's
+02:41 going to use and this is just at the end
+02:43 of the main startup always.
+02:45 So this is how you define routes in pyramid.

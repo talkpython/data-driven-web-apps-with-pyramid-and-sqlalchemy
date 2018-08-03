@@ -1,0 +1,49 @@
+00:00 Now before we start working with Bootstrap
+00:02 let's do a quick survey of what's out there.
+00:05 So Bootstrap probably is
+00:07 the most popular front-end framework
+00:10 for a CSS framework, that's out there.
+00:13 And that has a lot of benefits.
+00:15 It means one, there's a lot of tutorials and demos
+00:18 but also there's a lot of themes
+00:20 and other sort of add-ons and extensions.
+00:22 So popularity does matter, especially if you want
+00:25 to get into the theme side of things.
+00:28 But it's not the only thing, right?
+00:30 Maybe there's another one you like better.
+00:32 Like I said in the opening for this chapter
+00:34 we're going to use Bootstrap.
+00:35 It's pretty popular, you see, at 125,000 GitHub stars.
+00:39 There's a nice URL you can go to, expo.getbootstrap.com
+00:43 and there's a bunch of sites built with Bootstrap
+00:46 that you can click around and get some inspiration from.
+00:49 And it's always view source.
+00:50 You can even borrow it to build your own site.
+00:54 Another one that's really popular is Symantec.
+00:56 So, Symantec UI is a nice framework
+00:59 for building clean web apps, and this one has 41,000 stars
+01:04 definitely consider that.
+01:06 Foundation, Zurb Foundation it's really, really popular.
+01:09 This one is a little more popular among
+01:11 what I would call, the professional designers
+01:14 the people who really do design for a living.
+01:17 It does a little less hand-holding.
+01:19 It's more of a foundation upon which
+01:21 you can build your design.
+01:23 Hence, I guess the name Foundation.
+01:25 So, if that describes you a little better
+01:27 it may be considered checking out Foundation.
+01:30 There's Materialize.
+01:31 Here's an example of an app built with Materialze.
+01:33 Nice and clean, looks really great.
+01:35 And there's a whole bunch more.
+01:36 Actually, a really great article is this one here
+01:39 at KeyCDN, Top 10 Front-End Frameworks of 2016.
+01:43 Yeah, it's a 2016, but many of them are still relevant.
+01:46 And it's nice, 'cause it actually gives you a little bit
+01:49 of the trade-offs, like, "Bootstrap is good like this."
+01:51 "But it's not as good as that."
+01:52 "This other one, Materialize has this advantage so consider it."
+01:56 So if you're actually shopping
+01:58 for what front-end framework to use, give that a quick look.
+02:01 If you don't know, Bootstrap, that's probably the way to go.

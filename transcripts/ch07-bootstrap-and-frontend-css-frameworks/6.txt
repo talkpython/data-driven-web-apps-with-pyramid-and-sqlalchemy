@@ -1,0 +1,71 @@
+00:00 So let's come over here
+00:01 and we're going to go back to our grid_layouts.html here.
+00:05 Now the grid_layouts.html looks like this.
+00:08 Let's actually just open it up and have a look;
+00:12 looks like this. Now notice these things are wrapped
+00:14 but as I make it a little bit larger
+00:15 now they're horizontal.
+00:17 A little bit more, they're vertical, horizontal and so on.
+00:20 And out here, we have these lg.
+00:21 If I make it completely wide
+00:24 those will be horizontal instead of vertical.
+00:28 So what's going on here?
+00:29 The way Bootstrap works is it uses 12 slices
+00:34 vertical slices of the screen.
+00:36 Whatever this overall gray box is contained within
+00:40 it's going to break that up into 12 slices.
+00:44 Why 12, I don't know. 10 seems reasonable.
+00:48 Maybe 10 was not enough.
+00:50 I guess because thirds is a lot easier on 12
+00:54 but you have basically 12 little slices to work with.
+00:57 What we can do is we can say "This part right here
+00:59 I would like to be 8 of the 12, or 2/3.
+01:03 This one will be 4/12 or just 1/3."
+01:06 The other thing that we put in here
+01:08 is this md for medium, sm for small, and lg.
+01:13 We've already seen this ability when it gets too small
+01:16 it'll no longer be horizontal.
+01:18 It'll wrap and vertically stack.
+01:20 The sm, md, lg talks about how soon that should happen.
+01:25 Large, lg, says, "I want it to be this horizontal slice
+01:28 but only on large screens."
+01:32 As this gets just a little bit smaller
+01:33 the large are going to wrap, but medium and small
+01:37 they're like this is at least a medium width screen
+01:40 so it's fine. Go a little more, and eventually the mediums will snap.
+01:44 Boom, they're they go.
+01:45 We're still left with the small bits
+01:47 and eventually if it gets sufficiently small, we get that.
+01:52 One thing that's nice to play with
+01:53 is some of the responsive design tools.
+01:57 This overall is more broadly classified
+01:59 as responsive design.
+02:00 What we've seen so far over in Firefox or Chrome.
+02:03 We saw the responsive grid features here
+02:06 but let's imagine we want to test this on different devices.
+02:10 We can come over here and right click
+02:11 and say inspect element
+02:13 and click on that little thing right there.
+02:16 Or we could just hit command option m.
+02:18 Take your pick.
+02:21 Now we have what you might think of as
+02:24 a little embedded phone type of thing here.
+02:26 Notice I can scroll in it
+02:27 and everything's looking really quite good.
+02:30 Got a little menu, you can turn it sideways
+02:32 see how things would look as if it were sideways and so on.
+02:35 Let's put it vertical.
+02:36 How does this look on an iPhone 6 Plus?
+02:40 A little wider screen, okay that's good.
+02:43 How about on a Google Nexus 7?
+02:46 That's wider, right?
+02:47 That's nice, so what else?
+02:50 Samsung Galaxy 7 looks like this.
+02:54 That's really nice isn't it
+02:55 so this is a great little tool for testing your design
+02:59 on different devices when you're working
+03:02 with these responsive grids.
+03:04 Instead of always trying to resize your browser
+03:05 you're like, how exactly would it look
+03:07 on this particular device?
+03:09 Well, you can go pick it right there.

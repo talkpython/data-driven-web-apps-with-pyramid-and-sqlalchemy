@@ -1,0 +1,78 @@
+00:00 For this design let's go and quickly create
+00:01 a new CSS file for the account stuff.
+00:06 So we can use this for just all the registration forms
+00:09 registrer, login, things like that.
+00:10 Maybe even reset password.
+00:12 So I have an account form type here.
+00:17 And this is going to be a form that has
+00:19 an account type, an account-form class on it.
+00:23 And let's just do a couple of things.
+00:25 Let's, the margin on the top to be 50.
+00:31 We're going to make it sort of stand out off the page
+00:33 right in the center.
+00:34 And the way we do that is say margin left is auto
+00:38 margin right is auto, width 500px, background
+00:46 Color, let's pick it to be white.
+00:50 Color is black.
+00:51 Maybe not fully black.
+00:54 Corner is 1px smaller and gray.
+00:57 And border radius 5px.
+01:00 Okay, so two things to make this work
+01:02 one we have to put this class on our form.
+01:07 Two we have to include it.
+01:08 So if you remember, when we talked about our shared layout
+01:12 way down at the bottom, we have this additional slot
+01:15 right there. So let's us that to inject right here
+01:22 this extra bit of info.
+01:24 We're going to fill that slot, oh, and I want the one
+01:27 at the bottom, excuse me.
+01:29 We want this one at the top, additional CSS.
+01:34 And we'll do it like so.
+01:36 Alright, let's see how this is working
+01:38 let's go refresh our page. Boom!
+01:41 We're actually doing okay.
+01:42 Let's put our register H1 maybe inside the form as well.
+01:48 A little bit closer.
+01:49 So it's getting there but still not entirely amazing.
+01:53 Let's do a little bit more on our CSS.
+01:57 For H1 we'll say text to line is center.
+02:00 That's now working. Good.
+02:02 Actually, this background color white being there
+02:06 let's go and change the background color
+02:09 a little bit. Make it DDD.
+02:12 Okay, that stands out a little bit.
+02:13 It's not going to be super good looking
+02:15 but it's good enough.
+02:16 And then let's go and tell it that actually these
+02:19 have some classes.
+02:21 Form-control, and they all have form-control.
+02:25 Remember boot strap.
+02:27 That'll make them wrap like this, hmm!
+02:30 Not so much. Let's set their width.
+02:43 Alright so I told it to align center
+02:46 and we've just set some limits here.
+02:48 And let's just set some margin on the top and bottom
+02:51 of 10px each. Ah, we'll go for five, that seems extreme there.
+03:00 Okay, pretty good. And then we need our button on the right.
+03:08 That looks pretty good.
+03:09 We could do a little bit more but close enough.
+03:12 In fact we could apply that more easily
+03:14 to all the stuff in here I suppose if we wanted.
+03:19 Everything immediately contained within here.
+03:21 Get to that. Here we go, better.
+03:24 Okay, so I think we're close.
+03:26 You can see our inputs and so on.
+03:28 But we also have this register button here
+03:32 but it doesn't look like a button does it?
+03:33 So the last thing will be to give it a class
+03:35 of btn btn-success. Awesome!
+03:40 Awesome! So I think our little form is all set.
+03:44 And that'll allow us really quickly to do
+03:46 our login form as well.
+03:48 And the HTML, all we got to do is have a form
+03:51 with that class, put our stuff in there, boom!
+03:53 And it'll look like that.
+03:54 So all of our account forms can look like this
+03:56 if we want. Or you know, you style yours like you like.
+03:59 With this in place we're ready to write this code
+04:02 that actually processes the response.

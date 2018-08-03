@@ -1,0 +1,87 @@
+00:00 Let me show you the sitemap I've added
+00:02 to our website here.
+00:04 Again, I don't want to write it from scratch
+00:05 cause the details aren't that valuable.
+00:07 It's just repetition of what we've been doing.
+00:09 But let me show you what's happening here.
+00:11 So we actually added this UtilsController
+00:13 and we have two things, robot.txt
+00:15 which tells search engines how to search the site.
+00:19 And notice we're changing the content type
+00:20 to plain text as it should be.
+00:22 And then this one, we're saying the content type is xml
+00:26 and we're going to generate it from the sitemap.xml.
+00:29 We saw that before but let's have a quick look.
+00:31 Robots, by the way, super easy.
+00:34 You explicitly disallow stuff
+00:36 with not disallowed is allowed in so, search everything.
+00:39 And then here, we're going to say generate the static URL's
+00:43 that we know about.
+00:45 And then we're going to dynamically go through this.
+00:47 Your site might have categories
+00:50 and books, and comments, and whatever.
+00:53 Put em all in here.
+00:54 Whatever you want search engines to find
+00:56 you put them in here.
+00:57 So let's go see that real quick.
+00:58 So we can go to robots.txt, and there's that.
+01:01 And we can go to sitemap.xml.
+01:05 And here you can see these are the static URL's
+01:08 and then these are all of our packages:
+01:10 Awscli, Logs, Babel, BeautifulSoup, et cetera, et cetera.
+01:15 All right, so this is in place.
+01:18 Once this is in place then we can use it for testing, right?
+01:22 So let's go down to our tests
+01:23 and here's the site map test.
+01:26 We're going to create one of these functional tests
+01:28 that goes and grabs an app that's already built.
+01:32 It's a little bit confused there isn't it?
+01:34 There we go. So it's going to use just one app
+01:37 for all the tests it does here.
+01:39 And just like we saw before it's going to call main
+01:41 create a test app, and give it back.
+01:44 Want to do that on setup and that's great
+01:46 but then what we do is get the site map
+01:49 by issuing a get there.
+01:51 And then I'm going to drop the namespace
+01:53 so we don't have to do it in our queries
+01:54 and just return the text.
+01:56 And then our tests become, get the text
+01:58 load it up as xml, do this x path query on it
+02:02 and then we'll just print out a little info.
+02:04 So let's run this.
+02:06 I've also added it to the alltests so it'll appear.
+02:10 And here you go you can see we're testing
+02:12 potentially 99 URL's.
+02:14 Got the local host, account login, account register
+02:17 project /, you know, here's the first one that we hit.
+02:21 We took away that part of the break out
+02:23 for testing the packages we'd hit em all.
+02:26 So it's up to you how you want to do that
+02:27 but this can be really helpful.
+02:29 It's like I said, often when these pages fail
+02:31 or these methods fail, they fail hard
+02:33 and you get some 500 server error
+02:36 and this would definitely catch it
+02:37 cause we're checking there all 200 a-okay.
+02:41 One thing to be aware of
+02:42 when you go and request basically every URL on your system
+02:46 we'll go into the database at this point
+02:48 and doing the other things they might do
+02:50 so you might want to be careful here
+02:52 and mock that stuff out as we saw
+02:55 but it's going to be quite involved
+02:57 because you're basically mocking out everything.
+02:59 Can totally do it and it may be worthwhile
+03:01 or it may not be.
+03:02 You'll have to try and see whether it's worth it.
+03:05 So this definitely counts as some kind of integration test
+03:08 but it's really easy to do.
+03:10 You can see the whole implementation is 57 lines long
+03:13 and you have it here in code so you can just copy and adapt.
+03:17 Really nice. All right, so that wraps up testing.
+03:19 We've seen the different levels, and the different ways
+03:22 of wrapping the web framework infrastructure
+03:25 around our tests, providing it to our tests
+03:29 as well as replacing some
+03:31 of the foundational items like data access.

@@ -1,0 +1,38 @@
+00:00 We'll be doing a ton of live demos
+00:01 and almost every bit of code and concept covered
+00:04 will be done in some form of a live demo.
+00:08 That means we need a really solid editor.
+00:10 We're going to use PyCharm.
+00:12 I'm going to use PyCharm for this course.
+00:14 And you, if you want to follow along exactly
+00:16 should also use PyCharm.
+00:18 It's in my opinion the best editor
+00:20 at the moment for Python.
+00:22 If you don't want to use PyCharm for whatever reason
+00:24 you can use whatever editor you'd like.
+00:26 If you want another recommendation
+00:28 one that's free, the Visual Studio Code
+00:31 with the Python plugin is looking like really
+00:34 the second best option these days.
+00:37 And it's really good, and it's really coming along.
+00:39 One other thing about PyCharm
+00:41 they have a community free edition
+00:43 and they have a pro paid edition.
+00:46 Often, the community free edition is totally good
+00:48 and you can use it for writing
+00:50 all kinds of stuff in Python.
+00:52 However, one of the paid features
+00:55 is web and database support.
+00:57 This is a class about web and database programming
+01:00 so as you might expect, you're going to have to have
+01:02 the professional edition of PyCharm
+01:04 to make full use of it with this course.
+01:06 If you don't have or want to get
+01:08 the professional edition of PyCharm
+01:10 you can follow along with VS Code.
+01:12 You can sort of follow along with the community edition
+01:15 with a few little hacks to make it run.
+01:18 But you won't get the full editor
+01:19 to support in PyCharm community.
+01:22 Be sure to get the right version
+01:23 to get the most out of this course.

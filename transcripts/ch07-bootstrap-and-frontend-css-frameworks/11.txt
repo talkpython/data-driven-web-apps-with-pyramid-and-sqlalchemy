@@ -1,0 +1,36 @@
+00:00 Buttons in bootstrap are super, super easy.
+00:03 Here you can see a "get updates", where people can subscribe
+00:06 to the newsletter for notifications
+00:08 on things like new classes and so on.
+00:12 Now in here, this is submitting that form
+00:14 that posts your email address to the thing
+00:16 that actually puts you in the newsletter.
+00:18 So this one is a button, and we want it to be
+00:21 nice and red, I've heard that red converts well
+00:24 even though it's marked as dangerous
+00:26 it's somehow attractive.
+00:28 So btn and then btn-danger is what we used here.
+00:31 You can also do this with links
+00:32 so here's a link that just takes you from
+00:34 the course's page to the podcast page
+00:37 to encourage you to, you know
+00:39 get more out of interacting with me basically.
+00:42 So here's a link, looks exactly the same
+00:45 but here's a hyperlink and we say btn and then btn-primary.
+00:49 There are actually different sizes of buttons
+00:52 and six different kinds of buttons.
+00:54 We have default, primary, success, info, warning, and danger
+00:59 and maybe the one, if you don't even put any
+01:02 modifier on there, you might get something else
+01:05 I'm not sure how great it would look
+01:06 and of course there's just the plain link.
+01:08 And there's different sizes: just the standard btn
+01:11 there's a btn-small, btn-large
+01:13 maybe btn-xs I think at the bottom, I'm not sure.
+01:15 Extra small or extra large, I'm not sure which way it goes.
+01:18 But here's the choices you have
+01:20 and primary doesn't always have to be blue
+01:23 success doesn't always have to be green, and so on.
+01:25 You can of course, override the themes
+01:28 to make these buttons look differently.
+01:30 But here's the six categories that you get.

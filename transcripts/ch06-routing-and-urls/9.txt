@@ -1,0 +1,107 @@
+00:00 What we've seen so far is the basic routing
+00:02 but there's a few advanced use cases that are
+00:04 really, really helpful.
+00:05 So, let's go over here for an example.
+00:08 If I come over here and look at the
+00:10 episodes that were recorded
+00:11 I could click inside the new PyPI launch, awesome!
+00:14 So actually if you listen to this
+00:15 they'll talk about how they use Pyramid and various things
+00:18 to build the thing that we're modeling for a course.
+00:21 That was a lucky click.
+00:23 Notice the URL is /episodes/show.
+00:26 Really wish I'd have put details there
+00:28 but that's in the past.
+00:30 And then the number.
+00:31 And then just for a little SEO
+00:32 and helping people make sense of the URL, I put the actual
+00:35 sort of friendly name of the episode as well.
+00:40 And this is the main one.
+00:41 But what I would like to do is
+00:42 say for social media and stuff
+00:44 let people just say, what is this 160, 159
+00:48 like, let them just type talkpython.fm/159.
+00:53 And notice that redirects over.
+00:57 I'll just go here and just paste it.
+00:58 It redirects back to the right site, the right page.
+01:02 I want to add that functionality over here to our PyPI here.
+01:06 This doesn't exist in the real one
+01:07 but I want to be able to go like five
+01:09 fifth most popular package.
+01:13 That's pretty easy to do.
+01:14 I could come over here and you could say
+01:15 "Alright, well that just goes in the package thing here."
+01:19 So let's go and just call this "popular".
+01:25 And let's just say this is going to be {num}
+01:28 as in 1, 2, so on.
+01:30 Actually, I got to go ahead and add it over here, don't I?
+01:33 Ah, make it listen somewhere; let's do this.
+01:44 Now, we're going to show details 'cause it's
+01:46 we're going to reuse this template here
+01:48 because it's going to use a different route
+01:51 but then it's going to effectively either just show that one
+01:54 or probably what makes more sense
+01:55 is what I do on TalkPython to do a redirect.
+01:58 But let's just go over here, like this.
+02:16 So we're going to convert this to an integer
+02:18 and then let's do a little test that says
+02:20 "If the number, if it's not, if it's not between 1 and 10
+02:24 then we're not going to show the popular."
+02:26 We're going to say
+02:27 "You're not going to be able to ask for the 100th one."
+02:29 I'll just say, "That's how it's working, alright?"
+02:32 So then we'll say, "the whatever-eth popular package."
+02:44 So we'll just drop that in here now
+02:45 so we can use the template.
+02:46 Really, we'd go to the database
+02:47 and actually get what one that is going to be.
+02:50 Okay, so, this is going to work, I think.
+02:53 But not in the way that you are hoping it's going to work.
+02:56 So, let's go over here, and we'll ask for 5.
+03:00 The fifth most popular package. Awesome!
+03:04 Well let's try to go home. That works good.
+03:06 Let's try to go and see projects/requests again.
+03:11 That works good.
+03:13 What about, about?
+03:16 Ah, so far we're getting lucky with the order.
+03:18 Let's look over here
+03:19 see if I can find something that'll break.
+03:21 Yeah, let's try to go to account.
+03:23 'Member, that worked before.
+03:28 Account cannot be converted to 10.
+03:30 Hm. Well, what's going on here?
+03:34 So, there's a couple of things that work in this thing.
+03:38 So, remember what I said is we start at the top
+03:40 and you just go down into one of these matches.
+03:42 Well this says, "I want to look just for
+03:45 effectively / a single thing."
+03:48 Well, account is a single thing.
+03:51 So we need a way to tell it, "No, no no."
+03:54 "That needs to be a number."
+03:57 What we can do is we can actually add a little bit on here
+04:01 to say, "No, we're going to check that
+04:02 and this is going to be constrained in some way."
+04:05 Now, this is not as wonderful as it could be
+04:08 but let's go and do it. So we have custom predicates, is going to be an array.
+04:12 But what we put in here
+04:13 is we're going to put any function that
+04:16 given some of the information that's in the route
+04:19 whether or not it's matching this route, this popular route.
+04:23 So we'll just create a lambda.
+04:25 It's going to take info and some stuff we don't care about.
+04:28 And then we're going to say, "Go to the info
+04:29 which has the match data in it."
+04:32 And we'll say, "Get me the num."
+04:36 And if you don't have that, "Give me the match string there."
+04:38 And on the string, I'm going to ask, isdigit().
+04:41 And we're just going to return that.
+04:42 So now if I rerun it, let's see how it works now.
+04:46 First of all, account should not match, alright?
+04:50 Account is not isdigit().
+04:52 Here we go. So, account goes there.
+04:55 But let's see if what we had before, like 5, still works?
+04:58 The fifth most popular package. 8.
+05:03 The first most popular package, first, and so on.
+05:08 So now our system is working beautifully
+05:11 and we're able to add that constraint right there.
+05:15 Really, really nice.

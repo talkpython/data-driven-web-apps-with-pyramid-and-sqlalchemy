@@ -1,0 +1,96 @@
+00:00 We define our class that maps the database
+00:02 we have our SQLAlchemy base class.
+00:05 Next thing to do is actually create
+00:06 that connection and configure the database.
+00:09 So again, a new file to organize that code.
+00:12 Call it DBSession.
+00:14 So this is going to serve two purposes
+00:16 it's going to initialize the access to the database
+00:18 and it's also going to manage this overall session
+00:21 this unit of work design pattern so hence the name.
+00:25 We're going to come down here and define a class called DBSession
+00:28 and we're going to give it two pieces of information.
+00:31 We're going to have a factory and we're going to have a engine.
+00:38 The engine is going to manage the
+00:41 type of database we're talking to
+00:42 and the connection and the connection pooling.
+00:44 The factory is going to be the thing
+00:46 that creates sessions on demand, okay and
+00:49 the rule about these is there should be
+00:51 one and only one of them per connection
+00:55 okay so that's basically a singleton
+00:57 unless you're having multiple connections
+00:59 to multiple databases, in which case
+01:01 you got to manage that slightly
+01:02 differently than I'm showing you here.
+01:04 You want to have a static method called global_init
+01:10 and then we'll just make sure we
+01:12 call this once and only once, so we'll say if
+01:14 DBSession.factory and it's already been called
+01:18 no problem
+01:20 So we're also going to need to take a DB file to the string.
+01:24 What we're going to do is we're going to use SQLLite for this.
+01:27 That means when you set up this code and you run it
+01:29 you have no database to configure
+01:32 install, manage, etc.
+01:34 In production you probably if you're
+01:36 using SQLAlchemy you'll want to use some like Postgres
+01:38 or something along those lines
+01:40 that's just changing the connection string
+01:42 should be no problem but for here
+01:44 we're going to let them pass in a file
+01:47 and that file is going to represent
+01:48 just the actual SQLAlchemy file on disc.
+01:52 That's all you need for a SQLAlchemy connection.
+01:55 So it's probably prudent to do a little test here.
+02:00 Alright, now we know we have at least
+02:02 something that could be a file.
+02:07 Now let's define the connection string.
+02:08 SQLite always looks like this.
+02:11 sqlite:///<DB file>
+02:15 and I always like to print this out
+02:17 like here's my connection string.
+02:19 If this had a username password in it
+02:21 maybe I wouldn't exactly print that
+02:23 I'd print you know maybe not the password for sure
+02:26 but let's just go ahead and print.
+02:28 Connecting then like this connecting
+02:31 to DB at the connection string
+02:34 and then what we're going to do is
+02:35 we're going to create the engine.
+02:37 So we'll say engine equals SQLAlchemy.create_engine.
+02:43 Now it takes *args **kwargs which means
+02:47 thanks for the help, nothing sadly
+02:50 but what we can do is we'll pass
+02:51 the connection string here and then echo equals
+02:56 What do we put here, let's put false for now.
+02:58 If you would like to see every operation
+03:01 every bit of SQL that is sent to the database
+03:04 as it happens, print it out, change that to True
+03:07 it's a really nice debugging technique
+03:09 to see what's happening.
+03:12 Alright so because we want one and only one
+03:14 of those we're going to store that here
+03:18 and we also need while we're at it
+03:19 let's go ahead and create this factory
+03:21 and it'll just round out this thing here
+03:23 so we'll say DBSession.factory
+03:26 say SQLAlchemy.session.orm
+03:30 Better import that at the top too
+03:33 .sessionmaker
+03:37 say bind equals engine
+03:39 I think we're in good shape.
+03:40 Okay so this will allow us to
+03:43 initialize the connection and create this factory
+03:46 and then later when we want to actually
+03:49 create the factories we'll see there's
+03:51 a couple of evolutions or steps of improvement
+03:55 that will apply to this factory thing here as well
+03:58 but for now this is the sort of standard starting place
+04:01 so what we do is we come up with a connection string
+04:04 we create the engine based on that
+04:06 and we hold onto it, one and only one of them
+04:09 same thing, we create the factory based on the engine
+04:12 and this is going to manage both the connection string
+04:15 as well as the dialect, the type of database
+04:17 we're talking to because of that right there.

@@ -1,0 +1,89 @@
+00:00 We've seen there are two ways
+00:01 to make Alembic do changes to our database.
+00:05 We have the SQLAlchemy class based changes
+00:08 and just straight up manual changes.
+00:09 I didn't show you the manual changes
+00:11 but I did tell you about them.
+00:12 I'll show them to you now
+00:14 so you can see what the whole set
+00:15 of steps are and appreciate a little
+00:17 bit better what the SQLAlchemy version
+00:19 the AutoGen version is doing for you.
+00:22 If we're going to make a change
+00:23 we're going to record our revision.
+00:25 The manual way we're going to get started
+00:27 by creating the pieces by running
+00:29 Alembic revision and then give it a comment
+00:31 -m, add key words to the column.
+00:34 This is important, it's going to show up
+00:35 when you apply it. It's also going to show up in the file name
+00:38 that stores it. So, we do that and it'll generate some
+00:41 hash and then a file name friendly version of your comment.
+00:45 Done. Then we go and open that file and we see
+00:48 it looks like this. It has a revision, the first one will have no
+00:50 down revision, no relationship, but as you
+00:53 build upon them, of course, they do.
+00:56 And then it has an empty upgrade
+00:58 and an empty pass. So, your job in the manual version
+01:01 is to actually implement those things.
+01:03 Okay, that may or may not be something
+01:05 you want to do. It's not too hard.
+01:07 Here's another one we can do.
+01:09 We can come and say we'd like to do op
+01:11 add column to the packages table and just passing
+01:15 a column like you would in your SQLAlchemy class, right?
+01:18 I say, the column, keywords, string
+01:20 nullable, and so on, then downgrade of course
+01:23 is drop column. This is pretty straight forward
+01:25 but it can be a little bit tricky.
+01:27 One thing you may want to do is
+01:28 double check that this column does not exist
+01:30 before you try to add it.
+01:32 If it does, this migration will fail.
+01:34 And everything that depends upon it
+01:36 will subsequently fail as well.
+01:38 And that won't be great.
+01:39 Similarly for dropping it.
+01:40 I talked a little bit earlier about
+01:42 the alembic_helpers.
+01:43 There's this function that I got called
+01:46 table has column.
+01:47 And give it a table and a column
+01:50 it'll say yes, I have it.
+01:51 So, it'll go and do some funky introspection
+01:54 on the table and tell you whether
+01:56 or not that it's there.
+01:57 The way you import it is a little weird.
+01:59 Because where we run the code from
+02:02 and where it lives is not exactly
+02:04 the same place. The way Alembic runs these
+02:08 it's a little bit funky.
+02:09 So, you got to do this weird import
+02:11 to get it, but once you do then you can ask
+02:13 questions like, if the table doesn't have
+02:15 a keyword's column, then add it.
+02:18 Things like that.
+02:19 So, this may be helpful to you.
+02:20 We could also ask alembic current.
+02:23 By default it'll just say nothing
+02:25 which means there's no version.
+02:27 Although it does when you run that create table
+02:29 just there's no version put into it.
+02:32 And then we say upgrade
+02:33 and it's going to apply whatever upgrade.
+02:35 So, in this case, we ran it on the database
+02:37 that had revision 708 and we upgraded a 689.
+02:41 And that was adding the keywords column.
+02:44 Now, it you ask Alembic.current
+02:46 it'll say, we're on that 689 version
+02:48 that we just upgraded to and by the way
+02:50 that is the latest.
+02:51 And of course, as we saw, this version
+02:53 is stored in your database so you have
+02:55 an Alembic.version and you go do a query
+02:57 on it, you'll see 689, the one column
+03:00 with one row that is just that string.
+03:02 Super easy to check.
+03:03 Might just open it up in your tools
+03:05 and going what version is this in?
+03:07 Even if you can't Alembic directly on it.
