@@ -1,9 +1,10 @@
-import bson
 from typing import Optional
 
-from pypi import DbSession
-from pypi.nosql.users import User
+# noinspection PyPackageRequirements
+import bson
 from passlib.handlers.sha2_crypt import sha512_crypt
+
+from pypi.nosql.users import User
 
 
 def user_count() -> int:
