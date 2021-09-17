@@ -1,3 +1,4 @@
+import bson
 from typing import Optional
 
 from pypi import DbSession
@@ -43,7 +44,7 @@ def login_user(email: str, password: str) -> Optional[User]:
     return user
 
 
-def find_user_by_id(user_id: int) -> Optional[User]:
+def find_user_by_id(user_id: bson.ObjectId) -> Optional[User]:
     return User.objects(id=user_id).first()
 
 
