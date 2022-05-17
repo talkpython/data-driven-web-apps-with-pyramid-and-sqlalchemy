@@ -1,0 +1,2 @@
+Hello this is practice file for practicing git and github repository and how to use git in conjunction with
+github tracking local changes to a git clone and pushing the local clone to the github fork. 
