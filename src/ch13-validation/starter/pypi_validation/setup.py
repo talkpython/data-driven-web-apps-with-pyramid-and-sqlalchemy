@@ -9,15 +9,15 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
 requires = [
-    'passlib',
-    'python-dateutil',
-    'progressbar2',
-    'plaster_pastedeploy',
-    'pyramid',
-    'pyramid_chameleon',
-    'pyramid_debugtoolbar',
-    'sqlalchemy',
-    'waitress',
+    'passlib==1.7.4',
+    'plaster_pastedeploy==1.0.1',
+    'progressbar2==4.2.0',
+    'pyramid==2.0.1',
+    'pyramid_chameleon==0.3',
+    'pyramid_debugtoolbar==4.10',
+    'python-dateutil==2.8.2',
+    'sqlalchemy==2.0.19',
+    'waitress==2.1.2',
 ]
 
 tests_require = [
