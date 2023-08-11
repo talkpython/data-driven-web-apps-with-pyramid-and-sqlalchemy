@@ -23,7 +23,8 @@ class Package(SqlAlchemyBase):
 
     license = sa.Column(sa.String, index=True)
 
-    releases = orm.relation("Release", order_by=[
+    # Note: orm.relation() was renamed to orm.relationship in SQLAlchemy 2.0.
+    releases = orm.relationship("Release", order_by=[
         Release.major_ver.desc(),
         Release.minor_ver.desc(),
         Release.build_ver.desc(),

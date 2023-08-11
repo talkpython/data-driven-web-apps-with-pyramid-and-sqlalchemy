@@ -20,7 +20,8 @@ class Release(SqlAlchemyBase):
 
     # Package relationship
     package_id = sqlalchemy.Column(sqlalchemy.String, sqlalchemy.ForeignKey('packages.id'))
-    package = orm.relation('Package', back_populates='releases')
+    # Note: orm.relation() was renamed to orm.relationship in SQLAlchemy 2.0.
+    package = orm.relationship('Package', back_populates='releases')
 
     @property
     def version_text(self):
