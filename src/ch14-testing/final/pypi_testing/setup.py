@@ -12,7 +12,7 @@ requires = [
     'passlib==1.7.4',
     'plaster_pastedeploy==1.0.1',
     'progressbar2==4.2.0',
-    'pyramid==2.0.1',
+    'pyramid==2.0.2',
     'pyramid_chameleon==0.3',
     'pyramid_debugtoolbar==4.10',
     'python-dateutil==2.8.2',
