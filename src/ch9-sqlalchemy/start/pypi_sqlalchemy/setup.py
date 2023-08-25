@@ -10,7 +10,7 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
 
 requires = [
     'plaster_pastedeploy==1.0.1',
-    'pyramid==2.0.1',
+    'pyramid==2.0.2',
     'pyramid_chameleon==0.3',
     'pyramid_debugtoolbar==4.10',
     'waitress==2.1.2',
